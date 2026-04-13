@@ -36,8 +36,7 @@ export default function Hero() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    let w = (canvas.width = window.innerWidth);
-    let h = (canvas.height = window.innerHeight);
+    const mouse = { x: -1000, y: -1000 };
 
     const particles: {
       x: number; y: number; vx: number; vy: number;
@@ -46,25 +45,56 @@ export default function Hero() {
 
     const colors = ["#ea580c", "#fb923c", "#ffffff", "#f97316"];
 
-    for (let i = 0; i < 80; i++) {
+    for (let i = 0; i < 100; i++) {
       particles.push({
         x: Math.random() * w,
         y: Math.random() * h,
-        vx: (Math.random() - 0.5) * 0.3,
-        vy: (Math.random() - 0.5) * 0.3,
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4,
         r: Math.random() * 2 + 0.5,
         alpha: Math.random() * 0.4 + 0.05,
         color: colors[Math.floor(Math.random() * colors.length)],
       });
     }
 
+    const handleMouseMove = (e: MouseEvent) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+
     const draw = () => {
       ctx.clearRect(0, 0, w, h);
 
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
-        p.x += p.vx;
-        p.y += p.vy;
+        
+        // Mouse interaction
+        const mDist = Math.hypot(mouse.x - p.x, mouse.y - p.y);
+        if (mDist < 150) {
+          const angle = Math.atan2(p.y - mouse.y, p.x - mouse.x);
+          const force = (150 - mDist) / 150;
+          p.vx += Math.cos(angle) * force * 0.3;
+          p.vy += Math.sin(angle) * force * 0.3;
+
+          // Draw line to mouse
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(mouse.x, mouse.y);
+          ctx.strokeStyle = "#ea580c";
+          ctx.globalAlpha = (1 - mDist / 150) * 0.15;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+
+        // Apply friction
+        p.vx *= 0.96;
+        p.vy *= 0.96;
+
+        // Base motion
+        p.x += p.vx + (Math.random() - 0.5) * 0.1;
+        p.y += p.vy + (Math.random() - 0.5) * 0.1;
+
         if (p.x < 0) p.x = w;
         if (p.x > w) p.x = 0;
         if (p.y < 0) p.y = h;
@@ -79,12 +109,12 @@ export default function Hero() {
         for (let j = i + 1; j < particles.length; j++) {
           const q = particles[j];
           const dist = Math.hypot(p.x - q.x, p.y - q.y);
-          if (dist < 120) {
+          if (dist < 100) {
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(q.x, q.y);
             ctx.strokeStyle = "#ea580c";
-            ctx.globalAlpha = (1 - dist / 120) * 0.08;
+            ctx.globalAlpha = (1 - dist / 100) * 0.05;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
@@ -106,6 +136,7 @@ export default function Hero() {
     return () => {
       cancelAnimationFrame(animFrameRef.current);
       window.removeEventListener("resize", handleResize);
+      window.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);
 
