@@ -43,7 +43,7 @@ const ProjectCard = ({ project, index, progress, range, targetScale }: CardProps
           scale,
           top: `calc(-5vh + ${index * 25}px)`,
         }}
-        className="relative h-[80vh] w-full max-w-6xl bg-surface border border-border rounded-3xl overflow-hidden flex flex-col md:flex-row shadow-2xl"
+        className="relative h-[80vh] w-full max-w-6xl bg-surface border border-border rounded-3xl overflow-hidden flex flex-col md:flex-row shadow-2xl will-change-transform"
       >
         {/* Left: Content */}
         <div className="flex-1 p-8 md:p-16 flex flex-col justify-between order-2 md:order-1 bg-surface z-10">
@@ -93,7 +93,7 @@ const ProjectCard = ({ project, index, progress, range, targetScale }: CardProps
             
             {/* Visual Placeholder for Mockup */}
             <div className="absolute inset-0 flex items-center justify-center p-8 z-20">
-               <div className="w-full h-full rounded-2xl border border-white/10 bg-black/40 backdrop-blur-md overflow-hidden flex flex-col items-center justify-center relative shadow-2xl shadow-black/50">
+               <div className="w-full h-full rounded-2xl border border-white/10 bg-black/40 backdrop-blur-sm overflow-hidden flex flex-col items-center justify-center relative shadow-2xl shadow-black/50">
                   <div className="w-full p-3 bg-white/5 border-b border-white/10 flex items-center gap-2">
                     <div className="flex gap-1.5">
                       <div className="w-2 h-2 rounded-full bg-red-500/40" />
@@ -115,12 +115,8 @@ const ProjectCard = ({ project, index, progress, range, targetScale }: CardProps
                </div>
             </div>
             
-            {/* Noise grain overlay */}
-            <div className="absolute inset-0 opacity-20 pointer-events-none z-30"
-              style={{
-                backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
-              }}
-            />
+            {/* Static noise grain overlay for performance */}
+            <div className="absolute inset-0 opacity-10 pointer-events-none z-30 bg-noise pointer-events-none" />
           </motion.div>
         </div>
       </motion.div>
