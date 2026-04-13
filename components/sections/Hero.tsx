@@ -36,6 +36,8 @@ export default function Hero() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
+    let w = (canvas.width = window.innerWidth);
+    let h = (canvas.height = window.innerHeight);
     const mouse = { x: -1000, y: -1000 };
 
     const particles: {
