@@ -3,7 +3,6 @@ import { Syne, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import CustomCursor from "@/components/cursor/CustomCursor";
 
 const syne = Syne({
   subsets: ["latin"],
@@ -98,8 +97,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             {/* Noise grain overlay */}
             <div className="noise-overlay" aria-hidden="true" />
 
-            {/* Custom cursor */}
-            <CustomCursor />
 
             {/* Navigation */}
             <Navbar />

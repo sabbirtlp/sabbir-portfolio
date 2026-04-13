@@ -27,7 +27,6 @@ body {
   color: #ffffff;
   font-family: var(--font-inter), system-ui, sans-serif;
   overflow-x: hidden;
-  cursor: none;
 }
 
 /* ─── Scrollbar ─────────────────────────────── */
@@ -35,13 +34,7 @@ body {
 ::-webkit-scrollbar-track { background: #0a0a0a; }
 ::-webkit-scrollbar-thumb { background: #ea580c; border-radius: 2px; }
 
-/* ─── Custom Cursor ─────────────────────────── */
-.cursor-dot {
-  position: fixed;
-  pointer-events: none;
-  z-index: 99999;
-  mix-blend-mode: difference;
-}
+
 
 /* ─── Noise Grain Overlay ───────────────────── */
 .noise-overlay {
@@ -152,6 +145,4 @@ body {
 
 /* ─── Responsive ─────────────────────────────── */
 @media (max-width: 768px) {
-  body { cursor: auto; }
-  .cursor-dot { display: none; }
 }
