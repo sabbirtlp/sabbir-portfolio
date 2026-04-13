@@ -50,33 +50,38 @@ export default function CustomCursor() {
 
   return (
     <>
-      {/* Large Classic Pointer */}
+      {/* Night Diamond (Orange Theme) */}
       <motion.div
         ref={cursorRef}
-        className="fixed top-0 left-0 z-[99999] pointer-events-none hidden md:block"
-        style={{ x: ringX, y: ringY, translateX: "-4px", translateY: "-4px" }}
+        className="fixed top-0 left-0 z-[99999] pointer-events-none hidden md:flex items-center justify-center translate-x-1/2 translate-y-1/2"
+        style={{ x: ringX, y: ringY, translateX: "-50%", translateY: "-50%" }}
       >
-        <motion.div
-          animate={{ scale: cursorRef.current?.classList.contains("cursor-hover") ? 1.2 : 1 }}
-          className="transition-transform duration-300"
-        >
-          <svg 
-            width="32" 
-            height="40" 
-            viewBox="0 0 32 40" 
-            fill="none" 
-            xmlns="http://www.w3.org/2000/svg"
-            className="drop-shadow-[0_0_10px_rgba(0,0,0,0.5)]"
-          >
-            <path 
-              d="M0 0V32L9 23L15 37L21 34L15 21L26 21L0 0Z" 
-              fill="black" 
-              stroke="white" 
-              strokeWidth="2" 
-              strokeLinejoin="round" 
-            />
-          </svg>
-        </motion.div>
+        <div className="relative group/cursor">
+          {/* Outer Silhouette */}
+          <div 
+             className="w-10 h-10 bg-accent transition-all duration-300 shadow-[0_0_20px_rgba(234,88,12,0.5)] [.cursor-hover_&]:scale-110 [.cursor-hover_&]:opacity-50"
+             style={{
+                clipPath: "polygon(0% 0%, 100% 40%, 100% 100%, 40% 100%, 40% 70%, 0% 70%)"
+             }}
+          />
+          
+          {/* Glowing Inner Diamond */}
+          <motion.div 
+             animate={{ 
+                scale: [1, 1.2, 1],
+                opacity: [0.6, 1, 0.6]
+             }}
+             transition={{ 
+                duration: 2.5, 
+                repeat: Infinity, 
+                ease: "easeInOut" 
+             }}
+             className="absolute left-[12%] top-[12%] w-4 h-4 bg-accent-light shadow-[0_0_15px_rgba(251,146,60,0.8)] transition-all duration-300 [.cursor-hover_&]:scale-150 [.cursor-hover_&]:shadow-[0_0_25px_rgba(251,146,60,1)]"
+             style={{
+                clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)"
+             }}
+          />
+        </div>
       </motion.div>
     </>
   );
