@@ -1,0 +1,146 @@
+@import "tailwindcss";
+
+@theme {
+  --font-syne: var(--font-syne);
+  --font-inter: var(--font-inter);
+  --color-background: #0a0a0a;
+  --color-surface: #111111;
+  --color-surface-2: #1a1a1a;
+  --color-accent: #ea580c;
+  --color-accent-light: #fb923c;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #a3a3a3;
+  --color-text-muted: #525252;
+  --color-border: #262626;
+}
+
+/* ─── Base ─────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: auto; /* Lenis handles this */
+  background: #0a0a0a;
+}
+
+body {
+  background-color: #0a0a0a;
+  color: #ffffff;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ─── Scrollbar ─────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #0a0a0a; }
+::-webkit-scrollbar-thumb { background: #ea580c; border-radius: 2px; }
+
+/* ─── Custom Cursor ─────────────────────────── */
+.cursor-dot {
+  position: fixed;
+  pointer-events: none;
+  z-index: 99999;
+  mix-blend-mode: difference;
+}
+
+/* ─── Noise Grain Overlay ───────────────────── */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+}
+
+/* ─── Selection ─────────────────────────────── */
+::selection { background: #ea580c; color: #ffffff; }
+
+/* ─── Typography ────────────────────────────── */
+.font-syne { font-family: var(--font-syne), sans-serif; }
+
+.text-gradient {
+  background: linear-gradient(135deg, #ea580c 0%, #fb923c 50%, #ffffff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-subtle {
+  background: linear-gradient(to right, #ffffff 0%, #a3a3a3 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Glow Effects ──────────────────────────── */
+.glow-accent {
+  box-shadow: 0 0 30px rgba(234, 88, 12, 0.3), 0 0 60px rgba(234, 88, 12, 0.1);
+}
+
+.glow-accent-sm {
+  box-shadow: 0 0 15px rgba(234, 88, 12, 0.2);
+}
+
+/* ─── Section Divider ───────────────────────── */
+.section-divider {
+  width: 60px;
+  height: 2px;
+  background: #ea580c;
+  margin-bottom: 1.5rem;
+}
+
+/* ─── Horizontal Scroll ─────────────────────── */
+.pin-spacer { will-change: transform; }
+
+/* ─── Card hover gradient border ───────────── */
+.card-gradient-border {
+  position: relative;
+}
+.card-gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(234,88,12,0.5), transparent, rgba(234,88,12,0.2));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.card-gradient-border:hover::before { opacity: 1; }
+
+/* ─── Marquee ───────────────────────────────── */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 35s linear infinite;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ─── Page Transition ───────────────────────── */
+.page-transition {
+  position: fixed;
+  inset: 0;
+  background: #ea580c;
+  z-index: 99998;
+  transform-origin: bottom;
+}
+
+/* ─── Utilities ─────────────────────────────── */
+.clip-text { overflow: hidden; }
+.will-change-transform { will-change: transform; }
+
+/* ─── Responsive ─────────────────────────────── */
+@media (max-width: 768px) {
+  body { cursor: auto; }
+  .cursor-dot { display: none; }
+}

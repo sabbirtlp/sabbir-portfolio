@@ -1,0 +1,157 @@
+{
+  "general": {
+    "siteName": "Sabbir Hossain",
+    "email": "hello@sabbir.dev",
+    "phone": "+880 1234 567 890",
+    "socials": {
+      "github": "https://github.com/sabbir",
+      "twitter": "https://twitter.com/sabbir",
+      "linkedin": "https://linkedin.com/in/sabbir"
+    }
+  },
+  "hero": {
+    "badge": "Available for New Projects",
+    "headlineWords": [
+      "High-Converting",
+      "Websites",
+      "That",
+      "Grow",
+      "Your",
+      "Business"
+    ],
+    "subheadline": "I'm Sabbir Hossain — a web developer with 7+ years crafting conversion-focused digital experiences. I've helped 100+ businesses grow through stunning, strategic websites.",
+    "stats": [
+      {
+        "value": 7,
+        "suffix": "+",
+        "label": "Years Experience"
+      },
+      {
+        "value": "400",
+        "suffix": "+",
+        "label": "Websites Built"
+      },
+      {
+        "value": 100,
+        "suffix": "+",
+        "label": "Happy Clients"
+      }
+    ]
+  },
+  "about": {
+    "name": "Sabbir Hossain",
+    "role": "Web Developer & CRO Specialist",
+    "experience": "7+",
+    "description": "Hi, I'm Sabbir — a web developer specializing in building high-converting, business-focused websites. Over the past 7+ years, I've helped 100+ businesses across various industries transform their online presence into powerful revenue-generating machines.",
+    "subDescription": "I don't just build pretty websites — I build strategic digital assets engineered to convert visitors into paying customers, leveraging data-driven UX, performance optimization, and proven conversion psychology.",
+    "achievements": [
+      "7+ years delivering premium web projects",
+      "300+ websites built across 20+ industries",
+      "100% client satisfaction rate",
+      "Average 3x ROI for clients within 6 months",
+      "Expert in WordPress, WooCommerce & Custom Builds",
+      "Conversion Rate Optimization specialist"
+    ],
+    "techStack": [
+      "WordPress",
+      "React",
+      "Next.js",
+      "PHP",
+      "WooCommerce",
+      "Figma",
+      "GSAP",
+      "Tailwind CSS",
+      "Node.js",
+      "MySQL"
+    ]
+  },
+  "services": [
+    {
+      "icon": "Globe",
+      "title": "WordPress Development",
+      "description": "Custom WordPress websites built for speed, security, and conversions. From blogs to complex business platforms.",
+      "highlight": "Most Popular"
+    },
+    {
+      "icon": "Layout",
+      "title": "Business Websites",
+      "description": "Authority-building business websites designed to attract, engage, and convert your ideal customers.",
+      "highlight": null
+    },
+    {
+      "icon": "Palette",
+      "title": "Landing Page Design",
+      "description": "High-converting landing pages engineered with proven CRO psychology to maximize campaign ROI.",
+      "highlight": "High ROI"
+    },
+    {
+      "icon": "RefreshCw",
+      "title": "Website Redesign",
+      "description": "Transform your outdated website into a modern, conversion-focused powerhouse without losing SEO equity.",
+      "highlight": null
+    },
+    {
+      "icon": "ShoppingCart",
+      "title": "E-Commerce Development",
+      "description": "Full-featured WooCommerce stores with optimized checkout flows, inventory management, and payment integration.",
+      "highlight": null
+    },
+    {
+      "icon": "Zap",
+      "title": "Speed Optimization",
+      "description": "Achieve 95+ PageSpeed scores. Faster websites rank higher, convert better, and retain visitors longer.",
+      "highlight": "90+ Score"
+    },
+    {
+      "icon": "Search",
+      "title": "SEO-Friendly Development",
+      "description": "Every site built with technical SEO foundations — structured data, Core Web Vitals, semantic HTML.",
+      "highlight": null
+    },
+    {
+      "icon": "BarChart3",
+      "title": "UI/UX Design",
+      "description": "Research-driven UI/UX design that guides users to conversion through intuitive flows and strategic layouts.",
+      "highlight": null
+    }
+  ],
+  "process": {
+    "steps": [
+      {
+        "number": "01",
+        "title": "Discovery",
+        "description": "Deep-dive into your business goals, target audience, competitors, and conversion objectives.",
+        "color": "from-orange-500/20 to-orange-500/5",
+        "accent": "#ea580c"
+      },
+      {
+        "number": "02",
+        "title": "Design",
+        "description": "Wireframes, prototypes, and high-fidelity UI design with a focus on conversion architecture.",
+        "color": "from-amber-500/20 to-amber-500/5",
+        "accent": "#f59e0b"
+      },
+      {
+        "number": "03",
+        "title": "Development",
+        "description": "Pixel-perfect development with clean code, fast load times, and mobile-first excellence.",
+        "color": "from-orange-400/20 to-orange-400/5",
+        "accent": "#fb923c"
+      },
+      {
+        "number": "04",
+        "title": "Launch",
+        "description": "Rigorous QA testing, SEO setup, performance optimization, and smooth go-live handoff.",
+        "color": "from-red-500/20 to-red-500/5",
+        "accent": "#ef4444"
+      },
+      {
+        "number": "05",
+        "title": "Optimization",
+        "description": "Post-launch analysis, A/B testing, conversion rate optimization, and continuous improvements.",
+        "color": "from-rose-500/20 to-rose-500/5",
+        "accent": "#f43f5e"
+      }
+    ]
+  }
+}
