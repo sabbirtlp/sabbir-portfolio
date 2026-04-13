@@ -21,7 +21,7 @@ export default function About() {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.25, 0.1, 0.25, 1] } },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.25, 0.1, 0.25, 1] as const } },
   };
 
   return (
@@ -35,7 +35,7 @@ export default function About() {
           <motion.div
             initial={{ opacity: 0, x: -60 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.9, ease: [0.25, 0.1, 0.25, 1] }}
+            transition={{ duration: 0.9, ease: [0.25, 0.1, 0.25, 1] as const }}
             className="relative"
           >
             <div className="relative w-full max-w-md mx-auto lg:mx-0">

@@ -56,7 +56,7 @@ export default function Services() {
                 key={service.title}
                 initial={{ opacity: 0, y: 50 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: i * 0.08, ease: [0.25, 0.1, 0.25, 1] }}
+                transition={{ duration: 0.6, delay: i * 0.08, ease: [0.25, 0.1, 0.25, 1] as const }}
                 className="group relative p-6 rounded-2xl bg-surface border border-border hover:border-accent/40 transition-all duration-500 card-gradient-border cursor-default"
               >
                 {/* Glow on hover */}
