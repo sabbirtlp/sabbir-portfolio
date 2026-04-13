@@ -16,11 +16,24 @@ export function ContentProvider({ children }: { children: ReactNode }) {
 
   async function fetchContent() {
     try {
-      const res = await fetch("/api/admin/content");
+      const res = await fetch("/api/admin/content", {
+        cache: 'no-store' // Ensure we get fresh data
+      });
+      
+      if (!res.ok) {
+        throw new Error(`Server returned ${res.status}: ${res.statusText}`);
+      }
+
+      const contentType = res.headers.get("content-type");
+      if (!contentType || !contentType.includes("application/json")) {
+        throw new Error(`Expected JSON but received ${contentType}`);
+      }
+
       const data = await res.json();
       setContent(data);
     } catch (error) {
-      console.error("Failed to fetch content", error);
+      console.error("ContentProvider: Failed to fetch data", error);
+      // Fallback or error state could be set here
     } finally {
       setLoading(false);
     }

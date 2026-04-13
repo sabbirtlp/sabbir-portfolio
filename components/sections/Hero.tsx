@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
-import { ArrowRight, MousePointer2 } from "lucide-react";
+import { ArrowRight, MousePointer2, Loader2 } from "lucide-react";
 import MagneticButton from "@/components/ui/MagneticButton";
 import CountUp from "@/components/ui/CountUp";
 
@@ -11,6 +11,15 @@ import { useContent } from "@/components/providers/ContentProvider";
 
 export default function Hero() {
   const { content } = useContent();
+
+  if (!content?.hero) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <Loader2 className="w-8 h-8 text-accent animate-spin" />
+      </div>
+    );
+  }
+
   const { stats, headlineWords, subheadline, badge } = content.hero;
 
   const headlineRef = useRef<HTMLDivElement>(null);

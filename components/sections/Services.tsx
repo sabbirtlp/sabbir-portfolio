@@ -20,6 +20,9 @@ const ICON_MAP: Record<string, any> = {
 
 export default function Services() {
   const { content } = useContent();
+  
+  if (!content?.services) return null;
+
   const services = content.services;
 
   const ref = useRef<HTMLElement>(null);

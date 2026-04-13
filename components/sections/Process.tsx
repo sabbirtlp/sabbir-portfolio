@@ -11,6 +11,9 @@ import { useContent } from "@/components/providers/ContentProvider";
 
 export default function Process() {
   const { content } = useContent();
+
+  if (!content?.process) return null;
+
   const steps = content.process.steps;
 
   const ref = useRef<HTMLElement>(null);

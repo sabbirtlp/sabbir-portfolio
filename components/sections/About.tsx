@@ -9,6 +9,9 @@ import { useContent } from "@/components/providers/ContentProvider";
 
 export default function About() {
   const { content } = useContent();
+  
+  if (!content?.about) return null;
+
   const { name, role, experience, description, subDescription, achievements, techStack } = content.about;
 
   const ref = useRef<HTMLElement>(null);

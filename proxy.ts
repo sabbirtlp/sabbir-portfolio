@@ -8,7 +8,10 @@ export async function proxy(request: NextRequest) {
   if (pathname.startsWith("/admin") || pathname.startsWith("/api/admin")) {
     // Allow public GET requests specifically to the content API 
     // so the website can render its data without being logged in.
-    if (pathname === "/api/admin/content" && request.method === "GET") {
+    // Allow public GET requests specifically to the content API 
+    // so the website can render its data without being logged in.
+    const isContentApi = pathname === "/api/admin/content" || pathname === "/api/admin/content/";
+    if (isContentApi && request.method === "GET") {
       return NextResponse.next();
     }
 
