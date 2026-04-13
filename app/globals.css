@@ -139,6 +139,11 @@ body {
 .clip-text { overflow: hidden; }
 .will-change-transform { will-change: transform; }
 
+@keyframes shimmer {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(100%); }
+}
+
 /* ─── Responsive ─────────────────────────────── */
 @media (max-width: 768px) {
   body { cursor: auto; }

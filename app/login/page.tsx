@@ -115,18 +115,23 @@ export default function LoginPage() {
               </motion.div>
             )}
 
-            <MagneticButton strength={0.3}>
+            <MagneticButton strength={0.2}>
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full h-14 bg-accent hover:bg-accent-light text-white font-bold rounded-xl transition-all duration-300 flex items-center justify-center gap-3 glow-accent-sm disabled:opacity-50 disabled:grayscale"
+                className="group relative w-full h-14 bg-gradient-to-r from-accent via-accent-light to-accent bg-[length:200%_auto] hover:bg-[100%_center] text-white font-bold rounded-xl transition-all duration-500 flex items-center justify-center gap-3 shadow-[0_0_20px_rgba(234,88,12,0.3)] hover:shadow-[0_0_35px_rgba(234,88,12,0.5)] hover:scale-[1.02] disabled:opacity-50 disabled:grayscale overflow-hidden"
               >
+                {/* Shimmer effect */}
+                <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] pointer-events-none" />
+                
                 {loading ? (
                   <Loader2 className="w-5 h-5 animate-spin" />
                 ) : (
                   <>
-                    Sign In to Dashboard
-                    <ArrowRight className="w-5 h-5" />
+                    <span className="relative z-10 flex items-center gap-2">
+                      Sign In to Dashboard
+                      <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                    </span>
                   </>
                 )}
               </button>
