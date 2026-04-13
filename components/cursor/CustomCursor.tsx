@@ -10,7 +10,7 @@ export default function CustomCursor() {
   const mouseY = useMotionValue(-100);
 
   const springConfig = { damping: 25, stiffness: 700, mass: 0.5 };
-  const ringSpringConfig = { damping: 30, stiffness: 200, mass: 0.8 };
+  const ringSpringConfig = { damping: 50, stiffness: 1000, mass: 0.1 };
 
   const dotX = useSpring(mouseX, springConfig);
   const dotY = useSpring(mouseY, springConfig);
