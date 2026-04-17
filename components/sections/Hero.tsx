@@ -97,13 +97,16 @@ export default function Hero() {
           p.alpha = p.originalAlpha;
         }
 
-        // Apply friction
-        p.vx *= 0.94;
-        p.vy *= 0.94;
+        // Apply friction (slightly less aggressive to allow drifting)
+        p.vx *= 0.98;
+        p.vy *= 0.98;
 
-        // Base motion
-        p.x += p.vx + (Math.random() - 0.5) * 0.1;
-        p.y += p.vy + (Math.random() - 0.5) * 0.1;
+        // Base autonomous motion (Motor Force for random movement)
+        p.vx += (Math.random() - 0.5) * 0.05;
+        p.vy += (Math.random() - 0.5) * 0.05;
+
+        p.x += p.vx;
+        p.y += p.vy;
 
         if (p.x < 0) p.x = w;
         if (p.x > w) p.x = 0;
