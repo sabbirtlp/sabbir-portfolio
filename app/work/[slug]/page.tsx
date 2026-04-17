@@ -94,7 +94,7 @@ export default async function CaseStudyPage({ params }: Props) {
       <div className="bg-surface border-y border-border">
         <div className="max-w-5xl mx-auto px-6 py-8">
           <div className="grid grid-cols-3 gap-8 divide-x divide-border">
-            {project.stats.map((stat) => (
+            {project.stats.map((stat: any) => (
               <div key={stat.label} className="text-center px-4 first:pl-0 last:pr-0">
                 <div className="font-syne font-black text-3xl text-accent mb-1">{stat.value}</div>
                 <div className="text-text-secondary text-sm">{stat.label}</div>
@@ -172,7 +172,7 @@ export default async function CaseStudyPage({ params }: Props) {
                 <h2 className="font-syne font-black text-2xl text-white">The Results</h2>
               </div>
               <ul className="space-y-3">
-                {project.results.map((result) => (
+                {project.results.map((result: any) => (
                   <li key={result} className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
                     <span className="text-text-secondary text-base">{result}</span>
@@ -190,7 +190,7 @@ export default async function CaseStudyPage({ params }: Props) {
                 Process
               </h3>
               <ol className="space-y-4">
-                {project.process.map((step, i) => (
+                {project.process.map((step: any, i: number) => (
                   <li key={step} className="flex items-center gap-3">
                     <span className="w-6 h-6 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs flex items-center justify-center font-bold flex-shrink-0">
                       {i + 1}
@@ -205,7 +205,7 @@ export default async function CaseStudyPage({ params }: Props) {
                   Technologies
                 </h3>
                 <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
+                  {project.tags.map((tag: any) => (
                     <span key={tag} className="px-3 py-1 rounded-full bg-surface-2 border border-border text-text-secondary text-xs">
                       {tag}
                     </span>
