@@ -54,7 +54,7 @@ export default function Navbar() {
             : "bg-transparent border-transparent"
         }`}
       >
-        <nav className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+        <nav className="max-w-7xl mx-auto px-4 sm:px-6 py-5 flex items-center justify-between">
           {/* Logo */}
           <MagneticButton strength={0.3}>
             <Link href="/" className="font-syne font-black text-xl tracking-tight text-white">

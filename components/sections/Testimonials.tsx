@@ -4,58 +4,19 @@ import { useState, useRef } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
 
-const testimonials = [
-  {
-    name: "Sarah Mitchell",
-    role: "CEO, TechVenture Co.",
-    content:
-      "Sabbir completely transformed our online presence. Our lead generation increased by 280% within 3 months of launch. The attention to detail and understanding of conversion psychology is unmatched.",
-    rating: 5,
-    avatar: "SM",
-    result: "+280% leads",
-  },
-  {
-    name: "David Chen",
-    role: "Founder, Bloom Fashion",
-    content:
-      "We were skeptical about investing in a website redesign, but Sabbir delivered beyond our expectations. Our e-commerce revenue jumped 220% and the site loads in under 1.2 seconds now.",
-    rating: 5,
-    avatar: "DC",
-    result: "+220% revenue",
-  },
-  {
-    name: "Jessica Park",
-    role: "Marketing Director, Atlas Consulting",
-    content:
-      "Sabbir doesn't just build websites, he builds business assets. Our new site has positioned us perfectly in front of enterprise clients and we've closed 3 Fortune 500 contracts through it.",
-    rating: 5,
-    avatar: "JP",
-    result: "3 F500 clients",
-  },
-  {
-    name: "Marcus Rodriguez",
-    role: "CEO, Pulse Fitness",
-    content:
-      "Launched our app landing page in 7 days and captured 40,000 email signups. The CRO strategy Sabbir implemented was the key to our successful funding round. Absolute pro.",
-    rating: 5,
-    avatar: "MR",
-    result: "40K signups",
-  },
-  {
-    name: "Emma Thompson",
-    role: "Owner, Luxe Real Estate",
-    content:
-      "We went from a 0.8% to 4.1% conversion rate with our new site. Sabbir's understanding of how high-end buyers think and browse changed everything for our business.",
-    rating: 5,
-    avatar: "ET",
-    result: "0.8% → 4.1% CVR",
-  },
-];
+import { useContent } from "@/components/providers/ContentProvider";
 
 export default function Testimonials() {
+  const { content } = useContent();
   const [active, setActive] = useState(0);
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  if (!content?.testimonials) {
+    return null;
+  }
+
+  const testimonials = content.testimonials;
 
   const prev = () => setActive((a) => (a - 1 + testimonials.length) % testimonials.length);
   const next = () => setActive((a) => (a + 1) % testimonials.length);

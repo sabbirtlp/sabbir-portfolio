@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { projects } from "@/data/projects";
+import { getContent } from "@/lib/storage";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, CheckCircle2, TrendingUp } from "lucide-react";
@@ -9,13 +9,18 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-  return projects.map((p) => ({ slug: p.slug }));
+  const content = await getContent();
+  if (!content || !content.projects) return [];
+  return content.projects.map((p: any) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const project = projects.find((p) => p.slug === slug);
+  const content = await getContent();
+  const project = content?.projects?.find((p: any) => p.slug === slug);
+  
   if (!project) return { title: "Project Not Found" };
+  
   return {
     title: `${project.title} — Case Study | Sabbir Hossain`,
     description: project.longDescription,
@@ -37,11 +42,13 @@ const gradientMap: Record<string, string> = {
 
 export default async function CaseStudyPage({ params }: Props) {
   const { slug } = await params;
-  const project = projects.find((p) => p.slug === slug);
+  const content = await getContent();
+  const projects = content?.projects || [];
+  const project = projects.find((p: any) => p.slug === slug);
 
   if (!project) notFound();
 
-  const currentIndex = projects.findIndex((p) => p.slug === slug);
+  const currentIndex = projects.findIndex((p: any) => p.slug === slug);
   const nextProject = projects[(currentIndex + 1) % projects.length];
   const gradient = gradientMap[slug] ?? "from-orange-900 to-red-900";
 
@@ -134,20 +141,26 @@ export default async function CaseStudyPage({ params }: Props) {
                   <span className="text-white/30 text-[10px]">www.{project.slug}.com</span>
                 </div>
               </div>
-              <div className={`h-60 rounded-xl bg-gradient-to-br ${gradient} p-6 flex flex-col gap-3`}>
-                <div className="h-8 bg-white/20 rounded-lg w-3/4 animate-pulse" />
-                <div className="h-4 bg-white/10 rounded w-full" />
-                <div className="h-4 bg-white/10 rounded w-5/6" />
-                <div className="flex gap-3 mt-2">
-                  <div className="h-9 bg-orange-500/70 rounded-lg w-32" />
-                  <div className="h-9 bg-white/10 rounded-lg w-24" />
+              {project.screenshot ? (
+                <div className="rounded-xl overflow-hidden">
+                  <img src={project.screenshot} alt={`${project.title} screenshot`} className="w-full h-auto object-cover" />
                 </div>
-                <div className="grid grid-cols-4 gap-2 mt-auto">
-                  {[1,2,3,4].map(i => (
-                    <div key={i} className="h-14 bg-white/10 rounded-lg" />
-                  ))}
+              ) : (
+                <div className={`h-60 rounded-xl bg-gradient-to-br ${gradient} p-6 flex flex-col gap-3`}>
+                  <div className="h-8 bg-white/20 rounded-lg w-3/4 animate-pulse" />
+                  <div className="h-4 bg-white/10 rounded w-full" />
+                  <div className="h-4 bg-white/10 rounded w-5/6" />
+                  <div className="flex gap-3 mt-2">
+                    <div className="h-9 bg-orange-500/70 rounded-lg w-32" />
+                    <div className="h-9 bg-white/10 rounded-lg w-24" />
+                  </div>
+                  <div className="grid grid-cols-4 gap-2 mt-auto">
+                    {[1,2,3,4].map(i => (
+                      <div key={i} className="h-14 bg-white/10 rounded-lg" />
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
 
             {/* Results */}

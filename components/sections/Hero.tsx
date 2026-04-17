@@ -228,7 +228,7 @@ export default function Hero() {
         {/* Headline */}
         <div ref={headlineRef} className="mb-6">
           <div className="overflow-hidden">
-            <div className="flex flex-wrap gap-x-5 gap-y-2">
+            <div className="flex flex-wrap gap-x-4 md:gap-x-8 gap-y-2">
               <div className="overflow-hidden">
                 <span className="word inline-block font-syne font-black text-display-xl text-white">
                   Crafting
@@ -252,7 +252,7 @@ export default function Hero() {
         {/* Subheadline */}
         <p
           ref={subRef}
-          className="text-text-secondary text-lg md:text-xl max-w-2xl leading-relaxed mb-10 opacity-0"
+          className="text-text-secondary text-base md:text-xl max-w-2xl leading-relaxed mb-10 opacity-0"
         >
           {subheadline.split("Sabbir Hossain").map((part: string, i: number, arr: string[]) => (
             <span key={i}>
@@ -263,21 +263,21 @@ export default function Hero() {
         </p>
 
         {/* CTAs */}
-        <div ref={ctaRef} className="flex flex-wrap gap-4 mb-20 opacity-0">
-          <MagneticButton strength={0.3}>
+        <div ref={ctaRef} className="flex flex-col sm:flex-row gap-4 mb-20 opacity-0">
+          <MagneticButton strength={0.3} className="w-full sm:w-auto">
             <button
               onClick={handleScrollToWork}
-              className="group flex items-center gap-3 px-8 py-4 bg-accent hover:bg-accent-light text-white font-semibold rounded-full transition-all duration-300 text-sm md:text-base glow-accent cursor-pointer"
+              className="group w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 bg-accent hover:bg-accent-light text-white font-semibold rounded-full transition-all duration-300 text-sm md:text-base glow-accent cursor-pointer"
             >
               View My Work
               <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
             </button>
           </MagneticButton>
 
-          <MagneticButton strength={0.3}>
+          <MagneticButton strength={0.3} className="w-full sm:w-auto">
             <button
               onClick={handleScrollToContact}
-              className="group flex items-center gap-3 px-8 py-4 border border-border hover:border-accent text-white font-semibold rounded-full transition-all duration-300 text-sm md:text-base cursor-pointer"
+              className="group w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 border border-border hover:border-accent text-white font-semibold rounded-full transition-all duration-300 text-sm md:text-base cursor-pointer"
             >
               Start a Project
               <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
@@ -288,14 +288,14 @@ export default function Hero() {
         {/* Stats */}
         <div
           ref={statsRef}
-          className="flex flex-wrap gap-12 pt-8 border-t border-border opacity-0"
+          className="grid grid-cols-2 md:flex md:flex-wrap gap-10 md:gap-16 pt-8 border-t border-border opacity-0"
         >
           {stats.map((stat: any) => (
             <div key={stat.label}>
-              <div className="font-syne font-black text-4xl md:text-5xl text-white mb-1">
+              <div className="font-syne font-black text-3xl md:text-5xl text-white mb-1">
                 <CountUp end={stat.value} suffix={stat.suffix} duration={2000} />
               </div>
-              <p className="text-text-secondary text-sm">{stat.label}</p>
+              <p className="text-text-secondary text-xs md:text-sm uppercase tracking-wider">{stat.label}</p>
             </div>
           ))}
         </div>

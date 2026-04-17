@@ -153,5 +153,282 @@
         "accent": "#f43f5e"
       }
     ]
-  }
+  },
+  "projects": [
+    {
+      "slug": "helmont",
+      "title": "HELMONT",
+      "category": "Corporate Website",
+      "year": "2026",
+      "description": "Premium corporate website for a Sydney-based builder and developer.",
+      "longDescription": "HELMONT is a Sydney-based builder–developer delivering disciplined residential projects. We built a clean, restrained, and highly professional corporate website that matched their ethos of 'quality enforced on site, not promised in marketing.'",
+      "image": "/projects/helmont.jpg",
+      "screenshot": "/projects/helmont-ss.jpg",
+      "mockupColor": "from-stone-800 to-black",
+      "liveUrl": "https://helmont.com.au/",
+      "stats": [
+        {
+          "value": "Sydney",
+          "label": "Location"
+        },
+        {
+          "value": "Premium",
+          "label": "Design"
+        }
+      ],
+      "tags": [
+        "Corporate Identity",
+        "Web Design",
+        "Real Estate"
+      ],
+      "problem": "HELMONT needed a digital presence that reflected their restrained, high-quality approach to residential development without looking like a generic real estate template.",
+      "solution": "Designed a minimalist, typography-driven website that puts the focus entirely on their projects and core principles. Simplified the navigation and ensured seamless mobile responsiveness.",
+      "process": [
+        "Brand Alignment",
+        "Minimalist UX/UI Design",
+        "Web Development",
+        "Performance Optimization"
+      ],
+      "results": [
+        "Established a premium digital footprint",
+        "Fast loading, minimalist user experience"
+      ]
+    },
+    {
+      "slug": "success-trading",
+      "title": "Success International Trading",
+      "category": "B2B E-Commerce",
+      "year": "2026",
+      "description": "Global B2B catalog site for a Malaysia-based import-export company.",
+      "longDescription": "Success International Trading supplies high-quality food commodities, garments, and motor parts to international markets. They required a robust B2B platform to showcase their global supply chain capabilities and connect with international partners.",
+      "image": "/projects/success-trading.jpg",
+      "screenshot": "/projects/success-trading-ss.jpg",
+      "mockupColor": "from-blue-900 to-slate-900",
+      "liveUrl": "https://successinternationaltrading.com/",
+      "stats": [
+        {
+          "value": "Global",
+          "label": "Reach"
+        },
+        {
+          "value": "B2B",
+          "label": "Focus"
+        }
+      ],
+      "tags": [
+        "B2B Catalog",
+        "Import/Export",
+        "Web Design"
+      ],
+      "problem": "The company lacked a centralized digital catalog to showcase their diverse product lines (food commodities, garments, and motor parts) to international buyers.",
+      "solution": "Developed a structured B2B website with clear product categorization, easy-to-use inquiry forms, and a professional aesthetic to build trust with global partners.",
+      "process": [
+        "Information Architecture",
+        "B2B UX Design",
+        "Development & CMS Setup",
+        "Lead Generation Integration"
+      ],
+      "results": [
+        "Streamlined international sourcing inquiries",
+        "Professional digital representation of their supply chain"
+      ]
+    },
+    {
+      "slug": "sivo-consulting",
+      "title": "Sivo Consulting",
+      "category": "Agency Website",
+      "year": "2026",
+      "description": "A modern, conversion-focused website for a strategic business consultancy.",
+      "longDescription": "Sivo Consulting helps businesses move forward with purpose through clear strategies and digital marketing. We designed a professional platform to highlight their services, from financial strategy to brand development, driving consultation bookings.",
+      "image": "/projects/sivo-consulting.jpg",
+      "screenshot": "/projects/sivo-consulting-ss.jpg",
+      "mockupColor": "from-indigo-900 to-black",
+      "liveUrl": "https://sivoconsulting.com/",
+      "stats": [
+        {
+          "value": "High",
+          "label": "Conversion"
+        },
+        {
+          "value": "Strategic",
+          "label": "Design"
+        }
+      ],
+      "tags": [
+        "Business Consulting",
+        "Lead Generation",
+        "Marketing"
+      ],
+      "problem": "Sivo Consulting needed a digital hub that clearly communicated their wide range of services—from operational efficiency to digital marketing—while driving potential clients to book consultations.",
+      "solution": "Built a clean, authoritative website with clear service breakdowns, integrated testimonial sections, and prominent call-to-actions to schedule consultations.",
+      "process": [
+        "Content Strategy",
+        "Corporate Web Design",
+        "Development",
+        "Conversion Rate Optimization"
+      ],
+      "results": [
+        "Increased inbound consultation requests",
+        "Clear, structured presentation of consulting services"
+      ]
+    },
+    {
+      "slug": "boca-pergola",
+      "title": "Boca Raton Pergola Builder",
+      "category": "Local Business Website",
+      "year": "2026",
+      "description": "Lead generation site for Boca Raton's premier custom aluminum pergola and patio cover builders.",
+      "longDescription": "A robust local services website designed for Boca Raton's premier indoor-outdoor living construction company. The site highlights full-service pergola builds, motorized louvered roofs, and patio covers, focusing heavily on lead generation and highlighting their HOA compliance expertise.",
+      "image": "/projects/boca-pergola.jpg",
+      "screenshot": "/projects/boca-pergola-ss.jpg",
+      "mockupColor": "from-stone-800 to-stone-900",
+      "liveUrl": "https://bocaratonpergolabuilder.com/",
+      "stats": [
+        {
+          "value": "100%",
+          "label": "HOA Approved"
+        },
+        {
+          "value": "Full",
+          "label": "Service"
+        },
+        {
+          "value": "Local",
+          "label": "Expertise"
+        }
+      ],
+      "tags": [
+        "Local SEO",
+        "WordPress",
+        "Elementor",
+        "Lead Generation"
+      ],
+      "problem": "The client needed a digital presence to dominate the South Florida market, stand out among other contractors, and streamline leads for high-end motorized and aluminum pergolas.",
+      "solution": "Built an optimized, mobile-responsive local business website using WordPress and Elementor. Highlighted their stress-free HOA permitting service, comprehensive service areas, and featured localized SEO landing pages to increase their visibility in Palm Beach County.",
+      "process": [
+        "Market Discovery & Local SEO Strategy",
+        "High-Conversion Wireframing",
+        "WordPress & Elementor Development",
+        "Optimized Project Gallery Setup",
+        "Launch & Analytics Tracking"
+      ],
+      "results": [
+        "Highly visible local search presence",
+        "Streamlined lead capture for high-ticket builds",
+        "Clear communication of HOA and permitting capabilities"
+      ]
+    },
+    {
+      "slug": "nexstart",
+      "title": "Nexstart",
+      "category": "Strategic Consulting",
+      "year": "2026",
+      "description": "Strategic consulting & sales growth solutions for modern businesses looking to scale fast.",
+      "longDescription": "Nexstart supports businesses with clear strategy, practical guidance, and measurable results. By combining consulting expertise, high-performing sales development, and global trade operations, we help leaders simplify complex challenges and enter new international markets with confidence.",
+      "image": "/projects/nexstart.jpg",
+      "screenshot": "/projects/nexstart-ss.jpg",
+      "mockupColor": "from-slate-900 to-black",
+      "liveUrl": "https://nexstart.eu/",
+      "stats": [
+        {
+          "value": "Top",
+          "label": "Consulting"
+        },
+        {
+          "value": "Global",
+          "label": "Logistics"
+        },
+        {
+          "value": "100%",
+          "label": "Commitment"
+        }
+      ],
+      "tags": [
+        "Consulting",
+        "WordPress",
+        "PHP",
+        "Elementor",
+        "Lead Generation"
+      ],
+      "problem": "Ambitious companies often struggle to scale revenue effectively, build high-performing sales teams, and navigate the complex logistics of international expansion.",
+      "solution": "Designed and deployed a comprehensive digital presence that clearly outlines Nexstart's core offerings—providing a professional, lead-generating hub for their consulting, training, and global logistics services.",
+      "process": [
+        "Brand Discovery & Strategy",
+        "UX/UI Design for Lead Generation",
+        "Web Development & Setup",
+        "SEO & Content Strategy"
+      ],
+      "results": [
+        "Established a highly professional digital presence",
+        "Streamlined lead generation funnels",
+        "Clear communication of diverse corporate services"
+      ]
+    }
+  ],
+  "testimonials": [
+    {
+      "name": "pierree***",
+      "role": "Client from France",
+      "content": "Working with MD Alauddin was an outstanding experience. He exceeded all my expectations — not only did he deliver a premium-quality website ahead of schedule, but he was also extremely responsive, detail-oriented, and proactive throughout the entire process.",
+      "rating": 5,
+      "avatar": "P",
+      "result": "Fiverr Client"
+    },
+    {
+      "name": "lolita***",
+      "role": "Repeat Client from United States",
+      "content": "I am a repeat customer. It is always a pleasure to work with this seller, as he is diligent and very knowledgeable about website development. He works hard to ensure customer satisfaction. I definitely recommend him for website services.",
+      "rating": 5,
+      "avatar": "L",
+      "result": "Repeat Client"
+    },
+    {
+      "name": "reality***",
+      "role": "Repeat Client from Canada",
+      "content": "Md was great, as always. I’ve worked with him on several of my websites and have consistently been happy with the results. Will definitely hire again.",
+      "rating": 5,
+      "avatar": "R",
+      "result": "Repeat Client"
+    },
+    {
+      "name": "dobai***",
+      "role": "Repeat Client from Hungary",
+      "content": "This was our 4th project it’s always good to work with him I’m fully satisfied with his service highly recommend! 😎",
+      "rating": 5,
+      "avatar": "D",
+      "result": "4th Project"
+    },
+    {
+      "name": "genesis***",
+      "role": "Client from United States",
+      "content": "Work was done to expectations with timely response on requested updates/revisions. Would definitely recommend his website development services and utilize him for future planned phases.",
+      "rating": 5,
+      "avatar": "G",
+      "result": "Fiverr Client"
+    },
+    {
+      "name": "oscarde***",
+      "role": "Client from United States",
+      "content": "MD is the Man he went above and beyond highly recommended",
+      "rating": 5,
+      "avatar": "O",
+      "result": "Fiverr Client"
+    },
+    {
+      "name": "harvey***",
+      "role": "Client from Australia",
+      "content": "great work and on time.",
+      "rating": 5,
+      "avatar": "H",
+      "result": "Fiverr Client"
+    },
+    {
+      "name": "cesarre***",
+      "role": "Client from United States",
+      "content": "Amazing work as always. Glad to work with seller",
+      "rating": 5,
+      "avatar": "C",
+      "result": "Fiverr Client"
+    }
+  ]
 }

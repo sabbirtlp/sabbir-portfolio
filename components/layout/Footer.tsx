@@ -37,15 +37,15 @@ export default function Footer() {
       <div className="absolute top-0 right-0 w-96 h-96 bg-accent/5 rounded-full blur-[100px] translate-x-1/2 -translate-y-1/2 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 mb-20">
           {/* Left: Brand */}
           <div>
             <Link href="/" className="inline-block mb-8">
-              <span className="font-syne font-black text-3xl text-white">
+              <span className="font-syne font-black text-2xl sm:text-3xl text-white">
                 S<span className="text-accent">.</span>Hossain
               </span>
             </Link>
-            <p className="text-text-secondary text-lg max-w-md mb-10 leading-relaxed">
+            <p className="text-text-secondary text-base md:text-lg max-w-md mb-10 leading-relaxed">
               Crafting high-converting digital experiences for ambitious businesses. Built with strategic
               design and conversion-focused architecture.
             </p>
@@ -67,9 +67,9 @@ export default function Footer() {
           </div>
 
           {/* Right: Quick Links & Contact */}
-          <div className="grid grid-cols-2 gap-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-12 sm:gap-10">
             <div>
-              <p className="text-white font-bold mb-6 uppercase tracking-widest text-xs">Navigation</p>
+              <p className="text-white font-bold mb-6 uppercase tracking-widest text-[10px] md:text-xs">Navigation</p>
               <ul className="space-y-4">
                 {footerLinks.map((link) => (
                   <li key={link.label}>
@@ -84,10 +84,10 @@ export default function Footer() {
               </ul>
             </div>
             <div>
-              <p className="text-white font-bold mb-6 uppercase tracking-widest text-xs">Let&apos;s Talk</p>
+              <p className="text-white font-bold mb-6 uppercase tracking-widest text-[10px] md:text-xs">Let&apos;s Talk</p>
               <Link
                 href={`mailto:${email}`}
-                className="text-text-secondary hover:text-accent transition-colors text-sm block mb-4"
+                className="text-text-secondary hover:text-accent transition-colors text-sm block mb-4 break-all"
               >
                 {email}
               </Link>

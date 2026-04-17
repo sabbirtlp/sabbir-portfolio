@@ -18,6 +18,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://sabbir.dev"),
   title: "Sabbir Hossain — Web Developer & Conversion Specialist",
   description:
     "I craft high-converting websites that grow your business. 7+ years experience, 300+ websites built, 100+ satisfied clients. WordPress, Custom Websites, Landing Pages, E-Commerce.",
@@ -84,7 +85,7 @@ import { ContentProvider } from "@/components/providers/ContentProvider";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${syne.variable} ${inter.variable}`}>
+    <html lang="en" className={`${syne.variable} ${inter.variable}`} suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"

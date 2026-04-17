@@ -24,8 +24,8 @@ const config: Config = {
         border: "#262626",
       },
       fontSize: {
-        "display-xl": ["clamp(3.5rem, 8vw, 8rem)", { lineHeight: "0.9", letterSpacing: "-0.04em" }],
-        "display-lg": ["clamp(2.5rem, 5vw, 5rem)", { lineHeight: "0.95", letterSpacing: "-0.03em" }],
+        "display-xl": ["clamp(2.8rem, 8vw, 8rem)", { lineHeight: "0.9", letterSpacing: "-0.04em" }],
+        "display-lg": ["clamp(2.2rem, 5vw, 5rem)", { lineHeight: "0.95", letterSpacing: "-0.03em" }],
         "display-md": ["clamp(1.8rem, 3vw, 3rem)", { lineHeight: "1.1", letterSpacing: "-0.02em" }],
         "display-sm": ["clamp(1.2rem, 2vw, 1.8rem)", { lineHeight: "1.2", letterSpacing: "-0.01em" }],
       },
