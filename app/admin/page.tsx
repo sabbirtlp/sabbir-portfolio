@@ -861,6 +861,12 @@ export default function AdminDashboard() {
                               }}
                               className="bg-surface-2 border border-border rounded px-2 py-1 text-[10px] text-white outline-none w-full cursor-pointer hover:border-accent/40"
                             >
+                              <option value="Twitter">Twitter</option>
+                              <option value="Facebook">Facebook</option>
+                              <option value="Github">Github</option>
+                              <option value="Linkedin">Linkedin</option>
+                              <option value="Instagram">Instagram</option>
+                              <option value="Youtube">Youtube</option>
                               <option value="Globe">Globe</option>
                               <option value="Send">Send</option>
                               <option value="Mail">Mail</option>
