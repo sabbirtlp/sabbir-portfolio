@@ -42,6 +42,7 @@ export default function AdminDashboard() {
   const [uploadingScreenshot, setUploadingScreenshot] = useState<number | null>(null);
   const [deletingIndex, setDeletingIndex] = useState<number | null>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [deletingTestimonialIndex, setDeletingTestimonialIndex] = useState<number | null>(null);
 
   async function handleImageUpload(file: File, projectIndex: number) {
     setUploadingIndex(projectIndex);
