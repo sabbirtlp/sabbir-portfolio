@@ -285,19 +285,35 @@ export default function Hero() {
           </MagneticButton>
         </div>
 
-        {/* Stats */}
-        <div
+        {/* Glassmorphic Stats Panel */}
+        <div 
           ref={statsRef}
-          className="grid grid-cols-2 md:flex md:flex-wrap gap-10 md:gap-16 pt-8 border-t border-border opacity-0"
+          className="relative mt-20 opacity-0 group"
         >
-          {stats.map((stat: any) => (
-            <div key={stat.label}>
-              <div className="font-syne font-black text-3xl md:text-5xl text-white mb-1">
-                <CountUp end={stat.value} suffix={stat.suffix} duration={2000} />
+          {/* Panel Glass Layer */}
+          <div className="absolute inset-0 z-0 bg-white/[0.03] backdrop-blur-2xl rounded-3xl border border-white/10 overflow-hidden shadow-2xl">
+            {/* Specular Shine */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-50" />
+            {/* Grain / Noise for tactile surface */}
+            <div className="absolute inset-0 opacity-[0.1] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay" />
+          </div>
+
+          {/* Glow Behind Panel to make glass pop */}
+          <div className="absolute -top-12 left-1/4 w-64 h-32 bg-accent/20 rounded-full blur-[80px] -z-10" />
+
+          {/* Stats Content */}
+          <div className="relative z-10 grid grid-cols-2 md:flex md:flex-wrap gap-8 md:gap-16 p-8 md:p-10">
+            {stats.map((stat: any) => (
+              <div key={stat.label} className="relative group/stat">
+                <div className="font-syne font-black text-3xl md:text-5xl text-white mb-1 transition-transform duration-300 group-hover/stat:scale-105 group-hover/stat:text-accent">
+                  <CountUp end={stat.value} suffix={stat.suffix} duration={2000} />
+                </div>
+                <p className="text-text-secondary text-[10px] md:text-xs uppercase tracking-[0.2em] font-bold opacity-70 group-hover/stat:opacity-100 transition-opacity">
+                  {stat.label}
+                </p>
               </div>
-              <p className="text-text-secondary text-xs md:text-sm uppercase tracking-wider">{stat.label}</p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
 
