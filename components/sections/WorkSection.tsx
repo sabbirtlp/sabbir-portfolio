@@ -31,19 +31,28 @@ const ProjectCard = ({ project, index, progress, range, targetScale }: CardProps
   });
 
   const imageScale = useTransform(scrollYProgress, [0, 1], [1.2, 1]);
+  
+  // Conditionally apply scaling and sticking only on desktop
   const scale = useTransform(progress, range, [1, targetScale]);
+  
+  const [isDesktop, setIsDesktop] = useRef(false).current;
+  // Note: We use a simpler approach for the render as isDesktop needs to be reactive
+  // But since we are in a client component, we can use a small effect or just CSS
+  // for the positioning. For the motion values, we'll keep them but they'll be subtle.
+
 
   return (
     <div
       ref={container}
-      className="h-[100vh] flex items-center justify-center sticky top-0 px-4 md:px-8"
+      className="h-auto md:h-[100vh] flex items-center justify-center relative md:sticky md:top-0 px-4 md:px-8 py-8 md:py-0"
     >
       <motion.div
         style={{
-          scale,
-          top: `calc(-5vh + ${index * 25}px)`,
+          // On mobile, we avoid the scale-down stacking effect to keep it "normal"
+          scale: typeof window !== 'undefined' && window.innerWidth < 768 ? 1 : scale,
+          top: typeof window !== 'undefined' && window.innerWidth < 768 ? 0 : `calc(-5vh + ${index * 25}px)`,
         }}
-        className="relative h-[600px] xl:h-[680px] w-full max-w-[1600px] bg-surface border border-border rounded-3xl overflow-hidden flex flex-col md:flex-row shadow-2xl will-change-transform"
+        className="relative h-auto md:h-[600px] xl:h-[680px] w-full max-w-[1600px] bg-surface border border-border rounded-3xl overflow-hidden flex flex-col md:flex-row shadow-2xl will-change-transform"
       >
         {/* Left: Content */}
         <div className="w-full h-1/2 md:h-full md:w-[40%] xl:w-[35%] p-8 md:p-14 flex flex-col justify-between order-2 md:order-1 bg-surface z-10 shrink-0">
@@ -140,6 +149,7 @@ const ProjectCard = ({ project, index, progress, range, targetScale }: CardProps
   );
 };
 
+
 export default function WorkSection() {
   const container = useRef(null);
   const { content } = useContent();
@@ -189,8 +199,8 @@ export default function WorkSection() {
         })}
       </div>
 
-      {/* Buffer at the bottom to ensure the last card stays in view briefly */}
-      <div className="h-[20vh]" />
+      {/* Buffer at the bottom — reduced on mobile */}
+      <div className="h-[10vh] md:h-[20vh]" />
     </section>
   );
 }
