@@ -49,14 +49,14 @@ export default function Hero() {
 
     const colors = ["#ea580c", "#fb923c", "#ffffff", "#f97316"];
 
-    // Optimized particle count for 60fps performance
-    for (let i = 0; i < 160; i++) {
-      const alpha = Math.random() * 0.5 + 0.1;
+    // "Safe Limit" particle count for consistent 60fps on all devices
+    for (let i = 0; i < 100; i++) {
+      const alpha = Math.random() * 0.4 + 0.1;
       particles.push({
         x: Math.random() * w,
         y: Math.random() * h,
-        vx: (Math.random() - 0.5) * 0.6,
-        vy: (Math.random() - 0.5) * 0.6,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5,
         r: Math.random() * 1.5 + 0.5,
         alpha: alpha,
         originalAlpha: alpha,
@@ -222,7 +222,7 @@ export default function Hero() {
       {/* 0. Premium Parallax Background Image */}
       <motion.div 
         style={{ y: backgroundY, scale: backgroundScale }}
-        className="absolute inset-0 z-0 pointer-events-none"
+        className="absolute inset-0 z-0 pointer-events-none will-change-transform"
       >
         <Image
           src="/hero-bg.png"
@@ -233,9 +233,9 @@ export default function Hero() {
         />
         {/* Subtle Ambient "Breathing" Animation Overlay */}
         <motion.div 
-          animate={{ opacity: [0.03, 0.08, 0.03] }}
-          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute inset-0 bg-accent/[0.02]"
+          animate={{ opacity: [0.03, 0.06, 0.03] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute inset-0 bg-accent/[0.01]"
         />
       </motion.div>
 
@@ -245,11 +245,11 @@ export default function Hero() {
         className="absolute inset-0 z-1 pointer-events-none"
       />
 
-      {/* Gradient overlays */}
-      <div className="absolute inset-0 z-1">
-        <div className="absolute top-0 left-0 w-[600px] h-[600px] rounded-full bg-accent/[0.02] blur-[120px] -translate-x-1/2 -translate-y-1/2" />
-        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full bg-accent/[0.03] blur-[100px] translate-x-1/4 translate-y-1/4" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-orange-500/[0.01] blur-[150px]" />
+      {/* Gradient overlays - lightened for scroll performance */}
+      <div className="absolute inset-0 z-1 pointer-events-none">
+        <div className="absolute top-0 left-0 w-[400px] h-[400px] rounded-full bg-accent/[0.02] blur-[80px] -translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute bottom-0 right-0 w-[300px] h-[300px] rounded-full bg-accent/[0.03] blur-[60px] translate-x-1/4 translate-y-1/4" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-orange-500/[0.01] blur-[100px]" />
       </div>
 
       {/* Grid pattern */}
@@ -339,12 +339,12 @@ export default function Hero() {
           ref={statsRef}
           className="relative mt-20 opacity-0 group"
         >
-          {/* Panel Glass Layer */}
-          <div className="absolute inset-0 z-0 bg-white/[0.03] backdrop-blur-2xl rounded-3xl border border-white/10 overflow-hidden shadow-2xl">
+          {/* Panel Glass Layer - Optimized for scroll performance */}
+          <div className="absolute inset-0 z-0 bg-white/[0.03] backdrop-blur-md rounded-3xl border border-white/10 overflow-hidden shadow-2xl">
             {/* Specular Shine */}
             <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-50" />
             {/* Grain / Noise for tactile surface */}
-            <div className="absolute inset-0 opacity-[0.1] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay" />
+            <div className="absolute inset-0 opacity-[0.08] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay" />
           </div>
 
           {/* Glow Behind Panel to make glass pop */}
