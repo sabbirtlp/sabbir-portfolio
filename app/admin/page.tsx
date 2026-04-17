@@ -129,9 +129,9 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="h-screen bg-background text-text-primary flex flex-col md:flex-row overflow-hidden" data-lenis-prevent>
+    <div className="h-screen bg-background text-text-primary flex flex-col md:flex-row overflow-hidden relative" data-lenis-prevent>
       {/* Mobile Header */}
-      <header className="md:hidden flex items-center justify-between px-6 py-4 bg-surface border-b border-border z-50">
+      <header className="md:hidden flex items-center justify-between px-6 py-4 bg-surface border-b border-border z-[60] relative">
         <div className="font-syne font-black text-xl text-white">
           <span className="text-accent">S</span>abbir<span className="text-accent text-xs">CMS</span>
         </div>
@@ -146,14 +146,14 @@ export default function AdminDashboard() {
       {/* Sidebar Overlay (Mobile Only) */}
       {isSidebarOpen && (
         <div 
-          className="md:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-40 transition-opacity"
+          className="md:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[55] transition-opacity"
           onClick={() => setIsSidebarOpen(false)}
         />
       )}
 
       {/* Sidebar */}
       <aside className={`
-        fixed md:relative inset-y-0 left-0 w-64 border-r border-border bg-surface z-50 transform transition-transform duration-300 ease-in-out flex flex-col pt-8 h-screen overflow-y-auto
+        fixed md:relative top-0 left-0 w-64 border-r border-border bg-surface z-[60] transform transition-transform duration-300 ease-in-out flex flex-col pt-8 h-[100dvh] overflow-y-auto
         ${isSidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
       `}>
         <div className="px-6 mb-10 text-center">
