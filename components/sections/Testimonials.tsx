@@ -26,9 +26,9 @@ export default function Testimonials() {
       {/* Marquee top — client logos placeholder */}
       <div className="mb-20 overflow-hidden">
         <div className="marquee-track whitespace-nowrap">
-          {Array.from({ length: 2 }).map((_, gi) =>
+          {Array.from({ length: 2 }).map((_: any, gi: number) =>
             ["TechVenture", "Bloom Fashion", "Atlas Consulting", "Pulse Fitness", "Luxe Real Estate",
-              "Nova SaaS", "CloudBase", "UrbanForm", "PrimeLayer", "ZenithCo"].map((brand) => (
+              "Nova SaaS", "CloudBase", "UrbanForm", "PrimeLayer", "ZenithCo"].map((brand: string) => (
               <span
                 key={`${gi}-${brand}`}
                 className="inline-block mx-12 font-syne font-black text-2xl text-border hover:text-text-secondary transition-colors duration-300 cursor-default"
@@ -73,7 +73,7 @@ export default function Testimonials() {
 
               {/* Stars */}
               <div className="flex gap-1 mb-6">
-                {Array.from({ length: testimonials[active].rating }).map((_, i) => (
+                {Array.from({ length: testimonials[active].rating }).map((_: any, i: number) => (
                   <Star key={i} className="w-4 h-4 fill-accent text-accent" />
                 ))}
               </div>
@@ -112,7 +112,7 @@ export default function Testimonials() {
 
             {/* Dots */}
             <div className="flex gap-2">
-              {testimonials.map((_, i) => (
+              {testimonials.map((_: any, i: number) => (
                 <button
                   key={i}
                   onClick={() => setActive(i)}

@@ -100,7 +100,7 @@ export default function CTA() {
             { value: "< 24hrs", label: "Response Time" },
             { value: "100%", label: "Satisfaction Rate" },
             { value: "2 weeks", label: "Avg. Turnaround" },
-          ].map((item) => (
+          ].map((item: any) => (
             <div key={item.label}>
               <div className="font-syne font-black text-2xl text-white">{item.value}</div>
               <div className="text-text-secondary text-xs mt-1">{item.label}</div>
