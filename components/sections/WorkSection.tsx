@@ -106,24 +106,29 @@ const ProjectCard = ({ project, index, progress, range, targetScale }: CardProps
                  </div>
                </div>
                
-               {/* Actual Project Image */}
-               <div className="flex-1 w-full relative overflow-y-auto overflow-x-hidden custom-scrollbar bg-[#0a0a0a]">
-                 {project.image ? (
-                   <img
-                     src={project.image}
-                     alt={project.title}
-                     className="w-full h-auto"
-                   />
-                 ) : (
-                   <div className="flex-1 w-full bg-surface-2 p-8 flex flex-col gap-6 h-full">
-                     <div className="h-8 w-3/4 bg-white/10 rounded" />
-                     <div className="grid grid-cols-2 gap-6 flex-1 mt-6">
-                       <div className="bg-white/5 rounded-2xl border border-white/5" />
-                       <div className="bg-white/5 rounded-2xl border border-white/5" />
-                     </div>
-                   </div>
-                 )}
-               </div>
+                {/* Actual Project Image */}
+                <div className="flex-1 w-full relative overflow-y-auto overflow-x-hidden custom-scrollbar bg-[#0a0a0a]">
+                  {project.image ? (
+                    <div className="relative w-full min-h-full">
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        className="object-top object-contain"
+                        sizes="(max-width: 768px) 100vw, 60vw"
+                        priority={index === 0}
+                      />
+                    </div>
+                  ) : (
+                    <div className="flex-1 w-full bg-surface-2 p-8 flex flex-col gap-6 h-full">
+                      <div className="h-8 w-3/4 bg-white/10 rounded" />
+                      <div className="grid grid-cols-2 gap-6 flex-1 mt-6">
+                        <div className="bg-white/5 rounded-2xl border border-white/5" />
+                        <div className="bg-white/5 rounded-2xl border border-white/5" />
+                      </div>
+                    </div>
+                  )}
+                </div>
             </div>
             
             {/* Static noise grain overlay for performance */}
