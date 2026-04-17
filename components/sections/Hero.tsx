@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { ArrowRight, MousePointer2, Loader2 } from "lucide-react";
@@ -28,10 +28,19 @@ export default function Hero() {
   const ctaRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const animFrameRef = useRef<number>(0);
+
+  // Throttling: only run animation when in view
+  const isInView = useInView(containerRef, { margin: "200px" });
 
   // Particle canvas ... (unchanged logic)
   useEffect(() => {
+    if (!isInView) {
+      if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
+      return;
+    }
+
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
@@ -221,7 +230,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-[#030303]">
+    <section ref={containerRef} className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-[#030303]">
       {/* 0. Premium Parallax Background Image */}
       <motion.div 
         style={{ y: backgroundY, scale: backgroundScale }}

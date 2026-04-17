@@ -62,10 +62,12 @@ export default function LoginPage() {
         </div>
 
         <div className="bg-surface border border-border rounded-3xl p-8 shadow-2xl relative overflow-hidden">
-          {/* Subtle noise overlay */}
+          {/* High-Performance Noise Grain */}
           <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
             style={{
-              backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
+              backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E\")",
+              backgroundRepeat: "repeat",
+              backgroundSize: "100px 100px",
             }}
           />
 
@@ -115,27 +117,29 @@ export default function LoginPage() {
               </motion.div>
             )}
 
-            <MagneticButton strength={0.2}>
-              <button
-                type="submit"
-                disabled={loading}
-                className="group relative w-full h-14 bg-gradient-to-r from-accent via-accent-light to-accent bg-[length:200%_auto] hover:bg-[100%_center] text-white font-bold rounded-xl transition-all duration-500 flex items-center justify-center gap-3 shadow-[0_0_20px_rgba(234,88,12,0.3)] hover:shadow-[0_0_35px_rgba(234,88,12,0.5)] hover:scale-[1.02] disabled:opacity-50 disabled:grayscale overflow-hidden"
-              >
-                {/* Shimmer effect */}
-                <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] pointer-events-none" />
-                
-                {loading ? (
-                  <Loader2 className="w-5 h-5 animate-spin" />
-                ) : (
-                  <>
-                    <span className="relative z-10 flex items-center gap-2">
-                      Sign In to Dashboard
-                      <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-                    </span>
-                  </>
-                )}
-              </button>
-            </MagneticButton>
+            <div className="pt-2">
+              <MagneticButton strength={0.2} className="w-full">
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="group relative w-full h-[72px] bg-accent hover:bg-accent-light text-white font-black text-lg md:text-xl rounded-2xl transition-all duration-500 flex items-center justify-center gap-4 shadow-[0_0_30px_rgba(234,88,12,0.2)] hover:shadow-[0_0_50px_rgba(234,88,12,0.4)] overflow-hidden"
+                >
+                  {/* Glass shimmer overlay */}
+                  <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out pointer-events-none" />
+                  
+                  {loading ? (
+                    <Loader2 className="w-6 h-6 animate-spin" />
+                  ) : (
+                    <>
+                      <span className="relative z-10 flex items-center justify-center w-full gap-3">
+                        Sign In to Dashboard
+                        <ArrowRight className="w-6 h-6 transition-transform group-hover:translate-x-2" />
+                      </span>
+                    </>
+                  )}
+                </button>
+              </MagneticButton>
+            </div>
           </form>
         </div>
 
