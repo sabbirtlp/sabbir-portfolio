@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import Image from "next/image";
 import { gsap } from "gsap";
 import { ArrowRight, MousePointer2, Loader2 } from "lucide-react";
 import MagneticButton from "@/components/ui/MagneticButton";
@@ -142,6 +143,11 @@ export default function Hero() {
     };
   }, []);
 
+  // Parallax Logic
+  const { scrollY } = useScroll();
+  const backgroundY = useTransform(scrollY, [0, 1000], [0, 300]);
+  const backgroundScale = useTransform(scrollY, [0, 1000], [1, 1.1]);
+
   // GSAP text entrance
   useEffect(() => {
     const wordEls = headlineRef.current?.querySelectorAll(".word");
@@ -190,14 +196,34 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-background">
+      {/* 0. Premium Parallax Background Image */}
+      <motion.div 
+        style={{ y: backgroundY, scale: backgroundScale }}
+        className="absolute inset-0 z-0 pointer-events-none"
+      >
+        <Image
+          src="/hero-bg.png"
+          alt="Premium Brand Background"
+          fill
+          priority
+          className="object-cover object-center opacity-25 mix-blend-screen"
+        />
+        {/* Subtle Ambient "Breathing" Animation Overlay */}
+        <motion.div 
+          animate={{ opacity: [0.1, 0.2, 0.1] }}
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute inset-0 bg-accent/5"
+        />
+      </motion.div>
+
       {/* Particle canvas */}
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 z-0 pointer-events-none"
+        className="absolute inset-0 z-1 pointer-events-none"
       />
 
       {/* Gradient overlays */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-1">
         <div className="absolute top-0 left-0 w-[600px] h-[600px] rounded-full bg-accent/5 blur-[120px] -translate-x-1/2 -translate-y-1/2" />
         <div className="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full bg-accent/8 blur-[100px] translate-x-1/4 translate-y-1/4" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-orange-500/3 blur-[150px]" />
@@ -205,7 +231,7 @@ export default function Hero() {
 
       {/* Grid pattern */}
       <div
-        className="absolute inset-0 z-0 opacity-[0.03]"
+        className="absolute inset-0 z-1 opacity-[0.03]"
         style={{
           backgroundImage:
             "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
