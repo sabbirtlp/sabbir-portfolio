@@ -821,36 +821,60 @@ export default function AdminDashboard() {
                   <div className="grid grid-cols-1 gap-4">
                     {(content.general.socialLinks || []).map((social: any, i: number) => (
                       <div key={i} className="flex gap-4 p-4 bg-surface-2 border border-border rounded-xl items-center group/social">
-                        <div className="flex-1 grid grid-cols-3 gap-4">
-                          <input 
-                            type="text" 
-                            value={social.platform}
-                            onChange={(e) => {
-                              const newSocials = [...content.general.socialLinks];
-                              newSocials[i].platform = e.target.value;
-                              setContent({ ...content, general: { ...content.general, socialLinks: newSocials } });
-                            }}
-                            className="bg-transparent text-sm font-bold text-white outline-none"
-                            placeholder="Platform (e.g. Twitter)"
-                          />
-                          <input 
-                            type="text" 
-                            value={social.href}
-                            onChange={(e) => {
-                              const newSocials = [...content.general.socialLinks];
-                              newSocials[i].href = e.target.value;
-                              setContent({ ...content, general: { ...content.general, socialLinks: newSocials } });
-                            }}
-                            className="bg-transparent text-xs text-text-secondary outline-none col-span-2"
-                            placeholder="URL: https://..."
-                          />
+                        <div className="flex-1 grid grid-cols-4 gap-4">
+                          <div className="col-span-1">
+                            <label className="block text-[8px] uppercase tracking-tighter text-text-muted mb-1">Platform</label>
+                            <input 
+                              type="text" 
+                              value={social.platform}
+                              onChange={(e) => {
+                                const newSocials = [...content.general.socialLinks];
+                                newSocials[i].platform = e.target.value;
+                                setContent({ ...content, general: { ...content.general, socialLinks: newSocials } });
+                              }}
+                              className="bg-transparent text-sm font-bold text-white outline-none w-full"
+                              placeholder="e.g. Twitter"
+                            />
+                          </div>
+                          <div className="col-span-2">
+                            <label className="block text-[8px] uppercase tracking-tighter text-text-muted mb-1">URL / Link</label>
+                            <input 
+                              type="text" 
+                              value={social.href}
+                              onChange={(e) => {
+                                const newSocials = [...content.general.socialLinks];
+                                newSocials[i].href = e.target.value;
+                                setContent({ ...content, general: { ...content.general, socialLinks: newSocials } });
+                              }}
+                              className="bg-transparent text-xs text-text-secondary outline-none w-full"
+                              placeholder="https://..."
+                            />
+                          </div>
+                          <div className="col-span-1">
+                            <label className="block text-[8px] uppercase tracking-tighter text-text-muted mb-1">Icon</label>
+                            <select 
+                              value={social.icon || "ExternalLink"}
+                              onChange={(e) => {
+                                const newSocials = [...content.general.socialLinks];
+                                newSocials[i].icon = e.target.value;
+                                setContent({ ...content, general: { ...content.general, socialLinks: newSocials } });
+                              }}
+                              className="bg-surface-2 border border-border rounded px-2 py-1 text-[10px] text-white outline-none w-full cursor-pointer hover:border-accent/40"
+                            >
+                              <option value="Globe">Globe</option>
+                              <option value="Send">Send</option>
+                              <option value="Mail">Mail</option>
+                              <option value="Phone">Phone</option>
+                              <option value="ExternalLink">ExternalLink</option>
+                            </select>
+                          </div>
                         </div>
                         <button 
                           onClick={() => {
                             const newSocials = content.general.socialLinks.filter((_: any, idx: number) => idx !== i);
                             setContent({ ...content, general: { ...content.general, socialLinks: newSocials } });
                           }}
-                          className="text-text-muted hover:text-red-400 opacity-0 group-hover/social:opacity-100 transition-opacity"
+                          className="text-text-muted hover:text-red-400 opacity-0 group-hover/social:opacity-100 transition-opacity pt-4"
                         >
                           <Trash2 className="w-4 h-4" />
                         </button>

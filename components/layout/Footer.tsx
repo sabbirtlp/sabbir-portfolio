@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { Globe, Send, ExternalLink, ArrowRight, Twitter, Github, Linkedin, Instagram, Youtube, Facebook } from "lucide-react";
+import { Globe, Send, ExternalLink, ArrowRight, Mail, Phone } from "lucide-react";
 import MagneticButton from "@/components/ui/MagneticButton";
 import { useContent } from "@/components/providers/ContentProvider";
 
@@ -14,15 +14,14 @@ export default function Footer() {
 
   const currentYear = new Date().getFullYear();
 
-  // Dynamic Icon Mapper for Socials
+  // Dynamic Icon Mapper for Socials (Fallback-safe for legacy Lucide)
   const getIcon = (iconName: string) => {
     switch (iconName?.toLowerCase()) {
-      case "twitter": return Twitter;
-      case "github": return Github;
-      case "linkedin": return Linkedin;
-      case "instagram": return Instagram;
-      case "youtube": return Youtube;
-      case "facebook": return Facebook;
+      case "twitter": return Send;
+      case "github": return Globe;
+      case "linkedin": return ExternalLink;
+      case "mail": return Mail;
+      case "phone": return Phone;
       case "send": return Send;
       case "globe": return Globe;
       default: return ExternalLink;

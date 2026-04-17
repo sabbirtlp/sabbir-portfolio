@@ -4,9 +4,11 @@
     "email": "hello@sabbir.dev",
     "phone": "+880 1234 567 890",
     "socialLinks": [
-      { "platform": "Twitter", "href": "https://twitter.com/sabbir", "icon": "Twitter" },
-      { "platform": "Github", "href": "https://github.com/sabbir", "icon": "Github" },
-      { "platform": "LinkedIn", "href": "https://linkedin.com/in/sabbir", "icon": "Linkedin" }
+      {
+        "platform": "facebook",
+        "href": "#",
+        "icon": "Globe"
+      }
     ]
   },
   "hero": {
@@ -436,12 +438,30 @@
     "description": "Strategically designed digital solutions focused on conversion and high-end aesthetics.",
     "copyrightText": "SABBIR HOSSAIN — WEB SPECIALIST",
     "links": [
-      { "label": "Home", "href": "/" },
-      { "label": "About", "href": "/#about" },
-      { "label": "Work", "href": "/#work" },
-      { "label": "Services", "href": "/#services" },
-      { "label": "Process", "href": "/#process" },
-      { "label": "Contact", "href": "/contact" }
+      {
+        "label": "Home",
+        "href": "/"
+      },
+      {
+        "label": "About",
+        "href": "/#about"
+      },
+      {
+        "label": "Work",
+        "href": "/#work"
+      },
+      {
+        "label": "Services",
+        "href": "/#services"
+      },
+      {
+        "label": "Process",
+        "href": "/#process"
+      },
+      {
+        "label": "Contact",
+        "href": "/contact"
+      }
     ]
   }
 }
