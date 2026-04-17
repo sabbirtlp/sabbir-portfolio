@@ -35,10 +35,7 @@ const ProjectCard = ({ project, index, progress, range, targetScale }: CardProps
   // Conditionally apply scaling and sticking only on desktop
   const scale = useTransform(progress, range, [1, targetScale]);
   
-  const [isDesktop, setIsDesktop] = useRef(false).current;
-  // Note: We use a simpler approach for the render as isDesktop needs to be reactive
-  // But since we are in a client component, we can use a small effect or just CSS
-  // for the positioning. For the motion values, we'll keep them but they'll be subtle.
+
 
 
   return (
