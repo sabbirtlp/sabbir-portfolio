@@ -236,6 +236,32 @@ export default function AdminDashboard() {
             )}
           </div>
 
+          {/* Instant Mobile Tab Navigation (Horizontal Scroll) */}
+          <div className="md:hidden flex overflow-x-auto gap-2 pb-4 mb-6 border-b border-border/50 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            {[
+              { id: "general", label: "General" },
+              { id: "hero", label: "Hero" },
+              { id: "about", label: "About" },
+              { id: "services", label: "Services" },
+              { id: "work", label: "Case Studies" },
+              { id: "testimonials", label: "Testimonials" },
+              { id: "process", label: "Process" },
+              { id: "footer", label: "Footer" },
+            ].map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`flex-shrink-0 px-4 py-2 rounded-xl text-xs font-bold border transition-colors ${
+                  activeTab === tab.id 
+                  ? "bg-accent/10 border-accent/40 text-accent" 
+                  : "bg-surface-2 border-border text-text-secondary hover:text-white"
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+
           {/* Quick Info & Save FAB on Mobile */}
           <div className="md:hidden fixed bottom-6 right-6 z-40">
             <button
