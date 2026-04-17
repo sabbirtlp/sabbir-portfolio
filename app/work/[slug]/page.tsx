@@ -77,7 +77,7 @@ export default async function CaseStudyPage({ params }: Props) {
             <span className="text-white/40 text-xs">{project.year}</span>
           </div>
 
-          <h1 className="font-syne font-black text-6xl sm:text-7xl md:text-8xl lg:text-[10rem] text-white leading-[0.9] tracking-tighter mb-10">
+          <h1 className="font-syne font-black text-5xl sm:text-7xl md:text-8xl lg:text-[10rem] text-white leading-[0.9] tracking-tighter mb-10">
             {project.title}
           </h1>
           <p className="text-white/70 text-lg md:text-2xl leading-relaxed max-w-3xl font-medium">
