@@ -146,6 +146,7 @@ export default function AdminDashboard() {
             { id: "work", label: "Case Studies", icon: FolderOpen },
             { id: "testimonials", label: "Testimonials", icon: MessageSquare },
             { id: "process", label: "Process", icon: CheckCircle2 },
+            { id: "footer", label: "Footer Settings", icon: Globe },
           ].map((tab) => (
             <button
               key={tab.id}
@@ -804,20 +805,146 @@ export default function AdminDashboard() {
                   </div>
                 </div>
                 <div className="space-y-4">
-                  <label className="block text-xs font-bold uppercase tracking-widest text-text-muted">Social Links</label>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    {Object.entries(content.general.socials).map(([platform, url]: [any, any]) => (
-                      <div key={platform} className="p-3 bg-surface-2 border border-border rounded-xl">
-                        <span className="text-[10px] uppercase tracking-widest text-text-muted mb-1 block">{platform}</span>
-                        <input 
-                          type="text" 
-                          value={url}
-                          onChange={(e) => {
-                            const newSocials = { ...content.general.socials, [platform]: e.target.value };
-                            setContent({ ...content, general: { ...content.general, socials: newSocials } });
+                  <div className="flex items-center justify-between">
+                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted">Social Media Links</label>
+                    <button 
+                      onClick={() => {
+                        const newSocials = [...(content.general.socialLinks || [])];
+                        newSocials.push({ platform: "Social", href: "#", icon: "Globe" });
+                        setContent({ ...content, general: { ...content.general, socialLinks: newSocials } });
+                      }}
+                      className="text-[10px] text-accent hover:text-accent-light font-bold flex items-center gap-1 transition-colors"
+                    >
+                      <Plus className="w-3 h-3" /> Add Link
+                    </button>
+                  </div>
+                  <div className="grid grid-cols-1 gap-4">
+                    {(content.general.socialLinks || []).map((social: any, i: number) => (
+                      <div key={i} className="flex gap-4 p-4 bg-surface-2 border border-border rounded-xl items-center group/social">
+                        <div className="flex-1 grid grid-cols-3 gap-4">
+                          <input 
+                            type="text" 
+                            value={social.platform}
+                            onChange={(e) => {
+                              const newSocials = [...content.general.socialLinks];
+                              newSocials[i].platform = e.target.value;
+                              setContent({ ...content, general: { ...content.general, socialLinks: newSocials } });
+                            }}
+                            className="bg-transparent text-sm font-bold text-white outline-none"
+                            placeholder="Platform (e.g. Twitter)"
+                          />
+                          <input 
+                            type="text" 
+                            value={social.href}
+                            onChange={(e) => {
+                              const newSocials = [...content.general.socialLinks];
+                              newSocials[i].href = e.target.value;
+                              setContent({ ...content, general: { ...content.general, socialLinks: newSocials } });
+                            }}
+                            className="bg-transparent text-xs text-text-secondary outline-none col-span-2"
+                            placeholder="URL: https://..."
+                          />
+                        </div>
+                        <button 
+                          onClick={() => {
+                            const newSocials = content.general.socialLinks.filter((_: any, idx: number) => idx !== i);
+                            setContent({ ...content, general: { ...content.general, socialLinks: newSocials } });
                           }}
-                          className="w-full bg-transparent text-xs text-white outline-none"
-                        />
+                          className="text-text-muted hover:text-red-400 opacity-0 group-hover/social:opacity-100 transition-opacity"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* FOOTER SECTION */}
+            {activeTab === "footer" && (
+              <div className="space-y-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Footer Branding Text</label>
+                    <input 
+                      type="text" 
+                      value={content.footer.logoText}
+                      onChange={(e) => setContent({ ...content, footer: { ...content.footer, logoText: e.target.value } })}
+                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-white outline-none focus:border-accent/40"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Copyright Line</label>
+                    <input 
+                      type="text" 
+                      value={content.footer.copyrightText}
+                      onChange={(e) => setContent({ ...content, footer: { ...content.footer, copyrightText: e.target.value } })}
+                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-white outline-none focus:border-accent/40"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Short About Description</label>
+                  <textarea 
+                    rows={3}
+                    value={content.footer.description}
+                    onChange={(e) => setContent({ ...content, footer: { ...content.footer, description: e.target.value } })}
+                    className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-white outline-none focus:border-accent/40 resize-none"
+                  />
+                </div>
+
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted font-bold">Menu Links</label>
+                    <button 
+                      onClick={() => {
+                        const newLinks = [...(content.footer.links || [])];
+                        newLinks.push({ label: "New Link", href: "/" });
+                        setContent({ ...content, footer: { ...content.footer, links: newLinks } });
+                      }}
+                      className="text-[10px] text-accent hover:text-accent-light font-bold flex items-center gap-1 transition-colors"
+                    >
+                      <Plus className="w-3 h-3" /> Add Link
+                    </button>
+                  </div>
+                  <div className="grid grid-cols-1 gap-2">
+                    {(content.footer.links || []).map((link: any, i: number) => (
+                      <div key={i} className="flex gap-4 p-3 bg-surface-2 border border-border rounded-xl items-center group/link">
+                        <div className="flex-1 grid grid-cols-2 gap-4">
+                          <input 
+                            type="text" 
+                            value={link.label}
+                            onChange={(e) => {
+                              const newLinks = [...content.footer.links];
+                              newLinks[i].label = e.target.value;
+                              setContent({ ...content, footer: { ...content.footer, links: newLinks } });
+                            }}
+                            className="bg-transparent text-sm font-bold text-white outline-none"
+                            placeholder="Link Label"
+                          />
+                          <input 
+                            type="text" 
+                            value={link.href}
+                            onChange={(e) => {
+                              const newLinks = [...content.footer.links];
+                              newLinks[i].href = e.target.value;
+                              setContent({ ...content, footer: { ...content.footer, links: newLinks } });
+                            }}
+                            className="bg-transparent text-xs text-text-secondary outline-none"
+                            placeholder="URL: /#work"
+                          />
+                        </div>
+                        <button 
+                          onClick={() => {
+                            const newLinks = content.footer.links.filter((_: any, idx: number) => idx !== i);
+                            setContent({ ...content, footer: { ...content.footer, links: newLinks } });
+                          }}
+                          className="text-text-muted hover:text-red-400 opacity-0 group-hover/link:opacity-100 transition-opacity"
+                        >
+                          <Trash2 className="w-3 h-3" />
+                        </button>
                       </div>
                     ))}
                   </div>

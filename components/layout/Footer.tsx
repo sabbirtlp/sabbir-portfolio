@@ -3,34 +3,35 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { Globe, Send, ExternalLink, ArrowRight } from "lucide-react";
+import { Globe, Send, ExternalLink, ArrowRight, Twitter, Github, Linkedin, Instagram, Youtube, Facebook } from "lucide-react";
 import MagneticButton from "@/components/ui/MagneticButton";
 import { useContent } from "@/components/providers/ContentProvider";
 
 export default function Footer() {
   const { content } = useContent();
-  const { email, socials } = content.general;
+  const { email, socialLinks: platformSocials } = content.general;
+  const { logoText, description, copyrightText, links: menuLinks } = content.footer;
 
   const currentYear = new Date().getFullYear();
 
-  const socialLinks = [
-    { icon: Send, href: socials.twitter, label: "Twitter" },
-    { icon: Globe, href: socials.github, label: "Github" },
-    { icon: ExternalLink, href: socials.linkedin, label: "LinkedIn" },
-  ];
+  // Dynamic Icon Mapper for Socials
+  const getIcon = (iconName: string) => {
+    switch (iconName?.toLowerCase()) {
+      case "twitter": return Twitter;
+      case "github": return Github;
+      case "linkedin": return Linkedin;
+      case "instagram": return Instagram;
+      case "youtube": return Youtube;
+      case "facebook": return Facebook;
+      case "send": return Send;
+      case "globe": return Globe;
+      default: return ExternalLink;
+    }
+  };
 
   const handleScrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-
-  const footerLinks = [
-    { label: "Home", href: "/" },
-    { label: "About", href: "/#about" },
-    { label: "Work", href: "/#work" },
-    { label: "Services", href: "/#services" },
-    { label: "Process", href: "/#process" },
-    { label: "Contact", href: "/contact" },
-  ];
 
   return (
     <footer className="relative pt-24 pb-12 overflow-hidden border-t border-white/10 shadow-[0_-20px_50px_rgba(0,0,0,0.8)]">
@@ -68,26 +69,29 @@ export default function Footer() {
           <div className="flex flex-col items-start">
             <Link href="/" className="inline-block mb-6 group">
               <span className="font-syne font-black text-2xl text-white group-hover:text-accent transition-colors duration-300">
-                S<span className="text-accent group-hover:text-white transition-colors duration-300">.</span>Hossain
+                {logoText || "S.Hossain"}
               </span>
             </Link>
             <p className="text-text-secondary text-sm md:text-base leading-relaxed max-w-xs mb-8">
-              Strategically designed digital solutions focused on conversion and high-end aesthetics.
+              {description || "Strategically designed digital solutions focused on conversion and high-end aesthetics."}
             </p>
 
             <div className="flex gap-3">
-              {socialLinks.map((link) => (
-                <MagneticButton key={link.label} strength={0.4}>
-                  <Link
-                    href={link.href}
-                    target="_blank"
-                    className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/5 flex items-center justify-center text-text-muted hover:text-accent hover:border-accent/40 hover:bg-accent/10 transition-all duration-500"
-                    aria-label={link.label}
-                  >
-                    <link.icon className="w-4.5 h-4.5" />
-                  </Link>
-                </MagneticButton>
-              ))}
+              {(platformSocials || []).map((link: any) => {
+                const Icon = getIcon(link.icon || link.platform);
+                return (
+                  <MagneticButton key={link.platform} strength={0.4}>
+                    <Link
+                      href={link.href}
+                      target="_blank"
+                      className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/5 flex items-center justify-center text-text-muted hover:text-accent hover:border-accent/40 hover:bg-accent/10 transition-all duration-500"
+                      aria-label={link.platform}
+                    >
+                      <Icon className="w-4.5 h-4.5" />
+                    </Link>
+                  </MagneticButton>
+                );
+              })}
             </div>
           </div>
 
@@ -96,7 +100,7 @@ export default function Footer() {
             <div className="w-full max-w-[120px]">
               <p className="text-white font-bold mb-6 uppercase tracking-[0.2em] text-[10px] opacity-50">Menu</p>
               <ul className="grid grid-cols-2 lg:grid-cols-1 gap-y-4 gap-x-8">
-                {footerLinks.map((link) => (
+                {(menuLinks || []).map((link: any) => (
                   <li key={link.label}>
                     <Link
                       href={link.href}
@@ -135,7 +139,7 @@ export default function Footer() {
         {/* Improved Bottom Section */}
         <div className="pt-8 border-t border-white/[0.05] flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-text-muted text-[11px] font-medium tracking-wide">
-            © {currentYear} SABBIR HOSSAIN — WEB SPECIALIST
+            © {currentYear} {copyrightText || "SABBIR HOSSAIN — WEB SPECIALIST"}
           </p>
 
           <button

@@ -275,136 +275,75 @@ export default function Hero() {
       />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-20">
-        <div className="lg:grid lg:grid-cols-[1.1fr,0.9fr] lg:gap-12 items-center">
-          {/* Left Column: Content */}
-          <div className="max-w-2xl">
-            {/* Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1, duration: 0.6 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/30 bg-accent/5 text-accent text-xs font-semibold tracking-widest uppercase mb-8"
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-              {badge}
-            </motion.div>
+        {/* Badge */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1, duration: 0.6 }}
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/30 bg-accent/5 text-accent text-xs font-semibold tracking-widest uppercase mb-8"
+        >
+          <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+          {badge}
+        </motion.div>
 
-            {/* Headline */}
-            <div ref={headlineRef} className="mb-6">
+        {/* Headline */}
+        <div ref={headlineRef} className="mb-6">
+          <div className="overflow-hidden">
+            <div className="flex flex-wrap gap-x-4 md:gap-x-8 gap-y-2">
               <div className="overflow-hidden">
-                <div className="flex flex-wrap gap-x-4 md:gap-x-8 gap-y-2">
-                  <div className="overflow-hidden">
-                    <span className="word inline-block font-syne font-black text-display-xl text-white">
-                      Crafting
-                    </span>
-                  </div>
-                  {headlineWords.map((word: string, i: number) => (
-                    <div key={i} className="overflow-hidden">
-                      <span
-                        className={`word inline-block font-syne font-black text-display-xl ${
-                          word === "High-Converting" ? "text-gradient" : "text-white"
-                        }`}
-                      >
-                        {word}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Subheadline */}
-            <p
-              ref={subRef}
-              className="text-text-secondary text-base md:text-xl max-w-2xl leading-relaxed mb-10 opacity-0"
-            >
-              {subheadline.split("Sabbir Hossain").map((part: string, i: number, arr: string[]) => (
-                <span key={i}>
-                  {part}
-                  {i < arr.length - 1 && <span className="text-white font-semibold">Sabbir Hossain</span>}
+                <span className="word inline-block font-syne font-black text-display-xl text-white">
+                  Crafting
                 </span>
+              </div>
+              {headlineWords.map((word: string, i: number) => (
+                <div key={i} className="overflow-hidden">
+                  <span
+                    className={`word inline-block font-syne font-black text-display-xl ${
+                      word === "High-Converting" ? "text-gradient" : "text-white"
+                    }`}
+                  >
+                    {word}
+                  </span>
+                </div>
               ))}
-            </p>
-
-            {/* CTAs */}
-            <div ref={ctaRef} className="flex flex-col sm:flex-row gap-4 mb-20 lg:mb-0 opacity-0">
-              <MagneticButton strength={0.3} className="w-full sm:w-auto">
-                <button
-                  onClick={handleScrollToWork}
-                  className="group w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 bg-accent hover:bg-accent-light text-white font-semibold rounded-full transition-all duration-300 text-sm md:text-base glow-accent cursor-pointer"
-                >
-                  View My Work
-                  <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-                </button>
-              </MagneticButton>
-
-              <MagneticButton strength={0.3} className="w-full sm:w-auto">
-                <button
-                  onClick={handleScrollToContact}
-                  className="group w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 border border-border hover:border-accent text-white font-semibold rounded-full transition-all duration-300 text-sm md:text-base cursor-pointer"
-                >
-                  Start a Project
-                  <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-                </button>
-              </MagneticButton>
             </div>
           </div>
+        </div>
 
-          {/* Right Column: Premium Code Visual */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9, x: 20 }}
-            animate={{ opacity: 1, scale: 1, x: 0 }}
-            transition={{ delay: 0.4, duration: 1, ease: "easeOut" }}
-            className="hidden lg:block relative"
-          >
-            {/* Ambient Glows behind the code editor */}
-            <div className="absolute -inset-4 bg-accent/20 rounded-[40px] blur-[60px] opacity-40 animate-pulse" />
-            
-            {/* The Code Editor Frame */}
-            <motion.div 
-              animate={{ y: [0, -15, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              className="relative z-10 rounded-[32px] border border-white/10 bg-white/[0.02] backdrop-blur-xl p-3 shadow-2xl overflow-hidden group"
+        {/* Subheadline */}
+        <p
+          ref={subRef}
+          className="text-text-secondary text-base md:text-xl max-w-2xl leading-relaxed mb-10 opacity-0"
+        >
+          {subheadline.split("Sabbir Hossain").map((part: string, i: number, arr: string[]) => (
+            <span key={i}>
+              {part}
+              {i < arr.length - 1 && <span className="text-white font-semibold">Sabbir Hossain</span>}
+            </span>
+          ))}
+        </p>
+
+        {/* CTAs */}
+        <div ref={ctaRef} className="flex flex-col sm:flex-row gap-4 mb-20 opacity-0">
+          <MagneticButton strength={0.3} className="w-full sm:w-auto">
+            <button
+              onClick={handleScrollToWork}
+              className="group w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 bg-accent hover:bg-accent-light text-white font-semibold rounded-full transition-all duration-300 text-sm md:text-base glow-accent cursor-pointer"
             >
-              {/* Specular Shine Effect on the glass frame */}
-              <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent pointer-events-none" />
-              
-              {/* The Mockup Image */}
-              <div className="relative rounded-[24px] overflow-hidden border border-white/5">
-                <Image
-                  src="/hero-code.png"
-                  alt="Premium React Coding Environment"
-                  width={600}
-                  height={450}
-                  className="w-full h-auto transition-transform duration-700 group-hover:scale-105"
-                />
-              </div>
+              View My Work
+              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+            </button>
+          </MagneticButton>
 
-              {/* Decorative Window Controls */}
-              <div className="absolute top-6 left-8 flex gap-2">
-                <div className="w-3 h-3 rounded-full bg-[#ff5f56]" />
-                <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
-                <div className="w-3 h-3 rounded-full bg-[#27c93f]" />
-              </div>
-            </motion.div>
-
-            {/* Floating Badge (Secondary Visual) */}
-            <motion.div
-              animate={{ y: [0, 10, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              className="absolute -bottom-6 -left-6 z-20 bg-surface/80 backdrop-blur-lg border border-white/10 p-4 rounded-2xl shadow-xl hidden xl:block"
+          <MagneticButton strength={0.3} className="w-full sm:w-auto">
+            <button
+              onClick={handleScrollToContact}
+              className="group w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 border border-border hover:border-accent text-white font-semibold rounded-full transition-all duration-300 text-sm md:text-base cursor-pointer"
             >
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center">
-                  <div className="w-3 h-3 rounded-full bg-accent animate-ping" />
-                </div>
-                <div>
-                  <div className="text-[10px] uppercase tracking-widest text-text-muted font-bold">Optimization</div>
-                  <div className="text-white text-sm font-semibold">99+ PageSpeed</div>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
+              Start a Project
+              <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+            </button>
+          </MagneticButton>
         </div>
 
         {/* Glassmorphic Stats Panel */}

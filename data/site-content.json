@@ -3,11 +3,11 @@
     "siteName": "Sabbir Hossain",
     "email": "hello@sabbir.dev",
     "phone": "+880 1234 567 890",
-    "socials": {
-      "github": "https://github.com/sabbir",
-      "twitter": "https://twitter.com/sabbir",
-      "linkedin": "https://linkedin.com/in/sabbir"
-    }
+    "socialLinks": [
+      { "platform": "Twitter", "href": "https://twitter.com/sabbir", "icon": "Twitter" },
+      { "platform": "Github", "href": "https://github.com/sabbir", "icon": "Github" },
+      { "platform": "LinkedIn", "href": "https://linkedin.com/in/sabbir", "icon": "Linkedin" }
+    ]
   },
   "hero": {
     "badge": "Available for New Projects",
@@ -430,5 +430,18 @@
       "avatar": "C",
       "result": "Fiverr Client"
     }
-  ]
+  ],
+  "footer": {
+    "logoText": "S.Hossain",
+    "description": "Strategically designed digital solutions focused on conversion and high-end aesthetics.",
+    "copyrightText": "SABBIR HOSSAIN — WEB SPECIALIST",
+    "links": [
+      { "label": "Home", "href": "/" },
+      { "label": "About", "href": "/#about" },
+      { "label": "Work", "href": "/#work" },
+      { "label": "Services", "href": "/#services" },
+      { "label": "Process", "href": "/#process" },
+      { "label": "Contact", "href": "/contact" }
+    ]
+  }
 }
