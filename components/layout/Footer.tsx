@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { Globe, Send, ExternalLink, ArrowRight } from "lucide-react";
 import MagneticButton from "@/components/ui/MagneticButton";
 import { useContent } from "@/components/providers/ContentProvider";
