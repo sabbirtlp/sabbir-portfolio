@@ -44,18 +44,21 @@ export default function Hero() {
     const particles: {
       x: number; y: number; vx: number; vy: number;
       r: number; alpha: number; color: string;
+      originalAlpha: number;
     }[] = [];
 
     const colors = ["#ea580c", "#fb923c", "#ffffff", "#f97316"];
 
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 220; i++) {
+      const alpha = Math.random() * 0.5 + 0.1;
       particles.push({
         x: Math.random() * w,
         y: Math.random() * h,
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: (Math.random() - 0.5) * 0.4,
+        vx: (Math.random() - 0.5) * 0.6,
+        vy: (Math.random() - 0.5) * 0.6,
         r: Math.random() * 2 + 0.5,
-        alpha: Math.random() * 0.4 + 0.05,
+        alpha: alpha,
+        originalAlpha: alpha,
         color: colors[Math.floor(Math.random() * colors.length)],
       });
     }
@@ -72,29 +75,32 @@ export default function Hero() {
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
         
-        // Mouse interaction
-        const mDist = Math.hypot(mouse.x - p.x, mouse.y - p.y);
-        if (mDist < 150) {
-          const angle = Math.atan2(p.y - mouse.y, p.x - mouse.x);
-          const force = (150 - mDist) / 150;
-          p.vx += Math.cos(angle) * force * 0.3;
-          p.vy += Math.sin(angle) * force * 0.3;
-
-          // Draw line to mouse
-          ctx.beginPath();
-          ctx.moveTo(p.x, p.y);
-          ctx.lineTo(mouse.x, mouse.y);
-          ctx.strokeStyle = "#ea580c";
-          ctx.globalAlpha = (1 - mDist / 150) * 0.15;
-          ctx.lineWidth = 0.5;
-          ctx.stroke();
+        // Premium Mouse Physics: Dual-Phasic swarming
+        const dx = mouse.x - p.x;
+        const dy = mouse.y - p.y;
+        const mDist = Math.hypot(dx, dy);
+        
+        // Attraction zone (swarming)
+        if (mDist < 350 && mDist > 100) {
+          const force = (350 - mDist) / 3500;
+          p.vx += dx * force * 0.5;
+          p.vy += dy * force * 0.5;
+          p.alpha = Math.min(p.originalAlpha + 0.4, 0.8);
+        } else if (mDist <= 100) {
+          // Repulsion zone (the bubble)
+          const angle = Math.atan2(dy, dx);
+          const force = (100 - mDist) / 100;
+          p.vx -= Math.cos(angle) * force * 1.5;
+          p.vy -= Math.sin(angle) * force * 1.5;
+        } else {
+          p.alpha = p.originalAlpha;
         }
 
-        // Apply friction
-        p.vx *= 0.96;
-        p.vy *= 0.96;
+        // Apply friction & fluid dynamics
+        p.vx *= 0.94;
+        p.vy *= 0.94;
 
-        // Base motion
+        // Base autonomous motion
         p.x += p.vx + (Math.random() - 0.5) * 0.1;
         p.y += p.vy + (Math.random() - 0.5) * 0.1;
 
@@ -103,27 +109,41 @@ export default function Hero() {
         if (p.y < 0) p.y = h;
         if (p.y > h) p.y = 0;
 
+        // Draw Particle with Glow
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
         ctx.fillStyle = p.color;
         ctx.globalAlpha = p.alpha;
+        
+        // Performance-friendly glow
+        if (mDist < 200) {
+          ctx.shadowBlur = 10;
+          ctx.shadowColor = p.color;
+        } else {
+          ctx.shadowBlur = 0;
+        }
+        
         ctx.fill();
 
+        // High-End Connections (Neural Network)
         for (let j = i + 1; j < particles.length; j++) {
           const q = particles[j];
           const dist = Math.hypot(p.x - q.x, p.y - q.y);
-          if (dist < 100) {
+          if (dist < 120) {
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(q.x, q.y);
             ctx.strokeStyle = "#ea580c";
-            ctx.globalAlpha = (1 - dist / 100) * 0.05;
+            // Connections also react to mouse proximity
+            const linkAlpha = (1 - dist / 120) * 0.12;
+            ctx.globalAlpha = mDist < 200 ? linkAlpha * 2 : linkAlpha;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
         }
       }
 
+      ctx.shadowBlur = 0; // Reset for next frame
       ctx.globalAlpha = 1;
       animFrameRef.current = requestAnimationFrame(draw);
     };
