@@ -74,6 +74,14 @@ export default function AdminDashboard() {
     fetchContent();
   }, []);
 
+  // Auto-dismiss messages after 4 seconds
+  useEffect(() => {
+    if (message) {
+      const timer = setTimeout(() => setMessage(null), 4000);
+      return () => clearTimeout(timer);
+    }
+  }, [message]);
+
   async function fetchContent() {
     try {
       const res = await fetch("/api/admin/content");
@@ -225,11 +233,11 @@ export default function AdminDashboard() {
       {/* Main Content */}
       <main className="flex-1 min-h-0 h-full overflow-y-auto pt-8 md:pt-12 pb-20 px-4 md:px-12" data-lenis-prevent>
         <div className="max-w-4xl mx-auto">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
             <h1 className="font-syne font-black text-3xl text-white capitalize">{activeTab.replace("-", " ")}</h1>
             {message && (
-              <div className={`px-4 py-2 rounded-lg flex items-center gap-2 text-sm ${
-                message.type === "success" ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20" : "bg-red-500/10 text-red-400 border border-red-500/20"
+              <div className={`px-4 py-2 rounded-lg flex items-center gap-2 text-sm animate-in fade-in slide-in-from-top-4 duration-300 ${
+                message.type === "success" ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shadow-[0_0_20px_rgba(16,185,129,0.1)]" : "bg-red-500/10 text-red-400 border border-red-500/20 shadow-[0_0_20px_rgba(239,68,68,0.1)]"
               }`}>
                 {message.type === "success" ? <CheckCircle2 className="w-4 h-4" /> : <AlertCircle className="w-4 h-4" />}
                 {message.text}
