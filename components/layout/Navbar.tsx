@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import MagneticButton from "@/components/ui/MagneticButton";
 
 const navLinks = [
@@ -17,9 +18,10 @@ import { useContent } from "@/components/providers/ContentProvider";
 
 export default function Navbar() {
   const { content } = useContent();
+  const pathname = usePathname();
   
   // Safe check to prevent dashboard crash on public access
-  if (!content?.general) return null;
+  if (!content?.general || pathname?.startsWith("/admin") || pathname?.startsWith("/login")) return null;
 
   const { siteName } = content.general;
   const logoFirstChar = siteName?.charAt(0) || "S";

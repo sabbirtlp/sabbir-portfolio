@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { Globe, Send, ExternalLink, ArrowRight, Mail, Phone, Twitter, Github, Linkedin, Instagram, Youtube, Facebook } from "lucide-react";
 import MagneticButton from "@/components/ui/MagneticButton";
 import { useContent } from "@/components/providers/ContentProvider";
@@ -11,6 +12,9 @@ export default function Footer() {
   const { content } = useContent();
   const { email, socialLinks: platformSocials } = content.general;
   const { logoText, description, copyrightText, links: menuLinks } = content.footer;
+  const pathname = usePathname();
+
+  if (pathname?.startsWith("/admin") || pathname?.startsWith("/login")) return null;
 
   const currentYear = new Date().getFullYear();
 
