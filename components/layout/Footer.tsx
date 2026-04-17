@@ -33,20 +33,26 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative pt-24 pb-12 overflow-hidden bg-[#050505] border-t border-white/[0.05]">
+    <footer className="relative pt-24 pb-12 overflow-hidden bg-background border-t border-white/[0.08]">
       {/* Premium Brand Background Image */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <Image
           src="/footer-bg.png"
           alt="Technical Background"
           fill
-          className="object-cover object-center opacity-[0.07] mix-blend-luminosity"
+          className="object-cover object-center opacity-[0.15] mix-blend-screen"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#050505] via-transparent to-[#050505]" />
+        {/* Colorful glows behind the glass to make it pop */}
+        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-accent/10 rounded-full blur-[120px] -translate-y-1/2 opacity-60" />
+        <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[100px] translate-y-1/2 opacity-40" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
       </div>
 
-      {/* Premium Glassmorphism Highlights */}
-      <div className="absolute top-0 left-1/4 w-1/2 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent pointer-events-none z-10" />
+      {/* The Actual Glass Panel Overlay */}
+      <div className="absolute inset-0 z-1 bg-black/40 backdrop-blur-[100px] pointer-events-none" />
+
+      {/* Premium Glassmorphism Top Border Highlight */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent pointer-events-none z-20" />
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[120px] translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-50" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[100px] -translate-x-1/2 translate-y-1/2 pointer-events-none opacity-30" />
 
