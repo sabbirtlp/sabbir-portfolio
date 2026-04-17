@@ -33,28 +33,31 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative pt-24 pb-12 overflow-hidden bg-background border-t border-white/[0.08]">
-      {/* Premium Brand Background Image */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
+    <footer className="relative pt-24 pb-12 overflow-hidden border-t border-white/[0.1]">
+      {/* 0. Base Solid Layer */}
+      <div className="absolute inset-0 z-0 bg-[#080808]" />
+
+      {/* 1. Premium Brand Background Image */}
+      <div className="absolute inset-0 z-[1] pointer-events-none overflow-hidden">
         <Image
           src="/footer-bg.png"
           alt="Technical Background"
           fill
-          className="object-cover object-center opacity-[0.15] mix-blend-screen"
+          className="object-cover object-center opacity-[0.25]"
         />
-        {/* Colorful glows behind the glass to make it pop */}
-        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-accent/10 rounded-full blur-[120px] -translate-y-1/2 opacity-60" />
-        <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[100px] translate-y-1/2 opacity-40" />
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
+        {/* Colorful glows behind the glass but above the image */}
+        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-accent/20 rounded-full blur-[120px] -translate-y-1/2 opacity-50 z-[2]" />
+        <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-accent/10 rounded-full blur-[100px] translate-y-1/2 opacity-30 z-[2]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#080808] via-transparent to-[#080808] z-[2]" />
       </div>
 
-      {/* The Actual Glass Panel Overlay */}
-      <div className="absolute inset-0 z-1 bg-black/40 backdrop-blur-[100px] pointer-events-none" />
+      {/* 2. Higher-Contrast Glass Panel Overlay */}
+      <div className="absolute inset-0 z-[3] bg-white/[0.02] backdrop-blur-2xl pointer-events-none" />
 
-      {/* Premium Glassmorphism Top Border Highlight */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent pointer-events-none z-20" />
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[120px] translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-50" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[100px] -translate-x-1/2 translate-y-1/2 pointer-events-none opacity-30" />
+      {/* 3. Decorative High-End Accents */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none z-20" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[120px] translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-50 z-10" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[100px] -translate-x-1/2 translate-y-1/2 pointer-events-none opacity-30 z-10" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 lg:gap-12 mb-20">
