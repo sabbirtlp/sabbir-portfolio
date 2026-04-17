@@ -33,9 +33,9 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative pt-24 pb-12 overflow-hidden border-t border-white/20 shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
+    <footer className="relative pt-24 pb-12 overflow-hidden border-t border-white/10 shadow-[0_-20px_50px_rgba(0,0,0,0.8)]">
       {/* 0. Base Solid Layer */}
-      <div className="absolute inset-0 z-0 bg-[#050505]" />
+      <div className="absolute inset-0 z-0 bg-[#030303]" />
 
       {/* 1. Premium Brand Background Image */}
       <div className="absolute inset-0 z-[1] pointer-events-none overflow-hidden">
@@ -43,24 +43,24 @@ export default function Footer() {
           src="/footer-bg.png"
           alt="Technical Background"
           fill
-          className="object-cover object-center opacity-[0.3] mix-blend-screen"
+          className="object-cover object-center opacity-[0.15] mix-blend-screen"
         />
         {/* Bolder, centered glows for maximum glass visibility on all devices */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-accent/30 rounded-full blur-[100px] -translate-y-1/2 z-[2]" />
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-[250px] bg-orange-600/10 rounded-full blur-[80px] translate-y-1/2 z-[2]" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-accent/20 rounded-full blur-[100px] -translate-y-1/2 z-[2]" />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-[250px] bg-orange-600/5 rounded-full blur-[80px] translate-y-1/2 z-[2]" />
       </div>
 
       {/* 2. SPECULAR SHINE & FROSTED GLASS (The Core Effect) */}
-      <div className="absolute inset-0 z-[3] bg-white/[0.07] backdrop-blur-[40px] pointer-events-none overflow-hidden">
+      <div className="absolute inset-0 z-[3] bg-white/[0.03] backdrop-blur-[40px] pointer-events-none overflow-hidden text-white">
         {/* Diagonal Specular Shine */}
-        <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-60" />
+        <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-transparent opacity-40" />
         {/* Fine Grain / Noise for tactile glass surface */}
-        <div className="absolute inset-0 opacity-[0.15] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay" />
+        <div className="absolute inset-0 opacity-[0.1] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay" />
       </div>
 
       {/* 3. High-End Glass Edge Highlights */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent pointer-events-none z-20" />
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/10 rounded-full blur-[120px] translate-x-1/2 -translate-y-1/2 pointer-events-none z-10" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none z-20" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/[0.05] rounded-full blur-[120px] translate-x-1/2 -translate-y-1/2 pointer-events-none z-10" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 lg:gap-12 mb-20">

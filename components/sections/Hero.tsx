@@ -195,7 +195,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-background">
+    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-[#030303]">
       {/* 0. Premium Parallax Background Image */}
       <motion.div 
         style={{ y: backgroundY, scale: backgroundScale }}
@@ -206,13 +206,13 @@ export default function Hero() {
           alt="Premium Brand Background"
           fill
           priority
-          className="object-cover object-center opacity-25 mix-blend-screen"
+          className="object-cover object-center opacity-[0.12] mix-blend-screen"
         />
         {/* Subtle Ambient "Breathing" Animation Overlay */}
         <motion.div 
-          animate={{ opacity: [0.1, 0.2, 0.1] }}
+          animate={{ opacity: [0.03, 0.08, 0.03] }}
           transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute inset-0 bg-accent/5"
+          className="absolute inset-0 bg-accent/[0.02]"
         />
       </motion.div>
 
@@ -224,9 +224,9 @@ export default function Hero() {
 
       {/* Gradient overlays */}
       <div className="absolute inset-0 z-1">
-        <div className="absolute top-0 left-0 w-[600px] h-[600px] rounded-full bg-accent/5 blur-[120px] -translate-x-1/2 -translate-y-1/2" />
-        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full bg-accent/8 blur-[100px] translate-x-1/4 translate-y-1/4" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-orange-500/3 blur-[150px]" />
+        <div className="absolute top-0 left-0 w-[600px] h-[600px] rounded-full bg-accent/[0.02] blur-[120px] -translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full bg-accent/[0.03] blur-[100px] translate-x-1/4 translate-y-1/4" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-orange-500/[0.01] blur-[150px]" />
       </div>
 
       {/* Grid pattern */}
