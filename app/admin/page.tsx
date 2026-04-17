@@ -236,30 +236,54 @@ export default function AdminDashboard() {
             )}
           </div>
 
-          {/* Instant Mobile Tab Navigation (Horizontal Scroll) */}
-          <div className="md:hidden flex overflow-x-auto gap-2 pb-4 mb-6 border-b border-border/50 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            {[
-              { id: "general", label: "General" },
-              { id: "hero", label: "Hero" },
-              { id: "about", label: "About" },
-              { id: "services", label: "Services" },
-              { id: "work", label: "Case Studies" },
-              { id: "testimonials", label: "Testimonials" },
-              { id: "process", label: "Process" },
-              { id: "footer", label: "Footer" },
-            ].map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`flex-shrink-0 px-4 py-2 rounded-xl text-xs font-bold border transition-colors ${
-                  activeTab === tab.id 
-                  ? "bg-accent/10 border-accent/40 text-accent" 
-                  : "bg-surface-2 border-border text-text-secondary hover:text-white"
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
+          {/* Instant Mobile Tab Navigation (Horizontal Slider) */}
+          <div className="md:hidden relative mb-6 border-b border-border/50 pb-4">
+            <button 
+              onClick={() => document.getElementById('mobile-tab-slider')?.scrollBy({ left: -200, behavior: 'smooth' })}
+              className="absolute left-0 top-0 bottom-4 w-10 bg-gradient-to-r from-background via-background/90 to-transparent z-10 flex items-center justify-start text-text-muted hover:text-white pointer-events-auto"
+            >
+              <div className="rotate-180 flex items-center justify-center -ml-1"><ChevronRight className="w-5 h-5" /></div>
+            </button>
+            
+            <div 
+              id="mobile-tab-slider"
+              className="flex overflow-x-auto gap-2 px-8 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden snap-x scroll-smooth relative z-0"
+            >
+              {[
+                { id: "general", label: "General" },
+                { id: "hero", label: "Hero" },
+                { id: "about", label: "About" },
+                { id: "services", label: "Services" },
+                { id: "work", label: "Case Studies" },
+                { id: "testimonials", label: "Testimonials" },
+                { id: "process", label: "Process" },
+                { id: "footer", label: "Footer" },
+              ].map((tab) => (
+                <button
+                  key={tab.id}
+                  id={`tab-${tab.id}`}
+                  onClick={() => {
+                    setActiveTab(tab.id);
+                    const el = document.getElementById(`tab-${tab.id}`);
+                    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                  }}
+                  className={`snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-bold border transition-colors ${
+                    activeTab === tab.id 
+                    ? "bg-accent/10 border-accent/40 text-accent" 
+                    : "bg-surface-2 border-border text-text-secondary hover:text-white"
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+
+            <button 
+              onClick={() => document.getElementById('mobile-tab-slider')?.scrollBy({ left: 200, behavior: 'smooth' })}
+              className="absolute right-0 top-0 bottom-4 w-10 bg-gradient-to-l from-background via-background/90 to-transparent z-10 flex items-center justify-end text-text-muted hover:text-white pointer-events-auto"
+            >
+              <ChevronRight className="w-5 h-5 -mr-1" />
+            </button>
           </div>
 
           {/* Quick Info & Save FAB on Mobile */}
