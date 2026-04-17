@@ -22,12 +22,18 @@ export async function decrypt(input: string): Promise<any> {
 }
 
 export async function login(formData: any) {
-  const username = formData.username;
-  const password = formData.password;
+  const username = formData.username?.trim();
+  const password = formData.password?.trim();
 
+  const envUsername = process.env.ADMIN_USERNAME?.trim();
+  const envPassword = process.env.ADMIN_PASSWORD?.trim();
+
+  // Logic: Only proceed if credentials are configured
   if (
-    username === process.env.ADMIN_USERNAME &&
-    password === process.env.ADMIN_PASSWORD
+    envUsername && 
+    envPassword &&
+    username === envUsername &&
+    password === envPassword
   ) {
     const expires = new Date(Date.now() + 24 * 60 * 60 * 1000);
     const session = await encrypt({ username, expires });
