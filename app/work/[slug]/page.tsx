@@ -53,25 +53,21 @@ export default async function CaseStudyPage({ params }: Props) {
   const gradient = gradientMap[slug] ?? "from-orange-900 to-red-900";
 
   return (
-    <article className="bg-background min-h-screen">
-      {/* Hero */}
-      <div className={`relative min-h-[60vh] bg-gradient-to-br ${gradient} flex items-end`}>
-        <div className="absolute inset-0 opacity-20"
-          style={{
-            backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
-            backgroundSize: "128px 128px",
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
+    <article className="min-h-screen bg-background relative pt-32 md:pt-40">
+      {/* Immersive background — uses project gradient */}
+      <div className={`absolute top-0 left-0 w-full h-[70vh] bg-gradient-to-b ${gradient} opacity-20 blur-[120px] pointer-events-none`} />
 
-        <div className="relative z-10 max-w-5xl mx-auto px-6 pb-16 pt-32">
-          {/* Back link */}
+      {/* Hero Content */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 mb-16 sm:mb-24">
+        <div className="max-w-5xl">
           <Link
             href="/#work"
-            className="inline-flex items-center gap-2 text-white/60 hover:text-white text-sm mb-8 transition-colors group"
+            className="group inline-flex items-center gap-2 text-text-muted hover:text-white transition-colors mb-12 sm:mb-20"
           >
-            <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
-            Back to Work
+            <div className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center group-hover:border-accent group-hover:bg-accent/10 transition-all">
+              <ArrowLeft className="w-4 h-4" />
+            </div>
+            <span className="text-xs uppercase tracking-widest font-bold">Back to Work</span>
           </Link>
 
           <div className="flex items-center gap-3 mb-5">
@@ -81,10 +77,10 @@ export default async function CaseStudyPage({ params }: Props) {
             <span className="text-white/40 text-xs">{project.year}</span>
           </div>
 
-          <h1 className="font-syne font-black text-display-lg text-white leading-tight mb-4">
+          <h1 className="font-syne font-black text-6xl sm:text-7xl md:text-8xl lg:text-[10rem] text-white leading-[0.9] tracking-tighter mb-10">
             {project.title}
           </h1>
-          <p className="text-white/70 text-xl leading-relaxed max-w-2xl">
+          <p className="text-white/70 text-lg md:text-2xl leading-relaxed max-w-3xl font-medium">
             {project.longDescription}
           </p>
         </div>
@@ -92,12 +88,12 @@ export default async function CaseStudyPage({ params }: Props) {
 
       {/* Stats Bar */}
       <div className="bg-surface border-y border-border">
-        <div className="max-w-5xl mx-auto px-6 py-8">
-          <div className="grid grid-cols-3 gap-8 divide-x divide-border">
+        <div className="max-w-5xl mx-auto px-6 py-10 md:py-12">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 sm:gap-8 sm:divide-x divide-border">
             {project.stats.map((stat: any) => (
-              <div key={stat.label} className="text-center px-4 first:pl-0 last:pr-0">
-                <div className="font-syne font-black text-3xl text-accent mb-1">{stat.value}</div>
-                <div className="text-text-secondary text-sm">{stat.label}</div>
+              <div key={stat.label} className="text-center px-4 first:pl-0 sm:last:pr-0">
+                <div className="font-syne font-black text-4xl md:text-5xl text-accent mb-2">{stat.value}</div>
+                <div className="text-text-muted text-[10px] md:text-xs uppercase tracking-[0.2em] font-bold">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -115,7 +111,7 @@ export default async function CaseStudyPage({ params }: Props) {
                 <div className="w-8 h-8 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center justify-center">
                   <span className="text-red-400 text-xs font-bold">!</span>
                 </div>
-                <h2 className="font-syne font-black text-2xl text-white">The Problem</h2>
+                <h2 className="font-syne font-black text-2xl md:text-3xl text-white">The Problem</h2>
               </div>
               <p className="text-text-secondary leading-relaxed text-base">{project.problem}</p>
             </section>
@@ -126,7 +122,7 @@ export default async function CaseStudyPage({ params }: Props) {
                 <div className="w-8 h-8 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center">
                   <span className="text-accent text-xs font-bold">✓</span>
                 </div>
-                <h2 className="font-syne font-black text-2xl text-white">The Solution</h2>
+                <h2 className="font-syne font-black text-2xl md:text-3xl text-white">The Solution</h2>
               </div>
               <p className="text-text-secondary leading-relaxed text-base">{project.solution}</p>
             </section>
@@ -169,7 +165,7 @@ export default async function CaseStudyPage({ params }: Props) {
                 <div className="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
                   <TrendingUp className="w-4 h-4 text-emerald-400" />
                 </div>
-                <h2 className="font-syne font-black text-2xl text-white">The Results</h2>
+                <h2 className="font-syne font-black text-2xl md:text-3xl text-white">The Results</h2>
               </div>
               <ul className="space-y-3">
                 {project.results.map((result: any) => (
