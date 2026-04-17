@@ -22,7 +22,9 @@ import {
   Upload,
   ImageIcon,
   Edit3,
-  Eye
+  Eye,
+  Menu,
+  X
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 
@@ -39,7 +41,7 @@ export default function AdminDashboard() {
   const [uploadingIndex, setUploadingIndex] = useState<number | null>(null);
   const [uploadingScreenshot, setUploadingScreenshot] = useState<number | null>(null);
   const [deletingIndex, setDeletingIndex] = useState<number | null>(null);
-  const [deletingTestimonialIndex, setDeletingTestimonialIndex] = useState<number | null>(null);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   async function handleImageUpload(file: File, projectIndex: number) {
     setUploadingIndex(projectIndex);
@@ -127,9 +129,33 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="h-screen bg-background text-text-primary flex overflow-hidden" data-lenis-prevent>
+    <div className="h-screen bg-background text-text-primary flex flex-col md:flex-row overflow-hidden" data-lenis-prevent>
+      {/* Mobile Header */}
+      <header className="md:hidden flex items-center justify-between px-6 py-4 bg-surface border-b border-border z-50">
+        <div className="font-syne font-black text-xl text-white">
+          <span className="text-accent">S</span>abbir<span className="text-accent text-xs">CMS</span>
+        </div>
+        <button 
+          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+          className="p-2 text-text-muted hover:text-white transition-colors"
+        >
+          {isSidebarOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        </button>
+      </header>
+
+      {/* Sidebar Overlay (Mobile Only) */}
+      {isSidebarOpen && (
+        <div 
+          className="md:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-40 transition-opacity"
+          onClick={() => setIsSidebarOpen(false)}
+        />
+      )}
+
       {/* Sidebar */}
-      <aside className="w-64 border-r border-border bg-surface shrink-0 flex flex-col pt-8 h-screen overflow-y-auto">
+      <aside className={`
+        fixed md:relative inset-y-0 left-0 w-64 border-r border-border bg-surface z-50 transform transition-transform duration-300 ease-in-out flex flex-col pt-8 h-screen overflow-y-auto
+        ${isSidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
+      `}>
         <div className="px-6 mb-10 text-center">
           <div className="font-syne font-black text-2xl text-white">
             <span className="text-accent">S</span>abbir<span className="text-accent text-sm">CMS</span>
@@ -150,7 +176,10 @@ export default function AdminDashboard() {
           ].map((tab) => (
             <button
               key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
+              onClick={() => {
+                setActiveTab(tab.id);
+                setIsSidebarOpen(false);
+              }}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
                 activeTab === tab.id 
                 ? "bg-accent/10 text-accent border border-accent/20" 
@@ -185,9 +214,9 @@ export default function AdminDashboard() {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 min-h-0 h-screen overflow-y-auto pt-12 pb-20 px-12" data-lenis-prevent>
+      <main className="flex-1 min-h-0 h-full overflow-y-auto pt-8 md:pt-12 pb-20 px-4 md:px-12" data-lenis-prevent>
         <div className="max-w-4xl mx-auto">
-          <div className="flex items-center justify-between mb-8">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
             <h1 className="font-syne font-black text-3xl text-white capitalize">{activeTab.replace("-", " ")}</h1>
             {message && (
               <div className={`px-4 py-2 rounded-lg flex items-center gap-2 text-sm ${
@@ -199,7 +228,7 @@ export default function AdminDashboard() {
             )}
           </div>
 
-          <div className="space-y-8 bg-surface border border-border rounded-2xl p-8 shadow-xl">
+          <div className="space-y-8 bg-surface border border-border rounded-2xl p-4 md:p-8 shadow-xl">
             {/* HERO SECTION */}
             {activeTab === "hero" && (
               <div className="space-y-6">
@@ -223,7 +252,7 @@ export default function AdminDashboard() {
                 </div>
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-3">Hero Stats</label>
-                  <div className="grid grid-cols-3 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     {content.hero.stats.map((stat: any, i: number) => (
                       <div key={i} className="p-4 bg-surface-2 border border-border rounded-xl space-y-2">
                         <input 
@@ -258,7 +287,7 @@ export default function AdminDashboard() {
             {/* ABOUT SECTION */}
             {activeTab === "about" && (
               <div className="space-y-6">
-                <div className="grid grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Name</label>
                     <input 
@@ -313,7 +342,7 @@ export default function AdminDashboard() {
                       >
                         <Trash2 className="w-4 h-4" />
                       </button>
-                      <div className="grid grid-cols-2 gap-4">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <input 
                           type="text" 
                           value={service.title}
@@ -550,7 +579,7 @@ export default function AdminDashboard() {
                         {isEditing && (
                           <div className="border-t border-border p-6 space-y-6 bg-background/50">
                             {/* Row 1: Title, Slug, Category, Year */}
-                            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                               <div className="col-span-2">
                                 <label className="block text-[10px] font-bold uppercase tracking-widest text-text-muted mb-1.5">Project Title</label>
                                 <input type="text" value={project.title} onChange={(e) => { const p = [...content.projects]; p[i].title = e.target.value; setContent({ ...content, projects: p }); }} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-2.5 text-white outline-none focus:border-accent/40" placeholder="Project Name" />
@@ -566,7 +595,7 @@ export default function AdminDashboard() {
                             </div>
 
                             {/* Row 2: Slug + Live URL */}
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                               <div>
                                 <label className="block text-[10px] font-bold uppercase tracking-widest text-text-muted mb-1.5">URL Slug</label>
                                 <input type="text" value={project.slug} onChange={(e) => { const p = [...content.projects]; p[i].slug = e.target.value; setContent({ ...content, projects: p }); }} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-2.5 text-white text-xs font-mono outline-none focus:border-accent/40" placeholder="project-slug-here" />
@@ -580,7 +609,7 @@ export default function AdminDashboard() {
                             {/* Row 3: Image Upload */}
                             <div>
                               <label className="block text-[10px] font-bold uppercase tracking-widest text-text-muted mb-1.5">Project Image</label>
-                              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 {/* Preview */}
                                 <div className="relative w-full h-40 rounded-xl overflow-hidden border border-border bg-surface-2">
                                   {project.image && project.image !== "/projects/placeholder.jpg" ? (
@@ -619,7 +648,7 @@ export default function AdminDashboard() {
                             {/* Row 3b: Screenshot Upload */}
                             <div>
                               <label className="block text-[10px] font-bold uppercase tracking-widest text-text-muted mb-1.5">Case Study Screenshot (shown on detail page)</label>
-                              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 {/* Screenshot Preview */}
                                 <div className="relative w-full h-40 rounded-xl overflow-hidden border border-border bg-surface-2">
                                   {project.screenshot ? (
@@ -695,7 +724,7 @@ export default function AdminDashboard() {
                                 <label className="block text-[10px] font-bold uppercase tracking-widest text-text-muted">Stats / Key Metrics</label>
                                 <button onClick={() => { const p = [...content.projects]; p[i].stats = [...(p[i].stats || []), { value: "+0%", label: "New Metric" }]; setContent({ ...content, projects: p }); }} className="text-[10px] text-accent hover:text-accent-light font-bold flex items-center gap-1 transition-colors"><Plus className="w-3 h-3" /> Add Stat</button>
                               </div>
-                              <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                                 {(project.stats || []).map((stat: any, si: number) => (
                                   <div key={si} className="relative p-3 bg-surface-2 border border-border rounded-xl space-y-2 group/stat">
                                     <button onClick={() => { const p = [...content.projects]; p[i].stats = p[i].stats.filter((_: any, idx: number) => idx !== si); setContent({ ...content, projects: p }); }} className="absolute top-2 right-2 text-text-muted/30 hover:text-red-400 opacity-0 group-hover/stat:opacity-100 transition-opacity"><Trash2 className="w-3 h-3" /></button>
@@ -784,7 +813,7 @@ export default function AdminDashboard() {
             {/* GENERAL SECTION */}
             {activeTab === "general" && (
               <div className="space-y-6">
-                <div className="grid grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Email Address</label>
                     <input 
@@ -821,7 +850,7 @@ export default function AdminDashboard() {
                   <div className="grid grid-cols-1 gap-4">
                     {(content.general.socialLinks || []).map((social: any, i: number) => (
                       <div key={i} className="flex gap-4 p-4 bg-surface-2 border border-border rounded-xl items-center group/social">
-                        <div className="flex-1 grid grid-cols-4 gap-4">
+                        <div className="flex-1 grid grid-cols-1 sm:grid-cols-4 gap-4">
                           <div className="col-span-1">
                             <label className="block text-[8px] uppercase tracking-tighter text-text-muted mb-1">Platform</label>
                             <input 
@@ -836,7 +865,7 @@ export default function AdminDashboard() {
                               placeholder="e.g. Twitter"
                             />
                           </div>
-                          <div className="col-span-2">
+                          <div className="col-span-1 sm:col-span-2">
                             <label className="block text-[8px] uppercase tracking-tighter text-text-muted mb-1">URL / Link</label>
                             <input 
                               type="text" 
@@ -894,7 +923,7 @@ export default function AdminDashboard() {
             {/* FOOTER SECTION */}
             {activeTab === "footer" && (
               <div className="space-y-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Footer Branding Text</label>
                     <input 
@@ -942,7 +971,7 @@ export default function AdminDashboard() {
                   <div className="grid grid-cols-1 gap-2">
                     {(content.footer.links || []).map((link: any, i: number) => (
                       <div key={i} className="flex gap-4 p-3 bg-surface-2 border border-border rounded-xl items-center group/link">
-                        <div className="flex-1 grid grid-cols-2 gap-4">
+                        <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-4">
                           <input 
                             type="text" 
                             value={link.label}
@@ -1090,7 +1119,7 @@ export default function AdminDashboard() {
 
                         {isEditing && (
                           <div className="border-t border-border p-6 space-y-6 bg-background/50">
-                            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                               <div className="col-span-2">
                                 <label className="block text-[10px] font-bold uppercase tracking-widest text-text-muted mb-1.5">Client Name</label>
                                 <input type="text" value={t.name} onChange={(e) => { const nt = [...content.testimonials]; nt[i].name = e.target.value; setContent({ ...content, testimonials: nt }); }} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-2.5 text-white outline-none focus:border-accent/40" />
