@@ -153,14 +153,22 @@ export default function AdminDashboard() {
 
       {/* Sidebar */}
       <aside className={`
-        fixed md:relative top-0 left-0 w-64 border-r border-border bg-surface z-[60] transform transition-transform duration-300 ease-in-out flex flex-col pt-8 h-[100dvh] overflow-y-auto
-        ${isSidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
+        fixed md:relative top-0 left-0 w-[280px] md:w-64 border-r border-border bg-surface z-[70] transform transition-transform duration-300 ease-in-out flex flex-col h-[100dvh] overflow-y-auto
+        ${isSidebarOpen ? "translate-x-0 shadow-2xl" : "-translate-x-full md:translate-x-0"}
       `}>
-        <div className="px-6 mb-10 text-center">
-          <div className="font-syne font-black text-2xl text-white">
-            <span className="text-accent">S</span>abbir<span className="text-accent text-sm">CMS</span>
+        <div className="px-6 pt-6 mb-8 flex items-start justify-between md:block text-left md:text-center">
+          <div>
+            <div className="font-syne font-black text-2xl text-white">
+              <span className="text-accent">S</span>abbir<span className="text-accent text-sm">CMS</span>
+            </div>
+            <p className="text-[10px] uppercase tracking-widest text-text-muted mt-1">Management Hub</p>
           </div>
-          <p className="text-[10px] uppercase tracking-widest text-text-muted mt-1">Management Hub</p>
+          <button 
+            className="md:hidden text-text-muted hover:text-white p-1 -mr-2"
+            onClick={() => setIsSidebarOpen(false)}
+          >
+            <X className="w-6 h-6" />
+          </button>
         </div>
 
         <nav className="flex-1 px-4 space-y-1">
@@ -226,6 +234,17 @@ export default function AdminDashboard() {
                 {message.text}
               </div>
             )}
+          </div>
+
+          {/* Quick Info & Save FAB on Mobile */}
+          <div className="md:hidden fixed bottom-6 right-6 z-40">
+            <button
+              onClick={handleSave}
+              disabled={saving}
+              className="h-14 w-14 rounded-full flex items-center justify-center bg-accent text-white shadow-[0_8px_30px_rgb(255,95,86,0.3)] transition-transform active:scale-90 disabled:opacity-50"
+            >
+              {saving ? <Loader2 className="w-6 h-6 animate-spin" /> : <Save className="w-6 h-6" />}
+            </button>
           </div>
 
           <div className="space-y-8 bg-surface border border-border rounded-2xl p-4 md:p-8 shadow-xl">
@@ -431,7 +450,7 @@ export default function AdminDashboard() {
             {activeTab === "work" && (
               <div className="space-y-6">
                 {/* Header */}
-                <div className="flex items-center justify-between">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div>
                     <p className="text-xs text-text-muted">Manage your portfolio projects and case studies.</p>
                     <p className="text-[10px] text-text-muted/60 mt-1">{content.projects?.length || 0} project{(content.projects?.length || 0) !== 1 ? 's' : ''} total</p>
@@ -481,7 +500,7 @@ export default function AdminDashboard() {
                     return (
                       <div key={`project-${i}-${project.slug}`} className="border border-border rounded-2xl overflow-hidden bg-surface-2 transition-all">
                         {/* List Row — always visible */}
-                        <div className="flex items-center gap-4 p-4 hover:bg-white/[0.02] transition-colors">
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-4 p-4 hover:bg-white/[0.02] transition-colors">
                           {/* Thumbnail + Info (Clickable to Expand) */}
                           <div 
                             className="flex flex-1 items-center gap-4 cursor-pointer min-w-0" 
@@ -507,7 +526,7 @@ export default function AdminDashboard() {
                           </div>
 
                           {/* Actions */}
-                          <div className="flex items-center gap-2 shrink-0">
+                          <div className="flex items-center justify-between sm:justify-end gap-2 pt-3 mt-1 sm:pt-0 sm:mt-0 border-t border-border/50 sm:border-0 shrink-0 w-full sm:w-auto">
                             {project.liveUrl && project.liveUrl !== '#' && (
                               <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="p-2 text-text-muted hover:text-accent transition-colors" onClick={(e) => e.stopPropagation()}>
                                 <Eye className="w-3.5 h-3.5" />
@@ -1047,9 +1066,9 @@ export default function AdminDashboard() {
                     const isEditing = editingTestimonial === i;
                     return (
                       <div key={`test-${i}-${t.name}`} className="border border-border rounded-2xl overflow-hidden bg-surface-2 transition-all">
-                        <div className="flex items-center gap-4 p-4 hover:bg-white/[0.02] transition-colors">
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-4 p-4 hover:bg-white/[0.02] transition-colors">
                           <div 
-                            className="flex flex-1 items-center gap-4 cursor-pointer min-w-0" 
+                            className="flex flex-1 items-center gap-4 cursor-pointer min-w-0 w-full" 
                             onClick={() => setEditingTestimonial(isEditing ? null : i)}
                           >
                             <div className="w-12 h-12 rounded-full overflow-hidden border border-border bg-background shrink-0 flex items-center justify-center font-bold text-accent text-lg">
@@ -1061,7 +1080,7 @@ export default function AdminDashboard() {
                             </div>
                           </div>
 
-                          <div className="flex items-center gap-2 shrink-0">
+                          <div className="flex items-center justify-between sm:justify-end gap-2 pt-3 mt-1 sm:pt-0 sm:mt-0 border-t border-border/50 sm:border-0 shrink-0 w-full sm:w-auto">
                             {deletingTestimonialIndex === i ? (
                               <div className="flex bg-red-500/10 rounded-xl overflow-hidden animate-in fade-in zoom-in duration-200">
                                 <button
