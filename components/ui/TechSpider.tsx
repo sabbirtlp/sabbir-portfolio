@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useMemo, useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence, useScroll, useTransform, useSpring } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 interface TechIcon {
@@ -12,255 +12,235 @@ interface TechIcon {
 
 interface TechSpiderProps {
   icons: TechIcon[];
-  title?: string;
-  subtitle?: string;
   className?: string;
 }
 
-export default function TechSpider({
-  icons = [],
-  title = "TECH STACK",
-  subtitle = "Dynamic Ecosystem",
-  className,
-}: TechSpiderProps) {
+export default function TechSpider({ icons = [], className }: TechSpiderProps) {
   const [hoveredId, setHoveredId] = useState<number | null>(null);
   const [isCoreHovered, setIsCoreHovered] = useState(false);
   const [radius, setRadius] = useState(240);
   const [cardSize, setCardSize] = useState(80);
-  
-  const containerRef = useRef<HTMLDivElement>(null);
-  
-  // 1. Scroll-Based Rotation ONLY (No Continuous Idle)
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
-  
-  const rawScrollRotation = useTransform(scrollYProgress, [0, 1], [0, 180]);
-  const scrollRotation = useSpring(rawScrollRotation, {
-    stiffness: 80, // Slightly softer for "calm" feel
-    damping: 25,
-    restDelta: 0.001
-  });
 
-  // Responsive scaling adjustment
+  // Responsive scaling
   useEffect(() => {
-    const handleResize = () => {
-      const width = window.innerWidth;
-      if (width < 450) {
-        setRadius(105);
-        setCardSize(54);
-      } else if (width < 640) {
-        setRadius(135);
-        setCardSize(62);
-      } else if (width < 1024) {
-        setRadius(185);
-        setCardSize(70);
-      } else {
-        setRadius(240);
-        setCardSize(82);
-      }
+    const update = () => {
+      const w = window.innerWidth;
+      if (w < 400)       { setRadius(95);  setCardSize(52); }
+      else if (w < 640)  { setRadius(128); setCardSize(62); }
+      else if (w < 1024) { setRadius(180); setCardSize(72); }
+      else               { setRadius(240); setCardSize(84); }
     };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
   }, []);
 
-  // Calculate icon positions and connections
-  const { iconPositions, meshConnections } = useMemo(() => {
-    if (!icons || icons.length === 0) return { iconPositions: [], meshConnections: [] };
-
-    const positions = icons.map((icon, index) => {
-      const angle = (index / icons.length) * 2 * Math.PI - Math.PI / 2;
-      return {
-        ...icon,
-        x: radius * Math.cos(angle),
-        y: radius * Math.sin(angle),
-        angle,
-      };
+  // Icon positions in a circle — no rotation transform wrapper
+  const iconPositions = useMemo(() => {
+    if (!icons.length) return [];
+    return icons.map((icon, i) => {
+      const angle = (i / icons.length) * 2 * Math.PI - Math.PI / 2;
+      return { ...icon, x: radius * Math.cos(angle), y: radius * Math.sin(angle) };
     });
-
-    const connections: { from: number; to: number }[] = [];
-    icons.forEach((_, i) => {
-      const next = (i + 1) % icons.length;
-      connections.push({ from: i, to: next });
-      if (icons.length > 5) {
-        const skip = (i + 2) % icons.length;
-        connections.push({ from: i, to: skip });
-      }
-    });
-
-    return { iconPositions: positions, meshConnections: connections };
   }, [icons, radius]);
 
-  const isConnectionActive = (idxA: number, idxB: number) => {
-    if (isCoreHovered) return true;
-    if (hoveredId === null) return false;
-    const hoveredIdx = icons.findIndex(icon => icon.id === hoveredId);
-    return idxA === hoveredIdx || idxB === hoveredIdx;
-  };
+  // Mesh connections
+  const meshConnections = useMemo(() => {
+    const conns: { from: number; to: number }[] = [];
+    icons.forEach((_, i) => {
+      conns.push({ from: i, to: (i + 1) % icons.length });
+      if (icons.length > 5) conns.push({ from: i, to: (i + 2) % icons.length });
+    });
+    return conns;
+  }, [icons]);
 
   const isNeighbor = (idx: number) => {
     if (hoveredId === null) return false;
-    const hoveredIdx = icons.findIndex(icon => icon.id === hoveredId);
-    return meshConnections.some(conn => 
-      (conn.from === hoveredIdx && conn.to === idx) || 
-      (conn.to === hoveredIdx && conn.from === idx)
-    );
+    const hi = icons.findIndex(ic => ic.id === hoveredId);
+    return meshConnections.some(c => (c.from === hi && c.to === idx) || (c.to === hi && c.from === idx));
   };
 
-  if (!icons || icons.length === 0) {
-    return (
-      <div className="flex items-center justify-center p-12 border border-white/5 rounded-3xl opacity-20">
-         <p className="text-text-muted font-fira-code text-[10px] uppercase tracking-widest">Awaiting System Data...</p>
-      </div>
-    );
-  }
+  if (!icons.length) return null;
 
   return (
-    <div 
-      ref={containerRef}
-      className={cn("relative w-full aspect-square max-w-[700px] flex items-center justify-center select-none", className)}
+    <div
+      className={cn(
+        "relative w-full aspect-square max-w-[680px] flex items-center justify-center select-none",
+        className
+      )}
     >
-      {/* 2. Rotating Icon & Mesh Layer */}
-      <motion.div 
-        style={{ rotate: scrollRotation }}
-        className="absolute inset-0 flex items-center justify-center"
+      {/* ── SVG: Mesh lines (static, behind everything) ── */}
+      <svg
+        className="absolute inset-0 w-full h-full pointer-events-none overflow-visible"
+        viewBox="0 0 600 600"
       >
-        <svg 
-          className="absolute inset-0 w-full h-full pointer-events-none overflow-visible" 
-          viewBox="0 0 600 600"
-        >
-          {/* Neural Mesh Render - Ultra Thin & Subtle */}
-          {iconPositions.map((pos, i) => {
-             const active = isCoreHovered || hoveredId === pos.id;
-             return (
-               <motion.line
-                 key={`hub-${pos.id}`}
-                 animate={{ 
-                   opacity: active ? 0.4 : 0.03,
-                   stroke: active ? "#ff6a00" : "#ffffff" 
-                 }}
-                 x1="300" y1="300" 
-                 x2={300 + pos.x} y2={300 + pos.y}
-                 strokeWidth="0.3"
-               />
-             );
-          })}
-          
-          {meshConnections.map((conn, i) => {
-            const from = iconPositions[conn.from];
-            const to = iconPositions[conn.to];
-            const active = isConnectionActive(conn.from, conn.to);
-            return (
-              <motion.path
-                key={`mesh-${i}`}
-                d={`M ${300 + from.x} ${300 + from.y} L ${300 + to.x} ${300 + to.y}`}
-                stroke={active ? "#ff6a00" : "#ffffff"}
-                strokeWidth="0.3"
-                strokeOpacity={active ? 0.3 : 0.02}
-                fill="none"
-              />
-            );
-          })}
-        </svg>
-
-        {/* Luxury Icon Pods */}
-        {iconPositions.map((pos, i) => {
-          const isHovered = hoveredId === pos.id;
-          const neighborActive = isNeighbor(i);
-
+        {/* Hub spokes */}
+        {iconPositions.map((pos) => {
+          const active = isCoreHovered || hoveredId === pos.id;
           return (
+            <motion.line
+              key={`spoke-${pos.id}`}
+              x1="300" y1="300"
+              x2={300 + pos.x} y2={300 + pos.y}
+              stroke={active ? "#ff6a00" : "#ffffff"}
+              strokeWidth="0.4"
+              animate={{ opacity: active ? 0.35 : 0.04 }}
+              transition={{ duration: 0.5 }}
+            />
+          );
+        })}
+        {/* Mesh ring */}
+        {meshConnections.map((conn, i) => {
+          const from = iconPositions[conn.from];
+          const to   = iconPositions[conn.to];
+          const active =
+            isCoreHovered ||
+            hoveredId === from?.id ||
+            hoveredId === to?.id;
+          return (
+            <motion.line
+              key={`mesh-${i}`}
+              x1={300 + from?.x} y1={300 + from?.y}
+              x2={300 + to?.x}   y2={300 + to?.y}
+              stroke={active ? "#ff6a00" : "#ffffff"}
+              strokeWidth="0.3"
+              animate={{ opacity: active ? 0.25 : 0.02 }}
+              transition={{ duration: 0.5 }}
+            />
+          );
+        })}
+      </svg>
+
+      {/* ── Icon pods: float in place, NEVER rotate ── */}
+      {iconPositions.map((pos, i) => {
+        const isHovered     = hoveredId === pos.id;
+        const neighborGlow  = isNeighbor(i);
+
+        // Unique organic float params per icon
+        const dur   = 5 + (i % 5) * 0.8;
+        const delay = i * 0.35;
+        const yAmp  = 6 + (i % 3) * 2;
+        const xAmp  = 3 + (i % 4) * 1.5;
+
+        return (
+          <div
+            key={pos.id}
+            className="absolute"
+            style={{ transform: `translate(${pos.x}px, ${pos.y}px)` }}
+          >
+            {/* Floating wrapper — translate only, no rotation */}
             <motion.div
-              key={pos.id}
-              animate={{ x: pos.x, y: pos.y, scale: isHovered ? 1.1 : 1 }}
-              onMouseEnter={() => setHoveredId(pos.id)}
-              onMouseLeave={() => setHoveredId(null)}
-              className="absolute z-10"
+              animate={{
+                y:     [0, -yAmp, 0, yAmp * 0.4, 0],
+                x:     [0, xAmp, 0, -xAmp * 0.6, 0],
+                scale: [1, 1.04, 1, 1.02, 1],
+              }}
+              transition={{
+                duration: dur,
+                delay,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
             >
-              {/* Individual Multi-Axis "Dulbe" and Breathing Scale */}
+              {/* Card */}
               <motion.div
+                onMouseEnter={() => setHoveredId(pos.id)}
+                onMouseLeave={() => setHoveredId(null)}
                 animate={{
-                  y: [0, -4, 0],
-                  x: [0, 3, 0],
-                  scale: [1, 1.03, 1],
-                  rotate: [0, 1.5, 0, -1.5, 0]
+                  scale:     isHovered ? 1.15 : 1,
+                  boxShadow: isHovered
+                    ? "0 0 24px rgba(255,106,0,0.35)"
+                    : (neighborGlow || isCoreHovered)
+                    ? "0 0 12px rgba(255,106,0,0.15)"
+                    : "0 0 0px rgba(0,0,0,0)",
                 }}
-                transition={{ 
-                  duration: 8 + (i % 5), 
-                  repeat: Infinity, 
-                  ease: "easeInOut",
-                  delay: i * 0.4
-                }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
                 className={cn(
-                  "relative group rounded-[1.5rem] sm:rounded-[2rem] flex items-center justify-center transition-all duration-700 cursor-pointer",
-                  "bg-black/10 backdrop-blur-md border border-white/5",
-                  isHovered || isCoreHovered ? "border-accent/30 bg-black/30 shadow-[0_0_20px_rgba(255,106,0,0.1)]" : "hover:border-white/10"
+                  "relative flex items-center justify-center cursor-pointer",
+                  "rounded-[1.4rem] sm:rounded-[1.8rem]",
+                  "border transition-colors duration-500",
+                  isHovered
+                    ? "bg-[#161616] border-[#ff6a00]/40"
+                    : (neighborGlow || isCoreHovered)
+                    ? "bg-[#111]/60 border-[#ff6a00]/15"
+                    : "bg-[#0f0f0f]/70 border-white/5"
                 )}
                 style={{ width: cardSize, height: cardSize }}
               >
-                 {/* Real Brand Icon */}
-                <img 
-                  src={pos.src} 
-                  alt={pos.name} 
+                <img
+                  src={pos.src}
+                  alt={pos.name}
                   className={cn(
-                    "object-contain transition-all duration-700",
-                    isHovered || isCoreHovered ? "saturate-100 opacity-100 scale-105" : "saturate-[0.9] opacity-50"
-                  )} 
-                  style={{ width: cardSize * 0.5, height: cardSize * 0.5 }}
+                    "object-contain transition-all duration-500",
+                    isHovered || isCoreHovered
+                      ? "saturate-100 opacity-100"
+                      : "saturate-80 opacity-55"
+                  )}
+                  style={{ width: cardSize * 0.52, height: cardSize * 0.52 }}
                 />
 
-                {/* Minimal High-End Tooltip */}
+                {/* Tooltip */}
                 <AnimatePresence>
                   {isHovered && (
                     <motion.div
-                      initial={{ opacity: 0, y: 5, scale: 0.95 }}
-                      animate={{ opacity: 1, y: -cardSize - 8, scale: 1 }}
-                      exit={{ opacity: 0, y: 5, scale: 0.95 }}
-                      className="absolute whitespace-nowrap px-3 py-1.5 rounded-lg bg-black/90 backdrop-blur-xl border border-white/10 text-white font-fira-code text-[9px] uppercase tracking-[0.2em] shadow-2xl pointer-events-none z-[100]"
+                      initial={{ opacity: 0, y: 6, scale: 0.9 }}
+                      animate={{ opacity: 1, y: -(cardSize + 12), scale: 1 }}
+                      exit={{ opacity: 0, y: 6, scale: 0.9 }}
+                      transition={{ duration: 0.2, ease: "easeOut" }}
+                      className="absolute whitespace-nowrap px-3 py-1.5 rounded-lg pointer-events-none z-50
+                                 bg-black/85 backdrop-blur-md border border-white/10
+                                 text-white font-mono text-[9px] uppercase tracking-[0.18em]"
                     >
                       {pos.name}
-                      <div className="absolute top-full left-1/2 -translate-x-1/2 border-6 border-transparent border-t-black/90" />
+                      {/* Arrow */}
+                      <span className="absolute top-full left-1/2 -translate-x-1/2 border-[5px] border-transparent border-t-black/85" />
                     </motion.div>
                   )}
                 </AnimatePresence>
               </motion.div>
             </motion.div>
-          );
-        })}
-      </motion.div>
+          </div>
+        );
+      })}
 
-      {/* 3. COMPLETELY STABLE CENTER CORE */}
-      <div className="relative z-20 flex items-center justify-center">
+      {/* ── Center Card: completely static, no movement at all ── */}
+      <div
+        className="relative z-20 flex items-center justify-center"
+        style={{ width: radius * 0.72, height: radius * 0.72 }}
+      >
+        {/* Soft inner glow ring */}
+        <div className="absolute inset-0 rounded-[2rem] sm:rounded-[2.5rem] bg-[#ff6a00]/10 blur-xl" />
+
         <motion.div
           onMouseEnter={() => setIsCoreHovered(true)}
           onMouseLeave={() => setIsCoreHovered(false)}
-          animate={{ scale: isCoreHovered ? 1.03 : 1 }}
-          className={cn(
-            "relative flex flex-col items-center justify-center rounded-[2rem] sm:rounded-[2.5rem] transition-all duration-700 bg-black/30 backdrop-blur-2xl border border-white/10",
-            isCoreHovered && "border-accent/40 shadow-[0_0_40px_rgba(255,106,0,0.15)]"
-          )}
-          style={{ width: radius * 0.72, height: radius * 0.72 }}
+          animate={{
+            boxShadow: isCoreHovered
+              ? "0 0 40px rgba(255,106,0,0.2), inset 0 0 30px rgba(255,106,0,0.1)"
+              : "0 0 20px rgba(255,106,0,0.08), inset 0 0 20px rgba(255,106,0,0.05)",
+          }}
+          transition={{ duration: 0.6, ease: "easeInOut" }}
+          className="relative w-full h-full flex flex-col items-center justify-center
+                     rounded-[2rem] sm:rounded-[2.5rem] cursor-default
+                     bg-black/40 backdrop-blur-2xl
+                     border border-white/10 overflow-hidden"
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
-          
+          {/* Subtle inner gradient */}
+          <div className="absolute inset-0 bg-gradient-to-br from-[#ff6a00]/8 via-transparent to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-br from-white/4 to-transparent pointer-events-none" />
+
+          {/* Text */}
           <div className="relative z-10 flex flex-col items-center leading-none">
-            <motion.span 
-              animate={{ opacity: isCoreHovered ? 1 : 0.8 }}
-              className="text-white font-unbounded font-black text-2xl sm:text-3xl md:text-5xl tracking-tighter uppercase"
-            >
+            <span className="text-white font-unbounded font-black text-xl sm:text-3xl md:text-5xl tracking-tighter">
               TECH
-            </motion.span>
-            <span className="font-unbounded font-medium text-[8px] sm:text-[9px] md:text-[10px] tracking-[0.4em] text-accent uppercase mt-2">
+            </span>
+            <span className="font-unbounded font-semibold text-[7px] sm:text-[9px] md:text-[10px] tracking-[0.5em] text-[#ff6a00] uppercase mt-1">
               STACK
             </span>
           </div>
 
-          {/* Stable Inner Accent */}
-          <div className="absolute inset-6 rounded-[1.5rem] border border-white/5 pointer-events-none" />
-          
-          {/* Intense Stable Center Glow (behind text) */}
-          <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,_rgba(255,106,0,0.15)_0%,_transparent_70%)] opacity-50" />
+          {/* Inner accent border */}
+          <div className="absolute inset-5 rounded-[1.5rem] border border-[#ff6a00]/10 pointer-events-none" />
         </motion.div>
       </div>
     </div>
