@@ -74,6 +74,30 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
         className="absolute inset-0 w-full h-full pointer-events-none overflow-visible"
         viewBox="0 0 600 600"
       >
+        <defs>
+          {/* Premium orange glow filter */}
+          <filter id="orange-glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="3" result="blur" />
+            <feFlood floodColor="#ff6a00" floodOpacity="1" result="color" />
+            <feComposite in="color" in2="blur" operator="in" result="glow" />
+            <feMerge>
+              <feMergeNode in="glow" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+          {/* Stronger bloom for inner core hover */}
+          <filter id="orange-glow-strong" x="-80%" y="-80%" width="260%" height="260%">
+            <feGaussianBlur stdDeviation="5" result="blur" />
+            <feFlood floodColor="#ff6a00" floodOpacity="1" result="color" />
+            <feComposite in="color" in2="blur" operator="in" result="glow" />
+            <feMerge>
+              <feMergeNode in="glow" />
+              <feMergeNode in="glow" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+
         {/* Hub spokes */}
         {iconPositions.map((pos) => {
           const active = isCoreHovered || hoveredId === pos.id;
@@ -82,17 +106,21 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
               key={`spoke-${pos.id}`}
               x1="300" y1="300"
               x2={300 + pos.x} y2={300 + pos.y}
-              stroke={active ? "#ff6a00" : "#ffffff"}
-              strokeWidth="0.4"
-              animate={{ opacity: active ? 0.35 : 0.04 }}
-              transition={{ duration: 0.5 }}
+              animate={{
+                stroke:       active ? "#ff6a00" : "#ffffff",
+                strokeWidth:  active ? 1.5 : 0.4,
+                opacity:      active ? 0.95 : 0.15,
+                filter:       active ? "url(#orange-glow)" : "none",
+              }}
+              transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
             />
           );
         })}
+
         {/* Mesh ring */}
         {meshConnections.map((conn, i) => {
           const from = iconPositions[conn.from];
-          const to = iconPositions[conn.to];
+          const to   = iconPositions[conn.to];
           const active =
             isCoreHovered ||
             hoveredId === from?.id ||
@@ -101,11 +129,14 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
             <motion.line
               key={`mesh-${i}`}
               x1={300 + from?.x} y1={300 + from?.y}
-              x2={300 + to?.x} y2={300 + to?.y}
-              stroke={active ? "#ff6a00" : "#ffffff"}
-              strokeWidth="0.3"
-              animate={{ opacity: active ? 0.25 : 0.02 }}
-              transition={{ duration: 0.5 }}
+              x2={300 + to?.x}   y2={300 + to?.y}
+              animate={{
+                stroke:      active ? "#ff6a00" : "#ffffff",
+                strokeWidth: active ? 1.2 : 0.3,
+                opacity:     active ? 0.85 : 0.10,
+                filter:      active ? "url(#orange-glow)" : "none",
+              }}
+              transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
             />
           );
         })}
