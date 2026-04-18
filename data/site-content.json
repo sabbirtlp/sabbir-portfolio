@@ -527,5 +527,22 @@
         "href": "/contact"
       }
     ]
+  },
+  "techStack": {
+    "title": "My Technology Stack",
+    "subtitle": "I leverage a premium selection of high-performance tools and frameworks designed to build scalable, conversion-focused digital experiences.",
+    "icons": [
+      { "id": 1, "name": "WordPress", "src": "/icons/wordpress.svg" },
+      { "id": 2, "name": "React", "src": "/icons/react.svg" },
+      { "id": 3, "name": "HTML", "src": "/icons/html.svg" },
+      { "id": 4, "name": "CSS", "src": "/icons/css.svg" },
+      { "id": 5, "name": "PHP", "src": "/icons/php.svg" },
+      { "id": 6, "name": "Node.js", "src": "/icons/node.svg" },
+      { "id": 7, "name": "Bootstrap", "src": "/icons/bootstrap.svg" },
+      { "id": 8, "name": "Wix", "src": "/icons/wix.svg" },
+      { "id": 9, "name": "Squarespace", "src": "/icons/squarespace.svg" },
+      { "id": 10, "name": "Webflow", "src": "/icons/webflow.svg" },
+      { "id": 11, "name": "Tailwind CSS", "src": "/icons/tailwind.svg" }
+    ]
   }
 }

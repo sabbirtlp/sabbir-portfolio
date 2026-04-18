@@ -24,7 +24,8 @@ import {
   Edit3,
   Eye,
   Menu,
-  X
+  X,
+  Zap
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 
@@ -65,6 +66,32 @@ export default function AdminDashboard() {
       setMessage({ type: "success", text: "Image uploaded successfully!" });
     } catch (error) {
       setMessage({ type: "error", text: "Image upload failed" });
+    } finally {
+      setUploadingIndex(null);
+    }
+  }
+
+  async function handleTechStackIconUpload(file: File, iconIndex: number) {
+    setUploadingIndex(iconIndex);
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+      const res = await fetch("/api/admin/upload", {
+        method: "POST",
+        body: formData,
+      });
+      if (!res.ok) {
+        const err = await res.json();
+        setMessage({ type: "error", text: err.error || "Upload failed" });
+        return;
+      }
+      const { path } = await res.json();
+      const newIcons = [...content.techStack.icons];
+      newIcons[iconIndex].src = path;
+      setContent({ ...content, techStack: { ...content.techStack, icons: newIcons } });
+      setMessage({ type: "success", text: "Tech icon uploaded!" });
+    } catch (error) {
+      setMessage({ type: "error", text: "Icon upload failed" });
     } finally {
       setUploadingIndex(null);
     }
@@ -197,6 +224,7 @@ export default function AdminDashboard() {
             { id: "hero", label: "Hero Section", icon: LayoutDashboard },
             { id: "about", label: "About Me", icon: User },
             { id: "services", label: "Services", icon: Briefcase },
+            { id: "tech-stack", label: "Tech Stack", icon: Zap },
             { id: "work", label: "Case Studies", icon: FolderOpen },
             { id: "testimonials", label: "Testimonials", icon: MessageSquare },
             { id: "process", label: "Process", icon: CheckCircle2 },
@@ -274,6 +302,7 @@ export default function AdminDashboard() {
                 { id: "hero", label: "Hero" },
                 { id: "about", label: "About" },
                 { id: "services", label: "Services" },
+                { id: "tech-stack", label: "Tech Stack" },
                 { id: "work", label: "Case Studies" },
                 { id: "testimonials", label: "Testimonials" },
                 { id: "process", label: "Process" },
@@ -475,6 +504,100 @@ export default function AdminDashboard() {
                     <Plus className="w-4 h-4" />
                     Add New Service
                  </button>
+              </div>
+            )}
+
+            {/* TECH STACK SECTION */}
+            {activeTab === "tech-stack" && content.techStack && (
+              <div className="space-y-8 animate-in fade-in duration-500">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-[10px] font-bold uppercase tracking-widest text-text-muted mb-2">Section Title</label>
+                    <input 
+                      type="text" 
+                      value={content.techStack.title}
+                      onChange={(e) => setContent({ ...content, techStack: { ...content.techStack, title: e.target.value } })}
+                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-white outline-none focus:border-accent/40"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-[10px] font-bold uppercase tracking-widest text-text-muted mb-2">Section Subtitle</label>
+                    <input 
+                      type="text" 
+                      value={content.techStack.subtitle}
+                      onChange={(e) => setContent({ ...content, techStack: { ...content.techStack, subtitle: e.target.value } })}
+                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-white outline-none focus:border-accent/40"
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <label className="text-[10px] font-bold uppercase tracking-widest text-text-muted">Orbital Technologies</label>
+                    <button
+                      onClick={() => {
+                        const newIcons = [...content.techStack.icons];
+                        const nextId = Math.max(0, ...newIcons.map(i => i.id)) + 1;
+                        newIcons.push({ id: nextId, name: "New Tech", src: "/icons/placeholder.svg" });
+                        setContent({ ...content, techStack: { ...content.techStack, icons: newIcons } });
+                      }}
+                      className="flex items-center gap-2 text-accent hover:text-accent-light text-[10px] font-bold uppercase tracking-widest transition-colors"
+                    >
+                      <Plus className="w-3 h-3" /> Add Technology
+                    </button>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {content.techStack.icons.map((icon: any, idx: number) => (
+                      <div key={idx} className="group p-4 bg-surface-2 border border-border rounded-2xl flex items-center gap-4 hover:border-accent/30 transition-all duration-300">
+                        <div className="relative w-12 h-12 rounded-xl bg-background border border-border flex items-center justify-center overflow-hidden shrink-0">
+                          {uploadingIndex === idx ? (
+                             <Loader2 className="w-5 h-5 text-accent animate-spin" />
+                          ) : (
+                            <img src={icon.src} alt={icon.name} className="w-6 h-6 object-contain" />
+                          )}
+                          <label className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 flex items-center justify-center cursor-pointer transition-opacity duration-300">
+                             <Upload className="w-4 h-4 text-white" />
+                             <input 
+                               type="file" 
+                               className="hidden" 
+                               accept=".svg,.png,.jpg,.jpeg,.webp"
+                               onChange={(e) => {
+                                 const file = e.target.files?.[0];
+                                 if (file) handleTechStackIconUpload(file, idx);
+                               }}
+                             />
+                          </label>
+                        </div>
+
+                        <div className="flex-1 min-w-0">
+                          <input 
+                            type="text" 
+                            value={icon.name}
+                            onChange={(e) => {
+                              const newIcons = [...content.techStack.icons];
+                              newIcons[idx].name = e.target.value;
+                              setContent({ ...content, techStack: { ...content.techStack, icons: newIcons } });
+                            }}
+                            className="w-full bg-transparent border-none text-white font-bold text-sm p-0 focus:ring-0 outline-none"
+                            placeholder="Technology Name"
+                          />
+                          <p className="text-[9px] text-text-muted truncate mt-1">{icon.src}</p>
+                        </div>
+
+                        <button
+                          onClick={() => {
+                            const newIcons = content.techStack.icons.filter((_: any, i: number) => i !== idx);
+                            setContent({ ...content, techStack: { ...content.techStack, icons: newIcons } });
+                          }}
+                          className="w-8 h-8 flex items-center justify-center text-text-muted hover:text-red-400 hover:bg-red-400/10 rounded-lg transition-all opacity-0 group-hover:opacity-100"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
             )}
 

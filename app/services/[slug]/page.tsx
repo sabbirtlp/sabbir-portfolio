@@ -16,6 +16,7 @@ import {
   BarChart3,
   Rocket
 } from "lucide-react";
+import PremiumGlowCard from "@/components/ui/PremiumGlowCard";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -85,11 +86,11 @@ export default async function ServiceDetailPage({ params }: Props) {
             )}
           </div>
 
-          <h1 className="font-syne font-black text-5xl sm:text-7xl md:text-8xl text-white leading-[0.9] tracking-tighter mb-8 max-w-5xl">
+          <h1 className="font-syne font-black text-3xl md:text-[42px] text-white leading-[1.1] tracking-tighter mb-8 max-w-3xl">
             {service.title}
           </h1>
           
-          <p className="text-white/70 text-xl md:text-2xl leading-relaxed max-w-3xl font-medium">
+          <p className="text-white/70 text-lg md:text-xl leading-relaxed max-w-3xl font-medium">
             {service.longDescription}
           </p>
         </div>
@@ -100,20 +101,20 @@ export default async function ServiceDetailPage({ params }: Props) {
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-16">
             <p className="text-accent text-[10px] md:text-xs font-bold uppercase tracking-widest mb-4">What you get</p>
-            <h2 className="font-syne font-black text-3xl md:text-5xl text-white">Core Pillars of Excellence</h2>
+            <h2 className="font-syne font-black text-3xl md:text-[42px] text-white">Core Pillars of Excellence</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {(service.features || []).map((feature: string) => (
-              <div key={feature} className="p-8 rounded-2xl bg-surface-2 border border-border hover:border-accent/40 transition-all group">
+              <PremiumGlowCard key={feature} className="!bg-surface-2/20">
                 <div className="w-10 h-10 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center mb-6 group-hover:bg-accent group-hover:border-accent transition-all duration-300">
                     <CheckCircle2 className="w-5 h-5 text-accent group-hover:text-white" />
                 </div>
                 <h3 className="text-white font-bold text-lg mb-3">{feature}</h3>
-                <p className="text-text-secondary text-sm leading-relaxed">
+                <p className="text-text-secondary text-base leading-relaxed">
                     Meticulously engineered to ensure your digital presence is not only beautiful but also high-performing and scalable.
                 </p>
-              </div>
+              </PremiumGlowCard>
             ))}
           </div>
         </div>
@@ -125,7 +126,7 @@ export default async function ServiceDetailPage({ params }: Props) {
             <div className="mb-12 flex justify-between items-end gap-6 flex-wrap">
                 <div>
                     <p className="text-accent text-[10px] md:text-xs font-bold uppercase tracking-widest mb-4">Our Work</p>
-                    <h2 className="font-syne font-black text-3xl md:text-5xl text-white">Service in Action</h2>
+                    <h2 className="font-syne font-black text-3xl md:text-[42px] text-white">Service in Action</h2>
                 </div>
                 <Link href="/#work" className="text-text-muted hover:text-accent font-bold text-sm flex items-center gap-2 group transition-colors">
                     View All Projects
@@ -158,8 +159,8 @@ export default async function ServiceDetailPage({ params }: Props) {
           <div className="w-16 h-16 rounded-2xl bg-accent/10 border border-accent/20 flex items-center justify-center mx-auto mb-8">
             <Rocket className="w-8 h-8 text-accent animate-pulse" />
           </div>
-          <h2 className="font-syne font-black text-4xl md:text-7xl text-white mb-8">Ready to Scale Your Business?</h2>
-          <p className="text-text-secondary text-lg md:text-xl mb-12 max-w-2xl mx-auto">
+          <h2 className="font-syne font-black text-3xl md:text-[42px] text-white mb-8">Ready to Scale Your Business?</h2>
+          <p className="text-text-secondary text-base md:text-lg mb-12 max-w-2xl mx-auto">
             Let's discuss how my expert {service.title} can transform your digital strategy and deliver measurable ROI.
           </p>
           <Link

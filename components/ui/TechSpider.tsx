@@ -1,186 +1,289 @@
 "use client";
 
-import React, { useState, useRef } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import React, { useMemo, useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { cn } from "@/lib/utils";
 
-const outerIcons = [
-  { id: 1, name: "WordPress", src: "/icons/wordpress.svg" },
-  { id: 2, name: "Elementor", src: "/icons/elementor.svg" },
-  { id: 3, name: "React", src: "/icons/react.svg" },
-  { id: 4, name: "Node.js", src: "/icons/node.svg" },
-  { id: 5, name: "PHP", src: "/icons/php.svg" },
-  { id: 6, name: "HTML5", src: "/icons/html.svg" },
-  { id: 7, name: "CSS3", src: "/icons/css.svg" },
-  { id: 8, name: "Bootstrap", src: "/icons/bootstrap.svg" },
-];
+interface TechIcon {
+  id: number;
+  name: string;
+  src: string;
+}
 
-export default function TechSpider() {
-  const containerRef = useRef<HTMLDivElement>(null);
+interface TechSpiderProps {
+  icons: TechIcon[];
+  title?: string;
+  subtitle?: string;
+  className?: string;
+}
+
+export default function TechSpider({
+  icons = [],
+  title = "TECH STACK",
+  subtitle = "Dynamic Ecosystem",
+  className,
+}: TechSpiderProps) {
   const [hoveredId, setHoveredId] = useState<number | null>(null);
+  const [isCoreHovered, setIsCoreHovered] = useState(false);
+  const [radius, setRadius] = useState(240);
+  const [cardSize, setCardSize] = useState(80); // Pixel size of icon card
 
-  // Bind scroll interaction relative to this component's position
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"], // Progress tracks while element is inside the viewport
-  });
+  // Responsive scaling adjustment
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      if (width < 450) {
+        setRadius(110);
+        setCardSize(56); // w-14
+      } else if (width < 640) {
+        setRadius(130);
+        setCardSize(64); // w-16
+      } else if (width < 768) {
+        setRadius(180);
+        setCardSize(72); // w-18
+      } else {
+        setRadius(240);
+        setCardSize(80); // w-20
+      }
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
-  // Premium inertia-based spring physics for buttery smooth scrolling rotation
-  const springConfig = { damping: 25, stiffness: 40, mass: 0.8 };
-  const smoothProgress = useSpring(scrollYProgress, springConfig);
+  // Calculate icon positions and connections
+  const { iconPositions, meshConnections } = useMemo(() => {
+    if (!icons || icons.length === 0) return { iconPositions: [], meshConnections: [] };
 
-  // Outer Wrapper rotates [0 -> 180 degrees]
-  const orbitRotation = useTransform(smoothProgress, [0, 1], [-90, 180]);
-  
-  // Internal cards reverse rotate to stay upright
-  const reverseRotation = useTransform(smoothProgress, [0, 1], [90, -180]);
+    const positions = icons.map((icon, index) => {
+      const angle = (index / icons.length) * 2 * Math.PI - Math.PI / 2;
+      return {
+        ...icon,
+        x: radius * Math.cos(angle),
+        y: radius * Math.sin(angle),
+        angle,
+      };
+    });
 
-  const radius = 240; 
-  const svgSize = 700;
-  const svgCenter = 350;
-  const centralIconRadius = 75; 
+    const connections: { from: number; to: number }[] = [];
+    icons.forEach((_, i) => {
+      const next = (i + 1) % icons.length;
+      connections.push({ from: i, to: next });
+      if (icons.length > 5) {
+        const skip = (i + 2) % icons.length;
+        connections.push({ from: i, to: skip });
+      }
+    });
+
+    return { iconPositions: positions, meshConnections: connections };
+  }, [icons, radius]);
+
+  const isConnectionActive = (idxA: number, idxB: number) => {
+    if (isCoreHovered) return true;
+    if (hoveredId === null) return false;
+    const hoveredIdx = icons.findIndex(icon => icon.id === hoveredId);
+    return idxA === hoveredIdx || idxB === hoveredIdx;
+  };
+
+  const isNeighbor = (idx: number) => {
+    if (hoveredId === null) return false;
+    const hoveredIdx = icons.findIndex(icon => icon.id === hoveredId);
+    return meshConnections.some(conn => 
+      (conn.from === hoveredIdx && conn.to === idx) || 
+      (conn.to === hoveredIdx && conn.from === idx)
+    );
+  };
+
+  if (!icons || icons.length === 0) {
+    return (
+      <div className="flex items-center justify-center p-12 border border-white/5 rounded-3xl opacity-20">
+         <p className="text-text-muted font-fira-code text-[10px] uppercase tracking-widest">Awaiting System Data...</p>
+      </div>
+    );
+  }
 
   return (
     <div 
-      ref={containerRef} 
-      className="relative w-full max-w-[700px] flex justify-center items-center aspect-square mx-auto z-10"
+      className={cn("relative w-full aspect-square max-w-[650px] flex items-center justify-center select-none", className)}
     >
-      {/* Background ambient radial glow */}
-      <div className="absolute inset-0 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[90%] bg-accent/5 rounded-full blur-[120px] pointer-events-none -z-10" />
-
-      {/* Rotating Ecosystem Wrapper */}
-      <motion.div 
-        className="absolute inset-0 flex justify-center items-center w-full h-full transform-gpu"
-        style={{ rotate: orbitRotation }}
-      >
-        
-        {/* SVG Drawing Layer: Center -> Planets Radial Lines */}
+      <div className="relative w-full h-full flex items-center justify-center">
         <svg 
-          width={svgSize} 
-          height={svgSize} 
-          viewBox={`0 0 ${svgSize} ${svgSize}`} 
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 overflow-visible pointer-events-none origin-center -z-10 scale-[0.65] sm:scale-75 md:scale-90 lg:scale-100"
+          className="absolute inset-0 w-full h-full pointer-events-none overflow-visible" 
+          viewBox="0 0 600 600"
+          preserveAspectRatio="xMidYMid meet"
         >
-          <g>
-            {outerIcons.map((icon, i) => {
-              const angle = (-90 + i * (360 / outerIcons.length)) * (Math.PI / 180);
-              const startX = svgCenter + centralIconRadius * Math.cos(angle);
-              const startY = svgCenter + centralIconRadius * Math.sin(angle);
-              const endX = svgCenter + radius * Math.cos(angle);
-              const endY = svgCenter + radius * Math.sin(angle);
-              
-              const isSpokeActive = hoveredId === icon.id || hoveredId === 999;
-              
-              return (
-                <line
-                  key={`spoke-${icon.id}`}
-                  x1={startX}
-                  y1={startY}
-                  x2={endX}
-                  y2={endY}
-                  stroke={isSpokeActive ? "rgba(234, 88, 12, 0.6)" : "rgba(255, 255, 255, 0.08)"}
-                  strokeWidth={isSpokeActive ? "2" : "1"}
-                  strokeLinecap="round"
-                  className="transition-all duration-500"
-                  style={{
-                    filter: isSpokeActive ? "drop-shadow(0 0 8px rgba(234, 88, 12, 0.8))" : "none",
-                  }}
-                />
-              );
-            })}
-          </g>
-        </svg>
+          <defs>
+            <filter id="luxury-glow" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="3" result="blur" />
+              <feComposite in="SourceGraphic" in2="blur" operator="over" />
+            </filter>
+          </defs>
 
-        {/* Orbiting Planets Containers */}
-        <div className="absolute inset-0 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] pointer-events-none scale-[0.65] sm:scale-75 md:scale-90 lg:scale-100 origin-center z-10">
-          {outerIcons.map((icon, i) => {
-            const angle = (-90 + i * (360 / outerIcons.length)) * (Math.PI / 180);
-            const x = svgCenter + radius * Math.cos(angle);
-            const y = svgCenter + radius * Math.sin(angle);
-            const isHovered = hoveredId === icon.id;
-
+          {/* 1. Silk-Thin Core Connections */}
+          {iconPositions.map((pos, i) => {
+            const active = isCoreHovered || hoveredId === pos.id;
             return (
-              <div
-                key={icon.id}
-                className="absolute pointer-events-auto z-20 origin-center"
-                style={{ top: `${y}px`, left: `${x}px`, transform: `translate(-50%, -50%)` }}
-              >
-                {/* 
-                  Inner Inverse Rotation Node: 
-                  Maintains planetary upright integrity during system rotation while enabling micro scaling 
-                */}
-                <motion.div 
-                  style={{ rotate: reverseRotation }}
-                  whileHover={{ scale: 1.15 }}
-                  onMouseEnter={() => setHoveredId(icon.id)}
-                  onMouseLeave={() => setHoveredId(null)}
-                  className="relative group cursor-pointer flex flex-col items-center justify-center transform-gpu"
-                >
-                  {/* Subtle Background Glow behind icon card */}
-                  <div className={`absolute inset-[-15px] rounded-full blur-2xl transition-all duration-500 -z-10 ${isHovered ? 'bg-accent/40 opacity-100 scale-110' : 'bg-transparent opacity-0 scale-90'}`} />
-                  
-                  {/* Glassmorphism Icon Wrapper */}
-                  <motion.div 
-                    animate={{ y: isHovered ? 0 : [0, -6, 0] }}
-                    transition={{
-                      y: { duration: 4, repeat: Infinity, ease: "easeInOut", delay: i * 0.2 }
-                    }}
-                    className={`w-[85px] h-[85px] md:w-[95px] md:h-[95px] backdrop-blur-xl rounded-2xl flex items-center justify-center transition-all duration-500 border border-white/5 ${isHovered ? 'bg-surface-2 border-accent/50 shadow-[0_0_25px_rgba(234,88,12,0.3)]' : 'bg-surface-2/60 hover:bg-white/5 hover:border-white/20'}`}
-                  >
-                    <img
-                      src={icon.src}
-                      alt={`${icon.name} Logo`}
-                      className={`w-[45px] h-[45px] object-contain transition-all duration-300 drop-shadow-xl ${isHovered ? "scale-110 drop-shadow-[0_0_15px_rgba(234,88,12,0.6)]" : "opacity-80 grayscale-[30%]"}`}
-                      onError={(e) => {
-                        (e.target as HTMLImageElement).src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>';
-                        (e.target as HTMLImageElement).style.opacity = "0.3";
-                      }}
-                    />
-                  </motion.div>
-
-                  {/* High Tech Tooltip underneath */}
-                  <div className={`absolute -bottom-10 left-1/2 -translate-x-1/2 whitespace-nowrap bg-[#0a0a0a]/90 backdrop-blur-md font-fira-code text-accent border border-accent/20 text-[11px] px-3 py-1.5 rounded transition-all duration-300 pointer-events-none drop-shadow-lg ${isHovered ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2"}`}>
-                    {icon.name}
-                  </div>
-                </motion.div>
-              </div>
+              <motion.line
+                key={`hub-${pos.id}`}
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={{ 
+                  pathLength: 1, 
+                  opacity: active ? (isCoreHovered ? 0.8 : 0.6) : 0.05,
+                  stroke: active ? "#ea580c" : "#ffffff" 
+                }}
+                transition={{ duration: 1.2, delay: i * 0.04 }}
+                x1="300" y1="300" 
+                x2={300 + pos.x} y2={300 + pos.y}
+                strokeWidth={active ? "1" : "0.3"}
+                className="transition-colors duration-700"
+              />
             );
           })}
-        </div>
-      </motion.div>
 
-      {/* 
-        Central Star (Fixed relative to the viewport container! Outside rotation layer.)
-      */}
-      <div 
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 scale-[0.65] sm:scale-75 md:scale-90 lg:scale-100"
-        onMouseEnter={() => setHoveredId(999)}
-        onMouseLeave={() => setHoveredId(null)}
-      >
-        <motion.div 
-          whileHover={{ scale: 1.05 }}
-          className="relative flex items-center justify-center cursor-crosshair transform-gpu"
+          {/* 2. Silk-Thin Neural Mesh */}
+          {meshConnections.map((conn, i) => {
+            const from = iconPositions[conn.from];
+            const to = iconPositions[conn.to];
+            const active = isConnectionActive(conn.from, conn.to);
+            
+            return (
+              <motion.path
+                key={`mesh-${i}`}
+                d={`M ${300 + from.x} ${300 + from.y} L ${300 + to.x} ${300 + to.y} `}
+                stroke={active ? "#ea580c" : "#ffffff"}
+                strokeWidth={active ? "0.8" : "0.2"}
+                strokeOpacity={active ? (isCoreHovered ? 0.6 : 0.4) : 0.03}
+                fill="none"
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: 1 }}
+                transition={{ duration: 1.5, delay: i * 0.02 }}
+              />
+            );
+          })}
+        </svg>
+
+        {/* Central Core: Premium Orange Implementation */}
+        <motion.div
+          onMouseEnter={() => setIsCoreHovered(true)}
+          onMouseLeave={() => setIsCoreHovered(false)}
+          animate={{ 
+            scale: isCoreHovered ? 1.05 : (hoveredId !== null ? 0.98 : 1),
+            boxShadow: isCoreHovered 
+              ? "0 0 60px rgba(234, 88, 12, 0.4), inset 0 0 20px rgba(234, 88, 12, 0.2)" 
+              : "0 0 40px rgba(0,0,0,0.5)"
+          }}
+          className={cn(
+            "relative z-20 flex flex-col items-center justify-center rounded-[2rem] sm:rounded-[2.5rem] transition-all duration-700 overflow-hidden cursor-pointer",
+            isCoreHovered 
+              ? "bg-[#ea580c]/10 border-accent shadow-2xl" 
+              : "bg-[#070707] border-white/10 border"
+          )}
+          style={{ 
+            width: radius * 0.75, 
+            height: radius * 0.75,
+            padding: radius < 150 ? '1rem' : '2rem'
+          }}
         >
-          {/* Intense breathing core glow */}
-          <motion.div 
-            animate={{ scale: [1, 1.05, 1], opacity: [0.6, 1, 0.6] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-            className={`absolute inset-[-30px] rounded-full blur-[40px] -z-10 bg-accent/30`}
-          />
-          <div className="absolute inset-0 bg-accent/20 rounded-[28px] animate-ping opacity-20 -z-10" />
-          
-          <div className={`w-[140px] h-[140px] md:w-[150px] md:h-[150px] bg-background/95 backdrop-blur-xl border-accent/40 rounded-[28px] flex flex-col items-center justify-center border transition-all duration-500 shadow-[0_0_50px_rgba(234,88,12,0.25)] ${hoveredId === 999 ? 'border-accent shadow-[0_0_60px_rgba(234,88,12,0.5)] bg-surface' : ''}`}>
-             <motion.div 
-                animate={{ y: [0, -3, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="flex flex-col items-center"
-             >
-               <span className="text-white font-unbounded font-black text-2xl tracking-wide leading-none drop-shadow-[0_0_10px_rgba(234,88,12,0.8)]">TECH</span>
-               <span className="text-accent font-syne font-bold text-xs tracking-[0.3em] mt-2 opacity-90 drop-shadow-[0_0_10px_rgba(234,88,12,0.5)]">STACK</span>
-             </motion.div>
+          <div className={cn(
+            "absolute inset-0 transition-opacity duration-700",
+            isCoreHovered ? "opacity-100" : "opacity-0"
+          )}>
+            <div className="absolute inset-0 bg-gradient-to-br from-[#ea580c]/20 via-transparent to-transparent" />
           </div>
-        </motion.div>
-      </div>
 
+          <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
+          
+          <div className="relative z-10 flex flex-col items-center leading-none">
+            <span className="text-white font-unbounded font-black text-2xl sm:text-3xl md:text-5xl tracking-tighter uppercase opacity-90">
+              TECH
+            </span>
+            <span className={cn(
+              "font-unbounded font-medium text-[8px] sm:text-[9px] md:text-[10px] tracking-[0.5em] sm:tracking-[0.7em] uppercase mt-1 sm:mt-2 transition-colors duration-700",
+              isCoreHovered ? "text-white" : "text-accent"
+            )}>
+              STACK
+            </span>
+          </div>
+
+          {/* Shimmer Effect */}
+          <motion.div 
+            animate={{ x: ["-100%", "200%"] }}
+            transition={{ duration: 3, repeat: Infinity, repeatDelay: 4, ease: "linear" }}
+            className="absolute top-0 bottom-0 w-1/2 bg-gradient-to-r from-transparent via-white/[0.05] to-transparent skew-x-12 pointer-events-none"
+          />
+        </motion.div>
+
+        {/* Luxury Icon Pods */}
+        {iconPositions.map((pos, i) => {
+          const isHovered = hoveredId === pos.id;
+          const neighborActive = isNeighbor(i);
+
+          return (
+            <motion.div
+              key={pos.id}
+              initial={{ scale: 0, x: 0, y: 0 }}
+              animate={{ 
+                scale: isHovered ? 1.1 : 1, 
+                x: pos.x, 
+                y: pos.y,
+                zIndex: isHovered ? 50 : 10,
+                transition: { type: "spring", damping: 20, stiffness: 120 }
+              }}
+              onMouseEnter={() => setHoveredId(pos.id)}
+              onMouseLeave={() => setHoveredId(null)}
+              className="absolute cursor-pointer"
+            >
+              {/* "Dulbe Sundorvabe" - Animation */}
+              <motion.div
+                animate={{
+                  y: isCoreHovered ? [0, -2, 0] : [0, -8, 0],
+                  x: isCoreHovered ? [0, -1, 0, 1, 0] : [0, -5, 0, 5, 0],
+                  rotate: isCoreHovered ? [-1, 1, -1] : [-3, 3, -3],
+                }}
+                transition={{ 
+                  duration: 5 + (i % 3), 
+                  repeat: Infinity, 
+                  ease: "easeInOut",
+                  delay: i * 0.3
+                }}
+                className={cn(
+                  "relative group rounded-[1.5rem] sm:rounded-[2.2rem] bg-[#0d0d0d] border border-white/[0.03] flex items-center justify-center transition-all duration-700",
+                  isHovered 
+                    ? "border-accent/40 shadow-[0_0_25px_rgba(234,88,12,0.15)] bg-[#111111]" 
+                    : (neighborActive || isCoreHovered)
+                      ? "border-accent/10 bg-[#0f0f0f]"
+                      : "hover:border-white/10"
+                )}
+                style={{ 
+                  width: cardSize, 
+                  height: cardSize 
+                }}
+              >
+                <img 
+                  src={pos.src} 
+                  alt={pos.name} 
+                  className={cn(
+                    "object-contain transition-all duration-700",
+                    (isHovered || isCoreHovered) ? "scale-105 saturate-100 opacity-100" : "grayscale saturate-0 opacity-40 group-hover:opacity-80"
+                  )} 
+                  style={{ 
+                    width: cardSize * 0.6, 
+                    height: cardSize * 0.6 
+                  }}
+                />
+
+                {/* Minimal status tick */}
+                {(isHovered || isCoreHovered) && (
+                  <motion.div 
+                    layoutId="status-tick"
+                    className="absolute bottom-2 w-1 h-1 rounded-full bg-accent shadow-[0_0_8px_#ea580c]" 
+                  />
+                )}
+              </motion.div>
+            </motion.div>
+          );
+        })}
+      </div>
     </div>
   );
 }
