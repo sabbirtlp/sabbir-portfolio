@@ -544,12 +544,12 @@
       },
       {
         "id": 3,
-        "name": "HTML",
+        "name": "HTML5",
         "src": "/icons/html.svg"
       },
       {
         "id": 4,
-        "name": "CSS",
+        "name": "CSS3",
         "src": "/icons/css.svg"
       },
       {
@@ -558,9 +558,14 @@
         "src": "/icons/php.svg"
       },
       {
+        "id": 6,
+        "name": "Tailwind CSS",
+        "src": "/icons/tailwind.svg"
+      },
+      {
         "id": 7,
-        "name": "Bootstrap",
-        "src": "/icons/bootstrap.svg"
+        "name": "Webflow",
+        "src": "/icons/webflow.svg"
       },
       {
         "id": 8,
@@ -574,13 +579,8 @@
       },
       {
         "id": 10,
-        "name": "Webflow",
-        "src": "/icons/webflow.svg"
-      },
-      {
-        "id": 11,
-        "name": "Tailwind CSS",
-        "src": "/icons/tailwind.svg"
+        "name": "Elementor",
+        "src": "/icons/elementor.svg"
       }
     ]
   }
