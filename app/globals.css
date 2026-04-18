@@ -151,4 +151,11 @@ body {
 
 /* ─── Responsive ─────────────────────────────── */
 @media (max-width: 768px) {
+  .noise-overlay {
+    display: none !important;
+  }
+  
+  section {
+    will-change: transform;
+  }
 }

@@ -58,8 +58,10 @@ export default function Hero() {
 
     const colors = ["#ea580c", "#fb923c", "#ffffff", "#f97316"];
 
-    // "Safe Limit" particle count for consistent 60fps on all devices
-    for (let i = 0; i < 100; i++) {
+    // Device-aware particle count: 100 for desktop, 50 for mobile
+    const particleCount = typeof window !== "undefined" && window.innerWidth < 768 ? 50 : 100;
+
+    for (let i = 0; i < particleCount; i++) {
       const alpha = Math.random() * 0.4 + 0.1;
       particles.push({
         x: Math.random() * w,
@@ -352,7 +354,7 @@ export default function Hero() {
           className="relative mt-20 opacity-0 group"
         >
           {/* Panel Glass Layer - Optimized for scroll performance */}
-          <div className="absolute inset-0 z-0 bg-white/[0.03] backdrop-blur-md rounded-3xl border border-white/10 overflow-hidden shadow-2xl">
+          <div className="absolute inset-0 z-0 bg-white/[0.05] md:backdrop-blur-md rounded-3xl border border-white/10 overflow-hidden shadow-2xl">
             {/* Specular Shine */}
             <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-50" />
             {/* Grain / Noise for tactile surface */}

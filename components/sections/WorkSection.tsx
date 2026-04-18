@@ -98,7 +98,7 @@ const ProjectCard = ({ project, index, progress, range, targetScale }: CardProps
             <div className={`absolute inset-0 bg-gradient-to-br ${gradients[index % gradients.length]} mix-blend-multiply opacity-60 z-10`} />
             
             {/* Massive Browser Frame */}
-            <div className="absolute inset-x-4 bottom-0 top-8 md:inset-x-12 md:bottom-[-20%] md:top-12 xl:inset-x-20 xl:bottom-[-25%] xl:top-16 z-20 rounded-t-2xl border border-white/10 bg-black/40 backdrop-blur-sm overflow-hidden flex flex-col shadow-[0_-20px_50px_rgba(0,0,0,0.5)] transform hover:-translate-y-4 transition-transform duration-500">
+            <div className="absolute inset-x-4 bottom-0 top-8 md:inset-x-12 md:bottom-[-20%] md:top-12 xl:inset-x-20 xl:bottom-[-25%] xl:top-16 z-20 rounded-t-2xl border border-white/10 bg-black/60 md:bg-black/40 md:backdrop-blur-sm overflow-hidden flex flex-col shadow-[0_-20px_50px_rgba(0,0,0,0.5)] transform hover:-translate-y-4 transition-transform duration-500">
                <div className="w-full py-3 px-4 bg-[#1a1a1a] border-b border-white/5 flex items-center gap-2 shrink-0 shadow-lg z-30 relative">
                  <div className="flex gap-1.5">
                    <div className="w-3 h-3 rounded-full bg-[#ff5f56]" />
