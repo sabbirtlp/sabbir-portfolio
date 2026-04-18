@@ -4,7 +4,6 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import { CheckCircle2 } from "lucide-react";
-
 import { useContent } from "@/components/providers/ContentProvider";
 
 export default function About() {
@@ -62,7 +61,7 @@ export default function About() {
                 <div className="absolute bottom-0 inset-x-0 h-1/3 bg-gradient-to-t from-black/60 to-transparent" />
                 {/* Name badge */}
                 <div className="absolute bottom-6 left-6 right-6">
-                  <p className="font-syne font-black text-xl text-white">{name}</p>
+                  <p className="font-syne font-semibold text-xl text-white">{name}</p>
                   <p className="text-accent text-sm font-medium">{role}</p>
                 </div>
               </div>
@@ -73,7 +72,7 @@ export default function About() {
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                 className="absolute -top-6 -right-6 bg-accent text-white rounded-2xl p-5 shadow-2xl"
               >
-                <div className="font-unbounded font-black text-2xl leading-none">{experience}</div>
+                <div className="font-unbounded font-medium text-2xl leading-none">{experience}</div>
                 <div className="text-xs text-white/80 mt-1">Years Exp.</div>
               </motion.div>
 
@@ -88,8 +87,8 @@ export default function About() {
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
           >
-            <motion.div variants={itemVariants}>
-              <div className="section-divider" />
+            <motion.div variants={itemVariants} className="flex flex-col items-center text-center lg:items-start lg:text-left">
+              <div className="section-divider mx-auto lg:mx-0" />
               <p className="text-text-secondary text-xs font-semibold uppercase tracking-widest mb-4">
                 About Me
               </p>
@@ -97,7 +96,7 @@ export default function About() {
 
             <motion.h2
               variants={itemVariants}
-              className="font-syne font-black text-display-md text-white leading-tight mb-6"
+              className="font-syne font-semibold text-display-md text-white leading-tight mb-6"
             >
               I Build Websites
               <span className="text-gradient block">That Actually Work</span>
@@ -125,10 +124,10 @@ export default function About() {
               ))}
             </motion.ul>
 
-            {/* Tech stack */}
-            <motion.div variants={itemVariants}>
+            {/* Simple Tech stack tags fallback in case they want a summary here, but let's just make it subtle */}
+            <motion.div variants={itemVariants} className="mt-12">
               <p className="text-text-muted text-xs font-semibold uppercase tracking-widest mb-4">
-                Tech Stack
+                Core Technologies
               </p>
               <div className="flex flex-wrap gap-2">
                 {techStack.map((tech: string) => (

@@ -26,10 +26,10 @@ const config: Config = {
         border: "#262626",
       },
       fontSize: {
-        "display-xl": ["clamp(2.8rem, 8vw, 8rem)", { lineHeight: "0.9", letterSpacing: "-0.04em" }],
-        "display-lg": ["clamp(2.2rem, 5vw, 5rem)", { lineHeight: "0.95", letterSpacing: "-0.03em" }],
-        "display-md": ["clamp(1.8rem, 3vw, 3rem)", { lineHeight: "1.1", letterSpacing: "-0.02em" }],
-        "display-sm": ["clamp(1.2rem, 2vw, 1.8rem)", { lineHeight: "1.2", letterSpacing: "-0.01em" }],
+        "display-xl": ["clamp(3rem, 9vw, 9rem)", { lineHeight: "0.9", letterSpacing: "-0.04em" }],
+        "display-lg": ["clamp(2.5rem, 6.5vw, 6.5rem)", { lineHeight: "0.95", letterSpacing: "-0.03em" }],
+        "display-md": ["clamp(2rem, 4.5vw, 4.5rem)", { lineHeight: "1.1", letterSpacing: "-0.02em" }],
+        "display-sm": ["clamp(1.5rem, 3vw, 2.8rem)", { lineHeight: "1.2", letterSpacing: "-0.01em" }],
       },
       spacing: {
         "section": "120px",
@@ -40,7 +40,8 @@ const config: Config = {
         "float": "float 6s ease-in-out infinite",
         "pulse-glow": "pulse-glow 2s ease-in-out infinite",
         "spin-slow": "spin 20s linear infinite",
-        "marquee": "marquee 30s linear infinite",
+        "marquee": "marquee var(--duration) linear infinite",
+        "marquee-vertical": "marquee-vertical var(--duration) linear infinite",
       },
       keyframes: {
         "gradient-x": {
@@ -56,8 +57,12 @@ const config: Config = {
           "50%": { opacity: "1", transform: "scale(1.05)" },
         },
         "marquee": {
-          "0%": { transform: "translateX(0)" },
-          "100%": { transform: "translateX(-50%)" },
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(calc(-100% - var(--gap)))" },
+        },
+        "marquee-vertical": {
+          from: { transform: "translateY(0)" },
+          to: { transform: "translateY(calc(-100% - var(--gap)))" },
         },
       },
     },

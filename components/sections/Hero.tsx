@@ -4,9 +4,12 @@ import { useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import Image from "next/image";
 import { gsap } from "gsap";
-import { ArrowRight, MousePointer2, Loader2 } from "lucide-react";
+import { ArrowRight, MousePointer2, Loader2, Code2, Globe, Layout, Zap, Search, Terminal } from "lucide-react";
 import MagneticButton from "@/components/ui/MagneticButton";
 import CountUp from "@/components/ui/CountUp";
+import { Orbit, OrbitContainer } from "@/components/ui/Orbit";
+import { Marquee } from "@/components/ui/Marquee";
+import { CodeCard } from "@/components/ui/CodeCard";
 
 import { useContent } from "@/components/providers/ContentProvider";
 
@@ -276,108 +279,144 @@ export default function Hero() {
         }}
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-20">
-        {/* Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1, duration: 0.6 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/30 bg-accent/5 text-accent text-[10px] font-fira-code tracking-widest uppercase mb-8"
-        >
-          <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-          {badge}
-        </motion.div>
+      {/* SeraUI Orbits Background */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-40">
+        <OrbitContainer className="h-full">
+          <Orbit radius={200} duration={30} delay={0} size={32}>
+            <div className="p-2 rounded-full bg-accent/10 border border-accent/20 backdrop-blur-sm">
+              <Globe className="w-4 h-4 text-accent" />
+            </div>
+          </Orbit>
+          <Orbit radius={350} duration={45} delay={-5} direction="counter-clockwise" size={40}>
+            <div className="p-2 rounded-full bg-accent/10 border border-accent/20 backdrop-blur-sm">
+              <Layout className="w-5 h-5 text-accent" />
+            </div>
+          </Orbit>
+          <Orbit radius={500} duration={60} delay={-10} size={48}>
+            <div className="p-3 rounded-full bg-accent/10 border border-accent/20 backdrop-blur-sm">
+              <Code2 className="w-6 h-6 text-accent" />
+            </div>
+          </Orbit>
+          <Orbit radius={650} duration={75} delay={-15} direction="counter-clockwise" size={32}>
+            <div className="p-2 rounded-full bg-accent/10 border border-accent/20 backdrop-blur-sm">
+              <Zap className="w-4 h-4 text-accent" />
+            </div>
+          </Orbit>
+        </OrbitContainer>
+      </div>
 
-        {/* Headline */}
-        <div ref={headlineRef} className="mb-6">
-          <div className="overflow-hidden">
-            <div className="flex flex-wrap gap-x-4 md:gap-x-8 gap-y-2">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Left Column: Content */}
+          <div className="flex flex-col items-start text-left order-2 lg:order-1">
+            {/* Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1, duration: 0.6 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/30 bg-accent/5 text-accent text-[10px] font-fira-code tracking-widest uppercase mb-8"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+              {badge}
+            </motion.div>
+
+            {/* headline */}
+            <div ref={headlineRef} className="mb-6">
               <div className="overflow-hidden">
-                <span className="word inline-block font-syne font-black text-display-xl text-white">
-                  Crafting
-                </span>
+                <div className="flex flex-wrap justify-start gap-x-4 md:gap-x-6 gap-y-2">
+                  <div className="overflow-hidden">
+                    <span className="word inline-block font-syne font-semibold text-display-lg md:text-display-xl text-white">
+                      Crafting
+                    </span>
+                  </div>
+                  {headlineWords.map((word: string, i: number) => (
+                    <div key={i} className="overflow-hidden">
+                      <span
+                        className={`word inline-block font-syne font-semibold text-display-lg md:text-display-xl ${
+                          word === "High-Converting" ? "text-gradient" : "text-white"
+                        }`}
+                      >
+                        {word}
+                      </span>
+                    </div>
+                  ))}
+                </div>
               </div>
-              {headlineWords.map((word: string, i: number) => (
-                <div key={i} className="overflow-hidden">
-                  <span
-                    className={`word inline-block font-syne font-black text-display-xl ${
-                      word === "High-Converting" ? "text-gradient" : "text-white"
-                    }`}
-                  >
-                    {word}
-                  </span>
+            </div>
+
+            {/* Subheadline */}
+            <p
+              ref={subRef}
+              className="text-text-secondary text-base md:text-lg max-w-xl leading-relaxed mb-10 opacity-0 text-left"
+            >
+              {subheadline.split("Sabbir Hossain").map((part: string, i: number, arr: string[]) => (
+                <span key={i}>
+                  {part}
+                  {i < arr.length - 1 && <span className="text-white font-semibold">Sabbir Hossain</span>}
+                </span>
+              ))}
+            </p>
+
+            {/* CTAs */}
+            <div ref={ctaRef} className="flex flex-col sm:flex-row justify-start gap-4 mb-16 opacity-0 w-full">
+              <MagneticButton strength={0.3} className="w-full sm:w-auto">
+                <button
+                  onClick={handleScrollToWork}
+                  className="group w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 bg-accent hover:bg-accent-light text-white font-semibold rounded-full transition-all duration-300 text-sm md:text-base glow-accent cursor-pointer"
+                >
+                  View My Work
+                  <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                </button>
+              </MagneticButton>
+
+              <MagneticButton strength={0.3} className="w-full sm:w-auto">
+                <button
+                  onClick={handleScrollToContact}
+                  className="group w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 border border-border hover:border-accent text-white font-semibold rounded-full transition-all duration-300 text-sm md:text-base cursor-pointer"
+                >
+                  Start a Project
+                  <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+                </button>
+              </MagneticButton>
+            </div>
+
+            {/* Compact Stats Grid */}
+            <div 
+              ref={statsRef}
+              className="grid grid-cols-3 gap-8 md:gap-12 opacity-0"
+            >
+              {stats.map((stat: any) => (
+                <div key={stat.label} className="group/stat">
+                  <div className="font-unbounded font-medium text-xl md:text-2xl text-white mb-2 transition-transform duration-300 group-hover/stat:text-accent leading-none">
+                    <CountUp end={stat.value} suffix={stat.suffix} duration={2000} />
+                  </div>
+                  <p className="text-text-secondary text-[8px] md:text-[9px] uppercase tracking-[0.2em] font-medium opacity-60">
+                    {stat.label}
+                  </p>
                 </div>
               ))}
             </div>
           </div>
-        </div>
 
-        {/* Subheadline */}
-        <p
-          ref={subRef}
-          className="text-text-secondary text-base md:text-xl max-w-2xl leading-relaxed mb-10 opacity-0"
-        >
-          {subheadline.split("Sabbir Hossain").map((part: string, i: number, arr: string[]) => (
-            <span key={i}>
-              {part}
-              {i < arr.length - 1 && <span className="text-white font-semibold">Sabbir Hossain</span>}
-            </span>
+          {/* Right Column: Code Card */}
+          <div className="order-1 lg:order-2 flex justify-center lg:justify-end">
+            <CodeCard />
+          </div>
+        </div>
+      </div>
+
+      {/* Portfolio Showcase Marquee */}
+      <div className="absolute bottom-16 left-0 w-full z-10 opacity-30 group hover:opacity-100 transition-opacity duration-700">
+        <Marquee className="py-4" pauseOnHover>
+          {["WordPress", "Next.js", "Lead Generation", "E-commerce", "Conversion Audit", "Speed Optimization", "SEO Strategy", "Custom Development"].map((tech) => (
+            <div 
+              key={tech}
+              className="px-8 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm text-white/50 text-xs font-unbounded whitespace-nowrap hover:text-accent hover:border-accent/40 transition-colors"
+            >
+              {tech}
+            </div>
           ))}
-        </p>
-
-        {/* CTAs */}
-        <div ref={ctaRef} className="flex flex-col sm:flex-row gap-4 mb-20 opacity-0">
-          <MagneticButton strength={0.3} className="w-full sm:w-auto">
-            <button
-              onClick={handleScrollToWork}
-              className="group w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 bg-accent hover:bg-accent-light text-white font-semibold rounded-full transition-all duration-300 text-sm md:text-base glow-accent cursor-pointer"
-            >
-              View My Work
-              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-            </button>
-          </MagneticButton>
-
-          <MagneticButton strength={0.3} className="w-full sm:w-auto">
-            <button
-              onClick={handleScrollToContact}
-              className="group w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 border border-border hover:border-accent text-white font-semibold rounded-full transition-all duration-300 text-sm md:text-base cursor-pointer"
-            >
-              Start a Project
-              <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-            </button>
-          </MagneticButton>
-        </div>
-
-        {/* Glassmorphic Stats Panel */}
-        <div 
-          ref={statsRef}
-          className="relative mt-20 opacity-0 group"
-        >
-          {/* Panel Glass Layer - Optimized for scroll performance */}
-          <div className="absolute inset-0 z-0 bg-white/[0.05] md:backdrop-blur-md rounded-3xl border border-white/10 overflow-hidden shadow-2xl">
-            {/* Specular Shine */}
-            <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-50" />
-            {/* Grain / Noise for tactile surface */}
-            <div className="absolute inset-0 opacity-[0.08] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay" />
-          </div>
-
-          {/* Glow Behind Panel to make glass pop */}
-          <div className="absolute -top-12 left-1/4 w-64 h-32 bg-accent/20 rounded-full blur-[80px] -z-10" />
-
-          {/* Stats Content */}
-          <div className="relative z-10 grid grid-cols-2 md:flex md:flex-wrap gap-8 md:gap-16 p-8 md:p-10">
-            {stats.map((stat: any) => (
-              <div key={stat.label} className="relative group/stat">
-                <div className="font-unbounded font-black text-2xl md:text-3xl text-white mb-3 transition-transform duration-300 group-hover/stat:scale-105 group-hover/stat:text-accent leading-none">
-                  <CountUp end={stat.value} suffix={stat.suffix} duration={2000} />
-                </div>
-                <p className="text-text-secondary text-[10px] md:text-xs uppercase tracking-[0.2em] font-bold opacity-70 group-hover/stat:opacity-100 transition-opacity">
-                  {stat.label}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
+        </Marquee>
       </div>
 
       {/* Scroll indicator */}

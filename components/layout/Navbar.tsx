@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import MagneticButton from "@/components/ui/MagneticButton";
 
 const navLinks = [
@@ -27,6 +27,7 @@ export default function Navbar() {
   const logoFirstChar = siteName?.charAt(0) || "S";
   const logoRest = siteName?.slice(1) || "abbir";
 
+  const router = useRouter();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -38,6 +39,12 @@ export default function Navbar() {
 
   const handleNavClick = (href: string) => {
     setMenuOpen(false);
+    
+    if (pathname !== "/") {
+      router.push(`/${href}`);
+      return;
+    }
+
     const el = document.querySelector(href);
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });
@@ -56,10 +63,10 @@ export default function Navbar() {
             : "bg-transparent border-transparent"
         }`}
       >
-        <nav className="max-w-7xl mx-auto px-4 sm:px-6 py-5 flex items-center justify-between">
+        <nav className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
           {/* Logo */}
           <MagneticButton strength={0.3}>
-            <Link href="/" className="font-syne font-black text-xl tracking-tight text-white">
+            <Link href="/" className="font-syne font-black text-xl text-white whitespace-nowrap">
               <span className="text-accent">{logoFirstChar}</span>{logoRest}
               <span className="text-text-secondary">.</span>
             </Link>

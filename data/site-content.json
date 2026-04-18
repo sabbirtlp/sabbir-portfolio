@@ -69,51 +69,123 @@
   },
   "services": [
     {
+      "slug": "wordpress-development",
       "icon": "Globe",
       "title": "WordPress Development",
       "description": "Custom WordPress websites built for speed, security, and conversions. From blogs to complex business platforms.",
+      "longDescription": "Leverage the world's most popular CMS with a custom architecture designed for industrial-strength performance. I build bespoke WordPress themes and plugins that provide complete control over your content while maintaining lightning-fast load times and rock-solid security. Whether you need a high-end blog, a corporate portal, or a scalable multi-site setup, my WordPress solutions are engineered to grow with your business.",
+      "features": [
+        "Core Web Vitals Optimized Themes",
+        "Advanced Custom Fields (ACF) Integration",
+        "Security-Hardened Architecture",
+        "Custom Plugin Development",
+        "Seamless Third-Party API Integrations"
+      ],
       "highlight": "Most Popular"
     },
     {
+      "slug": "business-websites",
       "icon": "Layout",
       "title": "Business Websites",
       "description": "Authority-building business websites designed to attract, engage, and convert your ideal customers.",
+      "longDescription": "Your website is your 24/7 digital salesperson. I design and develop authoritative business websites that don't just look pretty—they establish trust instantly and guide visitors through a strategic journey toward conversion. By combining high-end aesthetics with clear information architecture, I help brands stand out in crowded markets and turn digital traffic into measurable business growth.",
+      "features": [
+        "Conversion-Focused Information Architecture",
+        "Lead Generation Funnel Integration",
+        "Brand-Consistent Visual Identity",
+        "Mobile-First Responsive Design",
+        "Analytics & Heatmap Setups"
+      ],
       "highlight": null
     },
     {
+      "slug": "landing-page-design",
       "icon": "Palette",
       "title": "Landing Page Design",
       "description": "High-converting landing pages engineered with proven CRO psychology to maximize campaign ROI.",
+      "longDescription": "Stop wasting ad spend on pages that don't convert. I build high-performance landing pages rooted in conversion rate optimization (CRO) principles and psychological triggers. Every element—from the hero headline to the primary CTA—is strategically placed to eliminate friction and maximize your return on investment. Perfect for SaaS launches, lead magnets, and PPC campaigns.",
+      "features": [
+        "A/B Testing Ready Structures",
+        "Psychology-Driven Copywriting Frameworks",
+        "Low-Friction Lead Capture Systems",
+        "Lightning-Fast Performance",
+        "Platform-Specific Optimization (Mobile/Desktop)"
+      ],
       "highlight": "High ROI"
     },
     {
+      "slug": "website-redesign",
       "icon": "RefreshCw",
       "title": "Website Redesign",
       "description": "Transform your outdated website into a modern, conversion-focused powerhouse without losing SEO equity.",
+      "longDescription": "An outdated website can actively harm your brand's credibility. My redesign process focuses on modernizing your digital presence while carefully preserving your existing SEO rankings and search traffic. I analyze your current user behavior to identify friction points and transform your site into a modern, high-converting masterpiece that reflects the current scale of your business.",
+      "features": [
+        "SEO Equity Preservation & 301 Mapping",
+        "UX Friction Point Elimination",
+        "Modern Glassmorphic UI Upgrades",
+        "Core Web Vitals Improvement",
+        "Content Strategy Refinement"
+      ],
       "highlight": null
     },
     {
+      "slug": "ecommerce-development",
       "icon": "ShoppingCart",
       "title": "E-Commerce Development",
       "description": "Full-featured WooCommerce stores with optimized checkout flows, inventory management, and payment integration.",
+      "longDescription": "Sell anything, anywhere, with a high-performance e-commerce engine. I specialize in building robust WooCommerce environments that handle everything from complex product variations to automated inventory workflows. My focus is on reducing cart abandonment through optimized checkout experiences and building trust with secure, seamless payment gateway integrations.",
+      "features": [
+        "Conversion-Optimized Checkout Flows",
+        "Advanced Inventory Management",
+        "Secure Payment Gateway Integrations",
+        "Dynamic Product Filtering & Search",
+        "Automated Shipping & Tax Rules"
+      ],
       "highlight": null
     },
     {
+      "slug": "speed-optimization",
       "icon": "Zap",
       "title": "Speed Optimization",
       "description": "Achieve 95+ PageSpeed scores. Faster websites rank higher, convert better, and retain visitors longer.",
+      "longDescription": "Every millisecond counts when it comes to user retention and SEO. I provide deep technical speed optimization that moves beyond simple caching. From image compression and code minification to critical CSS delivery and server-side tuning, I ensure your website achieves elite scores on Google PageSpeed Insights and GTmetrix, leading to better rankings and higher conversion rates.",
+      "features": [
+        "Core Web Vitals (LCP, FID, CLS) Tuning",
+        "Advanced Asset Delivery Optimization",
+        "Database & Server-Side Performance Tuning",
+        "Critical Path CSS Implementation",
+        "Image Engine & CDN Configuration"
+      ],
       "highlight": "90+ Score"
     },
     {
+      "slug": "seo-friendly-development",
       "icon": "Search",
       "title": "SEO-Friendly Development",
       "description": "Every site built with technical SEO foundations — structured data, Core Web Vitals, semantic HTML.",
+      "longDescription": "Don't build a beautiful website that Google can't find. I build every project with a 'Technical SEO First' mentality. By using semantic HTML5, implementing JSON-LD schema markup, and ensuring a crawler-friendly site architecture, I provide the solid foundation your content needs to climb the search results. I bridge the gap between high-end design and search engine visibility.",
+      "features": [
+        "JSON-LD Schema Markup Implementation",
+        "Semantic HTML5 & Aria Accessibility",
+        "Sitemap & Robots.txt Customization",
+        "Clean, Crawler-Friendly URL Structures",
+        "Metadata & OG Tag Automation"
+      ],
       "highlight": null
     },
     {
+      "slug": "ui-ux-design",
       "icon": "BarChart3",
       "title": "UI/UX Design",
       "description": "Research-driven UI/UX design that guides users to conversion through intuitive flows and strategic layouts.",
+      "longDescription": "Great design is more than just aesthetics—it's about results. My research-driven UI/UX process focuses on understanding your user's pain points and motivations. I design intuitive digital interfaces that guide users naturally toward your desired action, combining stunning visuals with a strategic layout that minimizes cognitive load and maximizes engagement.",
+      "features": [
+        "User Journey Mapping & Persona Research",
+        "High-Fidelity Wireframing & Prototyping",
+        "Interaction Design & Micro-Animations",
+        "Accessibility-First Design Systems",
+        "Usability Testing & Feedback Loops"
+      ],
       "highlight": null
     }
   ],
@@ -371,7 +443,7 @@
     {
       "name": "pierree***",
       "role": "Client from France",
-      "content": "Working with MD Alauddin was an outstanding experience. He exceeded all my expectations — not only did he deliver a premium-quality website ahead of schedule, but he was also extremely responsive, detail-oriented, and proactive throughout the entire process.",
+      "content": "Working with Sabbir was an outstanding experience. He exceeded all my expectations — not only did he deliver a premium-quality website ahead of schedule, but he was also extremely responsive, detail-oriented, and proactive throughout the entire process.",
       "rating": 5,
       "avatar": "P",
       "result": "Fiverr Client"

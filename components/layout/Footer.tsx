@@ -72,13 +72,13 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 lg:gap-12 mb-20">
           {/* Column 1: Brand & Social */}
-          <div className="flex flex-col items-start">
+          <div className="flex flex-col items-start lg:col-span-1">
             <Link href="/" className="inline-block mb-6 group">
-              <span className="font-syne font-black text-2xl text-white group-hover:text-accent transition-colors duration-300">
+              <span className="font-syne font-semibold text-2xl text-white group-hover:text-accent transition-colors duration-300">
                 {logoText || "S.Hossain"}
               </span>
             </Link>
-            <p className="text-text-secondary text-sm md:text-base leading-relaxed max-w-xs mb-8">
+            <p className="text-text-secondary text-sm leading-relaxed max-w-xs mb-8 font-medium">
               {description || "Strategically designed digital solutions focused on conversion and high-end aesthetics."}
             </p>
 
@@ -102,9 +102,9 @@ export default function Footer() {
           </div>
 
           {/* Column 2: Balanced Navigation */}
-          <div className="lg:flex lg:flex-col lg:items-center">
-            <div className="w-full max-w-[120px]">
-              <p className="text-white font-bold mb-6 uppercase tracking-[0.2em] text-[10px] opacity-50">Menu</p>
+          <div className="lg:flex lg:flex-col lg:items-start">
+            <div className="w-full">
+              <p className="text-white font-medium mb-6 uppercase tracking-[0.2em] text-[10px] opacity-40">Navigation</p>
               <ul className="grid grid-cols-2 lg:grid-cols-1 gap-y-4 gap-x-8">
                 {(menuLinks || []).map((link: any) => (
                   <li key={link.label}>
@@ -122,21 +122,21 @@ export default function Footer() {
           </div>
 
           {/* Column 3: Contact & CTA */}
-          <div className="lg:flex lg:flex-col lg:items-end text-left lg:text-right">
-            <div className="w-full lg:max-w-xs">
-              <p className="text-white font-bold mb-6 uppercase tracking-[0.2em] text-[10px] opacity-50">Get In Touch</p>
+          <div className="lg:flex lg:flex-col lg:items-start">
+            <div className="w-full">
+              <p className="text-white font-medium mb-6 uppercase tracking-[0.2em] text-[10px] opacity-40">Get In Touch</p>
               <Link
                 href={`mailto:${email}`}
-                className="font-syne font-bold text-lg md:text-xl text-white hover:text-accent transition-all block mb-4 break-all"
+                className="font-syne font-medium text-lg text-white hover:text-accent transition-all block mb-6 break-all"
               >
                 {email}
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-accent text-white text-xs font-bold hover:bg-accent-light transition-all duration-300 shadow-[0_0_20px_rgba(234,88,12,0.2)]"
+                className="group inline-flex items-center gap-2 text-white text-xs font-semibold hover:text-accent transition-all duration-300"
               >
                 Start a conversation
-                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-1" />
               </Link>
             </div>
           </div>

@@ -55,14 +55,14 @@ const ProjectCard = ({ project, index, progress, range, targetScale }: CardProps
         <div className="w-full h-1/2 md:h-full md:w-[40%] xl:w-[35%] p-8 md:p-14 flex flex-col justify-between order-2 md:order-1 bg-surface z-10 shrink-0">
           <div>
             <div className="flex items-center gap-3 mb-6">
-              <span className="text-accent font-syne font-black text-4xl opacity-20">0{index + 1}</span>
+              <span className="text-accent font-syne font-semibold text-4xl opacity-20">0{index + 1}</span>
               <div className="h-px w-12 bg-border" />
               <span className="text-text-muted text-xs uppercase tracking-widest font-bold">
                 {project.category}
               </span>
             </div>
             
-            <h3 className="font-syne font-black text-2xl md:text-5xl text-white mb-4 leading-tight">
+            <h3 className="font-syne font-semibold text-2xl md:text-5xl text-white mb-4 leading-tight">
               {project.title}
             </h3>
             
@@ -74,7 +74,7 @@ const ProjectCard = ({ project, index, progress, range, targetScale }: CardProps
             <div className="grid grid-cols-2 gap-4 mb-6">
               {project.stats?.slice(0, 2).map((s: any) => (
                 <div key={s.label}>
-                  <div className="font-unbounded font-black text-xl text-accent">{s.value}</div>
+                  <div className="font-unbounded font-medium text-xl text-accent">{s.value}</div>
                   <div className="text-text-muted text-[10px] uppercase tracking-wider">{s.label}</div>
                 </div>
               ))}
@@ -168,13 +168,13 @@ export default function WorkSection() {
       </div>
 
       {/* Main Grid */}
-      <div className="max-w-7xl mx-auto px-4 md:px-6 pt-24 pb-8">
-        <div className="mb-12">
-          <div className="section-divider" />
+      <div className="max-w-7xl mx-auto px-6 pt-24 pb-8">
+        <div className="mb-12 flex flex-col items-center text-center md:items-start md:text-left">
+          <div className="section-divider mx-auto md:mx-0" />
           <p className="text-text-secondary text-[10px] md:text-xs font-semibold uppercase tracking-widest mb-4">
             Selected Work
           </p>
-          <h2 className="font-syne font-black text-2xl sm:text-display-md text-white leading-tight">
+          <h2 className="font-syne font-semibold text-display-md text-white leading-tight">
             Case Studies <span className="text-gradient">2020—2024</span>
           </h2>
         </div>
