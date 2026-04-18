@@ -119,11 +119,22 @@ export default function AdminDashboard() {
       });
       if (res.ok) {
         setMessage({ type: "success", text: "Changes saved successfully!" });
+      } else if (res.status === 401) {
+        // Session expired — redirect to login
+        setMessage({ type: "error", text: "Session expired. Redirecting to login..." });
+        setTimeout(() => {
+          router.push("/login");
+        }, 1500);
       } else {
-        throw new Error();
+        let errorText = "Failed to save changes";
+        try {
+          const data = await res.json();
+          if (data?.error) errorText = data.error;
+        } catch {}
+        setMessage({ type: "error", text: errorText });
       }
     } catch (error) {
-      setMessage({ type: "error", text: "Failed to save changes" });
+      setMessage({ type: "error", text: "Network error — please check your connection and try again." });
     } finally {
       setSaving(false);
     }

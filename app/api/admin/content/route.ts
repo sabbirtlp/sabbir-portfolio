@@ -10,12 +10,18 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
-  const newContent = await request.json();
-  const success = await updateContent(newContent);
-  
-  if (!success) {
-    return NextResponse.json({ error: "Failed to save content" }, { status: 500 });
+  try {
+    const newContent = await request.json();
+    const success = await updateContent(newContent);
+    
+    if (success !== true) {
+      console.error("updateContent failed:", success);
+      return NextResponse.json({ error: "Failed to save content" }, { status: 500 });
+    }
+    
+    return NextResponse.json({ message: "Content updated successfully" });
+  } catch (error: any) {
+    console.error("POST /api/admin/content error:", error);
+    return NextResponse.json({ error: error.message || "Failed to save content" }, { status: 500 });
   }
-  
-  return NextResponse.json({ message: "Content updated successfully" });
 }

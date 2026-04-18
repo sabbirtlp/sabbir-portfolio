@@ -12,7 +12,7 @@
     ]
   },
   "hero": {
-    "badge": "Available for New Projects",
+    "badge": "Available for New Projects -TEST",
     "headlineWords": [
       "High-Converting",
       "Websites",
@@ -34,7 +34,7 @@
         "label": "Websites Built"
       },
       {
-        "value": 100,
+        "value": "300",
         "suffix": "+",
         "label": "Happy Clients"
       }
