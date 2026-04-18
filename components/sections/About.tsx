@@ -73,7 +73,7 @@ export default function About() {
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                 className="absolute -top-6 -right-6 bg-accent text-white rounded-2xl p-5 shadow-2xl"
               >
-                <div className="font-syne font-black text-3xl leading-none">{experience}</div>
+                <div className="font-unbounded font-black text-2xl leading-none">{experience}</div>
                 <div className="text-xs text-white/80 mt-1">Years Exp.</div>
               </motion.div>
 
@@ -134,7 +134,7 @@ export default function About() {
                 {techStack.map((tech: string) => (
                   <span
                     key={tech}
-                    className="px-3 py-1.5 rounded-full border border-border text-text-secondary text-xs hover:border-accent hover:text-accent transition-all duration-300"
+                    className="px-3 py-1.5 rounded-full border border-border text-text-secondary text-[11px] font-fira-code hover:border-accent hover:text-accent transition-all duration-300"
                   >
                     {tech}
                   </span>

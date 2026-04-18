@@ -97,7 +97,7 @@ export default function Process() {
                 className={`group relative p-6 rounded-2xl bg-gradient-to-b ${step.color} border border-border hover:border-accent/40 transition-all duration-400`}
               >
                 <div
-                  className="font-syne font-black text-5xl leading-none mb-4 opacity-20 group-hover:opacity-40 transition-opacity duration-300"
+                  className="font-unbounded font-black text-3xl leading-none mb-5 opacity-20 group-hover:opacity-50 transition-opacity duration-300"
                   style={{ color: step.accent }}
                 >
                   {step.number}
@@ -120,7 +120,7 @@ export default function Process() {
               className="flex gap-5 items-start"
             >
               <div
-                className="font-syne font-black text-4xl leading-none flex-shrink-0 opacity-30"
+                className="font-unbounded font-black text-2xl leading-none flex-shrink-0 opacity-30"
                 style={{ color: step.accent }}
               >
                 {step.number}

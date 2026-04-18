@@ -11,6 +11,8 @@ const config: Config = {
       fontFamily: {
         syne: ["var(--font-syne)", "sans-serif"],
         inter: ["var(--font-inter)", "sans-serif"],
+        "unbounded": ["var(--font-unbounded)", "sans-serif"],
+        "fira-code": ["var(--font-fira-code)", "monospace"],
       },
       colors: {
         background: "#0a0a0a",

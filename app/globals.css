@@ -3,6 +3,8 @@
 @theme {
   --font-syne: var(--font-syne);
   --font-inter: var(--font-inter);
+  --font-unbounded: var(--font-unbounded);
+  --font-fira-code: var(--font-fira-code);
   --color-background: #0a0a0a;
   --color-surface: #111111;
   --color-surface-2: #1a1a1a;
@@ -61,6 +63,8 @@ body {
 
 /* ─── Typography ────────────────────────────── */
 .font-syne { font-family: var(--font-syne), sans-serif; }
+.font-unbounded { font-family: var(--font-unbounded), sans-serif; }
+.font-fira-code { font-family: var(--font-fira-code), monospace; }
 
 .text-gradient {
   background: linear-gradient(135deg, #ea580c 0%, #fb923c 50%, #ffffff 100%);

@@ -280,7 +280,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1, duration: 0.6 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/30 bg-accent/5 text-accent text-xs font-semibold tracking-widest uppercase mb-8"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/30 bg-accent/5 text-accent text-[10px] font-fira-code tracking-widest uppercase mb-8"
         >
           <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
           {badge}
@@ -366,7 +366,7 @@ export default function Hero() {
           <div className="relative z-10 grid grid-cols-2 md:flex md:flex-wrap gap-8 md:gap-16 p-8 md:p-10">
             {stats.map((stat: any) => (
               <div key={stat.label} className="relative group/stat">
-                <div className="font-syne font-black text-3xl md:text-5xl text-white mb-1 transition-transform duration-300 group-hover/stat:scale-105 group-hover/stat:text-accent">
+                <div className="font-unbounded font-black text-2xl md:text-3xl text-white mb-3 transition-transform duration-300 group-hover/stat:scale-105 group-hover/stat:text-accent leading-none">
                   <CountUp end={stat.value} suffix={stat.suffix} duration={2000} />
                 </div>
                 <p className="text-text-secondary text-[10px] md:text-xs uppercase tracking-[0.2em] font-bold opacity-70 group-hover/stat:opacity-100 transition-opacity">

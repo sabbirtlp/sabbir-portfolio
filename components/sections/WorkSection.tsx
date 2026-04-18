@@ -62,7 +62,7 @@ const ProjectCard = ({ project, index, progress, range, targetScale }: CardProps
               </span>
             </div>
             
-            <h3 className="font-syne font-black text-3xl md:text-5xl text-white mb-6 leading-tight">
+            <h3 className="font-syne font-black text-2xl md:text-5xl text-white mb-4 leading-tight">
               {project.title}
             </h3>
             
@@ -71,10 +71,10 @@ const ProjectCard = ({ project, index, progress, range, targetScale }: CardProps
             </p>
 
             {/* Results Grid */}
-            <div className="grid grid-cols-2 gap-6 mb-8">
+            <div className="grid grid-cols-2 gap-4 mb-6">
               {project.stats?.slice(0, 2).map((s: any) => (
                 <div key={s.label}>
-                  <div className="font-syne font-black text-2xl text-accent">{s.value}</div>
+                  <div className="font-unbounded font-black text-xl text-accent">{s.value}</div>
                   <div className="text-text-muted text-[10px] uppercase tracking-wider">{s.label}</div>
                 </div>
               ))}
@@ -93,7 +93,7 @@ const ProjectCard = ({ project, index, progress, range, targetScale }: CardProps
         </div>
 
         {/* Right: Immersive Image / Mockup */}
-        <div className="w-full h-1/2 md:h-full md:w-[60%] xl:w-[65%] relative order-1 md:order-2 overflow-hidden flex flex-col bg-black/20">
+        <div className="w-full h-[280px] sm:h-[400px] md:h-full md:w-[60%] xl:w-[65%] relative order-1 md:order-2 overflow-hidden flex flex-col bg-black/20">
           <motion.div style={{ scale: imageScale }} className="absolute inset-0">
             <div className={`absolute inset-0 bg-gradient-to-br ${gradients[index % gradients.length]} mix-blend-multiply opacity-60 z-10`} />
             
@@ -174,7 +174,7 @@ export default function WorkSection() {
           <p className="text-text-secondary text-[10px] md:text-xs font-semibold uppercase tracking-widest mb-4">
             Selected Work
           </p>
-          <h2 className="font-syne font-black text-3xl sm:text-display-md text-white leading-tight">
+          <h2 className="font-syne font-black text-2xl sm:text-display-md text-white leading-tight">
             Case Studies <span className="text-gradient">2020—2024</span>
           </h2>
         </div>
