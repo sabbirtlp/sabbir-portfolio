@@ -208,30 +208,33 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
         className="relative z-20 flex items-center justify-center"
         style={{ width: radius * 0.72, height: radius * 0.72 }}
       >
-        {/* Soft inner glow ring */}
-        <div className="absolute inset-0 rounded-[2rem] sm:rounded-[2.5rem] bg-[#ff6a00]/10 blur-xl" />
+        {/* Orange glow ONLY behind this card — contained, not leaking */}
+        <div
+          className="absolute rounded-[2.5rem] bg-[#ff6a00]/60 blur-[60px] -z-10 pointer-events-none scale-110"
+          style={{ inset: 0 }}
+        />
 
         <motion.div
           onMouseEnter={() => setIsCoreHovered(true)}
           onMouseLeave={() => setIsCoreHovered(false)}
           animate={{
             boxShadow: isCoreHovered
-              ? "0 0 40px rgba(255,106,0,0.2), inset 0 0 30px rgba(255,106,0,0.1)"
-              : "0 0 20px rgba(255,106,0,0.08), inset 0 0 20px rgba(255,106,0,0.05)",
+              ? "0 0 50px rgba(255,106,0,0.35), inset 0 0 30px rgba(255,106,0,0.15)"
+              : "0 0 30px rgba(255,106,0,0.18), inset 0 0 20px rgba(255,106,0,0.08)",
           }}
           transition={{ duration: 0.6, ease: "easeInOut" }}
           className="relative w-full h-full flex flex-col items-center justify-center
-                     rounded-[2rem] sm:rounded-[2.5rem] cursor-default
-                     bg-black/40 backdrop-blur-2xl
-                     border border-white/10 overflow-hidden"
+                     rounded-[2rem] sm:rounded-[2.5rem] cursor-default overflow-hidden
+                     border border-[#ff6a00]/20"
+          style={{ background: "linear-gradient(135deg, #1a0d00 0%, #120800 50%, #0d0500 100%)" }}
         >
-          {/* Subtle inner gradient */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#ff6a00]/8 via-transparent to-transparent pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-br from-white/4 to-transparent pointer-events-none" />
+          {/* Inner warm gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-[#ff6a00]/15 via-[#ff6a00]/5 to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-tl from-[#ff6a00]/8 to-transparent pointer-events-none" />
 
           {/* Text */}
           <div className="relative z-10 flex flex-col items-center leading-none">
-            <span className="text-white font-unbounded font-black text-xl sm:text-3xl md:text-5xl tracking-tighter">
+            <span className="text-white font-unbounded font-black text-xl sm:text-3xl md:text-5xl tracking-tighter drop-shadow-[0_0_20px_rgba(255,106,0,0.4)]">
               TECH
             </span>
             <span className="font-unbounded font-semibold text-[7px] sm:text-[9px] md:text-[10px] tracking-[0.5em] text-[#ff6a00] uppercase mt-1">
@@ -240,7 +243,7 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
           </div>
 
           {/* Inner accent border */}
-          <div className="absolute inset-5 rounded-[1.5rem] border border-[#ff6a00]/10 pointer-events-none" />
+          <div className="absolute inset-5 rounded-[1.5rem] border border-[#ff6a00]/15 pointer-events-none" />
         </motion.div>
       </div>
     </div>

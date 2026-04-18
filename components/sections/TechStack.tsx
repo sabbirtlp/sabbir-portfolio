@@ -42,37 +42,6 @@ export default function TechStack() {
     >
       {/* ── Background ── */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        {/* Large soft orange radial glow — key atmospheric element */}
-        <motion.div
-          style={{ opacity: glowOpacity, scale: glowScale }}
-          className="absolute top-[55%] left-1/2 -translate-x-1/2 -translate-y-1/2
-                     w-[min(90vw,900px)] aspect-square
-                     bg-[#ff6a00] rounded-full blur-[200px]"
-        />
-
-        {/* Secondary softer glow for depth */}
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-                     w-[min(70vw,600px)] aspect-square
-                     bg-[#ff6a00]/30 rounded-full blur-[140px] opacity-30"
-        />
-
-        {/* Ambient orange particles */}
-        {PARTICLES.map((p) => (
-          <motion.div
-            key={p.id}
-            className="absolute w-1 h-1 bg-[#ff6a00] rounded-full blur-[2px]"
-            style={{ left: p.left, top: p.top, opacity: p.opacity }}
-            animate={{ y: [-p.dy / 2, p.dy / 2] }}
-            transition={{
-              duration: p.dur,
-              delay: p.delay,
-              repeat: Infinity,
-              repeatType: "reverse",
-              ease: "easeInOut",
-            }}
-          />
-        ))}
 
         {/* Very subtle dot grid */}
         <div
