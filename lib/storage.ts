@@ -18,7 +18,7 @@ export async function updateContent(newContent: any) {
     await fs.writeFile(DATA_FILE, JSON.stringify(newContent, null, 2), "utf-8");
     return true;
   } catch (error: any) {
-    console.error("Error updating content:", error);
-    return false;
+    console.error("Error updating content EXACT:", error);
+    throw error;
   }
 }

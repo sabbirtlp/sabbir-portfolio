@@ -87,8 +87,8 @@ export default function About() {
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
           >
-            <motion.div variants={itemVariants} className="flex flex-col items-center text-center lg:items-start lg:text-left">
-              <div className="section-divider mx-auto lg:mx-0" />
+            <motion.div variants={itemVariants} className="flex flex-col items-start text-left">
+              <div className="section-divider" />
               <p className="text-text-secondary text-xs font-semibold uppercase tracking-widest mb-4">
                 About Me
               </p>

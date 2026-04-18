@@ -235,7 +235,7 @@ export default function Hero() {
   };
 
   return (
-    <section ref={containerRef} className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-[#030303]">
+    <section id="home" ref={containerRef} className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-[#030303]">
       {/* 0. Premium Parallax Background Image */}
       <motion.div 
         style={{ y: backgroundY, scale: backgroundScale }}

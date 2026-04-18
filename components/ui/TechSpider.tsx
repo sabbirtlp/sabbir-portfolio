@@ -1,232 +1,186 @@
 "use client";
 
-import React, { useState } from "react";
-import Image from "next/image";
+import React, { useState, useRef } from "react";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 
-const IconWrapper = ({
-  children,
-  className = "",
-  isHighlighted = false,
-  isHovered = false,
-  animationDelay = 0,
-}: {
-  children: React.ReactNode;
-  className?: string;
-  isHighlighted?: boolean;
-  isHovered?: boolean;
-  animationDelay?: number;
-}) => (
-  <div
-    className={`
-        backdrop-blur-xl rounded-2xl flex items-center justify-center transition-all duration-500 border relative overflow-hidden
-        ${
-          isHighlighted
-            ? "bg-accent/20 border-accent/50 shadow-accent/20 shadow-2xl animate-breathing-glow"
-            : `bg-surface-2/80 border-white/10 ${!isHovered && "animate-float"}`
-        }
-        ${
-          isHovered
-            ? "bg-surface-2 border-accent/60 scale-110 shadow-accent/30 shadow-2xl z-30"
-            : "hover:bg-white/5 hover:border-white/20 z-10"
-        }
-        ${className}
-    `}
-    style={{ animationDelay: `${animationDelay}s` }}
-  >
-    {children}
-  </div>
-);
+const outerIcons = [
+  { id: 1, name: "WordPress", src: "/icons/wordpress.svg" },
+  { id: 2, name: "Elementor", src: "/icons/elementor.svg" },
+  { id: 3, name: "React", src: "/icons/react.svg" },
+  { id: 4, name: "Node.js", src: "/icons/node.svg" },
+  { id: 5, name: "PHP", src: "/icons/php.svg" },
+  { id: 6, name: "HTML5", src: "/icons/html.svg" },
+  { id: 7, name: "CSS3", src: "/icons/css.svg" },
+  { id: 8, name: "Bootstrap", src: "/icons/bootstrap.svg" },
+];
 
-const TechSpider = () => {
+export default function TechSpider() {
+  const containerRef = useRef<HTMLDivElement>(null);
   const [hoveredId, setHoveredId] = useState<number | null>(null);
 
-  // Using paths matching the requested icons for public/icons/ directory
-  // A generic fallback text or span will show if the image is missing (broken image tag fallback handling)
-  const outerIcons = [
-    { id: 1, name: "WordPress", src: "/icons/wordpress.svg" },
-    { id: 2, name: "Elementor", src: "/icons/elementor.svg" },
-    { id: 3, name: "React", src: "/icons/react.svg" },
-    { id: 4, name: "Node.js", src: "/icons/node.svg" },
-    { id: 5, name: "PHP", src: "/icons/php.svg" },
-    { id: 6, name: "HTML5", src: "/icons/html.svg" },
-    { id: 7, name: "CSS3", src: "/icons/css.svg" },
-    { id: 8, name: "Bootstrap", src: "/icons/bootstrap.svg" },
-  ];
+  // Bind scroll interaction relative to this component's position
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"], // Progress tracks while element is inside the viewport
+  });
 
-  const radius = 220; // Increased radius for better separation on desktop
-  const centralIconRadius = 60;
-  const outerIconRadius = 45;
-  const svgSize = Math.max(radius * 2 + 150, 600);
-  const svgCenter = svgSize / 2;
+  // Premium inertia-based spring physics for buttery smooth scrolling rotation
+  const springConfig = { damping: 25, stiffness: 40, mass: 0.8 };
+  const smoothProgress = useSpring(scrollYProgress, springConfig);
+
+  // Outer Wrapper rotates [0 -> 180 degrees]
+  const orbitRotation = useTransform(smoothProgress, [0, 1], [-90, 180]);
+  
+  // Internal cards reverse rotate to stay upright
+  const reverseRotation = useTransform(smoothProgress, [0, 1], [90, -180]);
+
+  const radius = 240; 
+  const svgSize = 700;
+  const svgCenter = 350;
+  const centralIconRadius = 75; 
 
   return (
-    <div className="relative w-full max-w-[600px] flex justify-center items-center aspect-square">
-      <style>
-        {`
-                @keyframes float {
-                    0% { transform: translateY(0px); }
-                    50% { transform: translateY(-10px); }
-                    100% { transform: translateY(0px); }
-                }
-                .animate-float {
-                    animation: float 5s ease-in-out infinite;
-                }
+    <div 
+      ref={containerRef} 
+      className="relative w-full max-w-[700px] flex justify-center items-center aspect-square mx-auto z-10"
+    >
+      {/* Background ambient radial glow */}
+      <div className="absolute inset-0 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[90%] bg-accent/5 rounded-full blur-[120px] pointer-events-none -z-10" />
 
-                @keyframes breathing-glow {
-                    0% { box-shadow: 0 0 20px 2px rgba(234, 88, 12, 0.2); }
-                    50% { box-shadow: 0 0 40px 10px rgba(234, 88, 12, 0.4); }
-                    100% { box-shadow: 0 0 20px 2px rgba(234, 88, 12, 0.2); }
-                }
-                .animate-breathing-glow {
-                    animation: breathing-glow 4s ease-in-out infinite;
-                }
-            `}
-      </style>
+      {/* Rotating Ecosystem Wrapper */}
+      <motion.div 
+        className="absolute inset-0 flex justify-center items-center w-full h-full transform-gpu"
+        style={{ rotate: orbitRotation }}
+      >
+        
+        {/* SVG Drawing Layer: Center -> Planets Radial Lines */}
+        <svg 
+          width={svgSize} 
+          height={svgSize} 
+          viewBox={`0 0 ${svgSize} ${svgSize}`} 
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 overflow-visible pointer-events-none origin-center -z-10 scale-[0.65] sm:scale-75 md:scale-90 lg:scale-100"
+        >
+          <g>
+            {outerIcons.map((icon, i) => {
+              const angle = (-90 + i * (360 / outerIcons.length)) * (Math.PI / 180);
+              const startX = svgCenter + centralIconRadius * Math.cos(angle);
+              const startY = svgCenter + centralIconRadius * Math.sin(angle);
+              const endX = svgCenter + radius * Math.cos(angle);
+              const endY = svgCenter + radius * Math.sin(angle);
+              
+              const isSpokeActive = hoveredId === icon.id || hoveredId === 999;
+              
+              return (
+                <line
+                  key={`spoke-${icon.id}`}
+                  x1={startX}
+                  y1={startY}
+                  x2={endX}
+                  y2={endY}
+                  stroke={isSpokeActive ? "rgba(234, 88, 12, 0.6)" : "rgba(255, 255, 255, 0.08)"}
+                  strokeWidth={isSpokeActive ? "2" : "1"}
+                  strokeLinecap="round"
+                  className="transition-all duration-500"
+                  style={{
+                    filter: isSpokeActive ? "drop-shadow(0 0 8px rgba(234, 88, 12, 0.8))" : "none",
+                  }}
+                />
+              );
+            })}
+          </g>
+        </svg>
 
-      {/* SVG Canvas for Connections */}
-      <svg width={svgSize} height={svgSize} viewBox={`0 0 ${svgSize} ${svgSize}`} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 overflow-visible pointer-events-none scale-[0.6] sm:scale-75 md:scale-90 lg:scale-100 origin-center z-0">
-        <defs>
-          <filter id="spider-glow-orange">
-            <feGaussianBlur stdDeviation="4" result="coloredBlur" />
-            <feMerge>
-              <feMergeNode in="coloredBlur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-        </defs>
-        <g>
-          {/* Main Web (Circle lines between outer icons) */}
-          {outerIcons.map((icon, i) => {
-            const nextIndex = (i + 1) % outerIcons.length;
-            const nextIcon = outerIcons[nextIndex];
-
-            const angle1 = (-90 + i * (360 / outerIcons.length)) * (Math.PI / 180);
-            const x1 = svgCenter + radius * Math.cos(angle1);
-            const y1 = svgCenter + radius * Math.sin(angle1);
-
-            const angle2 = (-90 + nextIndex * (360 / outerIcons.length)) * (Math.PI / 180);
-            const x2 = svgCenter + radius * Math.cos(angle2);
-            const y2 = svgCenter + radius * Math.sin(angle2);
-
-            const isLineActive = hoveredId === icon.id || hoveredId === nextIcon.id;
-
-            return (
-              <line
-                key={`web-line-${icon.id}`}
-                x1={x1}
-                y1={y1}
-                x2={x2}
-                y2={y2}
-                stroke={isLineActive ? "#ea580c" : "#333"}
-                strokeWidth={isLineActive ? "3" : "1"}
-                className={`transition-all duration-500`}
-                style={{ opacity: isLineActive ? 0.9 : 0.2 }}
-                filter={isLineActive ? "url(#spider-glow-orange)" : "none"}
-              />
-            );
-          })}
-
-          {/* Spokes (Lines from center to outer icons) */}
+        {/* Orbiting Planets Containers */}
+        <div className="absolute inset-0 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] pointer-events-none scale-[0.65] sm:scale-75 md:scale-90 lg:scale-100 origin-center z-10">
           {outerIcons.map((icon, i) => {
             const angle = (-90 + i * (360 / outerIcons.length)) * (Math.PI / 180);
-            const startX = svgCenter + centralIconRadius * Math.cos(angle);
-            const startY = svgCenter + centralIconRadius * Math.sin(angle);
-            const endX = svgCenter + radius * Math.cos(angle);
-            const endY = svgCenter + radius * Math.sin(angle);
-            
-            const isSpokeActive = hoveredId === icon.id || hoveredId === 999; // 999 is center
+            const x = svgCenter + radius * Math.cos(angle);
+            const y = svgCenter + radius * Math.sin(angle);
+            const isHovered = hoveredId === icon.id;
 
             return (
-              <line
-                key={`spoke-line-${icon.id}`}
-                x1={startX}
-                y1={startY}
-                x2={endX}
-                y2={endY}
-                stroke={isSpokeActive ? "#ea580c" : "#333"}
-                strokeWidth={isSpokeActive ? "3" : "1"}
-                className="transition-all duration-500"
-                style={{ opacity: isSpokeActive ? 0.9 : 0.2 }}
-                filter={isSpokeActive ? "url(#spider-glow-orange)" : "none"}
-              />
+              <div
+                key={icon.id}
+                className="absolute pointer-events-auto z-20 origin-center"
+                style={{ top: `${y}px`, left: `${x}px`, transform: `translate(-50%, -50%)` }}
+              >
+                {/* 
+                  Inner Inverse Rotation Node: 
+                  Maintains planetary upright integrity during system rotation while enabling micro scaling 
+                */}
+                <motion.div 
+                  style={{ rotate: reverseRotation }}
+                  whileHover={{ scale: 1.15 }}
+                  onMouseEnter={() => setHoveredId(icon.id)}
+                  onMouseLeave={() => setHoveredId(null)}
+                  className="relative group cursor-pointer flex flex-col items-center justify-center transform-gpu"
+                >
+                  {/* Subtle Background Glow behind icon card */}
+                  <div className={`absolute inset-[-15px] rounded-full blur-2xl transition-all duration-500 -z-10 ${isHovered ? 'bg-accent/40 opacity-100 scale-110' : 'bg-transparent opacity-0 scale-90'}`} />
+                  
+                  {/* Glassmorphism Icon Wrapper */}
+                  <motion.div 
+                    animate={{ y: isHovered ? 0 : [0, -6, 0] }}
+                    transition={{
+                      y: { duration: 4, repeat: Infinity, ease: "easeInOut", delay: i * 0.2 }
+                    }}
+                    className={`w-[85px] h-[85px] md:w-[95px] md:h-[95px] backdrop-blur-xl rounded-2xl flex items-center justify-center transition-all duration-500 border border-white/5 ${isHovered ? 'bg-surface-2 border-accent/50 shadow-[0_0_25px_rgba(234,88,12,0.3)]' : 'bg-surface-2/60 hover:bg-white/5 hover:border-white/20'}`}
+                  >
+                    <img
+                      src={icon.src}
+                      alt={`${icon.name} Logo`}
+                      className={`w-[45px] h-[45px] object-contain transition-all duration-300 drop-shadow-xl ${isHovered ? "scale-110 drop-shadow-[0_0_15px_rgba(234,88,12,0.6)]" : "opacity-80 grayscale-[30%]"}`}
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>';
+                        (e.target as HTMLImageElement).style.opacity = "0.3";
+                      }}
+                    />
+                  </motion.div>
+
+                  {/* High Tech Tooltip underneath */}
+                  <div className={`absolute -bottom-10 left-1/2 -translate-x-1/2 whitespace-nowrap bg-[#0a0a0a]/90 backdrop-blur-md font-fira-code text-accent border border-accent/20 text-[11px] px-3 py-1.5 rounded transition-all duration-300 pointer-events-none drop-shadow-lg ${isHovered ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2"}`}>
+                    {icon.name}
+                  </div>
+                </motion.div>
+              </div>
             );
           })}
-        </g>
-      </svg>
-
-      {/* Wrapping the icons inside the same scaling container so they perfectly match the SVG lines naturally */}
-      <div className="absolute inset-0 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] pointer-events-none scale-[0.6] sm:scale-75 md:scale-90 lg:scale-100 origin-center z-10">
-
-        {/* Central Focal Point (The Brand/Core) */}
-        <div 
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-auto"
-          onMouseEnter={() => setHoveredId(999)}
-          onMouseLeave={() => setHoveredId(null)}
-        >
-          <IconWrapper className="w-[120px] h-[120px] border-accent/40 bg-surface/90" isHighlighted={true}>
-            <div className="flex flex-col items-center justify-center h-full w-full">
-               {/* Pulse Ring Behind */}
-               <div className="absolute inset-0 bg-accent/10 rounded-2xl animate-ping opacity-30" />
-               <span className="text-accent font-unbounded font-bold text-xl leading-none">TECH</span>
-               <span className="text-white font-syne text-[11px] tracking-[0.25em] mt-1.5 opacity-80">STACK</span>
-            </div>
-          </IconWrapper>
         </div>
+      </motion.div>
 
-        {/* The Outer Planets (Icons) */}
-        {outerIcons.map((icon, i) => {
-          const angle = (-90 + i * (360 / outerIcons.length)) * (Math.PI / 180);
-          // 300 is the center since w=600 h=600
-          const x = 300 + radius * Math.cos(angle);
-          const y = 300 + radius * Math.sin(angle);
-          const isHovered = hoveredId === icon.id;
-
-          return (
-            <div
-              key={icon.id}
-              className="absolute pointer-events-auto transition-transform duration-500 z-20"
-              style={{ top: `${y}px`, left: `${x}px`, transform: `translate(-50%, -50%) ${isHovered ? 'scale(1.1)' : 'scale(1)'}` }}
-              onMouseEnter={() => setHoveredId(icon.id)}
-              onMouseLeave={() => setHoveredId(null)}
-            >
-              <div className="relative group">
-                {/* Visual Aura */}
-                <div
-                  className={`absolute inset-[-20px] bg-accent/30 rounded-full blur-2xl transition-all duration-500 -z-10 ${
-                    isHovered ? "opacity-100 scale-125" : "opacity-0 scale-90"
-                  }`}
-                />
-
-                <IconWrapper
-                  className="w-[80px] h-[80px] md:w-[90px] md:h-[90px]"
-                  isHovered={isHovered}
-                  animationDelay={i * 0.15}
-                >
-                  <img
-                    src={icon.src}
-                    alt={`${icon.name} Logo`}
-                    className={`w-[50px] h-[50px] object-contain transition-all duration-300 drop-shadow-xl ${
-                      isHovered ? "scale-110 drop-shadow-[0_0_15px_rgba(234,88,12,0.8)]" : "opacity-90 grayscale-[40%] hover:grayscale-0"
-                    }`}
-                    onError={(e) => {
-                      // Graceful fallback if image is totally missing
-                      (e.target as HTMLImageElement).src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>';
-                      (e.target as HTMLImageElement).style.opacity = "0.3";
-                    }}
-                  />
-                </IconWrapper>
-                
-                {/* Tooltip on hover */}
-                <div className={`absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap bg-black/80 font-fira-code text-accent border border-accent/30 text-[10px] px-2 py-1 rounded transition-all duration-300 pointer-events-none ${isHovered ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2"}`}>
-                  {icon.name}
-                </div>
-              </div>
-            </div>
-          );
-        })}
+      {/* 
+        Central Star (Fixed relative to the viewport container! Outside rotation layer.)
+      */}
+      <div 
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 scale-[0.65] sm:scale-75 md:scale-90 lg:scale-100"
+        onMouseEnter={() => setHoveredId(999)}
+        onMouseLeave={() => setHoveredId(null)}
+      >
+        <motion.div 
+          whileHover={{ scale: 1.05 }}
+          className="relative flex items-center justify-center cursor-crosshair transform-gpu"
+        >
+          {/* Intense breathing core glow */}
+          <motion.div 
+            animate={{ scale: [1, 1.05, 1], opacity: [0.6, 1, 0.6] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            className={`absolute inset-[-30px] rounded-full blur-[40px] -z-10 bg-accent/30`}
+          />
+          <div className="absolute inset-0 bg-accent/20 rounded-[28px] animate-ping opacity-20 -z-10" />
+          
+          <div className={`w-[140px] h-[140px] md:w-[150px] md:h-[150px] bg-background/95 backdrop-blur-xl border-accent/40 rounded-[28px] flex flex-col items-center justify-center border transition-all duration-500 shadow-[0_0_50px_rgba(234,88,12,0.25)] ${hoveredId === 999 ? 'border-accent shadow-[0_0_60px_rgba(234,88,12,0.5)] bg-surface' : ''}`}>
+             <motion.div 
+                animate={{ y: [0, -3, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                className="flex flex-col items-center"
+             >
+               <span className="text-white font-unbounded font-black text-2xl tracking-wide leading-none drop-shadow-[0_0_10px_rgba(234,88,12,0.8)]">TECH</span>
+               <span className="text-accent font-syne font-bold text-xs tracking-[0.3em] mt-2 opacity-90 drop-shadow-[0_0_10px_rgba(234,88,12,0.5)]">STACK</span>
+             </motion.div>
+          </div>
+        </motion.div>
       </div>
+
     </div>
   );
-};
-
-export default TechSpider;
+}

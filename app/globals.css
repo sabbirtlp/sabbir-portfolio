@@ -21,6 +21,7 @@
 
 html {
   scroll-behavior: auto; /* Lenis handles this */
+  scroll-padding-top: 100px; /* Offset for sticky navbar */
   background: #0a0a0a;
 }
 

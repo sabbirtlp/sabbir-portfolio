@@ -16,12 +16,12 @@ export async function POST(request: Request) {
     
     if (success !== true) {
       console.error("updateContent failed:", success);
-      return NextResponse.json({ error: "Failed to save content" }, { status: 500 });
+      return NextResponse.json({ error: `failed to save content: updateContent returned false. Check server logs.` }, { status: 500 });
     }
     
     return NextResponse.json({ message: "Content updated successfully" });
   } catch (error: any) {
     console.error("POST /api/admin/content error:", error);
-    return NextResponse.json({ error: error.message || "Failed to save content" }, { status: 500 });
+    return NextResponse.json({ error: `Failed to save content (Exception): ${error.message}` }, { status: 500 });
   }
 }

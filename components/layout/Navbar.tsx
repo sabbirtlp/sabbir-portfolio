@@ -5,8 +5,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import MagneticButton from "@/components/ui/MagneticButton";
+import { useActiveSection } from "@/hooks/useActiveSection";
 
 const navLinks = [
+  { label: "Home", href: "#home" },
   { label: "Work", href: "#work" },
   { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
@@ -19,6 +21,7 @@ import { useContent } from "@/components/providers/ContentProvider";
 export default function Navbar() {
   const { content } = useContent();
   const pathname = usePathname();
+  const activeSection = useActiveSection(navLinks.map((link) => link.href.substring(1)), "home");
   
   // Safe check to prevent dashboard crash on public access
   if (!content?.general || pathname?.startsWith("/admin") || pathname?.startsWith("/login")) return null;
@@ -74,17 +77,30 @@ export default function Navbar() {
 
           {/* Desktop Nav */}
           <ul className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <button
-                  onClick={() => handleNavClick(link.href)}
-                  className="text-text-secondary hover:text-white text-sm font-medium tracking-wide transition-colors duration-300 relative group cursor-pointer"
-                >
-                  {link.label}
-                  <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-accent transition-all duration-300 group-hover:w-full" />
-                </button>
-              </li>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.href.substring(1);
+              return (
+                <li key={link.href} className="relative">
+                  <button
+                    onClick={() => handleNavClick(link.href)}
+                    className={`text-sm font-medium tracking-wide transition-colors duration-300 relative group cursor-pointer ${
+                      isActive ? "text-accent" : "text-text-secondary hover:text-white"
+                    }`}
+                  >
+                    {link.label}
+                    {isActive ? (
+                      <motion.div
+                        layoutId="active-nav-indicator"
+                        className="absolute -bottom-1 left-0 right-0 h-0.5 bg-accent rounded-full glow-accent-sm"
+                        transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                      />
+                    ) : (
+                      <span className="absolute -bottom-1 left-0 w-0 h-px bg-accent/50 transition-all duration-300 group-hover:w-full" />
+                    )}
+                  </button>
+                </li>
+              );
+            })}
           </ul>
 
           {/* CTA */}
@@ -132,21 +148,34 @@ export default function Navbar() {
             className="fixed inset-0 z-[9980] bg-background/95 backdrop-blur-2xl flex flex-col items-center justify-center md:hidden"
           >
             <ul className="flex flex-col items-center gap-8">
-              {navLinks.map((link, i) => (
-                <motion.li
-                  key={link.href}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.08 }}
-                >
-                  <button
-                    onClick={() => handleNavClick(link.href)}
-                    className="font-syne text-4xl font-black text-white hover:text-accent transition-colors duration-300 cursor-pointer"
+              {navLinks.map((link, i) => {
+                const isActive = activeSection === link.href.substring(1);
+                return (
+                  <motion.li
+                    key={link.href}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.08 }}
+                    className="relative flex items-center justify-center"
                   >
-                    {link.label}
-                  </button>
-                </motion.li>
-              ))}
+                    {isActive && (
+                      <motion.div
+                        layoutId="mobile-active-indicator"
+                        className="absolute left-[-20px] w-2 h-2 rounded-full bg-accent glow-accent-sm"
+                        transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                      />
+                    )}
+                    <button
+                      onClick={() => handleNavClick(link.href)}
+                      className={`font-syne text-4xl font-black transition-colors duration-300 cursor-pointer ${
+                        isActive ? "text-accent" : "text-white hover:text-accent/80"
+                      }`}
+                    >
+                      {link.label}
+                    </button>
+                  </motion.li>
+                );
+              })}
               <motion.li
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
