@@ -52,7 +52,7 @@ export default function Testimonials() {
           <p className="text-text-secondary text-xs font-semibold uppercase tracking-widest mb-4">
             Client Love
           </p>
-          <h2 className="font-syne font-black text-display-md text-white leading-tight">
+          <h2 className="font-syne font-black text-3xl md:text-4xl lg:text-5xl text-white leading-tight">
             Trusted by <span className="text-gradient">100+ Clients</span>
           </h2>
         </motion.div>

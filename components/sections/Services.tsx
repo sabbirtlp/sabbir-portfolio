@@ -14,7 +14,6 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useContent } from "@/components/providers/ContentProvider";
-import { NeonGradientCard } from "@/components/ui/NeonGradientCard";
 
 const ICON_MAP: Record<string, any> = {
   Globe, Layout, ShoppingCart, Zap, Search, Palette, RefreshCw, BarChart3
@@ -47,7 +46,7 @@ export default function Services() {
           <p className="text-text-secondary text-xs font-semibold uppercase tracking-widest mb-4">
             What I Do
           </p>
-          <h2 className="font-syne font-semibold text-display-md text-white leading-tight">
+          <h2 className="font-syne font-semibold text-3xl md:text-4xl lg:text-5xl text-white leading-tight">
             Services That <span className="text-gradient">Drive Growth</span>
           </h2>
         </motion.div>
@@ -64,24 +63,24 @@ export default function Services() {
                 transition={{ duration: 0.6, delay: i * 0.08, ease: [0.25, 0.1, 0.25, 1] as const }}
                 className="h-full"
               >
-                <NeonGradientCard 
-                  className="h-full" 
-                  borderWidth={service.highlight ? 1.5 : 1}
-                  borderRadius={24}
-                >
-                  <div className="group relative h-full p-8 transition-all duration-500 cursor-default flex flex-col items-start bg-surface-2/40 backdrop-blur-sm">
-                    {/* Glow on hover */}
-                    <div className="absolute inset-0 bg-accent/0 group-hover:bg-accent/[0.03] transition-all duration-500 pointer-events-none" />
+                <div className="group relative h-full rounded-[24px] overflow-hidden border border-white/5 bg-surface-2/40 backdrop-blur-sm transition-all duration-500 hover:border-white/10 hover:shadow-[0_8px_30px_rgb(0,0,0,0.5)] hover:-translate-y-1">
+                  
+                  {/* Premium Inner Hover Glow (Darker, sophisticated) */}
+                  <div className="absolute inset-0 transition-opacity duration-500 opacity-0 group-hover:opacity-100 pointer-events-none z-0">
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-accent/10 rounded-full blur-[80px] -translate-y-1/4 translate-x-1/4" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-accent/[0.03]" />
+                  </div>
 
+                  <div className="relative h-full p-8 flex flex-col items-start z-10">
                     {/* Highlight badge */}
                     {service.highlight && (
-                      <span className="absolute top-6 right-6 px-2.5 py-0.5 rounded-full bg-accent/20 text-accent text-[9px] font-semibold uppercase tracking-widest border border-accent/20 z-20">
+                      <span className="absolute top-6 right-6 px-2.5 py-0.5 rounded-full bg-accent/20 text-accent text-[9px] font-semibold uppercase tracking-widest border border-accent/20">
                         {service.highlight}
                       </span>
                     )}
 
                     {/* Icon */}
-                    <div className="w-10 h-10 rounded-lg bg-surface border border-white/5 flex items-center justify-center mb-6 group-hover:border-accent/30 transition-all duration-400">
+                    <div className="w-10 h-10 rounded-lg bg-surface border border-white/5 flex items-center justify-center mb-6 group-hover:border-accent/30 transition-all duration-500 group-hover:shadow-[0_0_15px_rgba(234,88,12,0.15)]">
                       <Icon className="w-4 h-4 text-text-secondary group-hover:text-accent transition-colors duration-300" />
                     </div>
 
@@ -90,18 +89,23 @@ export default function Services() {
                         {service.title}
                       </h3>
                     </Link>
-                    <p className="text-text-secondary text-sm leading-relaxed mb-8 flex-grow font-medium opacity-80 group-hover:opacity-100 transition-opacity whitespace-pre-wrap">{service.description}</p>
+                    <p className="text-text-secondary text-sm leading-relaxed mb-8 flex-grow font-medium opacity-80 group-hover:opacity-100 transition-opacity whitespace-pre-wrap">
+                      {service.description}
+                    </p>
 
                     {/* Arrow CTA */}
                     <Link 
                       href={`/services/${service.slug}`}
-                      className="mt-auto flex items-center gap-2 text-accent text-[10px] font-semibold uppercase tracking-widest transition-all duration-300 group/link"
+                      className="mt-auto flex items-center gap-2 text-accent/80 group-hover:text-accent text-[10px] font-semibold uppercase tracking-widest transition-all duration-300 group/link z-20"
                     >
-                      <span>Explore Service</span>
+                      <span className="relative">
+                        Explore Service
+                        <span className="absolute left-0 -bottom-1 w-0 h-px bg-accent transition-all duration-300 group-hover/link:w-full" />
+                      </span>
                       <span className="transition-transform duration-300 group-hover/link:translate-x-1">→</span>
                     </Link>
                   </div>
-                </NeonGradientCard>
+                </div>
               </motion.div>
             );
           })}

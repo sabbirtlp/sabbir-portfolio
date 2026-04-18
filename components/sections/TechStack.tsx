@@ -25,7 +25,7 @@ export default function TechStack() {
           <p className="text-accent text-[10px] md:text-xs font-unbounded uppercase tracking-[0.2em] mb-4">
             My Ecosystem
           </p>
-          <h2 className="font-syne font-semibold text-display-md md:text-display-lg text-white leading-tight mb-6 max-w-2xl text-center">
+          <h2 className="font-syne font-semibold text-3xl md:text-4xl lg:text-5xl text-white leading-tight mb-6 max-w-2xl text-center">
             A Modern Stack For <br className="hidden sm:block" />
             <span className="text-gradient">Performance & Growth</span>
           </h2>

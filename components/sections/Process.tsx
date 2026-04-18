@@ -62,7 +62,7 @@ export default function Process() {
           <p className="text-text-secondary text-xs font-semibold uppercase tracking-widest mb-4">
             How I Work
           </p>
-          <h2 className="font-syne font-black text-display-md text-white leading-tight">
+          <h2 className="font-syne font-black text-3xl md:text-4xl lg:text-5xl text-white leading-tight">
             My Proven <span className="text-gradient">Process</span>
           </h2>
         </motion.div>

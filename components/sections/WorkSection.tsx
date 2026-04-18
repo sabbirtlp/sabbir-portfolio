@@ -174,7 +174,7 @@ export default function WorkSection() {
           <p className="text-text-secondary text-[10px] md:text-xs font-semibold uppercase tracking-widest mb-4">
             Selected Work
           </p>
-          <h2 className="font-syne font-semibold text-display-md text-white leading-tight">
+          <h2 className="font-syne font-semibold text-3xl md:text-4xl lg:text-5xl text-white leading-tight">
             Case Studies <span className="text-gradient">2020—2024</span>
           </h2>
         </div>

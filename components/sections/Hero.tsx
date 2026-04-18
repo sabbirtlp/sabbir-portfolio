@@ -325,14 +325,14 @@ export default function Hero() {
               <div className="overflow-hidden">
                 <div className="flex flex-wrap justify-start gap-x-4 md:gap-x-6 gap-y-2">
                   <div className="overflow-hidden">
-                    <span className="word inline-block font-syne font-semibold text-display-lg md:text-display-xl text-white">
+                    <span className="word inline-block font-syne font-semibold text-2xl text-white">
                       Crafting
                     </span>
                   </div>
                   {headlineWords.map((word: string, i: number) => (
                     <div key={i} className="overflow-hidden">
                       <span
-                        className={`word inline-block font-syne font-semibold text-display-lg md:text-display-xl ${
+                        className={`word inline-block font-syne font-semibold text-2xl ${
                           word === "High-Converting" ? "text-gradient" : "text-white"
                         }`}
                       >

@@ -96,7 +96,7 @@ export default function About() {
 
             <motion.h2
               variants={itemVariants}
-              className="font-syne font-semibold text-display-md text-white leading-tight mb-6"
+              className="font-syne font-semibold text-3xl md:text-4xl lg:text-5xl text-white leading-tight mb-6"
             >
               I Build Websites
               <span className="text-gradient block">That Actually Work</span>
