@@ -25,10 +25,10 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
   useEffect(() => {
     const update = () => {
       const w = window.innerWidth;
-      if (w < 400)       { setRadius(95);  setCardSize(52); }
-      else if (w < 640)  { setRadius(128); setCardSize(62); }
+      if (w < 400) { setRadius(95); setCardSize(52); }
+      else if (w < 640) { setRadius(128); setCardSize(62); }
       else if (w < 1024) { setRadius(180); setCardSize(72); }
-      else               { setRadius(240); setCardSize(84); }
+      else { setRadius(240); setCardSize(84); }
     };
     update();
     window.addEventListener("resize", update);
@@ -92,7 +92,7 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
         {/* Mesh ring */}
         {meshConnections.map((conn, i) => {
           const from = iconPositions[conn.from];
-          const to   = iconPositions[conn.to];
+          const to = iconPositions[conn.to];
           const active =
             isCoreHovered ||
             hoveredId === from?.id ||
@@ -101,7 +101,7 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
             <motion.line
               key={`mesh-${i}`}
               x1={300 + from?.x} y1={300 + from?.y}
-              x2={300 + to?.x}   y2={300 + to?.y}
+              x2={300 + to?.x} y2={300 + to?.y}
               stroke={active ? "#ff6a00" : "#ffffff"}
               strokeWidth="0.3"
               animate={{ opacity: active ? 0.25 : 0.02 }}
@@ -113,14 +113,14 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
 
       {/* ── Icon pods: float in place, NEVER rotate ── */}
       {iconPositions.map((pos, i) => {
-        const isHovered     = hoveredId === pos.id;
-        const neighborGlow  = isNeighbor(i);
+        const isHovered = hoveredId === pos.id;
+        const neighborGlow = isNeighbor(i);
 
         // Unique organic float params per icon
-        const dur   = 5 + (i % 5) * 0.8;
+        const dur = 5 + (i % 5) * 0.8;
         const delay = i * 0.35;
-        const yAmp  = 6 + (i % 3) * 2;
-        const xAmp  = 3 + (i % 4) * 1.5;
+        const yAmp = 6 + (i % 3) * 2;
+        const xAmp = 3 + (i % 4) * 1.5;
 
         return (
           <div
@@ -131,8 +131,8 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
             {/* Floating wrapper — translate only, no rotation */}
             <motion.div
               animate={{
-                y:     [0, -yAmp, 0, yAmp * 0.4, 0],
-                x:     [0, xAmp, 0, -xAmp * 0.6, 0],
+                y: [0, -yAmp, 0, yAmp * 0.4, 0],
+                x: [0, xAmp, 0, -xAmp * 0.6, 0],
                 scale: [1, 1.04, 1, 1.02, 1],
               }}
               transition={{
@@ -147,12 +147,12 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
                 onMouseEnter={() => setHoveredId(pos.id)}
                 onMouseLeave={() => setHoveredId(null)}
                 animate={{
-                  scale:     isHovered ? 1.15 : 1,
+                  scale: isHovered ? 1.15 : 1,
                   boxShadow: isHovered
                     ? "0 0 24px rgba(255,106,0,0.35)"
                     : (neighborGlow || isCoreHovered)
-                    ? "0 0 12px rgba(255,106,0,0.15)"
-                    : "0 0 0px rgba(0,0,0,0)",
+                      ? "0 0 12px rgba(255,106,0,0.15)"
+                      : "0 0 0px rgba(0,0,0,0)",
                 }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
                 className={cn(
@@ -162,8 +162,8 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
                   isHovered
                     ? "bg-[#161616] border-[#ff6a00]/40"
                     : (neighborGlow || isCoreHovered)
-                    ? "bg-[#111]/60 border-[#ff6a00]/15"
-                    : "bg-[#0f0f0f]/70 border-white/5"
+                      ? "bg-[#111]/60 border-[#ff6a00]/15"
+                      : "bg-[#0f0f0f]/70 border-white/5"
                 )}
                 style={{ width: cardSize, height: cardSize }}
               >
