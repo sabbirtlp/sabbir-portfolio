@@ -1,14 +1,21 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useContent } from "@/components/providers/ContentProvider";
 import TechSpider from "@/components/ui/TechSpider";
 
 export default function TechStack() {
   const { content } = useContent();
   const ref = useRef<HTMLElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+
+  const glowOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.2, 0.5, 0.2]);
+  const glowScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1.2, 0.8]);
 
   const techStackData = content?.techStack || {
     title: "TECH",
@@ -20,40 +27,23 @@ export default function TechStack() {
     <section ref={ref} id="tech-stack" className="relative py-16 md:py-24 lg:py-32 overflow-hidden bg-[#0b0b0b]">
       {/* 1. Cinematic Background Layer */}
       <div className="absolute inset-0 z-0">
-        {/* Deep Ambient Glows */}
-        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[120px] opacity-20" />
-        <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-accent/5 rounded-full blur-[150px] opacity-10" />
+        {/* Strong Soft Orange Radial Glow behind center - Calm & Elegant */}
+        <motion.div 
+          style={{ 
+            opacity: glowOpacity,
+            scale: glowScale
+          }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[900px] aspect-square bg-[#ff6a00]/20 rounded-full blur-[180px] pointer-events-none" 
+        />
         
-        {/* Subtle Grid Pattern */}
+        {/* Very Subtle Grid Pattern */}
         <div 
-          className="absolute inset-0 opacity-[0.03]" 
+          className="absolute inset-0 opacity-[0.02]" 
           style={{ 
             backgroundImage: "radial-gradient(circle, #ff6a00 0.5px, transparent 0.5px)",
-            backgroundSize: "40px 40px" 
+            backgroundSize: "60px 60px" 
           }} 
         />
-
-        {/* Floating Particle Elements (Cinematic) */}
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            initial={{ 
-              x: Math.random() * 100 + "%", 
-              y: Math.random() * 100 + "%",
-              opacity: Math.random() * 0.3
-            }}
-            animate={{ 
-              y: [Math.random() * 100 + "%", Math.random() * 100 + "%"],
-              x: [Math.random() * 100 + "%", Math.random() * 100 + "%"]
-            }}
-            transition={{ 
-              duration: 20 + Math.random() * 20, 
-              repeat: Infinity, 
-              ease: "linear" 
-            }}
-            className="absolute w-1 h-1 bg-accent/20 rounded-full blur-sm"
-          />
-        ))}
       </div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10 flex flex-col items-center">

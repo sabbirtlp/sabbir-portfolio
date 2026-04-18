@@ -30,7 +30,7 @@ export default function TechSpider({
   
   const containerRef = useRef<HTMLDivElement>(null);
   
-  // 1. Scroll-Based Rotation with Inertia/Spring
+  // 1. Scroll-Based Rotation ONLY (No Continuous Idle)
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"]
@@ -38,8 +38,8 @@ export default function TechSpider({
   
   const rawScrollRotation = useTransform(scrollYProgress, [0, 1], [0, 180]);
   const scrollRotation = useSpring(rawScrollRotation, {
-    stiffness: 100,
-    damping: 30,
+    stiffness: 80, // Slightly softer for "calm" feel
+    damping: 25,
     restDelta: 0.001
   });
 
@@ -48,17 +48,17 @@ export default function TechSpider({
     const handleResize = () => {
       const width = window.innerWidth;
       if (width < 450) {
-        setRadius(110);
-        setCardSize(56);
+        setRadius(105);
+        setCardSize(54);
       } else if (width < 640) {
-        setRadius(140);
-        setCardSize(64);
+        setRadius(135);
+        setCardSize(62);
       } else if (width < 1024) {
-        setRadius(190);
-        setCardSize(72);
+        setRadius(185);
+        setCardSize(70);
       } else {
         setRadius(240);
-        setCardSize(84);
+        setCardSize(82);
       }
     };
     handleResize();
@@ -122,30 +122,28 @@ export default function TechSpider({
       ref={containerRef}
       className={cn("relative w-full aspect-square max-w-[700px] flex items-center justify-center select-none", className)}
     >
-      {/* 2. Global Rotation Layers (Idle + Scroll) */}
+      {/* 2. Rotating Icon & Mesh Layer */}
       <motion.div 
-        animate={{ rotate: 360 }}
-        transition={{ duration: 100, repeat: Infinity, ease: "linear" }}
         style={{ rotate: scrollRotation }}
-        className="relative w-full h-full flex items-center justify-center"
+        className="absolute inset-0 flex items-center justify-center"
       >
         <svg 
           className="absolute inset-0 w-full h-full pointer-events-none overflow-visible" 
           viewBox="0 0 600 600"
         >
-          {/* Neural Mesh Render */}
+          {/* Neural Mesh Render - Ultra Thin & Subtle */}
           {iconPositions.map((pos, i) => {
              const active = isCoreHovered || hoveredId === pos.id;
              return (
                <motion.line
                  key={`hub-${pos.id}`}
                  animate={{ 
-                   opacity: active ? 0.6 : 0.05,
+                   opacity: active ? 0.4 : 0.03,
                    stroke: active ? "#ff6a00" : "#ffffff" 
                  }}
                  x1="300" y1="300" 
                  x2={300 + pos.x} y2={300 + pos.y}
-                 strokeWidth="0.5"
+                 strokeWidth="0.3"
                />
              );
           })}
@@ -159,40 +157,13 @@ export default function TechSpider({
                 key={`mesh-${i}`}
                 d={`M ${300 + from.x} ${300 + from.y} L ${300 + to.x} ${300 + to.y}`}
                 stroke={active ? "#ff6a00" : "#ffffff"}
-                strokeWidth="0.5"
-                strokeOpacity={active ? 0.4 : 0.03}
+                strokeWidth="0.3"
+                strokeOpacity={active ? 0.3 : 0.02}
                 fill="none"
               />
             );
           })}
         </svg>
-
-        {/* Central Core: Premium Square Glass Node */}
-        <motion.div
-          onMouseEnter={() => setIsCoreHovered(true)}
-          onMouseLeave={() => setIsCoreHovered(false)}
-          animate={{ scale: isCoreHovered ? 1.05 : 1 }}
-          className={cn(
-            "relative z-20 flex flex-col items-center justify-center rounded-[2rem] sm:rounded-[2.5rem] transition-all duration-700 bg-black/40 backdrop-blur-xl border border-white/10",
-            isCoreHovered && "border-accent/50 shadow-[0_0_50px_rgba(255,106,0,0.2)]"
-          )}
-          style={{ width: radius * 0.75, height: radius * 0.75 }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
-          <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,_#ff6a00_0%,_transparent_100%)]" />
-          
-          <div className="relative z-10 flex flex-col items-center leading-none">
-            <span className="text-white font-unbounded font-black text-2xl sm:text-3xl md:text-5xl tracking-tighter uppercase">
-              TECH
-            </span>
-            <span className="font-unbounded font-medium text-[8px] sm:text-[9px] md:text-[10px] tracking-[0.5em] text-accent uppercase mt-2">
-              STACK
-            </span>
-          </div>
-
-          {/* Core Inner Glow */}
-          <div className="absolute inset-4 rounded-[1.5rem] border border-[#ff6a00]/10" />
-        </motion.div>
 
         {/* Luxury Icon Pods */}
         {iconPositions.map((pos, i) => {
@@ -202,29 +173,29 @@ export default function TechSpider({
           return (
             <motion.div
               key={pos.id}
-              animate={{ x: pos.x, y: pos.y, scale: isHovered ? 1.15 : 1 }}
+              animate={{ x: pos.x, y: pos.y, scale: isHovered ? 1.1 : 1 }}
               onMouseEnter={() => setHoveredId(pos.id)}
               onMouseLeave={() => setHoveredId(null)}
               className="absolute z-10"
             >
-              {/* Individual "Dulbe" and Breathing Scale */}
+              {/* Individual Multi-Axis "Dulbe" and Breathing Scale */}
               <motion.div
                 animate={{
-                  y: [0, -6, 0],
-                  x: [0, 4, 0],
-                  scale: [1, 1.05, 1],
-                  rotate: [0, 2, 0, -2, 0]
+                  y: [0, -4, 0],
+                  x: [0, 3, 0],
+                  scale: [1, 1.03, 1],
+                  rotate: [0, 1.5, 0, -1.5, 0]
                 }}
                 transition={{ 
-                  duration: 6 + (i % 4), 
+                  duration: 8 + (i % 5), 
                   repeat: Infinity, 
                   ease: "easeInOut",
-                  delay: i * 0.2
+                  delay: i * 0.4
                 }}
                 className={cn(
                   "relative group rounded-[1.5rem] sm:rounded-[2rem] flex items-center justify-center transition-all duration-700 cursor-pointer",
-                  "bg-black/20 backdrop-blur-md border border-white/5",
-                  isHovered || isCoreHovered ? "border-accent/40 bg-black/40 shadow-[0_0_30px_rgba(255,106,0,0.15)]" : "hover:border-white/20"
+                  "bg-black/10 backdrop-blur-md border border-white/5",
+                  isHovered || isCoreHovered ? "border-accent/30 bg-black/30 shadow-[0_0_20px_rgba(255,106,0,0.1)]" : "hover:border-white/10"
                 )}
                 style={{ width: cardSize, height: cardSize }}
               >
@@ -234,22 +205,22 @@ export default function TechSpider({
                   alt={pos.name} 
                   className={cn(
                     "object-contain transition-all duration-700",
-                    isHovered || isCoreHovered ? "saturate-100 opacity-100 scale-110 drop-shadow-[0_0_15px_rgba(255,106,0,0.4)]" : "saturate-[0.8] opacity-60"
+                    isHovered || isCoreHovered ? "saturate-100 opacity-100 scale-105" : "saturate-[0.9] opacity-50"
                   )} 
-                  style={{ width: cardSize * 0.55, height: cardSize * 0.55 }}
+                  style={{ width: cardSize * 0.5, height: cardSize * 0.5 }}
                 />
 
                 {/* Minimal High-End Tooltip */}
                 <AnimatePresence>
                   {isHovered && (
                     <motion.div
-                      initial={{ opacity: 0, y: 10, scale: 0.8 }}
-                      animate={{ opacity: 1, y: -cardSize - 10, scale: 1 }}
-                      exit={{ opacity: 0, y: 10, scale: 0.8 }}
-                      className="absolute whitespace-nowrap px-4 py-2 rounded-xl bg-black/80 backdrop-blur-xl border border-white/10 text-white font-fira-code text-[10px] uppercase tracking-widest shadow-2xl pointer-events-none z-[100]"
+                      initial={{ opacity: 0, y: 5, scale: 0.95 }}
+                      animate={{ opacity: 1, y: -cardSize - 8, scale: 1 }}
+                      exit={{ opacity: 0, y: 5, scale: 0.95 }}
+                      className="absolute whitespace-nowrap px-3 py-1.5 rounded-lg bg-black/90 backdrop-blur-xl border border-white/10 text-white font-fira-code text-[9px] uppercase tracking-[0.2em] shadow-2xl pointer-events-none z-[100]"
                     >
                       {pos.name}
-                      <div className="absolute top-full left-1/2 -translate-x-1/2 border-8 border-transparent border-t-black/80" />
+                      <div className="absolute top-full left-1/2 -translate-x-1/2 border-6 border-transparent border-t-black/90" />
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -258,6 +229,40 @@ export default function TechSpider({
           );
         })}
       </motion.div>
+
+      {/* 3. COMPLETELY STABLE CENTER CORE */}
+      <div className="relative z-20 flex items-center justify-center">
+        <motion.div
+          onMouseEnter={() => setIsCoreHovered(true)}
+          onMouseLeave={() => setIsCoreHovered(false)}
+          animate={{ scale: isCoreHovered ? 1.03 : 1 }}
+          className={cn(
+            "relative flex flex-col items-center justify-center rounded-[2rem] sm:rounded-[2.5rem] transition-all duration-700 bg-black/30 backdrop-blur-2xl border border-white/10",
+            isCoreHovered && "border-accent/40 shadow-[0_0_40px_rgba(255,106,0,0.15)]"
+          )}
+          style={{ width: radius * 0.72, height: radius * 0.72 }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
+          
+          <div className="relative z-10 flex flex-col items-center leading-none">
+            <motion.span 
+              animate={{ opacity: isCoreHovered ? 1 : 0.8 }}
+              className="text-white font-unbounded font-black text-2xl sm:text-3xl md:text-5xl tracking-tighter uppercase"
+            >
+              TECH
+            </motion.span>
+            <span className="font-unbounded font-medium text-[8px] sm:text-[9px] md:text-[10px] tracking-[0.4em] text-accent uppercase mt-2">
+              STACK
+            </span>
+          </div>
+
+          {/* Stable Inner Accent */}
+          <div className="absolute inset-6 rounded-[1.5rem] border border-white/5 pointer-events-none" />
+          
+          {/* Intense Stable Center Glow (behind text) */}
+          <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,_rgba(255,106,0,0.15)_0%,_transparent_70%)] opacity-50" />
+        </motion.div>
+      </div>
     </div>
   );
 }
