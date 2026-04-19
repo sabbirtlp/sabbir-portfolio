@@ -91,17 +91,17 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
         const ni = (ci + 1) % icons.length;
         const { tx, ty } = getPos(ni);
 
-        // Burst 24 particles from next icon
-        for (let i = 0; i < 24; i++) {
-          const speed = Math.random() * 2.2 + 0.4;
+        // Burst 45 particles from next icon
+        for (let i = 0; i < 45; i++) {
+          const speed = Math.random() * 2.8 + 0.5;
           const dir = Math.random() * Math.PI * 2;
-          const life = Math.random() * 55 + 25;
+          const life = Math.random() * 65 + 35;
           particlesRef.current.push({
             x: SVG_CENTER + tx,
             y: SVG_CENTER + ty,
             vx: Math.cos(dir) * speed,
             vy: Math.sin(dir) * speed,
-            size: Math.random() * 2 + 0.5,
+            size: Math.random() * 2.5 + 0.5,
             life,
             maxLife: life,
           });
@@ -117,21 +117,21 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
   useEffect(() => {
     if (!isCoreHovered) return;
     const bubbleInterval = setInterval(() => {
-      for (let i = 0; i < 3; i++) {
-        const speed = Math.random() * 2 + 0.8;
+      for (let i = 0; i < 7; i++) {
+        const speed = Math.random() * 3 + 1.2;
         const dir   = Math.random() * Math.PI * 2;
-        const life  = Math.random() * 50 + 20;
+        const life  = Math.random() * 60 + 25;
         particlesRef.current.push({
           x: SVG_CENTER,
           y: SVG_CENTER,
           vx: Math.cos(dir) * speed,
           vy: Math.sin(dir) * speed,
-          size: Math.random() * 3 + 0.5,
+          size: Math.random() * 3.5 + 0.8,
           life,
           maxLife: life,
         });
       }
-    }, 60); // fast continuous bubbling
+    }, 45); // faster, heavier continuous bubbling
 
     return () => clearInterval(bubbleInterval);
   }, [isCoreHovered]);
@@ -252,14 +252,14 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
             setHoveredId(icon.id);
             // Burst particles on hover entry
             const { tx: ptx, ty: pty } = getPos(i);
-            for (let k = 0; k < 30; k++) {
-              const speed = Math.random() * 2.8 + 0.5;
+            for (let k = 0; k < 60; k++) {
+              const speed = Math.random() * 3.5 + 0.8;
               const dir   = Math.random() * Math.PI * 2;
-              const life  = Math.random() * 50 + 30;
+              const life  = Math.random() * 60 + 40;
               particlesRef.current.push({
                 x: SVG_CENTER + ptx, y: SVG_CENTER + pty,
                 vx: Math.cos(dir) * speed, vy: Math.sin(dir) * speed,
-                size: Math.random() * 2.5 + 0.5, life, maxLife: life,
+                size: Math.random() * 3.0 + 0.5, life, maxLife: life,
               });
             }
           };
