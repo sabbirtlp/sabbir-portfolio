@@ -360,6 +360,7 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
                   </div>
                 </div>
               </div>
+              </div>
             </div>
           );
         })}
