@@ -93,8 +93,8 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
         const ni = (ci + 1) % icons.length;
         const { tx, ty } = getPos(ni);
 
-        // Burst 55 particles from next icon, wide spread
-        for (let i = 0; i < 55; i++) {
+        // Burst 160 particles from next icon, wide spread, dense
+        for (let i = 0; i < 160; i++) {
           const speed = Math.random() * 6.5 + 1.5;
           const dir = Math.random() * Math.PI * 2;
           const life = Math.random() * 100 + 40;
@@ -103,7 +103,7 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
             y: CANVAS_CENTER + ty,
             vx: Math.cos(dir) * speed,
             vy: Math.sin(dir) * speed,
-            size: Math.random() * 2.8 + 0.5,
+            size: Math.random() * 3.0 + 0.6,
             life,
             maxLife: life,
           });
