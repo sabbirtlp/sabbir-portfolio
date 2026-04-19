@@ -95,7 +95,7 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
 
         // Burst particles from next icon, wide spread, dense
         // Lower count on mobile to preserve CPU performance
-        const particleCount = window.innerWidth < 768 ? 40 : 160;
+        const particleCount = window.innerWidth < 768 ? 40 : 90;
         for (let i = 0; i < particleCount; i++) {
           const speed = Math.random() * 6.5 + 1.5;
           const dir = Math.random() * Math.PI * 2;
@@ -122,7 +122,7 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
     if (!isCoreHovered) return;
     const bubbleInterval = setInterval(() => {
       // Lower continuous particle volume on mobile
-      const particleCount = window.innerWidth < 768 ? 2 : 7;
+      const particleCount = window.innerWidth < 768 ? 2 : 4;
       for (let i = 0; i < particleCount; i++) {
         const speed = Math.random() * 8.0 + 3.0; // Extreme speed
         const dir   = Math.random() * Math.PI * 2;
@@ -258,7 +258,7 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
             setHoveredId(icon.id);
             // Burst mega particles on hover entry
             // Lower limit on mobile for smoothness
-            const particleCount = window.innerWidth < 768 ? 25 : 80;
+            const particleCount = window.innerWidth < 768 ? 25 : 50;
             const { tx: ptx, ty: pty } = getPos(i);
             for (let k = 0; k < particleCount; k++) {
               const speed = Math.random() * 11.5 + 2.0; // Explosion speed
