@@ -68,11 +68,8 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
         const alpha = p.life / p.maxLife;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 106, 0, ${alpha * 0.8})`;
-        ctx.shadowBlur = 6;
-        ctx.shadowColor = ORANGE;
+        ctx.fillStyle = `rgba(255, 106, 0, ${alpha})`;
         ctx.fill();
-        ctx.shadowBlur = 0;
         return true;
       });
       frameRef.current = requestAnimationFrame(render);
@@ -95,7 +92,7 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
 
         // Burst particles from next icon, wide spread, dense
         // Lower count on mobile to preserve CPU performance
-        const particleCount = window.innerWidth < 768 ? 40 : 90;
+        const particleCount = window.innerWidth < 768 ? 15 : 45;
         for (let i = 0; i < particleCount; i++) {
           const speed = Math.random() * 6.5 + 1.5;
           const dir = Math.random() * Math.PI * 2;
@@ -122,7 +119,7 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
     if (!isCoreHovered) return;
     const bubbleInterval = setInterval(() => {
       // Lower continuous particle volume on mobile
-      const particleCount = window.innerWidth < 768 ? 2 : 4;
+      const particleCount = window.innerWidth < 768 ? 2 : 3;
       for (let i = 0; i < particleCount; i++) {
         const speed = Math.random() * 8.0 + 3.0; // Extreme speed
         const dir   = Math.random() * Math.PI * 2;
@@ -137,7 +134,7 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
           maxLife: life,
         });
       }
-    }, 45); // faster, heavier continuous bubbling
+    }, 150); // optimized continuous bubbling interval
 
     return () => clearInterval(bubbleInterval);
   }, [isCoreHovered]);
@@ -258,7 +255,7 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
             setHoveredId(icon.id);
             // Burst mega particles on hover entry
             // Lower limit on mobile for smoothness
-            const particleCount = window.innerWidth < 768 ? 25 : 50;
+            const particleCount = window.innerWidth < 768 ? 15 : 35;
             const { tx: ptx, ty: pty } = getPos(i);
             for (let k = 0; k < particleCount; k++) {
               const speed = Math.random() * 11.5 + 2.0; // Explosion speed
