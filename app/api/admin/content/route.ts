@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { getContent, updateContent } from "@/lib/storage";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   const content = await getContent();
   if (!content) {
