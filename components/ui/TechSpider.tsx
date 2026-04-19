@@ -20,16 +20,18 @@ interface Particle {
   size: number; life: number; maxLife: number;
 }
 
-const SVG_SIZE   = 560;
+const SVG_SIZE = 440;
 const SVG_CENTER = SVG_SIZE / 2;
-const RADIUS     = 210;
-const ORANGE     = "#ff6a00";
+const RADIUS = 165;
+const ORANGE = "#ff6a00";
 
 export default function TechSpider({ icons = [], className }: TechSpiderProps) {
-  const [activeId, setActiveId] = useState<number>(icons[0]?.id ?? 0);
+  const [activeId, setActiveId]   = useState<number>(icons[0]?.id ?? 0);
+  const [hoveredId, setHoveredId] = useState<number | null>(null);
   const canvasRef    = useRef<HTMLCanvasElement>(null);
   const particlesRef = useRef<Particle[]>([]);
   const frameRef     = useRef<number>(0);
+  const isPausedRef  = useRef<boolean>(false);  // pause auto-cycle on hover
 
   const numIcons = icons.length;
 
@@ -37,8 +39,8 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
     (index: number) => {
       const angle = (-90 + index * (360 / numIcons)) * (Math.PI / 180);
       return {
-        tx:   RADIUS * Math.cos(angle),
-        ty:   RADIUS * Math.sin(angle),
+        tx: RADIUS * Math.cos(angle),
+        ty: RADIUS * Math.sin(angle),
         svgX: SVG_CENTER + RADIUS * Math.cos(angle),
         svgY: SVG_CENTER + RADIUS * Math.sin(angle),
       };
@@ -64,7 +66,7 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(255, 106, 0, ${alpha * 0.8})`;
-        ctx.shadowBlur  = 6;
+        ctx.shadowBlur = 6;
         ctx.shadowColor = ORANGE;
         ctx.fill();
         ctx.shadowBlur = 0;
@@ -82,6 +84,7 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
     setActiveId(icons[0].id);
 
     const interval = setInterval(() => {
+      if (isPausedRef.current) return;   // paused while user is hovering
       setActiveId((prevId) => {
         const ci = icons.findIndex((ic) => ic.id === prevId);
         const ni = (ci + 1) % icons.length;
@@ -90,14 +93,14 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
         // Burst 24 particles from next icon
         for (let i = 0; i < 24; i++) {
           const speed = Math.random() * 2.2 + 0.4;
-          const dir   = Math.random() * Math.PI * 2;
-          const life  = Math.random() * 55 + 25;
+          const dir = Math.random() * Math.PI * 2;
+          const life = Math.random() * 55 + 25;
           particlesRef.current.push({
-            x:       SVG_CENTER + tx,
-            y:       SVG_CENTER + ty,
-            vx:      Math.cos(dir) * speed,
-            vy:      Math.sin(dir) * speed,
-            size:    Math.random() * 2 + 0.5,
+            x: SVG_CENTER + tx,
+            y: SVG_CENTER + ty,
+            vx: Math.cos(dir) * speed,
+            vy: Math.sin(dir) * speed,
+            size: Math.random() * 2 + 0.5,
             life,
             maxLife: life,
           });
@@ -115,7 +118,7 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
     <div
       className={cn(
         "relative select-none flex-shrink-0",
-        "scale-[0.52] sm:scale-[0.68] md:scale-[0.84] lg:scale-100",
+        "scale-[0.68] sm:scale-[0.80] md:scale-90 lg:scale-100",
         className
       )}
       style={{ width: SVG_SIZE, height: SVG_SIZE }}
@@ -163,20 +166,22 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
           {icons.map((a, i) =>
             icons.map((b, j) => {
               if (i >= j) return null;
-              const p1       = getPos(i);
-              const p2       = getPos(j);
-              const isActive = activeId === a.id || activeId === b.id;
+              const p1 = getPos(i);
+              const p2 = getPos(j);
+              const displayActiveId = hoveredId ?? activeId;
+              const isActive = displayActiveId === a.id || displayActiveId === b.id;
+              const isHoverActive = hoveredId !== null && (hoveredId === a.id || hoveredId === b.id);
               return (
                 <line
                   key={`ln-${i}-${j}`}
                   x1={p1.svgX} y1={p1.svgY}
                   x2={p2.svgX} y2={p2.svgY}
-                  strokeWidth={isActive ? "1.6" : "0.5"}
+                  strokeWidth={isHoverActive ? "2.2" : isActive ? "1.6" : "0.5"}
                   style={{
-                    stroke:     isActive ? ORANGE : "#ffffff",
-                    opacity:    isActive ? 0.85   : 0.13,
-                    filter:     isActive ? "url(#ts-glow)" : "none",
-                    transition: "stroke 1.2s ease-in-out, opacity 1.2s ease-in-out, stroke-width 1.2s ease-in-out, filter 1.2s ease-in-out",
+                    stroke:   isActive ? ORANGE : "#ffffff",
+                    opacity:  isHoverActive ? 1 : isActive ? 0.85 : 0.13,
+                    filter:   isActive ? "url(#ts-glow)" : "none",
+                    transition: "stroke 0.5s ease-in-out, opacity 0.5s ease-in-out, stroke-width 0.5s ease-in-out, filter 0.5s ease-in-out",
                   }}
                 />
               );
@@ -191,17 +196,17 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
         {/* ── Center "TECH STACK" core ── */}
         <div className="absolute -translate-x-1/2 -translate-y-1/2 z-20">
           <div
-            className="ts-core relative w-36 h-36 rounded-[2rem] flex flex-col items-center
+            className="ts-core relative w-28 h-28 rounded-[2rem] flex flex-col items-center
                        justify-center overflow-hidden border border-[#ff6a00]/40"
             style={{ backgroundColor: ORANGE }}
           >
             {/* Top highlight */}
             <div className="absolute inset-0 bg-gradient-to-b from-white/20 to-transparent pointer-events-none" />
             {/* Text */}
-            <span className="relative z-10 text-white font-unbounded font-black text-[2rem] leading-none tracking-tighter">
+            <span className="relative z-10 text-white font-unbounded font-black text-[1.6rem] leading-none tracking-tighter">
               TECH
             </span>
-            <span className="relative z-10 text-white/75 font-unbounded font-semibold text-[9px] tracking-[0.55em] uppercase mt-1">
+            <span className="relative z-10 text-white/75 font-unbounded font-semibold text-[8px] tracking-[0.55em] uppercase mt-1">
               STACK
             </span>
           </div>
@@ -210,13 +215,39 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
         {/* ── Outer icon pods ── */}
         {icons.map((icon, i) => {
           const { tx, ty } = getPos(i);
-          const isActive   = activeId === icon.id;
+          const isHovered    = hoveredId === icon.id;
+          const isAutoActive = activeId === icon.id && !hoveredId;
+          const isActive     = isHovered || isAutoActive;
+
+          const handleMouseEnter = () => {
+            isPausedRef.current = true;
+            setHoveredId(icon.id);
+            // Burst particles on hover entry
+            const { tx: ptx, ty: pty } = getPos(i);
+            for (let k = 0; k < 30; k++) {
+              const speed = Math.random() * 2.8 + 0.5;
+              const dir   = Math.random() * Math.PI * 2;
+              const life  = Math.random() * 50 + 30;
+              particlesRef.current.push({
+                x: SVG_CENTER + ptx, y: SVG_CENTER + pty,
+                vx: Math.cos(dir) * speed, vy: Math.sin(dir) * speed,
+                size: Math.random() * 2.5 + 0.5, life, maxLife: life,
+              });
+            }
+          };
+
+          const handleMouseLeave = () => {
+            isPausedRef.current = false;
+            setHoveredId(null);
+          };
 
           return (
             <div
               key={icon.id}
-              className="absolute z-20"
+              className="absolute z-20 cursor-pointer"
               style={{ top: 0, left: 0, transform: `translate(${tx}px, ${ty}px)` }}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
             >
               {/* Centering wrapper — float animation on THIS element */}
               <div
@@ -225,53 +256,77 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
                   !isActive && "ts-float"
                 )}
                 style={
-                  isActive
+                  isHovered
+                    ? { transform: "translate(-50%,-50%) scale(1.22)", transition: "transform 0.5s cubic-bezier(0.34,1.56,0.64,1)" }
+                    : isActive
                     ? { transform: "translate(-50%,-50%) scale(1.12)", transition: "transform 0.8s cubic-bezier(0.22,1,0.36,1)" }
                     : { transition: "transform 0.8s cubic-bezier(0.22,1,0.36,1)" }
                 }
               >
-                {/* Orange bloom halo */}
+                {/* Orange bloom halo — stronger on hover */}
                 <div
                   className="absolute inset-[-18px] rounded-full bg-[#ff6a00] blur-2xl pointer-events-none"
                   style={{
-                    opacity:    isActive ? 0.4  : 0,
-                    transition: "opacity 0.9s ease-in-out",
+                    opacity:    isHovered ? 0.6 : isActive ? 0.4 : 0,
+                    transition: "opacity 0.5s ease-in-out",
                   }}
                 />
 
-                {/* Icon card */}
+                {/* Icon card — premium ring on hover */}
                 <div
                   className={cn(
-                    "relative w-20 h-20 rounded-[1.5rem] flex items-center justify-center border backdrop-blur-xl",
-                    isActive
-                      ? "border-[#ff6a00]/60 bg-[#ff6a00]/12"
-                      : "border-white/10 bg-white/5"
+                    "relative w-20 h-20 rounded-[1.5rem] flex items-center justify-center border backdrop-blur-xl transition-all duration-500",
+                    isHovered
+                      ? "border-[#ff6a00] ring-2 ring-[#ff6a00]/30"
+                      : isActive
+                      ? "border-[#ff6a00]/60"
+                      : "border-white/10"
                   )}
                   style={{
-                    backgroundColor: isActive ? "rgba(255,106,0,0.12)" : "rgba(255,255,255,0.04)",
-                    transition: "background-color 0.8s ease, border-color 0.8s ease",
+                    backgroundColor: isHovered
+                      ? "rgba(255,106,0,0.18)"
+                      : isActive
+                      ? "rgba(255,106,0,0.10)"
+                      : "rgba(255,255,255,0.04)",
+                    boxShadow: isHovered
+                      ? "0 0 0 1px rgba(255,106,0,0.5), inset 0 0 20px rgba(255,106,0,0.12)"
+                      : "none",
+                    transition: "background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease",
                   }}
                 >
                   <img
                     src={icon.src}
                     alt={icon.name}
-                    className={cn(
-                      "w-11 h-11 object-contain transition-all duration-700",
-                      isActive ? "saturate-100 opacity-100" : "saturate-50 opacity-55"
-                    )}
+                    className="w-11 h-11 object-contain"
+                    style={{
+                      opacity: isActive ? 1 : 0.55,
+                      filter: isHovered
+                        ? "saturate(1.3) drop-shadow(0 0 8px rgba(255,106,0,0.5))"
+                        : isActive ? "saturate(1)" : "saturate(0.5)",
+                      transition: "opacity 0.5s ease, filter 0.5s ease",
+                    }}
                   />
 
-                  {/* Name tooltip — visible when active */}
+                  {/* Tooltip — spring slide up on hover, fade on active */}
                   <div
-                    className="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap
-                               px-2 py-1 rounded-md bg-black/80 backdrop-blur
-                               text-white font-mono text-[8px] uppercase tracking-widest pointer-events-none"
+                    className="absolute whitespace-nowrap pointer-events-none
+                               px-3 py-1.5 rounded-lg bg-black/90 backdrop-blur-md
+                               border border-[#ff6a00]/20
+                               text-white font-mono text-[9px] uppercase tracking-widest"
                     style={{
-                      opacity:    isActive ? 1 : 0,
-                      transition: "opacity 0.6s ease-in-out",
+                      bottom: "calc(100% + 10px)",
+                      left: "50%",
+                      transform: isHovered
+                        ? "translateX(-50%) translateY(0px) scale(1)"
+                        : isActive
+                        ? "translateX(-50%) translateY(3px) scale(0.95)"
+                        : "translateX(-50%) translateY(8px) scale(0.9)",
+                      opacity:    isHovered ? 1 : isActive ? 0.75 : 0,
+                      transition: "opacity 0.35s ease, transform 0.4s cubic-bezier(0.34,1.56,0.64,1)",
                     }}
                   >
                     {icon.name}
+                    <span className="absolute top-full left-1/2 -translate-x-1/2 border-[5px] border-transparent border-t-black/90" />
                   </div>
                 </div>
               </div>

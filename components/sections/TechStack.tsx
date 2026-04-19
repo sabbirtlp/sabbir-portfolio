@@ -12,8 +12,8 @@ export default function TechStack() {
   const techStackData = content?.techStack || { title: "My Technology Stack", subtitle: "", icons: [] };
 
   const titleWords = techStackData.title.split(" ");
-  const lastWord   = titleWords.slice(-1)[0];
-  const preWords   = titleWords.slice(0, -1).join(" ");
+  const lastWord = titleWords.slice(-1)[0];
+  const preWords = titleWords.slice(0, -1).join(" ");
 
   return (
     <section
@@ -71,8 +71,8 @@ export default function TechStack() {
           </motion.p>
         </div>
 
-        {/* Visualization — centered with origin compensation for scale */}
-        <div className="flex justify-center items-center w-full" style={{ height: "clamp(300px, 55vw, 580px)" }}>
+        {/* Visualization — centered automatically via flex */}
+        <div className="flex justify-center items-center">
           <TechSpider icons={techStackData.icons} />
         </div>
       </div>
