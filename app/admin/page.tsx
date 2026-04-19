@@ -136,6 +136,17 @@ export default function AdminDashboard() {
         return;
       }
       const data = await res.json();
+      
+      // Ensure Typography defaults exist if missing in DB
+      if (!data.typography) {
+        data.typography = {
+          baseFontSize: 16,
+          headingFont: "Syne",
+          bodyFont: "Inter",
+          accentFont: "Unbounded"
+        };
+      }
+      
       setContent(data);
     } catch (error) {
       setMessage({ type: "error", text: "Failed to load content" });
@@ -661,7 +672,7 @@ export default function AdminDashboard() {
             )}
             
             {/* TYPOGRAPHY SECTION */}
-            {activeTab === "typography" && content.typography && (
+            {activeTab === "typography" && (
               <div className="space-y-8 animate-in fade-in duration-500">
                 <div className="p-4 bg-accent/5 border border-accent/20 rounded-xl">
                   <p className="text-xs text-accent font-medium leading-relaxed">
@@ -680,7 +691,7 @@ export default function AdminDashboard() {
                     min="14" 
                     max="22" 
                     step="0.5"
-                    value={content.typography.baseFontSize}
+                    value={content.typography?.baseFontSize || 16}
                     onChange={(e) => setContent({ ...content, typography: { ...content.typography, baseFontSize: parseFloat(e.target.value) } })}
                     className="w-full h-1.5 bg-surface-2 rounded-lg appearance-none cursor-pointer accent-accent"
                   />
@@ -696,7 +707,7 @@ export default function AdminDashboard() {
                   <div className="space-y-3">
                     <label className="block text-[10px] font-bold uppercase tracking-widest text-text-muted">Heading Font Family</label>
                     <select 
-                      value={content.typography.headingFont}
+                      value={content.typography?.headingFont || "Syne"}
                       onChange={(e) => setContent({ ...content, typography: { ...content.typography, headingFont: e.target.value } })}
                       className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-white outline-none focus:border-accent/40 cursor-pointer"
                     >
@@ -711,7 +722,7 @@ export default function AdminDashboard() {
                   <div className="space-y-3">
                     <label className="block text-[10px] font-bold uppercase tracking-widest text-text-muted">Body Font Family</label>
                     <select 
-                      value={content.typography.bodyFont}
+                      value={content.typography?.bodyFont || "Inter"}
                       onChange={(e) => setContent({ ...content, typography: { ...content.typography, bodyFont: e.target.value } })}
                       className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-white outline-none focus:border-accent/40 cursor-pointer"
                     >
@@ -720,6 +731,21 @@ export default function AdminDashboard() {
                       <option value="Fira Code">Fira Code (Technical / Developer)</option>
                     </select>
                     <p className="text-[10px] text-text-muted italic">Used for paragraphs, stats, and small text.</p>
+                  </div>
+
+                  {/* Accent Font */}
+                  <div className="space-y-3">
+                    <label className="block text-[10px] font-bold uppercase tracking-widest text-text-muted">Accent Font Family</label>
+                    <select 
+                      value={content.typography?.accentFont || "Unbounded"}
+                      onChange={(e) => setContent({ ...content, typography: { ...content.typography, accentFont: e.target.value } })}
+                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-white outline-none focus:border-accent/40 cursor-pointer"
+                    >
+                      <option value="Unbounded">Unbounded (Premium & Wide)</option>
+                      <option value="Syne">Syne (Modern)</option>
+                      <option value="Inter">Inter (Clean)</option>
+                    </select>
+                    <p className="text-[10px] text-text-muted italic">Used for badges, highlights, and small labels.</p>
                   </div>
                 </div>
 
