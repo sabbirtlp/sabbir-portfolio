@@ -113,6 +113,29 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
     return () => clearInterval(interval);
   }, [icons, getPos]);
 
+  // ── Continuous bubbling from center when core is hovered ──────────
+  useEffect(() => {
+    if (!isCoreHovered) return;
+    const bubbleInterval = setInterval(() => {
+      for (let i = 0; i < 3; i++) {
+        const speed = Math.random() * 2 + 0.8;
+        const dir   = Math.random() * Math.PI * 2;
+        const life  = Math.random() * 50 + 20;
+        particlesRef.current.push({
+          x: SVG_CENTER,
+          y: SVG_CENTER,
+          vx: Math.cos(dir) * speed,
+          vy: Math.sin(dir) * speed,
+          size: Math.random() * 3 + 0.5,
+          life,
+          maxLife: life,
+        });
+      }
+    }, 60); // fast continuous bubbling
+
+    return () => clearInterval(bubbleInterval);
+  }, [isCoreHovered]);
+
   if (!icons.length) return null;
 
   return (
@@ -170,18 +193,19 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
               const p1 = getPos(i);
               const p2 = getPos(j);
               const displayActiveId = hoveredId ?? activeId;
-              const isActive = isCoreHovered || displayActiveId === a.id || displayActiveId === b.id;
-              const isHoverActive = isCoreHovered || (hoveredId !== null && (hoveredId === a.id || hoveredId === b.id));
+              const isNodeHovered = hoveredId !== null && (hoveredId === a.id || hoveredId === b.id);
+              const isActive = displayActiveId === a.id || displayActiveId === b.id;
+              
               return (
                 <line
                   key={`ln-${i}-${j}`}
                   x1={p1.svgX} y1={p1.svgY}
                   x2={p2.svgX} y2={p2.svgY}
-                  strokeWidth={isHoverActive ? "2.2" : isActive ? "1.6" : "0.5"}
+                  strokeWidth={isNodeHovered ? "2.2" : isCoreHovered ? "1.0" : isActive ? "1.6" : "0.5"}
                   style={{
-                    stroke:   isActive ? ORANGE : "#ffffff",
-                    opacity:  isHoverActive ? 1 : isActive ? 0.85 : 0.13,
-                    filter:   isActive ? "url(#ts-glow)" : "none",
+                    stroke:   (isActive || isCoreHovered) ? ORANGE : "#ffffff",
+                    opacity:  isNodeHovered ? 1 : isCoreHovered ? 0.45 : isActive ? 0.85 : 0.13,
+                    filter:   (isActive || isCoreHovered) ? "url(#ts-glow)" : "none",
                     transition: "stroke 0.5s ease-in-out, opacity 0.5s ease-in-out, stroke-width 0.5s ease-in-out, filter 0.5s ease-in-out",
                   }}
                 />
