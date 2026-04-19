@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import path from "path";
-import fs from "fs/promises";
+import { put } from "@vercel/blob";
 
 export async function POST(request: NextRequest) {
   try {
@@ -21,35 +20,34 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Validate file size (max 5MB)
-    const maxSize = 5 * 1024 * 1024;
+    // Validate file size (max 4.5MB for Vercel body limits)
+    const maxSize = 4.5 * 1024 * 1024;
     if (file.size > maxSize) {
       return NextResponse.json(
-        { error: "File too large. Maximum size is 5MB." },
+        { error: "File too large. Maximum size on Vercel is 4.5MB." },
         { status: 400 }
       );
     }
 
-    // Generate unique filename with timestamp
-    const ext = path.extname(file.name) || ".jpg";
-    const baseName = path.basename(file.name, ext).replace(/[^a-zA-Z0-9-_]/g, "-");
-    const uniqueName = `${baseName}-${Date.now()}${ext}`;
+    // Upload to Vercel Blob
+    const blob = await put(file.name, file, {
+      access: "public",
+      addRandomSuffix: true, // This replaces our manual timestamp logic
+    });
 
-    // Ensure the projects directory exists
-    const uploadDir = path.join(process.cwd(), "public", "projects");
-    await fs.mkdir(uploadDir, { recursive: true });
+    console.log(`Successfully uploaded to Vercel Blob: ${blob.url}`);
+    return NextResponse.json({ path: blob.url });
+  } catch (error: any) {
+    console.error("Vercel Blob upload error detail:", error);
+    
+    // Check if token is missing
+    if (error.message && error.message.includes("BLOB_READ_WRITE_TOKEN")) {
+      return NextResponse.json(
+        { error: "Storage not configured. Ensure BLOB_READ_WRITE_TOKEN is set in Vercel/Env." }, 
+        { status: 500 }
+      );
+    }
 
-    // Write file to disk
-    const buffer = Buffer.from(await file.arrayBuffer());
-    const filePath = path.join(uploadDir, uniqueName);
-    await fs.writeFile(filePath, buffer);
-
-    // Return the public URL path
-    const publicPath = `/projects/${uniqueName}`;
-    console.log(`Successfully uploaded: ${publicPath}`);
-    return NextResponse.json({ path: publicPath });
-  } catch (error) {
-    console.error("Upload error detail:", error);
     return NextResponse.json({ error: "Upload failed" }, { status: 500 });
   }
 }
