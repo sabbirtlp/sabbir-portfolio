@@ -20,9 +20,11 @@ interface Particle {
   size: number; life: number; maxLife: number;
 }
 
-const SVG_SIZE = 440;
+const SVG_SIZE = 560;
 const SVG_CENTER = SVG_SIZE / 2;
-const RADIUS = 165;
+const CANVAS_SIZE = 1800; // Giant canvas covering the viewport
+const CANVAS_CENTER = CANVAS_SIZE / 2;
+const RADIUS = 210;
 const ORANGE = "#ff6a00";
 
 export default function TechSpider({ icons = [], className }: TechSpiderProps) {
@@ -57,7 +59,7 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
     if (!ctx) return;
 
     const render = () => {
-      ctx.clearRect(0, 0, SVG_SIZE, SVG_SIZE);
+      ctx.clearRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
       particlesRef.current = particlesRef.current.filter((p) => {
         p.x += p.vx;
         p.y += p.vy;
@@ -91,17 +93,17 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
         const ni = (ci + 1) % icons.length;
         const { tx, ty } = getPos(ni);
 
-        // Burst 45 particles from next icon
-        for (let i = 0; i < 45; i++) {
-          const speed = Math.random() * 2.8 + 0.5;
+        // Burst 55 particles from next icon, wide spread
+        for (let i = 0; i < 55; i++) {
+          const speed = Math.random() * 6.5 + 1.5;
           const dir = Math.random() * Math.PI * 2;
-          const life = Math.random() * 65 + 35;
+          const life = Math.random() * 100 + 40;
           particlesRef.current.push({
-            x: SVG_CENTER + tx,
-            y: SVG_CENTER + ty,
+            x: CANVAS_CENTER + tx,
+            y: CANVAS_CENTER + ty,
             vx: Math.cos(dir) * speed,
             vy: Math.sin(dir) * speed,
-            size: Math.random() * 2.5 + 0.5,
+            size: Math.random() * 2.8 + 0.5,
             life,
             maxLife: life,
           });
@@ -118,15 +120,15 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
     if (!isCoreHovered) return;
     const bubbleInterval = setInterval(() => {
       for (let i = 0; i < 7; i++) {
-        const speed = Math.random() * 3 + 1.2;
+        const speed = Math.random() * 8.0 + 3.0; // Extreme speed
         const dir   = Math.random() * Math.PI * 2;
-        const life  = Math.random() * 60 + 25;
+        const life  = Math.random() * 90 + 50;  // Long life
         particlesRef.current.push({
-          x: SVG_CENTER,
-          y: SVG_CENTER,
+          x: CANVAS_CENTER,
+          y: CANVAS_CENTER,
           vx: Math.cos(dir) * speed,
           vy: Math.sin(dir) * speed,
-          size: Math.random() * 3.5 + 0.8,
+          size: Math.random() * 4.5 + 1.2,
           life,
           maxLife: life,
         });
@@ -160,12 +162,12 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
         .ts-core   { animation: ts-core-glow 3s ease-in-out infinite; }
       `}</style>
 
-      {/* Particle canvas */}
+      {/* Particle canvas covering viewport */}
       <canvas
         ref={canvasRef}
-        width={SVG_SIZE}
-        height={SVG_SIZE}
-        className="absolute inset-0 pointer-events-none z-10"
+        width={CANVAS_SIZE}
+        height={CANVAS_SIZE}
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-10"
       />
 
       {/* SVG full-mesh lines */}
@@ -250,16 +252,16 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
           const handleMouseEnter = () => {
             isPausedRef.current = true;
             setHoveredId(icon.id);
-            // Burst particles on hover entry
+            // Burst mega particles on hover entry
             const { tx: ptx, ty: pty } = getPos(i);
-            for (let k = 0; k < 60; k++) {
-              const speed = Math.random() * 3.5 + 0.8;
+            for (let k = 0; k < 80; k++) {
+              const speed = Math.random() * 11.5 + 2.0; // Explosion speed
               const dir   = Math.random() * Math.PI * 2;
-              const life  = Math.random() * 60 + 40;
+              const life  = Math.random() * 120 + 60; // Max distance
               particlesRef.current.push({
-                x: SVG_CENTER + ptx, y: SVG_CENTER + pty,
+                x: CANVAS_CENTER + ptx, y: CANVAS_CENTER + pty,
                 vx: Math.cos(dir) * speed, vy: Math.sin(dir) * speed,
-                size: Math.random() * 3.0 + 0.5, life, maxLife: life,
+                size: Math.random() * 3.5 + 0.5, life, maxLife: life,
               });
             }
           };
