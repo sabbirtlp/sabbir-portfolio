@@ -277,20 +277,22 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
-              {/* Centering wrapper — float animation on THIS element */}
-              <div
-                className={cn(
-                  "relative -translate-x-1/2 -translate-y-1/2",
-                  !isActive && "ts-float"
-                )}
-                style={
-                  isHovered
-                    ? { transform: "translate(-50%,-50%) scale(1.22)", transition: "transform 0.5s cubic-bezier(0.34,1.56,0.64,1)" }
-                    : isActive
-                    ? { transform: "translate(-50%,-50%) scale(1.12)", transition: "transform 0.8s cubic-bezier(0.22,1,0.36,1)" }
-                    : { transition: "transform 0.8s cubic-bezier(0.22,1,0.36,1)" }
-                }
-              >
+              {/* Centering wrapper — separate from animation transforms */}
+              <div className="absolute -top-10 -left-10 w-20 h-20">
+                {/* Float & Scale animation on THIS element */}
+                <div
+                  className={cn(
+                    "relative w-full h-full",
+                    !isActive && "ts-float"
+                  )}
+                  style={
+                    isHovered
+                      ? { transform: "scale(1.22)", transition: "transform 0.5s cubic-bezier(0.34,1.56,0.64,1)" }
+                      : isActive
+                      ? { transform: "scale(1.12)", transition: "transform 0.8s cubic-bezier(0.22,1,0.36,1)" }
+                      : { transform: "scale(1)", transition: "transform 0.8s cubic-bezier(0.22,1,0.36,1)" }
+                  }
+                >
                 {/* Orange bloom halo — stronger on hover */}
                 <div
                   className="absolute inset-[-18px] rounded-full bg-[#ff6a00] blur-2xl pointer-events-none"
