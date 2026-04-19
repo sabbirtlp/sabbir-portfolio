@@ -1,32 +1,13 @@
 "use client";
 
-import { useRef, useMemo } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import { motion } from "framer-motion";
 import { useContent } from "@/components/providers/ContentProvider";
 import TechSpider from "@/components/ui/TechSpider";
-
-// Stable particle data computed once (avoid random re-computation on re-renders)
-const PARTICLES = Array.from({ length: 18 }, (_, i) => ({
-  id: i,
-  left: `${(i * 37 + 11) % 100}%`,
-  top:  `${(i * 53 + 7) % 100}%`,
-  dur:  18 + (i % 7) * 3,
-  dy:   30 + (i % 5) * 15,
-  delay: i * 0.4,
-  opacity: 0.08 + (i % 4) * 0.06,
-}));
 
 export default function TechStack() {
   const { content } = useContent();
   const ref = useRef<HTMLElement>(null);
-
-  // Scroll-reactive glow (section level only — no rotation)
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-  const glowOpacity = useTransform(scrollYProgress, [0, 0.45, 1], [0.18, 0.45, 0.18]);
-  const glowScale   = useTransform(scrollYProgress, [0, 0.45, 1], [0.85, 1.15, 0.85]);
 
   const techStackData = content?.techStack || { title: "My Technology Stack", subtitle: "", icons: [] };
 
@@ -40,10 +21,8 @@ export default function TechStack() {
       id="tech-stack"
       className="relative py-16 md:py-24 lg:py-32 overflow-hidden bg-[#0b0b0b]"
     >
-      {/* ── Background ── */}
+      {/* Minimal dark background — same as other sections */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-
-        {/* Very subtle dot grid */}
         <div
           className="absolute inset-0 opacity-[0.018]"
           style={{
@@ -53,10 +32,9 @@ export default function TechStack() {
         />
       </div>
 
-      {/* ── Content ── */}
       <div className="max-w-7xl mx-auto px-5 relative z-10 flex flex-col items-center">
         {/* Section Header */}
-        <div className="text-center mb-4 md:mb-8">
+        <div className="text-center mb-8 md:mb-14">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -77,8 +55,7 @@ export default function TechStack() {
             transition={{ delay: 0.1 }}
             className="text-2xl sm:text-3xl md:text-[42px] font-unbounded font-black text-white leading-tight"
           >
-            {preWords}{" "}
-            <span className="text-[#ff6a00]">{lastWord}</span>
+            {preWords} <span className="text-[#ff6a00]">{lastWord}</span>
           </motion.h2>
 
           <motion.p
@@ -94,8 +71,8 @@ export default function TechStack() {
           </motion.p>
         </div>
 
-        {/* Visualization */}
-        <div className="w-full flex justify-center py-2 md:py-6 lg:py-10">
+        {/* Visualization — centered automatically via flex */}
+        <div className="flex justify-center items-center">
           <TechSpider icons={techStackData.icons} />
         </div>
       </div>

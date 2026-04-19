@@ -581,6 +581,11 @@
         "id": 10,
         "name": "Elementor",
         "src": "/icons/elementor.svg"
+      },
+      {
+        "id": 11,
+        "name": "Node JS",
+        "src": "/projects/919825-1776546471219.png"
       }
     ]
   }
