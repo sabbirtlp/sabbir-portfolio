@@ -10,13 +10,17 @@ export async function getContent() {
   try {
     // 1. Try MongoDB if connected
     if (clientPromise) {
-      const client = await clientPromise;
-      const db = client.db(DB_NAME);
-      const collection = db.collection(COLLECTION_NAME);
-      
-      const doc = await collection.findOne({ type: "main_content" });
-      if (doc && doc.data) {
-        return doc.data;
+      try {
+        const client = await clientPromise;
+        const db = client.db(DB_NAME);
+        const collection = db.collection(COLLECTION_NAME);
+        
+        const doc = await collection.findOne({ type: "main_content" });
+        if (doc && doc.data) {
+          return doc.data;
+        }
+      } catch (dbError) {
+        console.warn("MongoDB connection failed or timed out. Falling back to local JSON...");
       }
     }
 
