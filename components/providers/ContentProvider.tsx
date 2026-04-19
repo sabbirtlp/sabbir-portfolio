@@ -16,7 +16,7 @@ export function ContentProvider({ children }: { children: ReactNode }) {
 
   async function fetchContent() {
     try {
-      const res = await fetch("/api/admin/content", {
+      const res = await fetch(`/api/admin/content?t=${Date.now()}`, {
         cache: 'no-store' // Ensure we get fresh data
       });
       

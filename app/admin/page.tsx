@@ -45,53 +45,71 @@ export default function AdminDashboard() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [deletingTestimonialIndex, setDeletingTestimonialIndex] = useState<number | null>(null);
 
-  async function handleImageUpload(file: File, projectIndex: number) {
-    setUploadingIndex(projectIndex);
+  async function performUpload(file: File) {
+    const formData = new FormData();
+    formData.append("file", file);
     try {
-      const formData = new FormData();
-      formData.append("file", file);
       const res = await fetch("/api/admin/upload", {
         method: "POST",
         body: formData,
       });
       if (!res.ok) {
         const err = await res.json();
-        setMessage({ type: "error", text: err.error || "Upload failed" });
-        return;
+        throw new Error(err.error || "Upload failed");
       }
-      const { path } = await res.json();
-      const newProjects = [...content.projects];
-      newProjects[projectIndex].image = path;
-      setContent({ ...content, projects: newProjects });
+      return await res.json();
+    } catch (error: any) {
+      console.error("Upload error:", error);
+      throw error;
+    }
+  }
+
+  async function handleImageUpload(file: File, projectIndex: number) {
+    setUploadingIndex(projectIndex);
+    try {
+      const { path } = await performUpload(file);
+      setContent((prev: any) => {
+        const newProjects = [...prev.projects];
+        newProjects[projectIndex] = { ...newProjects[projectIndex], image: path };
+        return { ...prev, projects: newProjects };
+      });
       setMessage({ type: "success", text: "Image uploaded successfully!" });
-    } catch (error) {
-      setMessage({ type: "error", text: "Image upload failed" });
+    } catch (error: any) {
+      setMessage({ type: "error", text: error.message || "Image upload failed" });
     } finally {
       setUploadingIndex(null);
+    }
+  }
+
+  async function handleScreenshotUpload(file: File, projectIndex: number) {
+    setUploadingScreenshot(projectIndex);
+    try {
+      const { path } = await performUpload(file);
+      setContent((prev: any) => {
+        const newProjects = [...prev.projects];
+        newProjects[projectIndex] = { ...newProjects[projectIndex], screenshot: path };
+        return { ...prev, projects: newProjects };
+      });
+      setMessage({ type: "success", text: "Screenshot uploaded!" });
+    } catch (error: any) {
+      setMessage({ type: "error", text: error.message || "Screenshot upload failed" });
+    } finally {
+      setUploadingScreenshot(null);
     }
   }
 
   async function handleTechStackIconUpload(file: File, iconIndex: number) {
     setUploadingIndex(iconIndex);
     try {
-      const formData = new FormData();
-      formData.append("file", file);
-      const res = await fetch("/api/admin/upload", {
-        method: "POST",
-        body: formData,
+      const { path } = await performUpload(file);
+      setContent((prev: any) => {
+        const newIcons = [...prev.techStack.icons];
+        newIcons[iconIndex] = { ...newIcons[iconIndex], src: path };
+        return { ...prev, techStack: { ...prev.techStack, icons: newIcons } };
       });
-      if (!res.ok) {
-        const err = await res.json();
-        setMessage({ type: "error", text: err.error || "Upload failed" });
-        return;
-      }
-      const { path } = await res.json();
-      const newIcons = [...content.techStack.icons];
-      newIcons[iconIndex].src = path;
-      setContent({ ...content, techStack: { ...content.techStack, icons: newIcons } });
       setMessage({ type: "success", text: "Tech icon uploaded!" });
-    } catch (error) {
-      setMessage({ type: "error", text: "Icon upload failed" });
+    } catch (error: any) {
+      setMessage({ type: "error", text: error.message || "Icon upload failed" });
     } finally {
       setUploadingIndex(null);
     }
@@ -885,26 +903,12 @@ export default function AdminDashboard() {
                                     onDrop={(e) => {
                                       e.preventDefault(); e.stopPropagation();
                                       const file = e.dataTransfer.files?.[0];
-                                      if (file) {
-                                        setUploadingScreenshot(i);
-                                        const formData = new FormData(); formData.append('file', file);
-                                        fetch('/api/admin/upload', { method: 'POST', body: formData })
-                                          .then(r => r.json()).then(d => { const p = [...content.projects]; p[i].screenshot = d.path; setContent({ ...content, projects: p }); setMessage({ type: 'success', text: 'Screenshot uploaded!' }); })
-                                          .catch(() => setMessage({ type: 'error', text: 'Screenshot upload failed' }))
-                                          .finally(() => setUploadingScreenshot(null));
-                                      }
+                                      if (file) handleScreenshotUpload(file, i);
                                     }}
                                   >
                                     <input id={`screenshot-${i}`} type="file" accept="image/jpeg,image/png,image/webp,image/avif,image/gif" className="hidden" onChange={(e) => {
                                       const file = e.target.files?.[0];
-                                      if (file) {
-                                        setUploadingScreenshot(i);
-                                        const formData = new FormData(); formData.append('file', file);
-                                        fetch('/api/admin/upload', { method: 'POST', body: formData })
-                                          .then(r => r.json()).then(d => { const p = [...content.projects]; p[i].screenshot = d.path; setContent({ ...content, projects: p }); setMessage({ type: 'success', text: 'Screenshot uploaded!' }); })
-                                          .catch(() => setMessage({ type: 'error', text: 'Screenshot upload failed' }))
-                                          .finally(() => setUploadingScreenshot(null));
-                                      }
+                                      if (file) handleScreenshotUpload(file, i);
                                       e.target.value = '';
                                     }} />
                                     {uploadingScreenshot === i ? (

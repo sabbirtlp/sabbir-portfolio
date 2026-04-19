@@ -113,16 +113,14 @@ const ProjectCard = ({ project, index, progress, range, targetScale }: CardProps
                </div>
                
                 {/* Actual Project Image */}
-                <div className="flex-1 w-full relative overflow-y-auto overflow-x-hidden custom-scrollbar bg-[#0a0a0a]">
+                <div className="flex-1 w-full relative custom-scrollbar bg-[#0a0a0a]">
                   {project.image ? (
-                    <div className="relative w-full min-h-full">
-                      <Image
+                    <div className="absolute inset-0">
+                      <img
                         src={project.image}
                         alt={project.title}
-                        fill
-                        className="object-top object-contain"
-                        sizes="(max-width: 768px) 100vw, 60vw"
-                        priority={index === 0}
+                        className="w-full h-full object-top object-contain"
+                        loading={index === 0 ? "eager" : "lazy"}
                       />
                     </div>
                   ) : (

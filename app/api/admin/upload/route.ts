@@ -12,8 +12,9 @@ export async function POST(request: NextRequest) {
     }
 
     // Validate file type
-    const allowedTypes = ["image/jpeg", "image/png", "image/webp", "image/avif", "image/gif", "image/svg+xml"];
+    const allowedTypes = ["image/jpeg", "image/jpg", "image/png", "image/webp", "image/avif", "image/gif", "image/svg+xml"];
     if (!allowedTypes.includes(file.type)) {
+      console.error(`Rejected file type: ${file.type}`);
       return NextResponse.json(
         { error: "Invalid file type. Allowed: SVG, JPG, PNG, WebP, AVIF, GIF" },
         { status: 400 }
@@ -44,9 +45,11 @@ export async function POST(request: NextRequest) {
     await fs.writeFile(filePath, buffer);
 
     // Return the public URL path
-    return NextResponse.json({ path: `/projects/${uniqueName}` });
+    const publicPath = `/projects/${uniqueName}`;
+    console.log(`Successfully uploaded: ${publicPath}`);
+    return NextResponse.json({ path: publicPath });
   } catch (error) {
-    console.error("Upload error:", error);
+    console.error("Upload error detail:", error);
     return NextResponse.json({ error: "Upload failed" }, { status: 500 });
   }
 }
