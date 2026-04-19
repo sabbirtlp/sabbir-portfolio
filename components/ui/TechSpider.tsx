@@ -26,8 +26,9 @@ const RADIUS = 165;
 const ORANGE = "#ff6a00";
 
 export default function TechSpider({ icons = [], className }: TechSpiderProps) {
-  const [activeId, setActiveId]   = useState<number>(icons[0]?.id ?? 0);
-  const [hoveredId, setHoveredId] = useState<number | null>(null);
+  const [activeId, setActiveId]     = useState<number>(icons[0]?.id ?? 0);
+  const [hoveredId, setHoveredId]   = useState<number | null>(null);
+  const [isCoreHovered, setIsCoreHovered] = useState(false);
   const canvasRef    = useRef<HTMLCanvasElement>(null);
   const particlesRef = useRef<Particle[]>([]);
   const frameRef     = useRef<number>(0);
@@ -169,8 +170,8 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
               const p1 = getPos(i);
               const p2 = getPos(j);
               const displayActiveId = hoveredId ?? activeId;
-              const isActive = displayActiveId === a.id || displayActiveId === b.id;
-              const isHoverActive = hoveredId !== null && (hoveredId === a.id || hoveredId === b.id);
+              const isActive = isCoreHovered || displayActiveId === a.id || displayActiveId === b.id;
+              const isHoverActive = isCoreHovered || (hoveredId !== null && (hoveredId === a.id || hoveredId === b.id));
               return (
                 <line
                   key={`ln-${i}-${j}`}
@@ -194,7 +195,10 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
       <div className="absolute" style={{ top: SVG_CENTER, left: SVG_CENTER }}>
 
         {/* ── Center "TECH STACK" core ── */}
-        <div className="absolute -translate-x-1/2 -translate-y-1/2 z-20">
+        <div className="absolute -translate-x-1/2 -translate-y-1/2 z-20"
+          onMouseEnter={() => { setIsCoreHovered(true); isPausedRef.current = true; }}
+          onMouseLeave={() => { setIsCoreHovered(false); isPausedRef.current = false; }}
+        >
           <div
             className="ts-core relative w-28 h-28 rounded-[2rem] flex flex-col items-center
                        justify-center overflow-hidden border border-[#ff6a00]/40"
