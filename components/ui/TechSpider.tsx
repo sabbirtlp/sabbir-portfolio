@@ -93,8 +93,10 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
         const ni = (ci + 1) % icons.length;
         const { tx, ty } = getPos(ni);
 
-        // Burst 160 particles from next icon, wide spread, dense
-        for (let i = 0; i < 160; i++) {
+        // Burst particles from next icon, wide spread, dense
+        // Lower count on mobile to preserve CPU performance
+        const particleCount = window.innerWidth < 768 ? 40 : 160;
+        for (let i = 0; i < particleCount; i++) {
           const speed = Math.random() * 6.5 + 1.5;
           const dir = Math.random() * Math.PI * 2;
           const life = Math.random() * 100 + 40;
@@ -119,7 +121,9 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
   useEffect(() => {
     if (!isCoreHovered) return;
     const bubbleInterval = setInterval(() => {
-      for (let i = 0; i < 7; i++) {
+      // Lower continuous particle volume on mobile
+      const particleCount = window.innerWidth < 768 ? 2 : 7;
+      for (let i = 0; i < particleCount; i++) {
         const speed = Math.random() * 8.0 + 3.0; // Extreme speed
         const dir   = Math.random() * Math.PI * 2;
         const life  = Math.random() * 90 + 50;  // Long life
@@ -253,8 +257,10 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
             isPausedRef.current = true;
             setHoveredId(icon.id);
             // Burst mega particles on hover entry
+            // Lower limit on mobile for smoothness
+            const particleCount = window.innerWidth < 768 ? 25 : 80;
             const { tx: ptx, ty: pty } = getPos(i);
-            for (let k = 0; k < 80; k++) {
+            for (let k = 0; k < particleCount; k++) {
               const speed = Math.random() * 11.5 + 2.0; // Explosion speed
               const dir   = Math.random() * Math.PI * 2;
               const life  = Math.random() * 120 + 60; // Max distance
