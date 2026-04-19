@@ -25,7 +25,8 @@ import {
   Eye,
   Menu,
   X,
-  Zap
+  Zap,
+  Type
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 
@@ -243,6 +244,7 @@ export default function AdminDashboard() {
             { id: "about", label: "About Me", icon: User },
             { id: "services", label: "Services", icon: Briefcase },
             { id: "tech-stack", label: "Tech Stack", icon: Zap },
+            { id: "typography", label: "Typography", icon: Type },
             { id: "work", label: "Case Studies", icon: FolderOpen },
             { id: "testimonials", label: "Testimonials", icon: MessageSquare },
             { id: "process", label: "Process", icon: CheckCircle2 },
@@ -321,6 +323,7 @@ export default function AdminDashboard() {
                 { id: "about", label: "About" },
                 { id: "services", label: "Services" },
                 { id: "tech-stack", label: "Tech Stack" },
+                { id: "typography", label: "Typography" },
                 { id: "work", label: "Case Studies" },
                 { id: "testimonials", label: "Testimonials" },
                 { id: "process", label: "Process" },
@@ -654,6 +657,84 @@ export default function AdminDashboard() {
                       </div>
                    </div>
                 ))}
+              </div>
+            )}
+            
+            {/* TYPOGRAPHY SECTION */}
+            {activeTab === "typography" && content.typography && (
+              <div className="space-y-8 animate-in fade-in duration-500">
+                <div className="p-4 bg-accent/5 border border-accent/20 rounded-xl">
+                  <p className="text-xs text-accent font-medium leading-relaxed">
+                    Adjust the global font settings for your portfolio. Changes here affect all pages and components instantly after saving.
+                  </p>
+                </div>
+
+                {/* Font Scaling */}
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <label className="block text-[10px] font-bold uppercase tracking-widest text-text-muted">Base Font Size</label>
+                    <span className="text-xs font-mono text-accent">{content.typography.baseFontSize}px</span>
+                  </div>
+                  <input 
+                    type="range" 
+                    min="14" 
+                    max="22" 
+                    step="0.5"
+                    value={content.typography.baseFontSize}
+                    onChange={(e) => setContent({ ...content, typography: { ...content.typography, baseFontSize: parseFloat(e.target.value) } })}
+                    className="w-full h-1.5 bg-surface-2 rounded-lg appearance-none cursor-pointer accent-accent"
+                  />
+                  <div className="flex justify-between text-[10px] text-text-muted">
+                    <span>Small (14px)</span>
+                    <span>Professional (16px)</span>
+                    <span>Highly Readable (22px)</span>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-border/50">
+                  {/* Heading Font */}
+                  <div className="space-y-3">
+                    <label className="block text-[10px] font-bold uppercase tracking-widest text-text-muted">Heading Font Family</label>
+                    <select 
+                      value={content.typography.headingFont}
+                      onChange={(e) => setContent({ ...content, typography: { ...content.typography, headingFont: e.target.value } })}
+                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-white outline-none focus:border-accent/40 cursor-pointer"
+                    >
+                      <option value="Syne">Syne (Modern & Bold)</option>
+                      <option value="Inter">Inter (Clean & Professional)</option>
+                      <option value="Unbounded">Unbounded (Premium & Wide)</option>
+                    </select>
+                    <p className="text-[10px] text-text-muted italic">Used for H1 to H6 titles and section headers.</p>
+                  </div>
+
+                  {/* Body Font */}
+                  <div className="space-y-3">
+                    <label className="block text-[10px] font-bold uppercase tracking-widest text-text-muted">Body Font Family</label>
+                    <select 
+                      value={content.typography.bodyFont}
+                      onChange={(e) => setContent({ ...content, typography: { ...content.typography, bodyFont: e.target.value } })}
+                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-white outline-none focus:border-accent/40 cursor-pointer"
+                    >
+                      <option value="Inter">Inter (Standard readability)</option>
+                      <option value="Syne">Syne (Stylish content)</option>
+                      <option value="Fira Code">Fira Code (Technical / Developer)</option>
+                    </select>
+                    <p className="text-[10px] text-text-muted italic">Used for paragraphs, stats, and small text.</p>
+                  </div>
+                </div>
+
+                {/* Visual Preview */}
+                <div className="mt-8 p-6 bg-background rounded-2xl border border-border space-y-4 overflow-hidden">
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-text-muted mb-2">Live Preview</p>
+                  <div style={{ fontSize: `${content.typography.baseFontSize}px` }}>
+                    <h2 style={{ fontFamily: `var(--font-${content.typography.headingFont.toLowerCase().replace(/ /g, '-')}), sans-serif` }} className="text-2xl font-black text-white mb-2">
+                       The quick brown fox jumps over the lazy dog
+                    </h2>
+                    <p style={{ fontFamily: `var(--font-${content.typography.bodyFont.toLowerCase().replace(/ /g, '-')}), sans-serif` }} className="text-text-secondary leading-relaxed">
+                      This is how your body text will look at {content.typography.baseFontSize}px. It's clean, professional, and optimized for digital readability across all devices.
+                    </p>
+                  </div>
+                </div>
               </div>
             )}
 

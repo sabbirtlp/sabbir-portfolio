@@ -53,6 +53,17 @@ export function ContentProvider({ children }: { children: ReactNode }) {
 
   return (
     <ContentContext.Provider value={{ content, refresh: fetchContent }}>
+      {/* Dynamic Typography Injection */}
+      {content?.typography && (
+        <style dangerouslySetInnerHTML={{ __html: `
+          :root {
+            --base-font-size: ${content.typography.baseFontSize || 16}px;
+            --font-heading: var(--font-${(content.typography.headingFont || 'Syne').toLowerCase().replace(/ /g, '-')});
+            --font-body: var(--font-${(content.typography.bodyFont || 'Inter').toLowerCase().replace(/ /g, '-')});
+            --font-accent: var(--font-${(content.typography.accentFont || 'Unbounded').toLowerCase().replace(/ /g, '-')});
+          }
+        `}} />
+      )}
       {children}
     </ContentContext.Provider>
   );

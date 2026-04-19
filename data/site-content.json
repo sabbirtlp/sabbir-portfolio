@@ -1,4 +1,10 @@
 {
+  "typography": {
+    "baseFontSize": 16,
+    "headingFont": "Syne",
+    "bodyFont": "Inter",
+    "accentFont": "Unbounded"
+  },
   "general": {
     "siteName": "Sabbir Hossain",
     "email": "sabbirtlp@gmail.com",

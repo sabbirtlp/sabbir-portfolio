@@ -23,12 +23,13 @@ html {
   scroll-behavior: auto; /* Lenis handles this */
   scroll-padding-top: 100px; /* Offset for sticky navbar */
   background: #0a0a0a;
+  font-size: var(--base-font-size, 16px);
 }
 
 body {
   background-color: #0a0a0a;
   color: #ffffff;
-  font-family: var(--font-inter), system-ui, sans-serif;
+  font-family: var(--font-body, var(--font-inter)), system-ui, sans-serif;
   overflow-x: hidden;
 }
 
@@ -63,6 +64,9 @@ body {
 }
 
 /* ─── Typography ────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading, var(--font-syne)), sans-serif;
+}
 .font-syne { font-family: var(--font-syne), sans-serif; }
 .font-unbounded { font-family: var(--font-unbounded), sans-serif; }
 .font-fira-code { font-family: var(--font-fira-code), monospace; }
