@@ -71,8 +71,8 @@ export default function TechStack() {
           </motion.p>
         </div>
 
-        {/* Visualization — centered automatically via flex */}
-        <div className="flex justify-center items-center">
+        {/* Visualization — centered with origin compensation for scale */}
+        <div className="flex justify-center items-center w-full" style={{ height: "clamp(300px, 55vw, 580px)" }}>
           <TechSpider icons={techStackData.icons} />
         </div>
       </div>

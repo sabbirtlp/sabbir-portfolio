@@ -20,9 +20,9 @@ interface Particle {
   size: number; life: number; maxLife: number;
 }
 
-const SVG_SIZE   = 440;
+const SVG_SIZE   = 560;
 const SVG_CENTER = SVG_SIZE / 2;
-const RADIUS     = 165;
+const RADIUS     = 210;
 const ORANGE     = "#ff6a00";
 
 export default function TechSpider({ icons = [], className }: TechSpiderProps) {
@@ -115,7 +115,7 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
     <div
       className={cn(
         "relative select-none flex-shrink-0",
-        "scale-[0.68] sm:scale-[0.80] md:scale-90 lg:scale-100",
+        "scale-[0.52] sm:scale-[0.68] md:scale-[0.84] lg:scale-100",
         className
       )}
       style={{ width: SVG_SIZE, height: SVG_SIZE }}
@@ -191,17 +191,17 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
         {/* ── Center "TECH STACK" core ── */}
         <div className="absolute -translate-x-1/2 -translate-y-1/2 z-20">
           <div
-            className="ts-core relative w-28 h-28 rounded-[2rem] flex flex-col items-center
+            className="ts-core relative w-36 h-36 rounded-[2rem] flex flex-col items-center
                        justify-center overflow-hidden border border-[#ff6a00]/40"
             style={{ backgroundColor: ORANGE }}
           >
             {/* Top highlight */}
             <div className="absolute inset-0 bg-gradient-to-b from-white/20 to-transparent pointer-events-none" />
             {/* Text */}
-            <span className="relative z-10 text-white font-unbounded font-black text-[1.6rem] leading-none tracking-tighter">
+            <span className="relative z-10 text-white font-unbounded font-black text-[2rem] leading-none tracking-tighter">
               TECH
             </span>
-            <span className="relative z-10 text-white/75 font-unbounded font-semibold text-[8px] tracking-[0.55em] uppercase mt-1">
+            <span className="relative z-10 text-white/75 font-unbounded font-semibold text-[9px] tracking-[0.55em] uppercase mt-1">
               STACK
             </span>
           </div>
@@ -242,7 +242,7 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
                 {/* Icon card */}
                 <div
                   className={cn(
-                    "relative w-[66px] h-[66px] rounded-[1.5rem] flex items-center justify-center border backdrop-blur-xl",
+                    "relative w-20 h-20 rounded-[1.5rem] flex items-center justify-center border backdrop-blur-xl",
                     isActive
                       ? "border-[#ff6a00]/60 bg-[#ff6a00]/12"
                       : "border-white/10 bg-white/5"
@@ -256,7 +256,7 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
                     src={icon.src}
                     alt={icon.name}
                     className={cn(
-                      "w-9 h-9 object-contain transition-all duration-700",
+                      "w-11 h-11 object-contain transition-all duration-700",
                       isActive ? "saturate-100 opacity-100" : "saturate-50 opacity-55"
                     )}
                   />
