@@ -8,11 +8,13 @@ import Services from "@/components/sections/Services";
 import Process from "@/components/sections/Process";
 import Testimonials from "@/components/sections/Testimonials";
 import CTA from "@/components/sections/CTA";
+import MarqueeSeparator from "@/components/sections/MarqueeSeparator";
 
 export default function HomePage() {
   return (
     <>
       <Hero />
+      <MarqueeSeparator />
       <WorkSection />
       <About />
       <TechStack />

@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useInView } from "framer-motion";
 
 interface CountUpProps {
-  end: number;
+  end: number | string;
   duration?: number;
   suffix?: string;
   prefix?: string;
@@ -19,11 +19,20 @@ export default function CountUp({
   className = "",
 }: CountUpProps) {
   const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const [isMounted, setIsMounted] = useState(false);
   const hasAnimated = useRef(false);
 
+  // Parse end value to number
+  const endValue = typeof end === "string" ? parseInt(end.replace(/[^0-9.-]+/g, "")) : end;
+
   useEffect(() => {
-    if (!isInView || hasAnimated.current || !ref.current) return;
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isMounted || !isInView || hasAnimated.current || !ref.current || isNaN(endValue)) return;
+    
     hasAnimated.current = true;
 
     let startTime: number | null = null;
@@ -33,9 +42,10 @@ export default function CountUp({
       if (!startTime) startTime = currentTime;
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
+      
       // Ease out cubic
       const eased = 1 - Math.pow(1 - progress, 3);
-      const current = Math.round(startValue + (end - startValue) * eased);
+      const current = Math.round(startValue + (endValue - startValue) * eased);
 
       if (ref.current) {
         ref.current.textContent = `${prefix}${current}${suffix}`;
@@ -47,11 +57,13 @@ export default function CountUp({
     };
 
     requestAnimationFrame(animate);
-  }, [isInView, end, duration, suffix, prefix]);
+  }, [isInView, isMounted, endValue, duration, suffix, prefix]);
 
+  // Initial render (SSR and first CSR pass)
   return (
     <span ref={ref} className={className}>
-      {prefix}0{suffix}
+      {prefix}{isMounted ? "0" : end}{suffix}
     </span>
   );
 }
+

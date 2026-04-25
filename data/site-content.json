@@ -1,19 +1,23 @@
 {
-  "typography": {
-    "baseFontSize": 16,
-    "headingFont": "Syne",
-    "bodyFont": "Inter",
-    "accentFont": "Unbounded"
-  },
   "general": {
     "siteName": "Sabbir Hossain",
     "email": "sabbirtlp@gmail.com",
     "phone": "+880 1879667166",
     "socialLinks": [
       {
-        "platform": "facebook",
-        "href": "#",
-        "icon": "Globe"
+        "platform": "Github",
+        "href": "https://github.com/sabbirtlp",
+        "icon": "Github"
+      },
+      {
+        "platform": "LinkedIn",
+        "href": "https://www.linkedin.com/in/dev-sabbir-hossain/",
+        "icon": "Linkedin"
+      },
+      {
+        "platform": "Instagram",
+        "href": "https://www.instagram.com/abutalha8479/",
+        "icon": "Instagram"
       }
     ]
   },
@@ -78,123 +82,124 @@
       "slug": "wordpress-development",
       "icon": "Globe",
       "title": "WordPress Development",
-      "description": "Custom WordPress websites built for speed, security, and conversions. From blogs to complex business platforms.",
-      "longDescription": "Leverage the world's most popular CMS with a custom architecture designed for industrial-strength performance. I build bespoke WordPress themes and plugins that provide complete control over your content while maintaining lightning-fast load times and rock-solid security. Whether you need a high-end blog, a corporate portal, or a scalable multi-site setup, my WordPress solutions are engineered to grow with your business.",
+      "description": "Bespoke WordPress websites engineered for speed, security, and conversions — from custom themes to complex multi-site networks.",
+      "longDescription": "Leverage the world's most powerful CMS with a custom architecture built for real business performance. I craft bespoke WordPress themes and plugins from the ground up — no bloated page builders, no copy-paste templates. Every project is optimized for Core Web Vitals, hardened for security, and structured to scale. Whether you need a high-end corporate site, a subscription platform, or a complex multi-site network, my WordPress solutions are engineered to grow with your business and dominate in search results.",
       "features": [
-        "Core Web Vitals Optimized Themes",
-        "Advanced Custom Fields (ACF) Integration",
-        "Security-Hardened Architecture",
-        "Custom Plugin Development",
-        "Seamless Third-Party API Integrations"
+        "Fully Custom Theme Development (No Templates)",
+        "Advanced Custom Fields (ACF) & CPT Integration",
+        "Security-Hardened Architecture & Malware Prevention",
+        "Custom Plugin Development & API Integrations",
+        "Core Web Vitals Optimized (LCP, CLS, FID)"
       ],
       "highlight": "Most Popular"
     },
     {
-      "slug": "business-websites",
-      "icon": "Layout",
-      "title": "Business Websites",
-      "description": "Authority-building business websites designed to attract, engage, and convert your ideal customers.",
-      "longDescription": "Your website is your 24/7 digital salesperson. I design and develop authoritative business websites that don't just look pretty—they establish trust instantly and guide visitors through a strategic journey toward conversion. By combining high-end aesthetics with clear information architecture, I help brands stand out in crowded markets and turn digital traffic into measurable business growth.",
+      "slug": "woocommerce-development",
+      "icon": "Store",
+      "title": "WooCommerce Stores",
+      "description": "High-converting WooCommerce stores with optimized checkout flows, custom product systems, and seamless payment integrations.",
+      "longDescription": "Sell more with a WooCommerce store engineered around conversion psychology. I build robust e-commerce environments that handle everything from simple storefronts to complex B2B catalogs with custom pricing, user roles, and automation. Every checkout is optimized to reduce abandonment, every product page designed to maximize trust and purchase intent. Includes full payment gateway integration, inventory automation, and a streamlined admin experience.",
       "features": [
-        "Conversion-Focused Information Architecture",
-        "Lead Generation Funnel Integration",
-        "Brand-Consistent Visual Identity",
-        "Mobile-First Responsive Design",
-        "Analytics & Heatmap Setups"
-      ],
-      "highlight": "The Best"
-    },
-    {
-      "slug": "landing-page-design",
-      "icon": "Palette",
-      "title": "Landing Page Design",
-      "description": "High-converting landing pages engineered with proven CRO psychology to maximize campaign ROI.",
-      "longDescription": "Stop wasting ad spend on pages that don't convert. I build high-performance landing pages rooted in conversion rate optimization (CRO) principles and psychological triggers. Every element—from the hero headline to the primary CTA—is strategically placed to eliminate friction and maximize your return on investment. Perfect for SaaS launches, lead magnets, and PPC campaigns.",
-      "features": [
-        "A/B Testing Ready Structures",
-        "Psychology-Driven Copywriting Frameworks",
-        "Low-Friction Lead Capture Systems",
-        "Lightning-Fast Performance",
-        "Platform-Specific Optimization (Mobile/Desktop)"
+        "Conversion-Optimized Checkout Flows",
+        "Custom Product Types & Variation Systems",
+        "Stripe, PayPal & Local Gateway Integrations",
+        "Automated Inventory & Shipping Rules",
+        "Subscription & Membership Plugins Setup"
       ],
       "highlight": "High ROI"
     },
     {
-      "slug": "website-redesign",
-      "icon": "RefreshCw",
-      "title": "Website Redesign",
-      "description": "Transform your outdated website into a modern, conversion-focused powerhouse without losing SEO equity.",
-      "longDescription": "An outdated website can actively harm your brand's credibility. My redesign process focuses on modernizing your digital presence while carefully preserving your existing SEO rankings and search traffic. I analyze your current user behavior to identify friction points and transform your site into a modern, high-converting masterpiece that reflects the current scale of your business.",
+      "slug": "elementor-webflow-design",
+      "icon": "Wand2",
+      "title": "Elementor & Webflow Design",
+      "description": "Pixel-perfect, brand-aligned websites built with Elementor Pro or Webflow — with clean code and no compromises on speed.",
+      "longDescription": "Elementor Pro and Webflow are powerful tools in the right hands — and devastating when used poorly. I build with both, applying deep knowledge of their advanced capabilities while keeping code output clean and performance scores high. From custom-designed service pages to animated marketing sites, every deliverable is responsive, cross-browser tested, and fast-loading. No generic templates, no bloated widgets — just purposeful design that converts.",
       "features": [
-        "SEO Equity Preservation & 301 Mapping",
-        "UX Friction Point Elimination",
-        "Modern Glassmorphic UI Upgrades",
-        "Core Web Vitals Improvement",
-        "Content Strategy Refinement"
+        "Custom Elementor Pro Widget & Template Design",
+        "Webflow CMS Collections & Dynamic Content",
+        "Advanced CSS Animations & Scroll Interactions",
+        "Mobile-First Responsive Breakpoints",
+        "Cross-Browser & Device QA Testing"
       ],
       "highlight": null
     },
     {
-      "slug": "ecommerce-development",
-      "icon": "ShoppingCart",
-      "title": "E-Commerce Development",
-      "description": "Full-featured WooCommerce stores with optimized checkout flows, inventory management, and payment integration.",
-      "longDescription": "Sell anything, anywhere, with a high-performance e-commerce engine. I specialize in building robust WooCommerce environments that handle everything from complex product variations to automated inventory workflows. My focus is on reducing cart abandonment through optimized checkout experiences and building trust with secure, seamless payment gateway integrations.",
+      "slug": "wix-squarespace-development",
+      "icon": "Layers",
+      "title": "Wix & Squarespace",
+      "description": "Professional business websites on Wix & Squarespace — designed to look premium, load fast, and generate real leads.",
+      "longDescription": "Not every business needs WordPress — and for many, Wix or Squarespace is the smartest choice. I build professional, high-end websites on both platforms that defy the 'template look' and stand out in any market. From local service businesses to professional portfolios and agency sites, I handle everything: custom design, content structure, SEO setup, contact forms, and ongoing training so you can manage it yourself with confidence.",
       "features": [
-        "Conversion-Optimized Checkout Flows",
-        "Advanced Inventory Management",
-        "Secure Payment Gateway Integrations",
-        "Dynamic Product Filtering & Search",
-        "Automated Shipping & Tax Rules"
+        "Wix Studio Advanced Design & Velo (JS) Scripting",
+        "Squarespace Custom CSS & Layout Overrides",
+        "Local SEO & Google Business Integration",
+        "Lead Capture Forms & CRM Connections",
+        "Client Handover Training & Documentation"
       ],
       "highlight": null
+    },
+    {
+      "slug": "ai-powered-web-development",
+      "icon": "Bot",
+      "title": "AI-Powered Websites",
+      "description": "Next-generation websites supercharged with AI — from AI chatbots and dynamic content to automated workflows and smart lead capture.",
+      "longDescription": "The websites that win in the next decade will be powered by AI. I integrate cutting-edge AI capabilities directly into your web presence — intelligent chatbots trained on your business data, AI-generated content workflows, smart lead qualification systems, and personalized user experiences. Whether you're embedding a custom GPT assistant, connecting to OpenAI APIs, or automating your entire content pipeline, I build the infrastructure that puts AI to work for your revenue goals.",
+      "features": [
+        "Custom AI Chatbot Integration (GPT / Dialogflow)",
+        "AI Content Generation & Automation Pipelines",
+        "Smart Lead Qualification & CRM Sync",
+        "Personalized User Experience Flows",
+        "OpenAI, Claude & Gemini API Integrations"
+      ],
+      "highlight": "Future-Ready"
     },
     {
       "slug": "speed-optimization",
-      "icon": "Zap",
+      "icon": "Gauge",
       "title": "Speed Optimization",
-      "description": "Achieve 95+ PageSpeed scores. Faster websites rank higher, convert better, and retain visitors longer.",
-      "longDescription": "Every millisecond counts when it comes to user retention and SEO. I provide deep technical speed optimization that moves beyond simple caching. From image compression and code minification to critical CSS delivery and server-side tuning, I ensure your website achieves elite scores on Google PageSpeed Insights and GTmetrix, leading to better rankings and higher conversion rates.",
+      "description": "Achieve 95+ PageSpeed scores on WordPress & any CMS. Faster sites rank higher, convert better, and retain more visitors.",
+      "longDescription": "Every 100ms of latency costs you conversions. I provide deep technical speed optimization that goes far beyond installing a caching plugin. From image pipeline engineering and critical CSS extraction to database query optimization and server-side tuning, I move the needle on your Core Web Vitals scores to elite levels. I specialize in WordPress and WooCommerce speed work, and apply the same rigor to Webflow, Wix, and custom stacks.",
       "features": [
-        "Core Web Vitals (LCP, FID, CLS) Tuning",
-        "Advanced Asset Delivery Optimization",
-        "Database & Server-Side Performance Tuning",
-        "Critical Path CSS Implementation",
-        "Image Engine & CDN Configuration"
+        "Core Web Vitals (LCP, FID, CLS) Deep Tuning",
+        "WordPress Database & Query Optimization",
+        "Advanced Image Compression & WebP Delivery",
+        "Critical Path CSS & JS Deferral",
+        "CDN Configuration & Server-Side Caching"
       ],
-      "highlight": "90+ Score"
+      "highlight": "95+ Score"
     },
     {
-      "slug": "seo-friendly-development",
+      "slug": "wordpress-seo-development",
       "icon": "Search",
-      "title": "SEO-Friendly Development",
-      "description": "Every site built with technical SEO foundations — structured data, Core Web Vitals, semantic HTML.",
-      "longDescription": "Don't build a beautiful website that Google can't find. I build every project with a 'Technical SEO First' mentality. By using semantic HTML5, implementing JSON-LD schema markup, and ensuring a crawler-friendly site architecture, I provide the solid foundation your content needs to climb the search results. I bridge the gap between high-end design and search engine visibility.",
+      "title": "Technical SEO & Content",
+      "description": "Technical SEO foundations baked into every build — structured data, semantic HTML, Yoast/RankMath setup, and content strategy.",
+      "longDescription": "A beautiful website Google can't find is worthless. I build every project with a 'Technical SEO First' mentality, implementing the full stack of on-page and structural SEO from day one. This includes JSON-LD schema markup, semantic HTML5 architecture, crawl-optimized site structure, and proper meta strategy. I also set up Yoast SEO or RankMath with advanced configurations, create XML sitemaps, and build a content strategy framework so your site keeps climbing the rankings.",
       "features": [
-        "JSON-LD Schema Markup Implementation",
+        "Yoast SEO & RankMath Advanced Configuration",
+        "JSON-LD Schema Markup (Local, FAQ, Product)",
         "Semantic HTML5 & Aria Accessibility",
-        "Sitemap & Robots.txt Customization",
-        "Clean, Crawler-Friendly URL Structures",
-        "Metadata & OG Tag Automation"
+        "XML Sitemap & Robots.txt Optimization",
+        "Content Pillar Strategy & Internal Linking Architecture"
       ],
       "highlight": null
     },
     {
-      "slug": "ui-ux-design",
-      "icon": "BarChart3",
-      "title": "UI/UX Design",
-      "description": "Research-driven UI/UX design that guides users to conversion through intuitive flows and strategic layouts.",
-      "longDescription": "Great design is more than just aesthetics—it's about results. My research-driven UI/UX process focuses on understanding your user's pain points and motivations. I design intuitive digital interfaces that guide users naturally toward your desired action, combining stunning visuals with a strategic layout that minimizes cognitive load and maximizes engagement.",
+      "slug": "wordpress-maintenance",
+      "icon": "ShieldCheck",
+      "title": "WordPress Care & Support",
+      "description": "Ongoing WordPress maintenance, security monitoring, updates, backups, and priority support — so you never worry about your site.",
+      "longDescription": "Your website is a living asset that needs consistent care to stay secure, fast, and up-to-date. My WordPress Care Plans provide proactive maintenance so you can focus on your business, not your website. I handle all core, theme, and plugin updates with pre-update backups, run weekly security scans, monitor uptime 24/7, and provide priority support for any issues. You get a dedicated partner who knows your site inside-out and keeps it running at peak performance month after month.",
       "features": [
-        "User Journey Mapping & Persona Research",
-        "High-Fidelity Wireframing & Prototyping",
-        "Interaction Design & Micro-Animations",
-        "Accessibility-First Design Systems",
-        "Usability Testing & Feedback Loops"
+        "Monthly Core, Theme & Plugin Updates",
+        "Daily Off-Site Backups & One-Click Restore",
+        "24/7 Uptime Monitoring & Security Scanning",
+        "Priority Bug Fixes & Change Requests",
+        "Monthly Performance & Analytics Reports"
       ],
       "highlight": null
     }
   ],
+
   "process": {
     "steps": [
       {
@@ -242,7 +247,7 @@
       "year": "2026",
       "description": "Premium corporate website for a Sydney-based builder and developer.",
       "longDescription": "HELMONT is a Sydney-based builder–developer delivering disciplined residential projects. We built a clean, restrained, and highly professional corporate website that matched their ethos of 'quality enforced on site, not promised in marketing.'",
-      "image": "/projects/HELMONT-1776616595388.png",
+      "image": "https://qfy8laye5c6wi3ro.public.blob.vercel-storage.com/HELMONT1-2jnUwPkdmLzopu7orhSzbQcApQK3iM.png",
       "mockupColor": "from-stone-800 to-black",
       "liveUrl": "https://helmont.com.au/",
       "stats": [
@@ -272,7 +277,7 @@
         "Established a premium digital footprint",
         "Fast loading, minimalist user experience"
       ],
-      "screenshot": "/projects/HELMONT-1776616599704.png"
+      "screenshot": "https://qfy8laye5c6wi3ro.public.blob.vercel-storage.com/HELMONT-z7VLOPmpEa2wTIW5nLOpIlewYDWjBT.png"
     },
     {
       "slug": "success-trading",
@@ -320,8 +325,8 @@
       "year": "2026",
       "description": "A modern, conversion-focused website for a strategic business consultancy.",
       "longDescription": "Sivo Consulting helps businesses move forward with purpose through clear strategies and digital marketing. We designed a professional platform to highlight their services, from financial strategy to brand development, driving consultation bookings.",
-      "image": "/projects/Sivo-Consulting-1776618368351.png",
-      "screenshot": "/projects/Sivo-Consulting-1776618371906.png",
+      "image": "https://qfy8laye5c6wi3ro.public.blob.vercel-storage.com/Sivo%20Consulting1-skECfCntHGz6Tn5cceFmDqpLCIBBvF.png",
+      "screenshot": "https://qfy8laye5c6wi3ro.public.blob.vercel-storage.com/Sivo%20Consulting-8fS79JD8fjzgwao6b4901C7DdRRF70.png",
       "mockupColor": "from-indigo-900 to-black",
       "liveUrl": "https://sivoconsulting.com/",
       "stats": [
@@ -359,7 +364,7 @@
       "year": "2026",
       "description": "Lead generation site for Boca Raton's premier custom aluminum pergola and patio cover builders.",
       "longDescription": "A robust local services website designed for Boca Raton's premier indoor-outdoor living construction company. The site highlights full-service pergola builds, motorized louvered roofs, and patio covers, focusing heavily on lead generation and highlighting their HOA compliance expertise.",
-      "image": "/projects/boca-pergola.jpg",
+      "image": "https://qfy8laye5c6wi3ro.public.blob.vercel-storage.com/screencapture-bocaratonpergolabuilder-2026-04-19-23_44_161-nSEsCjdfhF53W0eoZYh6fH1N5ky9fB.png",
       "screenshot": "/projects/boca-pergola-ss.jpg",
       "mockupColor": "from-stone-800 to-stone-900",
       "liveUrl": "https://bocaratonpergolabuilder.com/",
@@ -405,8 +410,8 @@
       "year": "2026",
       "description": "Strategic consulting & sales growth solutions for modern businesses looking to scale fast.",
       "longDescription": "Nexstart supports businesses with clear strategy, practical guidance, and measurable results. By combining consulting expertise, high-performing sales development, and global trade operations, we help leaders simplify complex challenges and enter new international markets with confidence.",
-      "image": "/projects/Nexstart-1776618398721.png",
-      "screenshot": "/projects/Nexstart-1776618402556.png",
+      "image": "https://qfy8laye5c6wi3ro.public.blob.vercel-storage.com/Nexstart1-nAO95iKYpoY1tDQ8y6yFWdUydlo4dA.png",
+      "screenshot": "https://qfy8laye5c6wi3ro.public.blob.vercel-storage.com/Nexstart-IjyMQTd9DMLhFGdLx0Oyz56wupcqWQ.png",
       "mockupColor": "from-slate-900 to-black",
       "liveUrl": "https://nexstart.eu/",
       "stats": [
@@ -599,5 +604,11 @@
         "src": "/projects/javascript-logo-javascript-icon-transparent-free-png-1776592235304.webp"
       }
     ]
+  },
+  "typography": {
+    "baseFontSize": 16,
+    "headingFont": "Unbounded",
+    "bodyFont": "Fira Code",
+    "accentFont": "Syne"
   }
 }

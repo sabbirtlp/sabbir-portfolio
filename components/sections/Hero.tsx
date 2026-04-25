@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import Image from "next/image";
 import { gsap } from "gsap";
-import { ArrowRight, MousePointer2, Loader2, Code2, Globe, Layout, Zap, Search, Terminal } from "lucide-react";
+import { ArrowRight, MousePointer2, Loader2, Code2, Globe, Layout, Zap, Search, Terminal, Github, Linkedin, Instagram, ArrowDown } from "lucide-react";
 import MagneticButton from "@/components/ui/MagneticButton";
 import CountUp from "@/components/ui/CountUp";
 import { Orbit, OrbitContainer } from "@/components/ui/Orbit";
@@ -405,34 +405,60 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Portfolio Showcase Marquee */}
-      <div className="absolute bottom-16 left-0 w-full z-10 opacity-30 group hover:opacity-100 transition-opacity duration-700">
-        <Marquee className="py-4" pauseOnHover>
-          {["WordPress", "Next.js", "Lead Generation", "E-commerce", "Conversion Audit", "Speed Optimization", "SEO Strategy", "Custom Development"].map((tech) => (
-            <div 
-              key={tech}
-              className="px-8 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm text-white/50 text-xs font-unbounded whitespace-nowrap hover:text-accent hover:border-accent/40 transition-colors"
-            >
-              {tech}
-            </div>
-          ))}
-        </Marquee>
-      </div>
-
-      {/* Scroll indicator */}
+      {/* ── Premium Bottom Bar ── */}
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-text-secondary"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 2.2, duration: 0.8, ease: "easeOut" }}
+        className="absolute bottom-0 left-0 w-full z-10 px-6 md:px-12 py-5 flex items-center justify-between border-t border-white/[0.04]"
       >
-        <span className="text-xs tracking-widest uppercase">Scroll</span>
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+        {/* Left: Social Links */}
+        <div className="flex items-center gap-4">
+          {[
+            { href: "https://github.com/sabbirtlp", icon: Github, label: "GitHub" },
+            { href: "https://www.linkedin.com/in/dev-sabbir-hossain/", icon: Linkedin, label: "LinkedIn" },
+            { href: "https://www.instagram.com/abutalha8479/", icon: Instagram, label: "Instagram" },
+          ].map(({ href, icon: Icon, label }) => (
+            <a
+              key={label}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={label}
+              className="group flex items-center justify-center w-8 h-8 rounded-full border border-white/10 bg-white/[0.03] hover:border-accent/50 hover:bg-accent/10 transition-all duration-300"
+            >
+              <Icon className="w-3.5 h-3.5 text-white/40 group-hover:text-accent transition-colors duration-300" />
+            </a>
+          ))}
+        </div>
+
+        {/* Center: Scroll → Services Button */}
+        <button
+          onClick={() => document.querySelector("#services")?.scrollIntoView({ behavior: "smooth" })}
+          className="group/scroll flex flex-col items-center gap-1.5 cursor-pointer outline-none"
+          aria-label="Scroll to Services"
         >
-          <MousePointer2 className="w-4 h-4 text-accent" />
-        </motion.div>
+          <span className="text-[9px] font-fira-code tracking-[0.25em] uppercase text-white/25 group-hover/scroll:text-accent/60 transition-colors duration-300">
+            Services
+          </span>
+          <motion.div
+            animate={{ y: [0, 6, 0] }}
+            transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+            className="w-7 h-7 rounded-full border border-white/10 group-hover/scroll:border-accent/50 group-hover/scroll:bg-accent/10 group-hover/scroll:shadow-[0_0_18px_rgba(234,88,12,0.25)] flex items-center justify-center transition-all duration-300"
+          >
+            <ArrowDown className="w-3 h-3 text-accent" />
+          </motion.div>
+        </button>
+
+        {/* Right: Availability Badge */}
+        <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-accent/20 bg-accent/5">
+          <span className="relative flex h-1.5 w-1.5">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75" />
+            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-accent" />
+          </span>
+          <span className="text-[9px] font-fira-code tracking-widest text-accent/80 uppercase hidden sm:block">Available for Work</span>
+          <span className="text-[9px] font-fira-code tracking-widest text-accent/80 uppercase sm:hidden">Open</span>
+        </div>
       </motion.div>
     </section>
   );

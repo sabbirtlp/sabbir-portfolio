@@ -11,13 +11,22 @@ import {
   Palette,
   RefreshCw,
   BarChart3,
+  Bot,
+  Code2,
+  Wand2,
+  Layers,
+  Store,
+  Gauge,
+  Server,
+  ShieldCheck,
 } from "lucide-react";
 import Link from "next/link";
 import { useContent } from "@/components/providers/ContentProvider";
 import PremiumGlowCard from "@/components/ui/PremiumGlowCard";
 
 const ICON_MAP: Record<string, any> = {
-  Globe, Layout, ShoppingCart, Zap, Search, Palette, RefreshCw, BarChart3
+  Globe, Layout, ShoppingCart, Zap, Search, Palette, RefreshCw, BarChart3,
+  Bot, Code2, Wand2, Layers, Store, Gauge, Server, ShieldCheck,
 };
 
 export default function Services() {
