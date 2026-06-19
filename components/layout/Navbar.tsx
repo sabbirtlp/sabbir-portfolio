@@ -10,6 +10,7 @@ import { useActiveSection } from "@/hooks/useActiveSection";
 const navLinks = [
   { label: "Home", href: "#home" },
   { label: "Work", href: "#work" },
+  { label: "Portfolio", href: "/portfolio" },
   { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
   { label: "Process", href: "#process" },
@@ -43,6 +44,12 @@ export default function Navbar() {
   const handleNavClick = (href: string) => {
     setMenuOpen(false);
     
+    // Direct page links (e.g. /portfolio)
+    if (href.startsWith("/")) {
+      router.push(href);
+      return;
+    }
+
     if (pathname !== "/") {
       router.push(`/${href}`);
       return;
@@ -78,7 +85,9 @@ export default function Navbar() {
           {/* Desktop Nav */}
           <ul className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => {
-              const isActive = activeSection === link.href.substring(1);
+              const isActive = link.href.startsWith("/")
+                ? pathname === link.href
+                : activeSection === link.href.substring(1);
               return (
                 <li key={link.href} className="relative">
                   <button
@@ -149,7 +158,9 @@ export default function Navbar() {
           >
             <ul className="flex flex-col items-center gap-8">
               {navLinks.map((link, i) => {
-                const isActive = activeSection === link.href.substring(1);
+                const isActive = link.href.startsWith("/")
+                  ? pathname === link.href
+                  : activeSection === link.href.substring(1);
                 return (
                   <motion.li
                     key={link.href}

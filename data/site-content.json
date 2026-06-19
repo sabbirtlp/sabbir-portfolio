@@ -199,7 +199,6 @@
       "highlight": null
     }
   ],
-
   "process": {
     "steps": [
       {
@@ -244,6 +243,7 @@
       "slug": "helmont",
       "title": "HELMONT",
       "category": "Corporate Website",
+      "filterCategory": "Construction",
       "year": "2026",
       "description": "Premium corporate website for a Sydney-based builder and developer.",
       "longDescription": "HELMONT is a Sydney-based builder–developer delivering disciplined residential projects. We built a clean, restrained, and highly professional corporate website that matched their ethos of 'quality enforced on site, not promised in marketing.'",
@@ -283,6 +283,7 @@
       "slug": "success-trading",
       "title": "Success International Trading",
       "category": "B2B E-Commerce",
+      "filterCategory": "E-Commerce",
       "year": "2026",
       "description": "Global B2B catalog site for a Malaysia-based import-export company.",
       "longDescription": "Success International Trading supplies high-quality food commodities, garments, and motor parts to international markets. They required a robust B2B platform to showcase their global supply chain capabilities and connect with international partners.",
@@ -322,6 +323,7 @@
       "slug": "sivo-consulting",
       "title": "Sivo Consulting",
       "category": "Agency Website",
+      "filterCategory": "Business & Consulting",
       "year": "2026",
       "description": "A modern, conversion-focused website for a strategic business consultancy.",
       "longDescription": "Sivo Consulting helps businesses move forward with purpose through clear strategies and digital marketing. We designed a professional platform to highlight their services, from financial strategy to brand development, driving consultation bookings.",
@@ -361,6 +363,7 @@
       "slug": "boca-pergola",
       "title": "Boca Raton Pergola Builder",
       "category": "Local Business Website",
+      "filterCategory": "Construction",
       "year": "2026",
       "description": "Lead generation site for Boca Raton's premier custom aluminum pergola and patio cover builders.",
       "longDescription": "A robust local services website designed for Boca Raton's premier indoor-outdoor living construction company. The site highlights full-service pergola builds, motorized louvered roofs, and patio covers, focusing heavily on lead generation and highlighting their HOA compliance expertise.",
@@ -407,6 +410,7 @@
       "slug": "nexstart",
       "title": "Nexstart",
       "category": "Strategic Consulting",
+      "filterCategory": "Business & Consulting",
       "year": "2026",
       "description": "Strategic consulting & sales growth solutions for modern businesses looking to scale fast.",
       "longDescription": "Nexstart supports businesses with clear strategy, practical guidance, and measurable results. By combining consulting expertise, high-performing sales development, and global trade operations, we help leaders simplify complex challenges and enter new international markets with confidence.",
@@ -447,6 +451,123 @@
         "Established a highly professional digital presence",
         "Streamlined lead generation funnels",
         "Clear communication of diverse corporate services"
+      ]
+    },
+    {
+      "slug": "green-home-health-care",
+      "title": "Green Home Health Care",
+      "category": "Healthcare Website",
+      "filterCategory": "Healthcare",
+      "year": "2026",
+      "description": "Compassionate Care In The Comfort Of Your Home.",
+      "longDescription": "Green Home Health Care provides compassionate care and medical services in the comfort of patients' homes. The website was designed to create a welcoming and trustworthy digital presence for families seeking reliable home healthcare solutions.",
+      "image": "",
+      "mockupColor": "from-green-900 to-emerald-900",
+      "liveUrl": "https://greenhhcare.com/",
+      "stats": [
+        {
+          "value": "Home",
+          "label": "Healthcare"
+        },
+        {
+          "value": "Trust",
+          "label": "Focus"
+        }
+      ],
+      "tags": [
+        "Healthcare",
+        "Web Design",
+        "Lead Generation"
+      ],
+      "problem": "Green Home Health Care needed a website to establish trust, clearly communicate their services, and make it easy for potential clients or families to reach out for care inquiries.",
+      "solution": "Built a clean, accessible, and reassuring website featuring clear service descriptions, easy contact methods, and an empathetic design tailored to their audience.",
+      "process": [
+        "Audience Research",
+        "Accessible UX/UI Design",
+        "Web Development",
+        "Lead Capture Integration"
+      ],
+      "results": [
+        "Enhanced digital trust and credibility",
+        "Streamlined patient and family inquiries"
+      ]
+    },
+    {
+      "slug": "ppm-bristol",
+      "title": "Perfectus (PPM Bristol)",
+      "category": "Contractor Website",
+      "filterCategory": "Construction",
+      "year": "2026",
+      "description": "Reliable, fast, and clean finishes that transform properties in Bristol.",
+      "longDescription": "Perfectus is a fully insured painting and property maintenance company with over 15 years of experience in Bristol. They handle jobs of all sizes, ensuring clean, fast, and reliable finishes. Their digital platform was built to showcase their high-quality workmanship and generate local service leads.",
+      "image": "",
+      "mockupColor": "from-sky-900 to-blue-900",
+      "liveUrl": "https://ppmbristol.com/",
+      "stats": [
+        {
+          "value": "15+",
+          "label": "Years Experience"
+        },
+        {
+          "value": "Bristol",
+          "label": "Location"
+        }
+      ],
+      "tags": [
+        "Local SEO",
+        "Construction",
+        "Lead Generation"
+      ],
+      "problem": "Perfectus needed a solid online presence to showcase their 15+ years of experience, display their past work, and capture local painting and maintenance leads in the Bristol area.",
+      "solution": "Developed a localized, mobile-friendly website highlighting their services, a portfolio of past projects, and prominent contact forms for fast quote requests.",
+      "process": [
+        "Local SEO Strategy",
+        "Portfolio Presentation",
+        "Web Development",
+        "Conversion Optimization"
+      ],
+      "results": [
+        "Increased local visibility and lead flow",
+        "Professional presentation of 15+ years of expertise"
+      ]
+    },
+    {
+      "slug": "aurea-bd",
+      "title": "Aurea BD",
+      "category": "E-Commerce Website",
+      "filterCategory": "E-Commerce",
+      "year": "2026",
+      "description": "Premium Japanese and Korean skincare products retailer in Bangladesh.",
+      "longDescription": "Aurea BD is a premier online retailer in Bangladesh offering 100% authentic Japanese and Korean skincare products. The e-commerce platform was built to provide a seamless shopping experience, from browsing a diverse catalog to secure checkout and nationwide delivery.",
+      "image": "",
+      "mockupColor": "from-pink-900 to-rose-900",
+      "liveUrl": "https://aureabd.com/",
+      "stats": [
+        {
+          "value": "Authentic",
+          "label": "Products"
+        },
+        {
+          "value": "Nationwide",
+          "label": "Delivery"
+        }
+      ],
+      "tags": [
+        "E-Commerce",
+        "Skincare",
+        "Web Design"
+      ],
+      "problem": "Aurea BD required a robust, user-friendly e-commerce platform to manage inventory, process nationwide orders, and provide a trustworthy shopping experience for skincare enthusiasts.",
+      "solution": "Designed and developed a sleek e-commerce store with intuitive product categorization, secure payment integrations, and a mobile-optimized checkout process.",
+      "process": [
+        "E-Commerce Strategy",
+        "Storefront Design",
+        "Payment & Shipping Setup",
+        "Performance Optimization"
+      ],
+      "results": [
+        "Simplified the online shopping experience",
+        "Streamlined order processing and delivery logistics"
       ]
     }
   ],
@@ -530,6 +651,10 @@
         "href": "/#work"
       },
       {
+        "label": "Portfolio",
+        "href": "/portfolio"
+      },
+      {
         "label": "Services",
         "href": "/#services"
       },
@@ -610,5 +735,29 @@
     "headingFont": "Unbounded",
     "bodyFont": "Fira Code",
     "accentFont": "Syne"
+  },
+  "contact": {
+    "badge": "Direct Access to Specialist",
+    "headline": "Ready to Scale Your",
+    "headlineHighlight": "Digital Presence?",
+    "description": "Let's turn your vision into a high-performing website that attracts premium clients and grows your revenue. Currently booking for <span className=\"text-white font-semibold\">Next Month</span>.",
+    "email": "sabbirtlp@gmail.com",
+    "emailButtonText": "Sent a Message",
+    "calendlyUrl": "https://calendly.com/sabbir",
+    "calendlyButtonText": "Book Strategy Call",
+    "stats": [
+      {
+        "value": "< 3hrs",
+        "label": "Response Time"
+      },
+      {
+        "value": "100%",
+        "label": "Satisfaction Rate"
+      },
+      {
+        "value": "1 Weeks",
+        "label": "Avg. Turnaround"
+      }
+    ]
   }
 }

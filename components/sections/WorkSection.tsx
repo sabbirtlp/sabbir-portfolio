@@ -148,14 +148,15 @@ const ProjectCard = ({ project, index, progress, range, targetScale }: CardProps
 export default function WorkSection() {
   const container = useRef(null);
   const { content } = useContent();
-  const projects = content?.projects || [];
+  const allProjects = content?.projects || [];
+  const displayProjects = allProjects.slice(0, 5);
   
   const { scrollYProgress } = useScroll({
     target: container,
     offset: ["start start", "end end"],
   });
 
-  const projectsCount = projects.length;
+  const projectsCount = displayProjects.length;
 
   return (
     <section ref={container} id="work" className="relative bg-background">
@@ -179,8 +180,8 @@ export default function WorkSection() {
       </div>
 
       <div className="relative">
-        {projects.map((project: any, i: number) => {
-          const targetScale = 1 - (projects.length - i) * 0.05;
+        {displayProjects.map((project: any, i: number) => {
+          const targetScale = 1 - (displayProjects.length - i) * 0.05;
           return (
             <ProjectCard
               key={project.slug}
@@ -192,6 +193,17 @@ export default function WorkSection() {
             />
           );
         })}
+      </div>
+
+      {/* View All Button */}
+      <div className="mt-16 mb-8 flex justify-center relative z-20">
+        <Link
+          href="/portfolio"
+          className="group flex items-center gap-3 px-8 py-4 bg-surface border border-border hover:border-accent/50 hover:bg-surface-2 text-white font-bold rounded-full transition-all duration-300"
+        >
+          View All Projects
+          <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1 text-accent" />
+        </Link>
       </div>
 
       {/* Buffer at the bottom — reduced on mobile */}

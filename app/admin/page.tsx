@@ -26,7 +26,8 @@ import {
   Menu,
   X,
   Zap,
-  Type
+  Type,
+  Mail
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 
@@ -259,6 +260,7 @@ export default function AdminDashboard() {
             { id: "work", label: "Case Studies", icon: FolderOpen },
             { id: "testimonials", label: "Testimonials", icon: MessageSquare },
             { id: "process", label: "Process", icon: CheckCircle2 },
+            { id: "contact", label: "Contact Section", icon: Mail },
             { id: "footer", label: "Footer Settings", icon: Globe },
           ].map((tab) => (
             <button
@@ -338,6 +340,7 @@ export default function AdminDashboard() {
                 { id: "work", label: "Case Studies" },
                 { id: "testimonials", label: "Testimonials" },
                 { id: "process", label: "Process" },
+                { id: "contact", label: "Contact" },
                 { id: "footer", label: "Footer" },
               ].map((tab) => (
                 <button
@@ -1236,6 +1239,149 @@ export default function AdminDashboard() {
                         >
                           <Trash2 className="w-4 h-4" />
                         </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* CONTACT SECTION */}
+            {activeTab === "contact" && (
+              <div className="space-y-6">
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Badge Text</label>
+                  <input 
+                    type="text" 
+                    value={content.contact?.badge || ""}
+                    onChange={(e) => setContent({ ...content, contact: { ...content.contact, badge: e.target.value } })}
+                    className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-white outline-none focus:border-accent/40"
+                  />
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Headline</label>
+                    <input 
+                      type="text" 
+                      value={content.contact?.headline || ""}
+                      onChange={(e) => setContent({ ...content, contact: { ...content.contact, headline: e.target.value } })}
+                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-white outline-none focus:border-accent/40"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Headline Highlight (Gradient)</label>
+                    <input 
+                      type="text" 
+                      value={content.contact?.headlineHighlight || ""}
+                      onChange={(e) => setContent({ ...content, contact: { ...content.contact, headlineHighlight: e.target.value } })}
+                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-white outline-none focus:border-accent/40"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Description (HTML allowed)</label>
+                  <textarea 
+                    rows={3}
+                    value={content.contact?.description || ""}
+                    onChange={(e) => setContent({ ...content, contact: { ...content.contact, description: e.target.value } })}
+                    className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-white outline-none focus:border-accent/40 resize-none font-mono text-sm"
+                  />
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <h3 className="text-[10px] font-bold uppercase tracking-widest text-accent border-b border-white/5 pb-2">Primary Button (Email)</h3>
+                    <div>
+                      <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Email Address</label>
+                      <input 
+                        type="email" 
+                        value={content.contact?.email || ""}
+                        onChange={(e) => setContent({ ...content, contact: { ...content.contact, email: e.target.value } })}
+                        className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-white outline-none focus:border-accent/40"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Button Text</label>
+                      <input 
+                        type="text" 
+                        value={content.contact?.emailButtonText || ""}
+                        onChange={(e) => setContent({ ...content, contact: { ...content.contact, emailButtonText: e.target.value } })}
+                        className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-white outline-none focus:border-accent/40"
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-4">
+                    <h3 className="text-[10px] font-bold uppercase tracking-widest text-accent border-b border-white/5 pb-2">Secondary Button (Calendly)</h3>
+                    <div>
+                      <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Calendly URL</label>
+                      <input 
+                        type="url" 
+                        value={content.contact?.calendlyUrl || ""}
+                        onChange={(e) => setContent({ ...content, contact: { ...content.contact, calendlyUrl: e.target.value } })}
+                        className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-white outline-none focus:border-accent/40"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Button Text</label>
+                      <input 
+                        type="text" 
+                        value={content.contact?.calendlyButtonText || ""}
+                        onChange={(e) => setContent({ ...content, contact: { ...content.contact, calendlyButtonText: e.target.value } })}
+                        className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-white outline-none focus:border-accent/40"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted">Social Proof Stats</label>
+                    <button 
+                      onClick={() => {
+                        const newStats = [...(content.contact?.stats || [])];
+                        newStats.push({ value: "New", label: "Metric" });
+                        setContent({ ...content, contact: { ...content.contact, stats: newStats } });
+                      }}
+                      className="text-[10px] text-accent hover:text-accent-light font-bold flex items-center gap-1 transition-colors"
+                    >
+                      <Plus className="w-3 h-3" /> Add Stat
+                    </button>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    {(content.contact?.stats || []).map((stat: any, i: number) => (
+                      <div key={i} className="p-4 bg-surface-2 border border-border rounded-xl space-y-3 relative group/stat">
+                        <button 
+                          onClick={() => {
+                            const newStats = content.contact.stats.filter((_: any, idx: number) => idx !== i);
+                            setContent({ ...content, contact: { ...content.contact, stats: newStats } });
+                          }}
+                          className="absolute top-2 right-2 text-text-muted hover:text-red-400 opacity-0 group-hover/stat:opacity-100 transition-opacity"
+                        >
+                          <Trash2 className="w-3 h-3" />
+                        </button>
+                        <input 
+                          type="text" 
+                          value={stat.value}
+                          onChange={(e) => {
+                            const newStats = [...content.contact.stats];
+                            newStats[i].value = e.target.value;
+                            setContent({ ...content, contact: { ...content.contact, stats: newStats } });
+                          }}
+                          className="w-full bg-transparent text-center font-unbounded text-xl text-white outline-none border-b border-border focus:border-accent pb-1"
+                          placeholder="Value (e.g. 100%)"
+                        />
+                        <input 
+                          type="text" 
+                          value={stat.label}
+                          onChange={(e) => {
+                            const newStats = [...content.contact.stats];
+                            newStats[i].label = e.target.value;
+                            setContent({ ...content, contact: { ...content.contact, stats: newStats } });
+                          }}
+                          className="w-full bg-transparent text-center text-[10px] uppercase tracking-widest text-text-secondary outline-none"
+                          placeholder="Label (e.g. Satisfaction)"
+                        />
                       </div>
                     ))}
                   </div>
