@@ -106,7 +106,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="bg-background text-text-primary font-inter antialiased">
+      <body className="bg-background text-text-primary font-inter antialiased" suppressHydrationWarning>
         <ContentProvider>
           <SmoothScroll>
             {/* Noise grain overlay */}
