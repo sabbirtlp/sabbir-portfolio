@@ -240,6 +240,567 @@
   },
   "projects": [
     {
+      "slug": "shaffer-homes",
+      "title": "Shaffer Homes",
+      "category": "Custom Home Builder",
+      "filterCategory": "Construction",
+      "year": "2026",
+      "description": "A high-end website for a premier custom home builder in Tulsa, Oklahoma.",
+      "longDescription": "Shaffer Homes specializes in luxury custom homes and renovations. The goal was to create a digital experience that reflects the same level of craftsmanship and attention to detail they bring to their physical builds, capturing leads for high-ticket projects.",
+      "image": "/projects/shafferhomes_homepage.png",
+      "mockupColor": "from-stone-700 to-stone-900",
+      "liveUrl": "https://shafferhomes918.com/",
+      "stats": [
+        {
+          "value": "Premium",
+          "label": "Design"
+        },
+        {
+          "value": "Tulsa",
+          "label": "Location"
+        }
+      ],
+      "tags": [
+        "Custom Homes",
+        "Web Design",
+        "Lead Generation"
+      ],
+      "problem": "Shaffer Homes needed a digital showcase that matched the high quality of their custom builds and efficiently funneled prospective clients toward requesting consultations.",
+      "solution": "Designed an elegant, image-forward website highlighting their portfolio of luxury homes with a seamless user experience that drives high-quality inquiries.",
+      "process": [
+        "Brand Alignment",
+        "High-Fidelity UI Design",
+        "Web Development",
+        "SEO Optimization"
+      ],
+      "results": [
+        "Increased premium leads",
+        "Elevated digital brand presence"
+      ],
+      "screenshot": "/projects/shafferhomes_homepage.png"
+    },
+    {
+      "slug": "rpb-law-firm",
+      "title": "RPB Law Firm",
+      "category": "Law Firm Website",
+      "filterCategory": "Business & Consulting",
+      "year": "2026",
+      "description": "A professional and authoritative website for a specialized legal practice.",
+      "longDescription": "RPB Law Firm required a digital presence that commands respect while remaining accessible to prospective clients. We built a structured, informative, and highly professional platform to highlight their practice areas and attorney expertise.",
+      "image": "/projects/rpb_homepage_top.png",
+      "mockupColor": "from-slate-800 to-slate-950",
+      "liveUrl": "https://rpblawfirm.com/",
+      "stats": [
+        {
+          "value": "Corporate",
+          "label": "Identity"
+        },
+        {
+          "value": "Fast",
+          "label": "Load Time"
+        }
+      ],
+      "tags": [
+        "Law Firm",
+        "Professional Services",
+        "Web Design"
+      ],
+      "problem": "The firm lacked a modern website that accurately reflected their legal expertise and made it easy for clients to find the right information and get in touch.",
+      "solution": "Built a clean, authoritative website with clear practice area breakdowns, detailed attorney profiles, and prominent contact forms for consultations.",
+      "process": [
+        "Content Strategy",
+        "Professional Web Design",
+        "CMS Development",
+        "Speed Optimization"
+      ],
+      "results": [
+        "Improved client trust",
+        "Streamlined consultation requests"
+      ],
+      "screenshot": "/projects/rpb_homepage_top.png"
+    },
+    {
+      "slug": "rifcon-building",
+      "title": "Rifcon Building",
+      "category": "Construction & Renovation",
+      "filterCategory": "Construction",
+      "year": "2026",
+      "description": "A modern contractor website focused on residential building and renovations.",
+      "longDescription": "Rifcon Building delivers quality residential construction projects. They needed a robust portfolio site to display their craftsmanship, detail their services, and generate leads from homeowners looking for reliable builders.",
+      "image": "/projects/rifcon_homepage.png",
+      "mockupColor": "from-zinc-800 to-black",
+      "liveUrl": "http://rifconbuilding.com.au/",
+      "stats": [
+        {
+          "value": "Local",
+          "label": "SEO"
+        },
+        {
+          "value": "Portfolio",
+          "label": "Focused"
+        }
+      ],
+      "tags": [
+        "Construction",
+        "Web Development",
+        "Local SEO"
+      ],
+      "problem": "Rifcon Building needed to stand out in a competitive local market by showcasing their past projects in a way that builds immediate trust with homeowners.",
+      "solution": "Developed a mobile-optimized, fast-loading website with a dedicated project gallery and clear calls to action to drive quote requests.",
+      "process": [
+        "Local Market Research",
+        "UI/UX Design",
+        "Web Development",
+        "SEO Setup"
+      ],
+      "results": [
+        "Enhanced local visibility",
+        "Higher volume of qualified quote requests"
+      ],
+      "screenshot": "/projects/rifcon_homepage.png"
+    },
+    {
+      "slug": "goga-construction",
+      "title": "Goga Construction Group",
+      "category": "Commercial Construction",
+      "filterCategory": "Construction",
+      "year": "2026",
+      "description": "A comprehensive digital platform for a full-service construction group.",
+      "longDescription": "Goga Construction Group handles everything from residential remodels to large commercial builds. Their website serves as a primary hub for prospective clients to explore their extensive range of services and view their impressive track record.",
+      "image": "/projects/goga_homepage.png",
+      "mockupColor": "from-neutral-800 to-neutral-900",
+      "liveUrl": "https://gogaconstructiongroup.com/",
+      "stats": [
+        {
+          "value": "Full",
+          "label": "Service"
+        },
+        {
+          "value": "High",
+          "label": "Conversion"
+        }
+      ],
+      "tags": [
+        "Commercial Construction",
+        "Web Design",
+        "Lead Generation"
+      ],
+      "problem": "The company's vast array of services needed to be organized logically so that different types of clients (residential vs commercial) could easily navigate to what they needed.",
+      "solution": "Created a structured, easy-to-navigate website with distinct service silos, strong branding, and optimized lead capture forms.",
+      "process": [
+        "Information Architecture",
+        "Custom Web Design",
+        "Development",
+        "Performance Tuning"
+      ],
+      "results": [
+        "Clearer service communication",
+        "Increased commercial inquiries"
+      ],
+      "screenshot": "/projects/goga_homepage.png"
+    },
+    {
+      "slug": "modell-law-firm",
+      "title": "Modell Law Firm",
+      "category": "Law Firm Website",
+      "filterCategory": "Business & Consulting",
+      "year": "2026",
+      "description": "Family law & immigration specialists — a trusted legal firm in Ontario, Canada.",
+      "longDescription": "Modell Law Firm specializes in guiding clients through the intricacies of family law — including divorce, child custody, and spousal support — as well as immigration law. We designed a professional, trustworthy digital presence that clearly communicates their legal expertise and makes it effortless for potential clients to book consultations.",
+      "image": "/projects/modell_homepage.png",
+      "mockupColor": "from-amber-900 to-yellow-950",
+      "liveUrl": "https://modelllawfirm.com/",
+      "stats": [
+        {
+          "value": "Ontario",
+          "label": "Location"
+        },
+        {
+          "value": "Family",
+          "label": "Law Focus"
+        }
+      ],
+      "tags": [
+        "Law Firm",
+        "WordPress",
+        "Elementor",
+        "Lead Generation"
+      ],
+      "problem": "Modell Law Firm needed a professional website that instilled trust and clearly separated their family law and immigration services for different client audiences.",
+      "solution": "Built a structured WordPress website with distinct practice area pages, attorney profiles, and prominent calls-to-action for booking consultations.",
+      "process": [
+        "Brand Discovery",
+        "Legal UX Design",
+        "WordPress Development",
+        "SEO & Content Strategy"
+      ],
+      "results": [
+        "Increased consultation bookings",
+        "Clear separation of practice areas"
+      ],
+      "screenshot": "/projects/modell_homepage.png"
+    },
+    {
+      "slug": "all-remodeling-and-tile",
+      "title": "All Remodeling & Tile",
+      "category": "Home Renovation",
+      "filterCategory": "Construction",
+      "year": "2026",
+      "description": "A clean, conversion-focused website for a full-service remodeling contractor.",
+      "longDescription": "All Remodeling & Tile is a full-service home renovation company specializing in kitchen and bathroom remodels, tile installations, and general contracting. We created a visually appealing Squarespace website that showcases their craftsmanship and drives local lead generation.",
+      "image": "/projects/allremodeling_homepage.png",
+      "mockupColor": "from-amber-800 to-stone-900",
+      "liveUrl": "http://www.allremodelingandtile.com/",
+      "stats": [
+        {
+          "value": "Local",
+          "label": "Business"
+        },
+        {
+          "value": "Full",
+          "label": "Service"
+        }
+      ],
+      "tags": [
+        "Squarespace",
+        "Home Renovation",
+        "Local SEO"
+      ],
+      "problem": "The company needed a modern online presence to showcase their remodeling projects and capture leads from homeowners searching for contractors.",
+      "solution": "Designed a clean Squarespace site with a prominent project gallery, service breakdowns, and optimized contact forms for quick quote requests.",
+      "process": [
+        "Local Market Analysis",
+        "Squarespace Design",
+        "Content Creation",
+        "Lead Capture Setup"
+      ],
+      "results": [
+        "Professional digital presence established",
+        "Streamlined local lead generation"
+      ],
+      "screenshot": "/projects/allremodeling_homepage.png"
+    },
+    {
+      "slug": "triple-square-contracting",
+      "title": "Triple Square Contracting",
+      "category": "General Contractor",
+      "filterCategory": "Construction",
+      "year": "2026",
+      "description": "A professional website for a full-service general contracting company.",
+      "longDescription": "Triple Square Contracting Inc. handles residential and commercial construction projects with a reputation for quality and reliability. We built a robust digital platform to showcase their capabilities, highlight past projects, and attract new clients through organic search.",
+      "image": "/projects/triplesquare_homepage.png",
+      "mockupColor": "from-blue-900 to-slate-900",
+      "liveUrl": "https://triplesquarecontractinginc.net/",
+      "stats": [
+        {
+          "value": "Trusted",
+          "label": "Contractor"
+        },
+        {
+          "value": "Full",
+          "label": "Service"
+        }
+      ],
+      "tags": [
+        "Construction",
+        "Web Design",
+        "Lead Generation"
+      ],
+      "problem": "Triple Square needed a credible online presence that reflected the quality of their work and helped them compete for larger commercial projects.",
+      "solution": "Developed a professional, mobile-responsive website showcasing their project portfolio, team expertise, and comprehensive service offerings.",
+      "process": [
+        "Brand Positioning",
+        "Portfolio Design",
+        "Web Development",
+        "Local SEO Setup"
+      ],
+      "results": [
+        "Enhanced credibility for commercial bids",
+        "Increased inbound project inquiries"
+      ],
+      "screenshot": "/projects/triplesquare_homepage.png"
+    },
+    {
+      "slug": "zerja-ltd",
+      "title": "Zerja Ltd",
+      "category": "Corporate Website",
+      "filterCategory": "Business & Consulting",
+      "year": "2026",
+      "description": "A sleek corporate website for a modern business consultancy and services firm.",
+      "longDescription": "Zerja Ltd provides strategic business services across multiple sectors. Their website needed to project authority and professionalism while clearly communicating their diverse service portfolio to potential corporate clients.",
+      "image": "/projects/zerjaltd_homepage.png",
+      "mockupColor": "from-indigo-900 to-violet-950",
+      "liveUrl": "https://zerjaltd.com/",
+      "stats": [
+        {
+          "value": "Corporate",
+          "label": "Identity"
+        },
+        {
+          "value": "Multi",
+          "label": "Sector"
+        }
+      ],
+      "tags": [
+        "Corporate",
+        "Web Design",
+        "Branding"
+      ],
+      "problem": "Zerja Ltd needed a polished digital identity that conveyed their expertise and professionalism to corporate decision-makers.",
+      "solution": "Created a modern, sleek corporate website with clear service categorization, strong branding, and a professional aesthetic that builds trust.",
+      "process": [
+        "Corporate Branding",
+        "UX/UI Design",
+        "Development",
+        "Performance Optimization"
+      ],
+      "results": [
+        "Established authoritative online presence",
+        "Clear communication of business services"
+      ],
+      "screenshot": "/projects/zerjaltd_homepage.png"
+    },
+    {
+      "slug": "acb-group",
+      "title": "ACB Group Inc",
+      "category": "Construction Company",
+      "filterCategory": "Construction",
+      "year": "2026",
+      "description": "A robust website for a diversified construction and project management group.",
+      "longDescription": "ACB Group Inc is a construction and project management company handling residential and commercial developments. Their new website was designed to highlight their comprehensive capabilities, from pre-construction planning to final build delivery.",
+      "image": "/projects/acbgroup_homepage.png",
+      "mockupColor": "from-orange-900 to-red-950",
+      "liveUrl": "https://acbgroupinc.com/",
+      "stats": [
+        {
+          "value": "Diverse",
+          "label": "Portfolio"
+        },
+        {
+          "value": "End-to-End",
+          "label": "Service"
+        }
+      ],
+      "tags": [
+        "Construction",
+        "Project Management",
+        "Web Design"
+      ],
+      "problem": "ACB Group needed a unified online presence that demonstrated their end-to-end construction capabilities and built confidence with prospective clients.",
+      "solution": "Developed a visually rich website with structured project showcases, detailed service pages, and strong trust-building elements like certifications and testimonials.",
+      "process": [
+        "Service Architecture",
+        "Visual Design",
+        "Web Development",
+        "Client Showcase Setup"
+      ],
+      "results": [
+        "Unified digital brand identity",
+        "Improved lead quality for large projects"
+      ],
+      "screenshot": "/projects/acbgroup_homepage.png"
+    },
+    {
+      "slug": "rental-recovery",
+      "title": "Rental Recovery",
+      "category": "Property Services",
+      "filterCategory": "Business & Consulting",
+      "year": "2026",
+      "description": "A lead-generation website for a rental property recovery and management service.",
+      "longDescription": "Rental Recovery PS provides specialized services for property owners dealing with rental recovery challenges. Their platform was built to clearly communicate their unique value proposition and capture qualified leads from landlords and property managers.",
+      "image": "/projects/rentalrecovery_homepage.png",
+      "mockupColor": "from-teal-900 to-emerald-950",
+      "liveUrl": "https://rentalrecoveryps.com/",
+      "stats": [
+        {
+          "value": "Niche",
+          "label": "Market"
+        },
+        {
+          "value": "High",
+          "label": "Conversion"
+        }
+      ],
+      "tags": [
+        "Property Services",
+        "Lead Generation",
+        "Web Design"
+      ],
+      "problem": "Rental Recovery needed a digital platform that clearly explained their niche services and converted visitors into qualified leads efficiently.",
+      "solution": "Built a targeted, conversion-optimized website with clear service explanations, trust signals, and streamlined contact forms for property owners.",
+      "process": [
+        "Market Research",
+        "Conversion-Focused Design",
+        "Web Development",
+        "Lead Funnel Setup"
+      ],
+      "results": [
+        "Increased qualified lead volume",
+        "Clear niche positioning established"
+      ],
+      "screenshot": "/projects/rentalrecovery_homepage.png"
+    },
+    {
+      "slug": "dn-law",
+      "title": "DN Law",
+      "category": "Law Firm Website",
+      "filterCategory": "Business & Consulting",
+      "year": "2026",
+      "description": "A professional legal website for a South African law firm specializing in commercial law.",
+      "longDescription": "DNA Inc. (DN Law) is a South African law firm offering expertise in commercial law, litigation, estate planning, and more. Their website was designed to project legal authority while making it easy for clients to understand their diverse practice areas and reach out for consultations.",
+      "image": "/projects/dnlaw_homepage.png",
+      "mockupColor": "from-slate-900 to-gray-950",
+      "liveUrl": "https://dnlaw.co.za/",
+      "stats": [
+        {
+          "value": "South Africa",
+          "label": "Location"
+        },
+        {
+          "value": "Multi",
+          "label": "Practice"
+        }
+      ],
+      "tags": [
+        "Law Firm",
+        "Commercial Law",
+        "Web Design"
+      ],
+      "problem": "DN Law needed a modern, authoritative website that clearly communicated their broad range of legal services across commercial, litigation, and estate planning practice areas.",
+      "solution": "Designed a clean, professional website with structured practice area pages, attorney bios, and optimized contact channels for potential clients.",
+      "process": [
+        "Legal Brand Strategy",
+        "Professional Web Design",
+        "Development",
+        "Content Structuring"
+      ],
+      "results": [
+        "Authoritative digital presence in South African market",
+        "Streamlined client inquiries across practice areas"
+      ],
+      "screenshot": "/projects/dnlaw_homepage.png"
+    },
+    {
+      "slug": "leafy-digital-media",
+      "title": "Leafy Digital Media",
+      "category": "Digital Agency",
+      "filterCategory": "Business & Consulting",
+      "year": "2026",
+      "description": "A vibrant website for a creative digital marketing and media agency.",
+      "longDescription": "Leafy Digital Media is a creative agency offering digital marketing, social media management, and content creation services. Their website was designed to reflect their creative energy while clearly showcasing their service offerings and portfolio of work.",
+      "image": "",
+      "mockupColor": "from-green-900 to-lime-950",
+      "liveUrl": "https://leafydigitalmedia.com/",
+      "stats": [
+        {
+          "value": "Creative",
+          "label": "Agency"
+        },
+        {
+          "value": "Digital",
+          "label": "Marketing"
+        }
+      ],
+      "tags": [
+        "Digital Agency",
+        "Marketing",
+        "Web Design"
+      ],
+      "problem": "Leafy Digital Media needed a website that demonstrated their own creative capabilities while clearly presenting their digital marketing services to potential clients.",
+      "solution": "Built a vibrant, design-forward agency website with a dynamic portfolio, clear service breakdowns, and integrated case studies to showcase results.",
+      "process": [
+        "Creative Direction",
+        "Agency Web Design",
+        "Development",
+        "Portfolio Integration"
+      ],
+      "results": [
+        "Strong agency brand positioning",
+        "Increased inbound client inquiries"
+      ],
+      "screenshot": ""
+    },
+    {
+      "slug": "heritage-metal-fabrication",
+      "title": "Heritage Metal Fabrication",
+      "category": "Manufacturing Website",
+      "filterCategory": "Construction",
+      "year": "2026",
+      "description": "A professional website for an Australian custom metal fabrication and engineering firm.",
+      "longDescription": "Heritage Metal Fabrication is an Australian company specializing in custom metalwork, structural steel, and architectural fabrication. Their website was built to showcase their engineering expertise, attract commercial contracts, and highlight their portfolio of precision metal projects.",
+      "image": "",
+      "mockupColor": "from-zinc-800 to-zinc-950",
+      "liveUrl": "https://heritagemetalfabrication.com.au/",
+      "stats": [
+        {
+          "value": "Australia",
+          "label": "Location"
+        },
+        {
+          "value": "Custom",
+          "label": "Fabrication"
+        }
+      ],
+      "tags": [
+        "Manufacturing",
+        "Metal Fabrication",
+        "Web Design"
+      ],
+      "problem": "Heritage Metal Fabrication needed a digital platform that demonstrated their technical capabilities and attracted both commercial and residential fabrication contracts.",
+      "solution": "Developed an industrial-grade website with project galleries, detailed service pages, and clear pathways for requesting quotes on custom fabrication work.",
+      "process": [
+        "Industry Research",
+        "Industrial Web Design",
+        "Development",
+        "Portfolio Setup"
+      ],
+      "results": [
+        "Professional digital showcase of fabrication work",
+        "Improved quote request flow"
+      ],
+      "screenshot": ""
+    },
+    {
+      "slug": "reds-builders-limited",
+      "title": "Reds Builders Limited",
+      "category": "Construction & Building",
+      "filterCategory": "Construction",
+      "year": "2026",
+      "description": "A trusted UK-based building company specializing in residential construction and renovations.",
+      "longDescription": "Reds Builders Limited is a reputable UK construction company delivering high-quality residential builds, extensions, and renovations. Their website was designed to showcase their craftsmanship, build trust with homeowners, and generate qualified leads in their local market.",
+      "image": "",
+      "mockupColor": "from-red-900 to-red-950",
+      "liveUrl": "https://redsbuilderslimited.co.uk/",
+      "stats": [
+        {
+          "value": "UK",
+          "label": "Location"
+        },
+        {
+          "value": "Trusted",
+          "label": "Builder"
+        }
+      ],
+      "tags": [
+        "Construction",
+        "UK Builder",
+        "Local SEO"
+      ],
+      "problem": "Reds Builders needed a professional online presence to compete in the UK residential construction market and attract homeowners looking for reliable builders.",
+      "solution": "Built a clean, trust-focused website with project galleries, customer testimonials, and local SEO optimizations to dominate their service area.",
+      "process": [
+        "Local Market Strategy",
+        "Trust-Focused Design",
+        "Web Development",
+        "Local SEO Implementation"
+      ],
+      "results": [
+        "Strengthened local brand presence",
+        "Increased residential project inquiries"
+      ],
+      "screenshot": ""
+    },
+    {
       "slug": "helmont",
       "title": "HELMONT",
       "category": "Corporate Website",
