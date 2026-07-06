@@ -36,7 +36,7 @@ export default function PortfolioPage() {
   }, [activeFilter, projects]);
 
   return (
-    <section className="min-h-screen bg-background relative pt-32 md:pt-40 pb-24">
+    <section className="min-h-screen bg-background relative pt-32 md:pt-40 pb-24 overflow-hidden">
       {/* Background ambient glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-accent/10 rounded-full blur-[160px] -translate-y-1/2 pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-[600px] h-[400px] bg-orange-600/5 rounded-full blur-[120px] translate-x-1/3 pointer-events-none" />
