@@ -57,7 +57,7 @@ export default function LoginPage() {
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-surface border border-border mb-6">
             <span className="font-syne font-black text-3xl text-accent">S</span>
           </div>
-          <h1 className="font-syne font-black text-4xl text-white mb-3 tracking-tight">Admin Login</h1>
+          <h1 className="font-syne font-black text-4xl text-text-primary mb-3 tracking-tight">Admin Login</h1>
           <p className="text-text-secondary">Secure access to your portfolio dashboard</p>
         </div>
 
@@ -83,7 +83,7 @@ export default function LoginPage() {
                   required
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  className="w-full bg-surface-2 border border-border rounded-xl pl-12 pr-4 py-4 text-white outline-none focus:border-accent/40 transition-all placeholder:text-text-muted/30"
+                  className="w-full bg-surface-2 border border-border rounded-xl pl-12 pr-4 py-4 text-text-primary outline-none focus:border-accent/40 transition-all placeholder:text-text-muted/30"
                   placeholder="Enter username"
                 />
               </div>
@@ -100,7 +100,7 @@ export default function LoginPage() {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full bg-surface-2 border border-border rounded-xl pl-12 pr-4 py-4 text-white outline-none focus:border-accent/40 transition-all placeholder:text-text-muted/30"
+                  className="w-full bg-surface-2 border border-border rounded-xl pl-12 pr-4 py-4 text-text-primary outline-none focus:border-accent/40 transition-all placeholder:text-text-muted/30"
                   placeholder="••••••••"
                 />
               </div>
@@ -125,7 +125,7 @@ export default function LoginPage() {
                   className="group relative w-full h-[72px] bg-accent hover:bg-accent-light text-white font-black text-lg md:text-xl rounded-2xl transition-all duration-500 flex items-center justify-center gap-4 shadow-[0_0_30px_rgba(234,88,12,0.2)] hover:shadow-[0_0_50px_rgba(234,88,12,0.4)] overflow-hidden"
                 >
                   {/* Glass shimmer overlay */}
-                  <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out pointer-events-none" />
+                  <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-text-primary/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out pointer-events-none" />
                   
                   {loading ? (
                     <Loader2 className="w-6 h-6 animate-spin" />
@@ -145,7 +145,7 @@ export default function LoginPage() {
 
         <div className="mt-8 text-center">
           <p className="text-text-muted text-sm">
-            Not Sabbir? <a href="/" className="text-text-secondary hover:text-white transition-colors">Back to Home</a>
+            Not Sabbir? <a href="/" className="text-text-secondary hover:text-text-primary transition-colors">Back to Home</a>
           </p>
         </div>
       </motion.div>

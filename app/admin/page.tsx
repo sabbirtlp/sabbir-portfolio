@@ -40,12 +40,12 @@ export default function AdminDashboard() {
   const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
   const [activeTab, setActiveTab] = useState("hero");
   const [editingProject, setEditingProject] = useState<number | null>(null);
-  const [editingTestimonial, setEditingTestimonial] = useState<number | null>(null);
+  const [editingReview, setEditingReview] = useState<number | null>(null);
   const [uploadingIndex, setUploadingIndex] = useState<number | null>(null);
   const [uploadingScreenshot, setUploadingScreenshot] = useState<number | null>(null);
   const [deletingIndex, setDeletingIndex] = useState<number | null>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [deletingTestimonialIndex, setDeletingTestimonialIndex] = useState<number | null>(null);
+  const [deletingReviewIndex, setDeletingReviewIndex] = useState<number | null>(null);
 
   async function performUpload(file: File) {
     const formData = new FormData();
@@ -210,12 +210,12 @@ export default function AdminDashboard() {
     <div className="h-screen bg-background text-text-primary flex flex-col md:flex-row overflow-hidden relative" data-lenis-prevent>
       {/* Mobile Header */}
       <header className="md:hidden flex items-center justify-between px-6 py-4 bg-surface border-b border-border z-[60] relative">
-        <div className="font-syne font-black text-xl text-white">
+        <div className="font-syne font-black text-xl text-text-primary">
           <span className="text-accent">S</span>abbir<span className="text-accent text-xs">CMS</span>
         </div>
         <button 
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-          className="p-2 text-text-muted hover:text-white transition-colors"
+          className="p-2 text-text-muted hover:text-text-primary transition-colors"
         >
           {isSidebarOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
@@ -236,13 +236,13 @@ export default function AdminDashboard() {
       `}>
         <div className="px-6 pt-6 mb-8 flex items-start justify-between md:block text-left md:text-center">
           <div>
-            <div className="font-syne font-black text-2xl text-white">
+            <div className="font-syne font-black text-2xl text-text-primary">
               <span className="text-accent">S</span>abbir<span className="text-accent text-sm">CMS</span>
             </div>
             <p className="text-[10px] uppercase tracking-widest text-text-muted mt-1">Management Hub</p>
           </div>
           <button 
-            className="md:hidden text-text-muted hover:text-white p-1 -mr-2"
+            className="md:hidden text-text-muted hover:text-text-primary p-1 -mr-2"
             onClick={() => setIsSidebarOpen(false)}
           >
             <X className="w-6 h-6" />
@@ -258,7 +258,7 @@ export default function AdminDashboard() {
             { id: "tech-stack", label: "Tech Stack", icon: Zap },
             { id: "typography", label: "Typography", icon: Type },
             { id: "work", label: "Case Studies", icon: FolderOpen },
-            { id: "testimonials", label: "Testimonials", icon: MessageSquare },
+            { id: "reviews", label: "Reviews", icon: MessageSquare },
             { id: "process", label: "Process", icon: CheckCircle2 },
             { id: "contact", label: "Contact Section", icon: Mail },
             { id: "footer", label: "Footer Settings", icon: Globe },
@@ -272,7 +272,7 @@ export default function AdminDashboard() {
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
                 activeTab === tab.id 
                 ? "bg-accent/10 text-accent border border-accent/20" 
-                : "text-text-secondary hover:bg-white/5"
+                : "text-text-secondary hover:bg-text-primary/5"
               }`}
             >
               <tab.icon className="w-4 h-4" />
@@ -306,7 +306,7 @@ export default function AdminDashboard() {
       <main className="flex-1 min-h-0 h-full overflow-y-auto pt-8 md:pt-12 pb-20 px-4 md:px-12" data-lenis-prevent>
         <div className="max-w-4xl mx-auto">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
-            <h1 className="font-syne font-black text-3xl text-white capitalize">{activeTab.replace("-", " ")}</h1>
+            <h1 className="font-syne font-black text-3xl text-text-primary capitalize">{activeTab.replace("-", " ")}</h1>
             {message && (
               <div className={`px-4 py-2 rounded-lg flex items-center gap-2 text-sm animate-in fade-in slide-in-from-top-4 duration-300 ${
                 message.type === "success" ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shadow-[0_0_20px_rgba(16,185,129,0.1)]" : "bg-red-500/10 text-red-400 border border-red-500/20 shadow-[0_0_20px_rgba(239,68,68,0.1)]"
@@ -321,7 +321,7 @@ export default function AdminDashboard() {
           <div className="md:hidden relative mb-6 border-b border-border/50 pb-4">
             <button 
               onClick={() => document.getElementById('mobile-tab-slider')?.scrollBy({ left: -200, behavior: 'smooth' })}
-              className="absolute left-0 top-0 bottom-4 w-10 bg-gradient-to-r from-background via-background/90 to-transparent z-10 flex items-center justify-start text-text-muted hover:text-white pointer-events-auto"
+              className="absolute left-0 top-0 bottom-4 w-10 bg-gradient-to-r from-background via-background/90 to-transparent z-10 flex items-center justify-start text-text-muted hover:text-text-primary pointer-events-auto"
             >
               <div className="rotate-180 flex items-center justify-center -ml-1"><ChevronRight className="w-5 h-5" /></div>
             </button>
@@ -338,7 +338,7 @@ export default function AdminDashboard() {
                 { id: "tech-stack", label: "Tech Stack" },
                 { id: "typography", label: "Typography" },
                 { id: "work", label: "Case Studies" },
-                { id: "testimonials", label: "Testimonials" },
+                { id: "reviews", label: "Reviews" },
                 { id: "process", label: "Process" },
                 { id: "contact", label: "Contact" },
                 { id: "footer", label: "Footer" },
@@ -354,7 +354,7 @@ export default function AdminDashboard() {
                   className={`snap-start flex-shrink-0 px-4 py-2 rounded-xl text-xs font-bold border transition-colors ${
                     activeTab === tab.id 
                     ? "bg-accent/10 border-accent/40 text-accent" 
-                    : "bg-surface-2 border-border text-text-secondary hover:text-white"
+                    : "bg-surface-2 border-border text-text-secondary hover:text-text-primary"
                   }`}
                 >
                   {tab.label}
@@ -364,7 +364,7 @@ export default function AdminDashboard() {
 
             <button 
               onClick={() => document.getElementById('mobile-tab-slider')?.scrollBy({ left: 200, behavior: 'smooth' })}
-              className="absolute right-0 top-0 bottom-4 w-10 bg-gradient-to-l from-background via-background/90 to-transparent z-10 flex items-center justify-end text-text-muted hover:text-white pointer-events-auto"
+              className="absolute right-0 top-0 bottom-4 w-10 bg-gradient-to-l from-background via-background/90 to-transparent z-10 flex items-center justify-end text-text-muted hover:text-text-primary pointer-events-auto"
             >
               <ChevronRight className="w-5 h-5 -mr-1" />
             </button>
@@ -391,7 +391,7 @@ export default function AdminDashboard() {
                     type="text" 
                     value={content.hero.badge}
                     onChange={(e) => setContent({ ...content, hero: { ...content.hero, badge: e.target.value } })}
-                    className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-white outline-none focus:border-accent/50 transition-colors"
+                    className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary outline-none focus:border-accent/50 transition-colors"
                   />
                 </div>
                 <div>
@@ -400,7 +400,7 @@ export default function AdminDashboard() {
                     rows={4}
                     value={content.hero.subheadline}
                     onChange={(e) => setContent({ ...content, hero: { ...content.hero, subheadline: e.target.value } })}
-                    className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-white outline-none focus:border-accent/50 transition-colors resize-none"
+                    className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary outline-none focus:border-accent/50 transition-colors resize-none"
                   />
                 </div>
                 <div>
@@ -447,7 +447,7 @@ export default function AdminDashboard() {
                       type="text" 
                       value={content.about.name}
                       onChange={(e) => setContent({ ...content, about: { ...content.about, name: e.target.value } })}
-                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-white"
+                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary"
                     />
                   </div>
                   <div>
@@ -456,7 +456,7 @@ export default function AdminDashboard() {
                       type="text" 
                       value={content.about.role}
                       onChange={(e) => setContent({ ...content, about: { ...content.about, role: e.target.value } })}
-                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-white"
+                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary"
                     />
                   </div>
                 </div>
@@ -466,7 +466,7 @@ export default function AdminDashboard() {
                     rows={6}
                     value={content.about.description}
                     onChange={(e) => setContent({ ...content, about: { ...content.about, description: e.target.value } })}
-                    className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-white outline-none"
+                    className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary outline-none"
                   />
                 </div>
                 <div>
@@ -475,7 +475,7 @@ export default function AdminDashboard() {
                     type="text" 
                     value={content.about.techStack.join(", ")}
                     onChange={(e) => setContent({ ...content, about: { ...content.about, techStack: e.target.value.split(",").map(t => t.trim()) } })}
-                    className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-white"
+                    className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary"
                   />
                 </div>
               </div>
@@ -504,7 +504,7 @@ export default function AdminDashboard() {
                             newServices[i].title = e.target.value;
                             setContent({ ...content, services: newServices });
                           }}
-                          className="bg-transparent font-syne font-bold text-white outline-none focus:text-accent"
+                          className="bg-transparent font-syne font-bold text-text-primary outline-none focus:text-accent"
                           placeholder="Service Title"
                         />
                         <input 
@@ -527,7 +527,7 @@ export default function AdminDashboard() {
                           newServices[i].description = e.target.value;
                           setContent({ ...content, services: newServices });
                         }}
-                        className="w-full bg-transparent text-sm text-text-secondary outline-none border-t border-white/5 pt-2"
+                        className="w-full bg-transparent text-sm text-text-secondary outline-none border-t border-text-primary/5 pt-2"
                         placeholder="Description..."
                       />
                    </div>
@@ -552,7 +552,7 @@ export default function AdminDashboard() {
                       type="text" 
                       value={content.techStack.title}
                       onChange={(e) => setContent({ ...content, techStack: { ...content.techStack, title: e.target.value } })}
-                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-white outline-none focus:border-accent/40"
+                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary outline-none focus:border-accent/40"
                     />
                   </div>
                   <div>
@@ -561,7 +561,7 @@ export default function AdminDashboard() {
                       type="text" 
                       value={content.techStack.subtitle}
                       onChange={(e) => setContent({ ...content, techStack: { ...content.techStack, subtitle: e.target.value } })}
-                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-white outline-none focus:border-accent/40"
+                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary outline-none focus:border-accent/40"
                     />
                   </div>
                 </div>
@@ -592,7 +592,7 @@ export default function AdminDashboard() {
                             <img src={icon.src} alt={icon.name} className="w-6 h-6 object-contain" />
                           )}
                           <label className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 flex items-center justify-center cursor-pointer transition-opacity duration-300">
-                             <Upload className="w-4 h-4 text-white" />
+                             <Upload className="w-4 h-4 text-text-primary" />
                              <input 
                                type="file" 
                                className="hidden" 
@@ -614,7 +614,7 @@ export default function AdminDashboard() {
                               newIcons[idx].name = e.target.value;
                               setContent({ ...content, techStack: { ...content.techStack, icons: newIcons } });
                             }}
-                            className="w-full bg-transparent border-none text-white font-bold text-sm p-0 focus:ring-0 outline-none"
+                            className="w-full bg-transparent border-none text-text-primary font-bold text-sm p-0 focus:ring-0 outline-none"
                             placeholder="Technology Name"
                           />
                           <p className="text-[9px] text-text-muted truncate mt-1">{icon.src}</p>
@@ -642,7 +642,7 @@ export default function AdminDashboard() {
                 {content.process.steps.map((step: any, i: number) => (
                    <div key={i} className="flex gap-4 p-4 bg-surface-2 border border-border rounded-xl">
                       <div 
-                        className="w-10 h-10 rounded-lg flex items-center justify-center font-black text-white shrink-0"
+                        className="w-10 h-10 rounded-lg flex items-center justify-center font-black text-text-primary shrink-0"
                         style={{ background: step.accent }}
                       >
                         {step.number}
@@ -656,7 +656,7 @@ export default function AdminDashboard() {
                             newSteps[i].title = e.target.value;
                             setContent({ ...content, process: { ...content.process, steps: newSteps } });
                           }}
-                          className="w-full bg-transparent font-bold text-white outline-none"
+                          className="w-full bg-transparent font-bold text-text-primary outline-none"
                         />
                          <textarea 
                           rows={2}
@@ -712,7 +712,7 @@ export default function AdminDashboard() {
                     <select 
                       value={content.typography?.headingFont || "Syne"}
                       onChange={(e) => setContent({ ...content, typography: { ...content.typography, headingFont: e.target.value } })}
-                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-white outline-none focus:border-accent/40 cursor-pointer"
+                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary outline-none focus:border-accent/40 cursor-pointer"
                     >
                       <option value="Syne">Syne (Modern & Bold)</option>
                       <option value="Inter">Inter (Clean & Professional)</option>
@@ -727,7 +727,7 @@ export default function AdminDashboard() {
                     <select 
                       value={content.typography?.bodyFont || "Inter"}
                       onChange={(e) => setContent({ ...content, typography: { ...content.typography, bodyFont: e.target.value } })}
-                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-white outline-none focus:border-accent/40 cursor-pointer"
+                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary outline-none focus:border-accent/40 cursor-pointer"
                     >
                       <option value="Inter">Inter (Standard readability)</option>
                       <option value="Syne">Syne (Stylish content)</option>
@@ -742,7 +742,7 @@ export default function AdminDashboard() {
                     <select 
                       value={content.typography?.accentFont || "Unbounded"}
                       onChange={(e) => setContent({ ...content, typography: { ...content.typography, accentFont: e.target.value } })}
-                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-white outline-none focus:border-accent/40 cursor-pointer"
+                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary outline-none focus:border-accent/40 cursor-pointer"
                     >
                       <option value="Unbounded">Unbounded (Premium & Wide)</option>
                       <option value="Syne">Syne (Modern)</option>
@@ -756,7 +756,7 @@ export default function AdminDashboard() {
                 <div className="mt-8 p-6 bg-background rounded-2xl border border-border space-y-4 overflow-hidden">
                   <p className="text-[10px] font-bold uppercase tracking-widest text-text-muted mb-2">Live Preview</p>
                   <div style={{ fontSize: `${content.typography.baseFontSize}px` }}>
-                    <h2 style={{ fontFamily: `var(--font-${content.typography.headingFont.toLowerCase().replace(/ /g, '-')}), sans-serif` }} className="text-2xl font-black text-white mb-2">
+                    <h2 style={{ fontFamily: `var(--font-${content.typography.headingFont.toLowerCase().replace(/ /g, '-')}), sans-serif` }} className="text-2xl font-black text-text-primary mb-2">
                        The quick brown fox jumps over the lazy dog
                     </h2>
                     <p style={{ fontFamily: `var(--font-${content.typography.bodyFont.toLowerCase().replace(/ /g, '-')}), sans-serif` }} className="text-text-secondary leading-relaxed">
@@ -821,7 +821,7 @@ export default function AdminDashboard() {
                     return (
                       <div key={`project-${i}-${project.slug}`} className="border border-border rounded-2xl overflow-hidden bg-surface-2 transition-all">
                         {/* List Row — always visible */}
-                        <div className="flex flex-col sm:flex-row sm:items-center gap-4 p-4 hover:bg-white/[0.02] transition-colors">
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-4 p-4 hover:bg-text-primary/[0.02] transition-colors">
                           {/* Thumbnail + Info (Clickable to Expand) */}
                           <div 
                             className="flex flex-1 items-center gap-4 cursor-pointer min-w-0" 
@@ -837,7 +837,7 @@ export default function AdminDashboard() {
                                )}
                             </div>
                             <div className="flex-1 min-w-0">
-                              <h4 className="text-sm font-bold text-white truncate">{project.title || 'Untitled Project'}</h4>
+                              <h4 className="text-sm font-bold text-text-primary truncate">{project.title || 'Untitled Project'}</h4>
                               <div className="flex items-center gap-2 mt-0.5">
                                 <span className="text-[10px] text-accent font-semibold uppercase tracking-wider">{project.category}</span>
                                 <span className="text-text-muted/30">·</span>
@@ -855,7 +855,7 @@ export default function AdminDashboard() {
                             )}
                             <button
                               onClick={(e) => { e.stopPropagation(); setEditingProject(isEditing ? null : i); }}
-                              className={`p-2 rounded-lg transition-colors ${isEditing ? 'bg-accent/10 text-accent' : 'text-text-muted hover:text-white'}`}
+                              className={`p-2 rounded-lg transition-colors ${isEditing ? 'bg-accent/10 text-accent' : 'text-text-muted hover:text-text-primary'}`}
                             >
                               <Edit3 className="w-3.5 h-3.5" />
                             </button>
@@ -884,14 +884,14 @@ export default function AdminDashboard() {
                                       else setMessage({ type: "error", text: "Error saving deletion." });
                                     });
                                   }}
-                                  className="px-3 h-10 flex items-center justify-center text-xs font-bold text-red-500 hover:bg-red-500 hover:text-white transition-colors"
+                                  className="px-3 h-10 flex items-center justify-center text-xs font-bold text-red-500 hover:bg-red-500 hover:text-text-primary transition-colors"
                                 >
                                   Confirm
                                 </button>
                                 <button
                                   type="button"
                                   onClick={(e) => { e.preventDefault(); e.stopPropagation(); setDeletingIndex(null); }}
-                                  className="px-3 h-10 flex items-center justify-center text-xs font-bold text-text-muted hover:bg-white/10 hover:text-white transition-colors border-l border-white/5"
+                                  className="px-3 h-10 flex items-center justify-center text-xs font-bold text-text-muted hover:bg-text-primary/10 hover:text-text-primary transition-colors border-l border-text-primary/5"
                                 >
                                   Cancel
                                 </button>
@@ -922,15 +922,15 @@ export default function AdminDashboard() {
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                               <div className="col-span-2">
                                 <label className="block text-[10px] font-bold uppercase tracking-widest text-text-muted mb-1.5">Project Title</label>
-                                <input type="text" value={project.title} onChange={(e) => { const p = [...content.projects]; p[i].title = e.target.value; setContent({ ...content, projects: p }); }} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-2.5 text-white outline-none focus:border-accent/40" placeholder="Project Name" />
+                                <input type="text" value={project.title} onChange={(e) => { const p = [...content.projects]; p[i].title = e.target.value; setContent({ ...content, projects: p }); }} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-2.5 text-text-primary outline-none focus:border-accent/40" placeholder="Project Name" />
                               </div>
                               <div>
                                 <label className="block text-[10px] font-bold uppercase tracking-widest text-text-muted mb-1.5">Category</label>
-                                <input type="text" value={project.category} onChange={(e) => { const p = [...content.projects]; p[i].category = e.target.value; setContent({ ...content, projects: p }); }} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-2.5 text-white outline-none focus:border-accent/40" />
+                                <input type="text" value={project.category} onChange={(e) => { const p = [...content.projects]; p[i].category = e.target.value; setContent({ ...content, projects: p }); }} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-2.5 text-text-primary outline-none focus:border-accent/40" />
                               </div>
                               <div>
                                 <label className="block text-[10px] font-bold uppercase tracking-widest text-text-muted mb-1.5">Year</label>
-                                <input type="text" value={project.year} onChange={(e) => { const p = [...content.projects]; p[i].year = e.target.value; setContent({ ...content, projects: p }); }} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-2.5 text-white outline-none focus:border-accent/40" />
+                                <input type="text" value={project.year} onChange={(e) => { const p = [...content.projects]; p[i].year = e.target.value; setContent({ ...content, projects: p }); }} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-2.5 text-text-primary outline-none focus:border-accent/40" />
                               </div>
                             </div>
 
@@ -938,11 +938,11 @@ export default function AdminDashboard() {
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                               <div>
                                 <label className="block text-[10px] font-bold uppercase tracking-widest text-text-muted mb-1.5">URL Slug</label>
-                                <input type="text" value={project.slug} onChange={(e) => { const p = [...content.projects]; p[i].slug = e.target.value; setContent({ ...content, projects: p }); }} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-2.5 text-white text-xs font-mono outline-none focus:border-accent/40" placeholder="project-slug-here" />
+                                <input type="text" value={project.slug} onChange={(e) => { const p = [...content.projects]; p[i].slug = e.target.value; setContent({ ...content, projects: p }); }} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-2.5 text-text-primary text-xs font-mono outline-none focus:border-accent/40" placeholder="project-slug-here" />
                               </div>
                               <div>
                                 <label className="block text-[10px] font-bold uppercase tracking-widest text-text-muted mb-1.5 flex items-center gap-1.5">Live Website Link <ExternalLink className="w-2.5 h-2.5" /></label>
-                                <input type="text" value={project.liveUrl || ''} onChange={(e) => { const p = [...content.projects]; p[i].liveUrl = e.target.value; setContent({ ...content, projects: p }); }} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-2.5 text-white text-xs outline-none focus:border-accent/40" placeholder="https://..." />
+                                <input type="text" value={project.liveUrl || ''} onChange={(e) => { const p = [...content.projects]; p[i].liveUrl = e.target.value; setContent({ ...content, projects: p }); }} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-2.5 text-text-primary text-xs outline-none focus:border-accent/40" placeholder="https://..." />
                               </div>
                             </div>
 
@@ -956,7 +956,7 @@ export default function AdminDashboard() {
                                     <>
                                       <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
                                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                                      <span className="absolute bottom-2 left-3 text-[10px] text-white/70 font-mono">{project.image}</span>
+                                      <span className="absolute bottom-2 left-3 text-[10px] text-text-primary/70 font-mono">{project.image}</span>
                                     </>
                                   ) : (
                                     <div className="w-full h-full flex flex-col items-center justify-center">
@@ -977,10 +977,10 @@ export default function AdminDashboard() {
                                     {uploadingIndex === i ? (
                                       <><Loader2 className="w-5 h-5 text-accent animate-spin shrink-0" /><span className="text-xs text-text-muted">Uploading...</span></>
                                     ) : (
-                                      <><div className="w-9 h-9 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center shrink-0 group-hover:bg-accent/20 transition-colors"><Upload className="w-4 h-4 text-accent" /></div><div><p className="text-xs font-medium text-white">Click to upload or drag & drop</p><p className="text-[10px] text-text-muted">JPG, PNG, WebP, AVIF, GIF — Max 5MB</p></div></>
+                                      <><div className="w-9 h-9 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center shrink-0 group-hover:bg-accent/20 transition-colors"><Upload className="w-4 h-4 text-accent" /></div><div><p className="text-xs font-medium text-text-primary">Click to upload or drag & drop</p><p className="text-[10px] text-text-muted">JPG, PNG, WebP, AVIF, GIF — Max 5MB</p></div></>
                                     )}
                                   </div>
-                                  <input type="text" value={project.image} onChange={(e) => { const p = [...content.projects]; p[i].image = e.target.value; setContent({ ...content, projects: p }); }} className="w-full bg-surface-2 border border-border rounded-lg px-3 py-2 text-white text-[11px] font-mono outline-none focus:border-accent/40" placeholder="Or enter path manually: /projects/filename.jpg" />
+                                  <input type="text" value={project.image} onChange={(e) => { const p = [...content.projects]; p[i].image = e.target.value; setContent({ ...content, projects: p }); }} className="w-full bg-surface-2 border border-border rounded-lg px-3 py-2 text-text-primary text-[11px] font-mono outline-none focus:border-accent/40" placeholder="Or enter path manually: /projects/filename.jpg" />
                                 </div>
                               </div>
                             </div>
@@ -995,7 +995,7 @@ export default function AdminDashboard() {
                                     <>
                                       <img src={project.screenshot} alt="Screenshot" className="w-full h-full object-cover object-top" />
                                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                                      <span className="absolute bottom-2 left-3 text-[10px] text-white/70 font-mono">{project.screenshot}</span>
+                                      <span className="absolute bottom-2 left-3 text-[10px] text-text-primary/70 font-mono">{project.screenshot}</span>
                                     </>
                                   ) : (
                                     <div className="w-full h-full flex flex-col items-center justify-center">
@@ -1024,10 +1024,10 @@ export default function AdminDashboard() {
                                     {uploadingScreenshot === i ? (
                                       <><Loader2 className="w-5 h-5 text-accent animate-spin shrink-0" /><span className="text-xs text-text-muted">Uploading...</span></>
                                     ) : (
-                                      <><div className="w-9 h-9 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center shrink-0 group-hover:bg-accent/20 transition-colors"><Upload className="w-4 h-4 text-accent" /></div><div><p className="text-xs font-medium text-white">Upload screenshot</p><p className="text-[10px] text-text-muted">Website screenshot for case study page</p></div></>
+                                      <><div className="w-9 h-9 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center shrink-0 group-hover:bg-accent/20 transition-colors"><Upload className="w-4 h-4 text-accent" /></div><div><p className="text-xs font-medium text-text-primary">Upload screenshot</p><p className="text-[10px] text-text-muted">Website screenshot for case study page</p></div></>
                                     )}
                                   </div>
-                                  <input type="text" value={project.screenshot || ''} onChange={(e) => { const p = [...content.projects]; p[i].screenshot = e.target.value; setContent({ ...content, projects: p }); }} className="w-full bg-surface-2 border border-border rounded-lg px-3 py-2 text-white text-[11px] font-mono outline-none focus:border-accent/40" placeholder="Or enter path: /projects/screenshot.jpg" />
+                                  <input type="text" value={project.screenshot || ''} onChange={(e) => { const p = [...content.projects]; p[i].screenshot = e.target.value; setContent({ ...content, projects: p }); }} className="w-full bg-surface-2 border border-border rounded-lg px-3 py-2 text-text-primary text-[11px] font-mono outline-none focus:border-accent/40" placeholder="Or enter path: /projects/screenshot.jpg" />
                                 </div>
                               </div>
                             </div>
@@ -1064,7 +1064,7 @@ export default function AdminDashboard() {
                             {/* Row 6: Tags / Technologies */}
                             <div>
                               <label className="block text-[10px] font-bold uppercase tracking-widest text-text-muted mb-1.5">Technologies / Tags (comma separated)</label>
-                              <input type="text" value={(project.tags || []).join(", ")} onChange={(e) => { const p = [...content.projects]; p[i].tags = e.target.value.split(",").map((t: string) => t.trim()).filter(Boolean); setContent({ ...content, projects: p }); }} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-2.5 text-white text-sm outline-none focus:border-accent/40" placeholder="WordPress, React, Figma..." />
+                              <input type="text" value={(project.tags || []).join(", ")} onChange={(e) => { const p = [...content.projects]; p[i].tags = e.target.value.split(",").map((t: string) => t.trim()).filter(Boolean); setContent({ ...content, projects: p }); }} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-2.5 text-text-primary text-sm outline-none focus:border-accent/40" placeholder="WordPress, React, Figma..." />
                               {(project.tags || []).length > 0 && (
                                 <div className="flex flex-wrap gap-1.5 mt-2">
                                   {project.tags.map((tag: string) => (
@@ -1097,7 +1097,7 @@ export default function AdminDashboard() {
                                 {(project.process || []).map((step: string, si: number) => (
                                   <div key={si} className="flex items-center gap-3 group/step">
                                     <span className="w-6 h-6 rounded-full bg-accent/10 border border-accent/20 text-accent text-[10px] flex items-center justify-center font-bold shrink-0">{si + 1}</span>
-                                    <input type="text" value={step} onChange={(e) => { const p = [...content.projects]; p[i].process[si] = e.target.value; setContent({ ...content, projects: p }); }} className="flex-1 bg-surface-2 border border-border rounded-lg px-3 py-2 text-white text-sm outline-none focus:border-accent/40" />
+                                    <input type="text" value={step} onChange={(e) => { const p = [...content.projects]; p[i].process[si] = e.target.value; setContent({ ...content, projects: p }); }} className="flex-1 bg-surface-2 border border-border rounded-lg px-3 py-2 text-text-primary text-sm outline-none focus:border-accent/40" />
                                     <button onClick={() => { const p = [...content.projects]; p[i].process = p[i].process.filter((_: any, idx: number) => idx !== si); setContent({ ...content, projects: p }); }} className="text-text-muted/30 hover:text-red-400 opacity-0 group-hover/step:opacity-100 transition-opacity shrink-0"><Trash2 className="w-3 h-3" /></button>
                                   </div>
                                 ))}
@@ -1114,7 +1114,7 @@ export default function AdminDashboard() {
                                 {(project.results || []).map((result: string, ri: number) => (
                                   <div key={ri} className="flex items-center gap-3 group/result">
                                     <CheckCircle2 className="w-4 h-4 text-accent/40 shrink-0" />
-                                    <input type="text" value={result} onChange={(e) => { const p = [...content.projects]; p[i].results[ri] = e.target.value; setContent({ ...content, projects: p }); }} className="flex-1 bg-surface-2 border border-border rounded-lg px-3 py-2 text-white text-sm outline-none focus:border-accent/40" />
+                                    <input type="text" value={result} onChange={(e) => { const p = [...content.projects]; p[i].results[ri] = e.target.value; setContent({ ...content, projects: p }); }} className="flex-1 bg-surface-2 border border-border rounded-lg px-3 py-2 text-text-primary text-sm outline-none focus:border-accent/40" />
                                     <button onClick={() => { const p = [...content.projects]; p[i].results = p[i].results.filter((_: any, idx: number) => idx !== ri); setContent({ ...content, projects: p }); }} className="text-text-muted/30 hover:text-red-400 opacity-0 group-hover/result:opacity-100 transition-opacity shrink-0"><Trash2 className="w-3 h-3" /></button>
                                   </div>
                                 ))}
@@ -1123,9 +1123,114 @@ export default function AdminDashboard() {
 
                             {/* Collapse button */}
                             <div className="flex justify-end pt-2">
-                              <button onClick={() => setEditingProject(null)} className="text-xs text-text-muted hover:text-white transition-colors flex items-center gap-1.5">
+                              <button onClick={() => setEditingProject(null)} className="text-xs text-text-muted hover:text-text-primary transition-colors flex items-center gap-1.5">
                                 <ChevronDown className="w-3 h-3 rotate-180" /> Collapse
                               </button>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {/* REVIEWS SECTION */}
+            {activeTab === "reviews" && (
+              <div className="space-y-6">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div>
+                    <p className="text-xs text-text-muted">Manage your client reviews and testimonials.</p>
+                    <p className="text-[10px] text-text-muted/60 mt-1">{content.reviews?.length || 0} review{(content.reviews?.length || 0) !== 1 ? 's' : ''} total</p>
+                  </div>
+                  <button 
+                    onClick={() => {
+                      const newReview = {
+                        id: Date.now(),
+                        name: "New Client",
+                        username: "@username",
+                        avatar: "",
+                        rating: 5,
+                        text: "Great experience working with Sabbir."
+                      };
+                      const newReviews = [newReview, ...(content.reviews || [])];
+                      setContent({ ...content, reviews: newReviews });
+                      setEditingReview(0);
+                    }}
+                    className="flex items-center gap-2 px-5 py-2.5 bg-accent hover:bg-accent-light text-white rounded-xl text-xs font-bold transition-all shadow-lg shadow-accent/20"
+                  >
+                    <Plus className="w-3.5 h-3.5" />
+                    Add New Review
+                  </button>
+                </div>
+
+                <div className="space-y-3">
+                  {(!content.reviews || content.reviews.length === 0) && (
+                    <div className="flex flex-col items-center justify-center py-16 text-center">
+                      <MessageSquare className="w-12 h-12 text-text-muted/30 mb-4" />
+                      <p className="text-sm text-text-muted">No reviews yet</p>
+                    </div>
+                  )}
+
+                  {content.reviews?.map((review: any, i: number) => {
+                    const isEditing = editingReview === i;
+                    return (
+                      <div key={`review-${review.id || i}`} className="border border-border rounded-2xl overflow-hidden bg-surface-2 transition-all">
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-4 p-4 hover:bg-text-primary/[0.02] transition-colors">
+                          <div className="flex flex-1 items-center gap-4 cursor-pointer min-w-0" onClick={() => setEditingReview(isEditing ? null : i)}>
+                            <div className="w-10 h-10 rounded-full overflow-hidden border border-border bg-background shrink-0 flex items-center justify-center font-bold text-accent">
+                              {review.avatar ? <img src={review.avatar} alt={review.name} className="w-full h-full object-cover" /> : (review.name?.charAt(0) || "?")}
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <h4 className="text-sm font-bold text-text-primary truncate">{review.name}</h4>
+                              <p className="text-[10px] text-text-muted truncate">{review.username} • {review.rating} Stars</p>
+                            </div>
+                          </div>
+                          
+                          <div className="flex items-center justify-between sm:justify-end gap-2 pt-3 mt-1 sm:pt-0 sm:mt-0 border-t border-border/50 sm:border-0 shrink-0 w-full sm:w-auto">
+                            <button onClick={(e) => { e.stopPropagation(); setEditingReview(isEditing ? null : i); }} className={`p-2 rounded-lg transition-colors ${isEditing ? 'bg-accent/10 text-accent' : 'text-text-muted hover:text-text-primary'}`}>
+                              <Edit3 className="w-3.5 h-3.5" />
+                            </button>
+                            {deletingReviewIndex === i ? (
+                              <div className="flex bg-red-500/10 rounded-xl overflow-hidden">
+                                <button type="button" onClick={(e) => { e.preventDefault(); e.stopPropagation(); const newReviews = [...content.reviews]; newReviews.splice(i, 1); setContent({ ...content, reviews: newReviews }); setEditingReview(null); setDeletingReviewIndex(null); }} className="px-3 h-10 text-xs font-bold text-red-500 hover:bg-red-500 hover:text-text-primary">Confirm</button>
+                                <button type="button" onClick={(e) => { e.preventDefault(); e.stopPropagation(); setDeletingReviewIndex(null); }} className="px-3 h-10 text-xs font-bold text-text-muted hover:bg-text-primary/10 hover:text-text-primary border-l border-text-primary/5">Cancel</button>
+                              </div>
+                            ) : (
+                              <button type="button" onClick={(e) => { e.preventDefault(); e.stopPropagation(); setDeletingReviewIndex(i); }} className="w-10 h-10 flex items-center justify-center text-text-muted hover:text-red-400 hover:bg-red-400/10 rounded-xl">
+                                <Trash2 className="w-4 h-4" />
+                              </button>
+                            )}
+                            <div className={`transition-transform duration-200 ${isEditing ? 'rotate-180' : ''}`}><ChevronDown className="w-4 h-4 text-text-muted" /></div>
+                          </div>
+                        </div>
+
+                        {isEditing && (
+                          <div className="border-t border-border p-6 space-y-4 bg-background/50">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                              <div>
+                                <label className="block text-[10px] font-bold uppercase tracking-widest text-text-muted mb-1.5">Client Name</label>
+                                <input type="text" value={review.name} onChange={(e) => { const r = [...content.reviews]; r[i].name = e.target.value; setContent({ ...content, reviews: r }); }} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-2.5 text-sm text-text-primary outline-none focus:border-accent/40" />
+                              </div>
+                              <div>
+                                <label className="block text-[10px] font-bold uppercase tracking-widest text-text-muted mb-1.5">Username / Role</label>
+                                <input type="text" value={review.username} onChange={(e) => { const r = [...content.reviews]; r[i].username = e.target.value; setContent({ ...content, reviews: r }); }} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-2.5 text-sm text-text-primary outline-none focus:border-accent/40" />
+                              </div>
+                              <div>
+                                <label className="block text-[10px] font-bold uppercase tracking-widest text-text-muted mb-1.5">Rating (1-5)</label>
+                                <input type="number" min="1" max="5" value={review.rating} onChange={(e) => { const r = [...content.reviews]; r[i].rating = parseInt(e.target.value) || 5; setContent({ ...content, reviews: r }); }} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-2.5 text-sm text-text-primary outline-none focus:border-accent/40" />
+                              </div>
+                            </div>
+                            
+                            <div>
+                              <label className="block text-[10px] font-bold uppercase tracking-widest text-text-muted mb-1.5">Avatar URL (Optional)</label>
+                              <input type="text" value={review.avatar || ""} onChange={(e) => { const r = [...content.reviews]; r[i].avatar = e.target.value; setContent({ ...content, reviews: r }); }} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-2.5 text-sm text-text-primary outline-none focus:border-accent/40" placeholder="/images/avatar.jpg" />
+                            </div>
+
+                            <div>
+                              <label className="block text-[10px] font-bold uppercase tracking-widest text-text-muted mb-1.5">Review Text</label>
+                              <textarea rows={4} value={review.text} onChange={(e) => { const r = [...content.reviews]; r[i].text = e.target.value; setContent({ ...content, reviews: r }); }} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-2.5 text-sm text-text-secondary outline-none focus:border-accent/40 resize-none" />
                             </div>
                           </div>
                         )}
@@ -1146,7 +1251,7 @@ export default function AdminDashboard() {
                       type="email" 
                       value={content.general.email}
                       onChange={(e) => setContent({ ...content, general: { ...content.general, email: e.target.value } })}
-                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-white"
+                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary"
                     />
                   </div>
                   <div>
@@ -1155,7 +1260,7 @@ export default function AdminDashboard() {
                       type="text" 
                       value={content.general.phone}
                       onChange={(e) => setContent({ ...content, general: { ...content.general, phone: e.target.value } })}
-                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-white"
+                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary"
                     />
                   </div>
                 </div>
@@ -1187,7 +1292,7 @@ export default function AdminDashboard() {
                                 newSocials[i].platform = e.target.value;
                                 setContent({ ...content, general: { ...content.general, socialLinks: newSocials } });
                               }}
-                              className="bg-transparent text-sm font-bold text-white outline-none w-full"
+                              className="bg-transparent text-sm font-bold text-text-primary outline-none w-full"
                               placeholder="e.g. Twitter"
                             />
                           </div>
@@ -1214,7 +1319,7 @@ export default function AdminDashboard() {
                                 newSocials[i].icon = e.target.value;
                                 setContent({ ...content, general: { ...content.general, socialLinks: newSocials } });
                               }}
-                              className="bg-surface-2 border border-border rounded px-2 py-1 text-[10px] text-white outline-none w-full cursor-pointer hover:border-accent/40"
+                              className="bg-surface-2 border border-border rounded px-2 py-1 text-[10px] text-text-primary outline-none w-full cursor-pointer hover:border-accent/40"
                             >
                               <option value="Twitter">Twitter</option>
                               <option value="Facebook">Facebook</option>
@@ -1255,7 +1360,7 @@ export default function AdminDashboard() {
                     type="text" 
                     value={content.contact?.badge || ""}
                     onChange={(e) => setContent({ ...content, contact: { ...content.contact, badge: e.target.value } })}
-                    className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-white outline-none focus:border-accent/40"
+                    className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary outline-none focus:border-accent/40"
                   />
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -1265,7 +1370,7 @@ export default function AdminDashboard() {
                       type="text" 
                       value={content.contact?.headline || ""}
                       onChange={(e) => setContent({ ...content, contact: { ...content.contact, headline: e.target.value } })}
-                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-white outline-none focus:border-accent/40"
+                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary outline-none focus:border-accent/40"
                     />
                   </div>
                   <div>
@@ -1274,7 +1379,7 @@ export default function AdminDashboard() {
                       type="text" 
                       value={content.contact?.headlineHighlight || ""}
                       onChange={(e) => setContent({ ...content, contact: { ...content.contact, headlineHighlight: e.target.value } })}
-                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-white outline-none focus:border-accent/40"
+                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary outline-none focus:border-accent/40"
                     />
                   </div>
                 </div>
@@ -1284,20 +1389,20 @@ export default function AdminDashboard() {
                     rows={3}
                     value={content.contact?.description || ""}
                     onChange={(e) => setContent({ ...content, contact: { ...content.contact, description: e.target.value } })}
-                    className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-white outline-none focus:border-accent/40 resize-none font-mono text-sm"
+                    className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary outline-none focus:border-accent/40 resize-none font-mono text-sm"
                   />
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-4">
-                    <h3 className="text-[10px] font-bold uppercase tracking-widest text-accent border-b border-white/5 pb-2">Primary Button (Email)</h3>
+                    <h3 className="text-[10px] font-bold uppercase tracking-widest text-accent border-b border-text-primary/5 pb-2">Primary Button (Email)</h3>
                     <div>
                       <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Email Address</label>
                       <input 
                         type="email" 
                         value={content.contact?.email || ""}
                         onChange={(e) => setContent({ ...content, contact: { ...content.contact, email: e.target.value } })}
-                        className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-white outline-none focus:border-accent/40"
+                        className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary outline-none focus:border-accent/40"
                       />
                     </div>
                     <div>
@@ -1306,20 +1411,20 @@ export default function AdminDashboard() {
                         type="text" 
                         value={content.contact?.emailButtonText || ""}
                         onChange={(e) => setContent({ ...content, contact: { ...content.contact, emailButtonText: e.target.value } })}
-                        className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-white outline-none focus:border-accent/40"
+                        className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary outline-none focus:border-accent/40"
                       />
                     </div>
                   </div>
                   
                   <div className="space-y-4">
-                    <h3 className="text-[10px] font-bold uppercase tracking-widest text-accent border-b border-white/5 pb-2">Secondary Button (Calendly)</h3>
+                    <h3 className="text-[10px] font-bold uppercase tracking-widest text-accent border-b border-text-primary/5 pb-2">Secondary Button (Calendly)</h3>
                     <div>
                       <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Calendly URL</label>
                       <input 
                         type="url" 
                         value={content.contact?.calendlyUrl || ""}
                         onChange={(e) => setContent({ ...content, contact: { ...content.contact, calendlyUrl: e.target.value } })}
-                        className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-white outline-none focus:border-accent/40"
+                        className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary outline-none focus:border-accent/40"
                       />
                     </div>
                     <div>
@@ -1328,7 +1433,7 @@ export default function AdminDashboard() {
                         type="text" 
                         value={content.contact?.calendlyButtonText || ""}
                         onChange={(e) => setContent({ ...content, contact: { ...content.contact, calendlyButtonText: e.target.value } })}
-                        className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-white outline-none focus:border-accent/40"
+                        className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary outline-none focus:border-accent/40"
                       />
                     </div>
                   </div>
@@ -1368,7 +1473,7 @@ export default function AdminDashboard() {
                             newStats[i].value = e.target.value;
                             setContent({ ...content, contact: { ...content.contact, stats: newStats } });
                           }}
-                          className="w-full bg-transparent text-center font-unbounded text-xl text-white outline-none border-b border-border focus:border-accent pb-1"
+                          className="w-full bg-transparent text-center font-unbounded text-xl text-text-primary outline-none border-b border-border focus:border-accent pb-1"
                           placeholder="Value (e.g. 100%)"
                         />
                         <input 
@@ -1399,7 +1504,7 @@ export default function AdminDashboard() {
                       type="text" 
                       value={content.footer.logoText}
                       onChange={(e) => setContent({ ...content, footer: { ...content.footer, logoText: e.target.value } })}
-                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-white outline-none focus:border-accent/40"
+                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary outline-none focus:border-accent/40"
                     />
                   </div>
                   <div>
@@ -1408,7 +1513,7 @@ export default function AdminDashboard() {
                       type="text" 
                       value={content.footer.copyrightText}
                       onChange={(e) => setContent({ ...content, footer: { ...content.footer, copyrightText: e.target.value } })}
-                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-white outline-none focus:border-accent/40"
+                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary outline-none focus:border-accent/40"
                     />
                   </div>
                 </div>
@@ -1419,7 +1524,7 @@ export default function AdminDashboard() {
                     rows={3}
                     value={content.footer.description}
                     onChange={(e) => setContent({ ...content, footer: { ...content.footer, description: e.target.value } })}
-                    className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-white outline-none focus:border-accent/40 resize-none"
+                    className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary outline-none focus:border-accent/40 resize-none"
                   />
                 </div>
 
@@ -1449,7 +1554,7 @@ export default function AdminDashboard() {
                               newLinks[i].label = e.target.value;
                               setContent({ ...content, footer: { ...content.footer, links: newLinks } });
                             }}
-                            className="bg-transparent text-sm font-bold text-white outline-none"
+                            className="bg-transparent text-sm font-bold text-text-primary outline-none"
                             placeholder="Link Label"
                           />
                           <input 
@@ -1498,7 +1603,7 @@ export default function AdminDashboard() {
                       setContent({ ...content, testimonials: newTestimonials });
                       setEditingTestimonial(0);
                     }}
-                    className="flex items-center gap-2 bg-white/5 hover:bg-white/10 text-white px-4 py-2 rounded-xl text-sm font-semibold transition-all"
+                    className="flex items-center gap-2 bg-text-primary/5 hover:bg-text-primary/10 text-text-primary px-4 py-2 rounded-xl text-sm font-semibold transition-all"
                   >
                     <Plus className="w-4 h-4" /> Add Testimonial
                   </button>
@@ -1516,7 +1621,7 @@ export default function AdminDashboard() {
                     const isEditing = editingTestimonial === i;
                     return (
                       <div key={`test-${i}-${t.name}`} className="border border-border rounded-2xl overflow-hidden bg-surface-2 transition-all">
-                        <div className="flex flex-col sm:flex-row sm:items-center gap-4 p-4 hover:bg-white/[0.02] transition-colors">
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-4 p-4 hover:bg-text-primary/[0.02] transition-colors">
                           <div 
                             className="flex flex-1 items-center gap-4 cursor-pointer min-w-0 w-full" 
                             onClick={() => setEditingTestimonial(isEditing ? null : i)}
@@ -1525,7 +1630,7 @@ export default function AdminDashboard() {
                                {t.avatar}
                             </div>
                             <div className="flex-1 min-w-0">
-                              <h4 className="text-sm font-bold text-white truncate">{t.name || 'Anonymous'}</h4>
+                              <h4 className="text-sm font-bold text-text-primary truncate">{t.name || 'Anonymous'}</h4>
                               <p className="text-[10px] text-text-muted mt-0.5">{t.role}</p>
                             </div>
                           </div>
@@ -1556,14 +1661,14 @@ export default function AdminDashboard() {
                                       else setMessage({ type: "error", text: "Error saving deletion." });
                                     });
                                   }}
-                                  className="px-3 h-10 flex items-center justify-center text-xs font-bold text-red-500 hover:bg-red-500 hover:text-white transition-colors"
+                                  className="px-3 h-10 flex items-center justify-center text-xs font-bold text-red-500 hover:bg-red-500 hover:text-text-primary transition-colors"
                                 >
                                   Confirm
                                 </button>
                                 <button
                                   type="button"
                                   onClick={(e) => { e.preventDefault(); e.stopPropagation(); setDeletingTestimonialIndex(null); }}
-                                  className="px-3 h-10 flex items-center justify-center text-xs font-bold text-text-muted hover:bg-white/10 hover:text-white transition-colors border-l border-white/5"
+                                  className="px-3 h-10 flex items-center justify-center text-xs font-bold text-text-muted hover:bg-text-primary/10 hover:text-text-primary transition-colors border-l border-text-primary/5"
                                 >
                                   Cancel
                                 </button>
@@ -1591,26 +1696,26 @@ export default function AdminDashboard() {
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                               <div className="col-span-2">
                                 <label className="block text-[10px] font-bold uppercase tracking-widest text-text-muted mb-1.5">Client Name</label>
-                                <input type="text" value={t.name} onChange={(e) => { const nt = [...content.testimonials]; nt[i].name = e.target.value; setContent({ ...content, testimonials: nt }); }} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-2.5 text-white outline-none focus:border-accent/40" />
+                                <input type="text" value={t.name} onChange={(e) => { const nt = [...content.testimonials]; nt[i].name = e.target.value; setContent({ ...content, testimonials: nt }); }} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-2.5 text-text-primary outline-none focus:border-accent/40" />
                               </div>
                               <div>
                                 <label className="block text-[10px] font-bold uppercase tracking-widest text-text-muted mb-1.5">Role / Location</label>
-                                <input type="text" value={t.role} onChange={(e) => { const nt = [...content.testimonials]; nt[i].role = e.target.value; setContent({ ...content, testimonials: nt }); }} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-2.5 text-white outline-none focus:border-accent/40" />
+                                <input type="text" value={t.role} onChange={(e) => { const nt = [...content.testimonials]; nt[i].role = e.target.value; setContent({ ...content, testimonials: nt }); }} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-2.5 text-text-primary outline-none focus:border-accent/40" />
                               </div>
                               <div>
                                 <label className="block text-[10px] font-bold uppercase tracking-widest text-text-muted mb-1.5">Result Badge</label>
-                                <input type="text" value={t.result} onChange={(e) => { const nt = [...content.testimonials]; nt[i].result = e.target.value; setContent({ ...content, testimonials: nt }); }} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-2.5 text-white outline-none focus:border-accent/40" />
+                                <input type="text" value={t.result} onChange={(e) => { const nt = [...content.testimonials]; nt[i].result = e.target.value; setContent({ ...content, testimonials: nt }); }} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-2.5 text-text-primary outline-none focus:border-accent/40" />
                               </div>
                             </div>
 
                             <div className="grid grid-cols-2 gap-4">
                               <div>
                                 <label className="block text-[10px] font-bold uppercase tracking-widest text-text-muted mb-1.5">Avatar Initials</label>
-                                <input type="text" value={t.avatar} onChange={(e) => { const nt = [...content.testimonials]; nt[i].avatar = e.target.value; setContent({ ...content, testimonials: nt }); }} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-2.5 text-white outline-none focus:border-accent/40" maxLength={2} />
+                                <input type="text" value={t.avatar} onChange={(e) => { const nt = [...content.testimonials]; nt[i].avatar = e.target.value; setContent({ ...content, testimonials: nt }); }} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-2.5 text-text-primary outline-none focus:border-accent/40" maxLength={2} />
                               </div>
                               <div>
                                 <label className="block text-[10px] font-bold uppercase tracking-widest text-text-muted mb-1.5">Star Rating (1-5)</label>
-                                <input type="number" min="1" max="5" value={t.rating} onChange={(e) => { const nt = [...content.testimonials]; nt[i].rating = parseInt(e.target.value) || 5; setContent({ ...content, testimonials: nt }); }} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-2.5 text-white outline-none focus:border-accent/40" />
+                                <input type="number" min="1" max="5" value={t.rating} onChange={(e) => { const nt = [...content.testimonials]; nt[i].rating = parseInt(e.target.value) || 5; setContent({ ...content, testimonials: nt }); }} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-2.5 text-text-primary outline-none focus:border-accent/40" />
                               </div>
                             </div>
 

@@ -1320,5 +1320,79 @@
         "label": "Avg. Turnaround"
       }
     ]
-  }
+  },
+  "reviews": [
+    {
+      "id": 1,
+      "name": "Michael Bromley",
+      "username": "@michaelb",
+      "avatar": "",
+      "rating": 5,
+      "text": "Sabbir transformed our outdated website into a high-converting machine. His attention to detail and understanding of modern design is unmatched. Highly recommend!"
+    },
+    {
+      "id": 2,
+      "name": "Sarah Jenkins",
+      "username": "@sarah_j",
+      "avatar": "",
+      "rating": 5,
+      "text": "Working with him was a breeze. He took our vague ideas and turned them into a stunning, fast, and responsive platform that our clients love."
+    },
+    {
+      "id": 3,
+      "name": "David Chen",
+      "username": "@davidchen_dev",
+      "avatar": "",
+      "rating": 4,
+      "text": "Great communication throughout the project. The final result exceeded our expectations, especially in terms of page load speed and mobile responsiveness."
+    },
+    {
+      "id": 4,
+      "name": "Emily Watson",
+      "username": "@ewatson",
+      "avatar": "",
+      "rating": 5,
+      "text": "We hired Sabbir for a complete rebrand and website overhaul. The difference in our conversion rate has been night and day. He truly understands business goals."
+    },
+    {
+      "id": 5,
+      "name": "James Rodriguez",
+      "username": "@james_rod",
+      "avatar": "",
+      "rating": 5,
+      "text": "A master of his craft. The custom animations and sleek design elements he implemented gave our brand the premium feel we've been looking for."
+    },
+    {
+      "id": 6,
+      "name": "Lisa Thompson",
+      "username": "@lisat_marketing",
+      "avatar": "",
+      "rating": 5,
+      "text": "If you want someone who doesn't just write code, but actually thinks about user experience and conversion optimization, Sabbir is your guy."
+    },
+    {
+      "id": 7,
+      "name": "Robert Klein",
+      "username": "@robertk",
+      "avatar": "",
+      "rating": 4,
+      "text": "Delivered the project on time and within budget. Very professional and easy to work with. Will definitely hire again for future updates."
+    },
+    {
+      "id": 8,
+      "name": "Amanda Lee",
+      "username": "@amanda_lee",
+      "avatar": "",
+      "rating": 5,
+      "text": "The new e-commerce site he built for us is fantastic. Sales are up 40% in the first month alone, and the backend is so much easier for our team to manage."
+    },
+    {
+      "id": 9,
+      "name": "Chris Peterson",
+      "username": "@chrisp_designs",
+      "avatar": "",
+      "rating": 5,
+      "text": "Outstanding work! He took our Figma designs and translated them into a pixel-perfect, high-performance website. His technical skills are top-notch."
+    }
+  ]
 }

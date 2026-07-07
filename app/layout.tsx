@@ -96,6 +96,7 @@ const jsonLd = {
 
 import SmoothScroll from "@/components/layout/SmoothScroll";
 import { ContentProvider } from "@/components/providers/ContentProvider";
+import { ThemeProvider } from "@/components/providers/ThemeProvider";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -107,22 +108,24 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="bg-background text-text-primary font-inter antialiased" suppressHydrationWarning>
-        <ContentProvider>
-          <SmoothScroll>
-            {/* Noise grain overlay */}
-            <div className="noise-overlay" aria-hidden="true" />
+        <ThemeProvider>
+          <ContentProvider>
+            <SmoothScroll>
+              {/* Noise grain overlay */}
+              <div className="noise-overlay" aria-hidden="true" />
 
 
-            {/* Navigation */}
-            <Navbar />
+              {/* Navigation */}
+              <Navbar />
 
-            {/* Main content */}
-            <main>{children}</main>
+              {/* Main content */}
+              <main>{children}</main>
 
-            {/* Footer */}
-            <Footer />
-          </SmoothScroll>
-        </ContentProvider>
+              {/* Footer */}
+              <Footer />
+            </SmoothScroll>
+          </ContentProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

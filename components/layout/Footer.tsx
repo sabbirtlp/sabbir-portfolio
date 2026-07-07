@@ -40,9 +40,9 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative pt-24 pb-12 overflow-hidden border-t border-white/10 shadow-[0_-20px_50px_rgba(0,0,0,0.8)]">
+    <footer className="relative pt-24 pb-12 overflow-hidden border-t border-text-primary/10 shadow-[0_-10px_30px_rgba(0,0,0,0.06)] dark:shadow-[0_-20px_50px_rgba(0,0,0,0.8)]">
       {/* 0. Base Solid Layer */}
-      <div className="absolute inset-0 z-0 bg-[#030303]" />
+      <div className="absolute inset-0 z-0 bg-background" />
 
       {/* 1. Premium Brand Background Image */}
       <div className="absolute inset-0 z-[1] pointer-events-none overflow-hidden">
@@ -50,7 +50,7 @@ export default function Footer() {
           src="/footer-bg.png"
           alt="Technical Background"
           fill
-          className="object-cover object-center opacity-[0.15] mix-blend-screen"
+          className="object-cover object-center opacity-[0.08] dark:opacity-[0.15] mix-blend-multiply dark:mix-blend-screen invert dark:invert-0"
         />
         {/* Bolder, centered glows for maximum glass visibility on all devices */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-accent/20 rounded-full blur-[100px] -translate-y-1/2 z-[2]" />
@@ -58,15 +58,15 @@ export default function Footer() {
       </div>
 
       {/* 2. SPECULAR SHINE & FROSTED GLASS (The Core Effect) */}
-      <div className="absolute inset-0 z-[3] bg-white/[0.03] backdrop-blur-[40px] pointer-events-none overflow-hidden text-white">
+      <div className="absolute inset-0 z-[3] bg-text-primary/[0.03] backdrop-blur-[40px] pointer-events-none overflow-hidden text-text-primary">
         {/* Diagonal Specular Shine */}
-        <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-transparent opacity-40" />
+        <div className="absolute inset-0 bg-gradient-to-br from-text-primary/5 via-transparent to-transparent opacity-40" />
         {/* Fine Grain / Noise for tactile glass surface */}
         <div className="absolute inset-0 opacity-[0.1] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay" />
       </div>
 
       {/* 3. High-End Glass Edge Highlights */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none z-20" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-text-primary/30 to-transparent pointer-events-none z-20" />
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/[0.05] rounded-full blur-[120px] translate-x-1/2 -translate-y-1/2 pointer-events-none z-10" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
@@ -74,7 +74,7 @@ export default function Footer() {
           {/* Column 1: Brand & Social */}
           <div className="flex flex-col items-start lg:col-span-1">
             <Link href="/" className="inline-block mb-6 group">
-              <span className="font-syne font-semibold text-2xl text-white group-hover:text-accent transition-colors duration-300">
+              <span className="font-syne font-semibold text-2xl text-text-primary group-hover:text-accent transition-colors duration-300">
                 {logoText || "S.Hossain"}
               </span>
             </Link>
@@ -90,7 +90,7 @@ export default function Footer() {
                     <Link
                       href={link.href}
                       target="_blank"
-                      className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/5 flex items-center justify-center text-text-muted hover:text-accent hover:border-accent/40 hover:bg-accent/10 transition-all duration-500"
+                      className="w-10 h-10 rounded-xl bg-text-primary/[0.03] border border-text-primary/5 flex items-center justify-center text-text-muted hover:text-accent hover:border-accent/40 hover:bg-accent/10 transition-all duration-500"
                       aria-label={link.platform}
                     >
                       <Icon className="w-4.5 h-4.5" />
@@ -104,13 +104,13 @@ export default function Footer() {
           {/* Column 2: Balanced Navigation */}
           <div className="lg:flex lg:flex-col lg:items-start">
             <div className="w-full">
-              <p className="text-white font-medium mb-6 uppercase tracking-[0.2em] text-[10px] opacity-40">Navigation</p>
+              <p className="text-text-primary font-medium mb-6 uppercase tracking-[0.2em] text-[10px] opacity-40">Navigation</p>
               <ul className="grid grid-cols-2 lg:grid-cols-1 gap-y-4 gap-x-8">
                 {(menuLinks || []).map((link: any) => (
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-text-secondary hover:text-white transition-all text-sm font-medium flex items-center group"
+                      className="text-text-secondary hover:text-text-primary transition-all text-sm font-medium flex items-center group"
                     >
                       <span className="w-0 h-px bg-accent group-hover:w-3 transition-all duration-300 mr-0 group-hover:mr-2" />
                       {link.label}
@@ -124,16 +124,16 @@ export default function Footer() {
           {/* Column 3: Contact & CTA */}
           <div className="lg:flex lg:flex-col lg:items-start">
             <div className="w-full">
-              <p className="text-white font-medium mb-6 uppercase tracking-[0.2em] text-[10px] opacity-40">Get In Touch</p>
+              <p className="text-text-primary font-medium mb-6 uppercase tracking-[0.2em] text-[10px] opacity-40">Get In Touch</p>
               <Link
                 href={`mailto:${email}`}
-                className="font-syne font-medium text-lg text-white hover:text-accent transition-all block mb-6 break-all"
+                className="font-syne font-medium text-lg text-text-primary hover:text-accent transition-all block mb-6 break-all"
               >
                 {email}
               </Link>
               <Link
                 href="/contact"
-                className="group inline-flex items-center gap-2 text-white text-xs font-semibold hover:text-accent transition-all duration-300"
+                className="group inline-flex items-center gap-2 text-text-primary text-xs font-semibold hover:text-accent transition-all duration-300"
               >
                 Start a conversation
                 <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-1" />
@@ -143,17 +143,17 @@ export default function Footer() {
         </div>
 
         {/* Improved Bottom Section */}
-        <div className="pt-8 border-t border-white/[0.05] flex flex-col md:flex-row justify-between items-center gap-6">
+        <div className="pt-8 border-t border-text-primary/[0.05] flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-text-muted text-[11px] font-medium tracking-wide">
             © {currentYear} {copyrightText || "SABBIR HOSSAIN — WEB SPECIALIST"}
           </p>
 
           <button
             onClick={handleScrollToTop}
-            className="group flex items-center gap-3 text-text-muted hover:text-white transition-all text-[11px] font-bold uppercase tracking-widest"
+            className="group flex items-center gap-3 text-text-muted hover:text-text-primary transition-all text-[11px] font-bold uppercase tracking-widest"
           >
             <span>Back to top</span>
-            <div className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center group-hover:border-accent group-hover:text-accent transition-all duration-500">
+            <div className="w-9 h-9 rounded-full border border-text-primary/10 flex items-center justify-center group-hover:border-accent group-hover:text-accent transition-all duration-500">
               <span className="block translate-y-[-1px] transition-transform duration-300 group-hover:-translate-y-1">↑</span>
             </div>
           </button>

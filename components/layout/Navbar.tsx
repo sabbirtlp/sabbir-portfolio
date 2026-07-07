@@ -5,12 +5,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import MagneticButton from "@/components/ui/MagneticButton";
+import ThemeSwitcher from "@/components/ui/ThemeSwitcher";
 import { useActiveSection } from "@/hooks/useActiveSection";
 
 const navLinks = [
   { label: "Home", href: "#home" },
   { label: "Work", href: "#work" },
   { label: "Portfolio", href: "/portfolio" },
+  { label: "Reviews", href: "/reviews" },
   { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
   { label: "Process", href: "#process" },
@@ -76,7 +78,7 @@ export default function Navbar() {
         <nav className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
           {/* Logo */}
           <MagneticButton strength={0.3}>
-            <Link href="/" className="font-syne font-black text-xl text-white whitespace-nowrap">
+            <Link href="/" className="font-syne font-black text-xl text-text-primary whitespace-nowrap">
               <span className="text-accent">{logoFirstChar}</span>{logoRest}
               <span className="text-text-secondary">.</span>
             </Link>
@@ -93,7 +95,7 @@ export default function Navbar() {
                   <button
                     onClick={() => handleNavClick(link.href)}
                     className={`text-sm font-medium tracking-wide transition-colors duration-300 relative group cursor-pointer ${
-                      isActive ? "text-accent" : "text-text-secondary hover:text-white"
+                      isActive ? "text-accent" : "text-text-secondary hover:text-text-primary"
                     }`}
                   >
                     {link.label}
@@ -113,7 +115,8 @@ export default function Navbar() {
           </ul>
 
           {/* CTA */}
-          <div className="hidden md:block">
+          <div className="hidden md:flex items-center gap-4">
+            <ThemeSwitcher />
             <MagneticButton strength={0.3}>
               <button
                 onClick={() => handleNavClick("#contact")}
@@ -132,15 +135,15 @@ export default function Navbar() {
           >
             <motion.span
               animate={menuOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
-              className="block w-full h-0.5 bg-white origin-left transition-all duration-300"
+              className="block w-full h-0.5 bg-text-primary origin-left transition-all duration-300"
             />
             <motion.span
               animate={menuOpen ? { opacity: 0, x: -10 } : { opacity: 1, x: 0 }}
-              className="block w-2/3 h-0.5 bg-white"
+              className="block w-2/3 h-0.5 bg-text-primary"
             />
             <motion.span
               animate={menuOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
-              className="block w-full h-0.5 bg-white origin-left transition-all duration-300"
+              className="block w-full h-0.5 bg-text-primary origin-left transition-all duration-300"
             />
           </button>
         </nav>
@@ -179,7 +182,7 @@ export default function Navbar() {
                     <button
                       onClick={() => handleNavClick(link.href)}
                       className={`font-syne text-4xl font-black transition-colors duration-300 cursor-pointer ${
-                        isActive ? "text-accent" : "text-white hover:text-accent/80"
+                        isActive ? "text-accent" : "text-text-primary hover:text-accent/80"
                       }`}
                     >
                       {link.label}
@@ -198,6 +201,14 @@ export default function Navbar() {
                 >
                   Start a Project
                 </button>
+              </motion.li>
+              <motion.li
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: (navLinks.length + 1) * 0.08 }}
+                className="mt-6"
+              >
+                <ThemeSwitcher />
               </motion.li>
             </ul>
           </motion.div>

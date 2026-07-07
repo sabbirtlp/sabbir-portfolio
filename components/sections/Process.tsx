@@ -62,7 +62,7 @@ export default function Process() {
           <p className="text-text-secondary text-xs font-semibold uppercase tracking-widest mb-4">
             How I Work
           </p>
-          <h2 className="font-syne font-black text-3xl md:text-4xl lg:text-5xl text-white leading-tight">
+          <h2 className="font-syne font-black text-3xl md:text-4xl lg:text-5xl text-text-primary leading-tight">
             My Proven <span className="text-gradient">Process</span>
           </h2>
         </motion.div>
@@ -102,7 +102,7 @@ export default function Process() {
                 >
                   {step.number}
                 </div>
-                <h3 className="font-syne font-bold text-white text-lg mb-2">{step.title}</h3>
+                <h3 className="font-syne font-bold text-text-primary text-lg mb-2">{step.title}</h3>
                 <p className="text-text-secondary text-xs leading-relaxed">{step.description}</p>
               </motion.div>
             ))}
@@ -126,7 +126,7 @@ export default function Process() {
                 {step.number}
               </div>
               <div className="pt-2">
-                <h3 className="font-syne font-bold text-white text-lg mb-1">{step.title}</h3>
+                <h3 className="font-syne font-bold text-text-primary text-lg mb-1">{step.title}</h3>
                 <p className="text-text-secondary text-sm leading-relaxed">{step.description}</p>
               </div>
             </motion.div>

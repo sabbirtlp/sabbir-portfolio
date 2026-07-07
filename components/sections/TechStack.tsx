@@ -19,7 +19,7 @@ export default function TechStack() {
     <section
       ref={ref}
       id="tech-stack"
-      className="relative py-16 md:py-24 lg:py-32 overflow-hidden bg-[#0b0b0b]"
+      className="relative py-16 md:py-24 lg:py-32 overflow-hidden bg-background"
     >
       {/* Minimal dark background — same as other sections */}
       <div className="absolute inset-0 z-0 pointer-events-none">
@@ -53,7 +53,7 @@ export default function TechStack() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-2xl sm:text-3xl md:text-[42px] font-unbounded font-black text-white leading-tight"
+            className="text-2xl sm:text-3xl md:text-[42px] font-unbounded font-black text-text-primary leading-tight"
           >
             {preWords} <span className="text-[#ff6a00]">{lastWord}</span>
           </motion.h2>
@@ -64,7 +64,7 @@ export default function TechStack() {
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
             className="max-w-xs sm:max-w-md md:max-w-xl mx-auto
-                       text-white/40 font-mono text-[10px] md:text-[13px]
+                       text-text-primary/40 font-mono text-[10px] md:text-[13px]
                        mt-4 md:mt-5 leading-relaxed"
           >
             {techStackData.subtitle}

@@ -28,12 +28,12 @@ function Item({ num, label }: { num: string; label: string }) {
   return (
     <div className="group/item flex items-center gap-3 px-6 cursor-default select-none flex-shrink-0">
       {/* Accent number */}
-      <span className="font-fira-code text-[9px] leading-none text-accent/40 group-hover/item:text-accent transition-colors duration-500 tabular-nums">
+      <span className="font-fira-code text-[9px] leading-none text-accent/60 dark:text-accent/40 group-hover/item:text-accent transition-colors duration-500 tabular-nums">
         {num}
       </span>
 
       {/* Label */}
-      <span className="font-unbounded text-[11px] md:text-[12px] font-medium tracking-[0.18em] uppercase text-white/20 group-hover/item:text-white/75 transition-colors duration-500 whitespace-nowrap">
+      <span className="font-unbounded text-[11px] md:text-[12px] font-medium tracking-[0.18em] uppercase text-text-primary/40 dark:text-text-primary/20 group-hover/item:text-text-primary/80 dark:group-hover/item:text-text-primary/75 transition-colors duration-500 whitespace-nowrap">
         {label}
       </span>
 
@@ -101,7 +101,7 @@ export default function MarqueeSeparator() {
       aria-hidden="true"
     >
       {/* Top hairline gradient */}
-      <div className="h-px w-full bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
+      <div className="h-px w-full bg-gradient-to-r from-transparent via-text-primary/[0.08] to-transparent" />
 
       {/* Subtle ambient glow */}
       <div className="absolute inset-0 pointer-events-none">
@@ -114,7 +114,7 @@ export default function MarqueeSeparator() {
       <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-36 z-10 bg-gradient-to-l from-background to-transparent" />
 
       {/* ── ROW 1: scrolls → LEFT ── */}
-      <div className="py-[13px] border-b border-white/[0.045]">
+      <div className="py-[13px] border-b border-text-primary/[0.045]">
         <InfiniteTrack items={ROW_1} direction="left" duration={44} />
       </div>
 
@@ -123,18 +123,18 @@ export default function MarqueeSeparator() {
         {/* Hairline through */}
         <div className="absolute inset-x-0 h-px top-1/2 -translate-y-1/2 bg-gradient-to-r from-transparent via-accent/[0.12] to-transparent" />
         {/* Label chip */}
-        <span className="relative z-10 px-5 py-[3px] bg-background border border-white/[0.06] rounded-full font-fira-code text-[8px] tracking-[0.3em] uppercase text-accent/35">
+        <span className="relative z-10 px-5 py-[3px] bg-background border border-text-primary/[0.06] rounded-full font-fira-code text-[8px] tracking-[0.3em] uppercase text-accent/60 dark:text-accent/35">
           Full-Stack CMS &amp; AI Specialist
         </span>
       </div>
 
       {/* ── ROW 2: scrolls → RIGHT ── */}
-      <div className="py-[13px] border-t border-white/[0.045]">
+      <div className="py-[13px] border-t border-text-primary/[0.045]">
         <InfiniteTrack items={ROW_2} direction="right" duration={38} />
       </div>
 
       {/* Bottom hairline gradient */}
-      <div className="h-px w-full bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
+      <div className="h-px w-full bg-gradient-to-r from-transparent via-text-primary/[0.08] to-transparent" />
     </motion.section>
   );
 }

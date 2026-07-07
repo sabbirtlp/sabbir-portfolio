@@ -206,7 +206,7 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
                   x2={p2.svgX} y2={p2.svgY}
                   strokeWidth={isNodeHovered ? "2.2" : isCoreHovered ? "1.0" : isActive ? "1.6" : "0.5"}
                   style={{
-                    stroke:   (isActive || isCoreHovered) ? ORANGE : "#ffffff",
+                    stroke:   (isActive || isCoreHovered) ? ORANGE : "var(--text-primary)",
                     opacity:  isNodeHovered ? 1 : isCoreHovered ? 0.45 : isActive ? 0.85 : 0.13,
                     filter:   (isActive || isCoreHovered) ? "url(#ts-glow)" : "none",
                     transition: "stroke 0.5s ease-in-out, opacity 0.5s ease-in-out, stroke-width 0.5s ease-in-out, filter 0.5s ease-in-out",
@@ -232,7 +232,7 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
             style={{ backgroundColor: ORANGE }}
           >
             {/* Top highlight */}
-            <div className="absolute inset-0 bg-gradient-to-b from-white/20 to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-b from-text-primary/20 to-transparent pointer-events-none" />
             {/* Text */}
             <span className="relative z-10 text-white font-unbounded font-black text-[1.6rem] leading-none tracking-tighter">
               TECH
@@ -315,17 +315,17 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
                       ? "border-[#ff6a00] ring-2 ring-[#ff6a00]/30"
                       : isActive
                       ? "border-[#ff6a00]/60"
-                      : "border-white/10"
+                      : "border-border bg-surface shadow-md dark:bg-black/80"
                   )}
                   style={{
                     backgroundColor: isHovered
-                      ? "rgba(255,106,0,0.18)"
+                      ? "rgba(255,106,0,0.25)"
                       : isActive
-                      ? "rgba(255,106,0,0.10)"
-                      : "rgba(255,255,255,0.04)",
+                      ? "rgba(255,106,0,0.15)"
+                      : undefined,
                     boxShadow: isHovered
                       ? "0 0 0 1px rgba(255,106,0,0.5), inset 0 0 20px rgba(255,106,0,0.12)"
-                      : "none",
+                      : "0 4px 15px rgba(0,0,0,0.1)",
                     transition: "background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease",
                   }}
                 >
@@ -345,9 +345,9 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
                   {/* Tooltip — spring slide up on hover, fade on active */}
                   <div
                     className="absolute whitespace-nowrap pointer-events-none
-                               px-3 py-1.5 rounded-lg bg-black/90 backdrop-blur-md
+                               px-3 py-1.5 rounded-lg bg-text-primary/90 backdrop-blur-md
                                border border-[#ff6a00]/20
-                               text-white font-mono text-[9px] uppercase tracking-widest"
+                               text-background font-mono text-[9px] uppercase tracking-widest"
                     style={{
                       bottom: "calc(100% + 10px)",
                       left: "50%",
@@ -361,7 +361,7 @@ export default function TechSpider({ icons = [], className }: TechSpiderProps) {
                     }}
                   >
                     {icon.name}
-                    <span className="absolute top-full left-1/2 -translate-x-1/2 border-[5px] border-transparent border-t-black/90" />
+                    <span className="absolute top-full left-1/2 -translate-x-1/2 border-[5px] border-transparent border-t-text-primary/90" />
                   </div>
                 </div>
               </div>

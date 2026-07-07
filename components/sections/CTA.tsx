@@ -14,7 +14,7 @@ export default function CTA() {
     badge: "Direct Access to Specialist",
     headline: "Ready to Scale Your",
     headlineHighlight: "Digital Presence?",
-    description: "Let's turn your vision into a high-performing website that attracts premium clients and grows your revenue. Currently booking for <span className=\"text-white font-semibold\">Next Month</span>.",
+    description: "Let's turn your vision into a high-performing website that attracts premium clients and grows your revenue. Currently booking for <span className=\"text-text-primary font-semibold\">Next Month</span>.",
     email: "hello@sabbir.dev",
     emailButtonText: "Sent a Message",
     calendlyUrl: "https://calendly.com/sabbir",
@@ -31,14 +31,14 @@ export default function CTA() {
       {/* Background elements */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
-        <div className="absolute inset-0 bg-[#030303]" />
+        <div className="absolute inset-0 bg-background" />
         
         {/* Grid pattern matching Hero */}
         <div
-          className="absolute inset-0 opacity-[0.03]"
+          className="absolute inset-0 opacity-[0.05] dark:opacity-[0.03]"
           style={{
             backgroundImage:
-              "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
+              "linear-gradient(var(--text-primary) 1px, transparent 1px), linear-gradient(90deg, var(--text-primary) 1px, transparent 1px)",
             backgroundSize: "60px 60px",
           }}
         />
@@ -52,7 +52,7 @@ export default function CTA() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={isInView ? { opacity: 1, scale: 1 } : {}}
           transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-          className="relative rounded-[40px] border border-white/5 bg-surface-2/40 backdrop-blur-xl p-10 md:p-20 overflow-hidden"
+          className="relative rounded-[40px] border border-text-primary/5 bg-surface-2/40 backdrop-blur-xl p-10 md:p-20 overflow-hidden"
         >
           {/* Internal Glow */}
           <div className="absolute top-0 right-0 w-80 h-80 bg-accent/5 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2" />
@@ -74,7 +74,7 @@ export default function CTA() {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="font-syne font-black text-4xl md:text-6xl lg:text-7xl text-white leading-tight mb-8"
+              className="font-syne font-black text-4xl md:text-6xl lg:text-7xl text-text-primary leading-tight mb-8"
             >
               {contact.headline} <br className="hidden md:block" />
               <span className="text-gradient">{contact.headlineHighlight}</span>
@@ -111,7 +111,7 @@ export default function CTA() {
                   href={contact.calendlyUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group w-full sm:w-auto flex items-center justify-center gap-3 px-10 py-5 border border-white/10 hover:border-accent bg-white/5 backdrop-blur-sm text-white font-bold rounded-full transition-all duration-300 text-sm md:text-base cursor-pointer"
+                  className="group w-full sm:w-auto flex items-center justify-center gap-3 px-10 py-5 border border-text-primary/10 hover:border-accent bg-text-primary/5 backdrop-blur-sm text-text-primary font-bold rounded-full transition-all duration-300 text-sm md:text-base cursor-pointer"
                 >
                   <Calendar className="w-5 h-5" />
                   {contact.calendlyButtonText}
@@ -124,11 +124,11 @@ export default function CTA() {
               initial={{ opacity: 0 }}
               animate={isInView ? { opacity: 1 } : {}}
               transition={{ duration: 0.7, delay: 0.7 }}
-              className="grid grid-cols-1 sm:grid-cols-3 gap-8 pt-10 border-t border-white/5"
+              className="grid grid-cols-1 sm:grid-cols-3 gap-8 pt-10 border-t border-text-primary/5"
             >
               {contact.stats.map((item: any) => (
                 <div key={item.label} className="group">
-                  <div className="font-unbounded font-medium text-xl md:text-2xl text-white mb-2 group-hover:text-accent transition-colors duration-300">{item.value}</div>
+                  <div className="font-unbounded font-medium text-xl md:text-2xl text-text-primary mb-2 group-hover:text-accent transition-colors duration-300">{item.value}</div>
                   <div className="text-text-secondary text-[10px] uppercase tracking-widest font-medium opacity-60">
                     {item.label}
                   </div>

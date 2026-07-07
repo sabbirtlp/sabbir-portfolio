@@ -67,9 +67,9 @@ export default async function ServiceDetailPage({ params }: Props) {
         <div className="max-w-4xl">
           <Link
             href="/#services"
-            className="group inline-flex items-center gap-2 text-text-muted hover:text-white transition-colors mb-12"
+            className="group inline-flex items-center gap-2 text-text-muted hover:text-text-primary transition-colors mb-12"
           >
-            <div className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center group-hover:border-accent group-hover:bg-accent/10 transition-all">
+            <div className="w-8 h-8 rounded-full border border-text-primary/10 flex items-center justify-center group-hover:border-accent group-hover:bg-accent/10 transition-all">
               <ArrowLeft className="w-4 h-4" />
             </div>
             <span className="text-xs uppercase tracking-widest font-bold">Back to Services</span>
@@ -86,11 +86,11 @@ export default async function ServiceDetailPage({ params }: Props) {
             )}
           </div>
 
-          <h1 className="font-syne font-black text-3xl md:text-[42px] text-white leading-[1.1] tracking-tighter mb-8 max-w-3xl">
+          <h1 className="font-syne font-black text-3xl md:text-[42px] text-text-primary leading-[1.1] tracking-tighter mb-8 max-w-3xl">
             {service.title}
           </h1>
           
-          <p className="text-white/70 text-lg md:text-xl leading-relaxed max-w-3xl font-medium">
+          <p className="text-text-primary/70 text-lg md:text-xl leading-relaxed max-w-3xl font-medium">
             {service.longDescription}
           </p>
         </div>
@@ -101,16 +101,16 @@ export default async function ServiceDetailPage({ params }: Props) {
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-16">
             <p className="text-accent text-[10px] md:text-xs font-bold uppercase tracking-widest mb-4">What you get</p>
-            <h2 className="font-syne font-black text-3xl md:text-[42px] text-white">Core Pillars of Excellence</h2>
+            <h2 className="font-syne font-black text-3xl md:text-[42px] text-text-primary">Core Pillars of Excellence</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {(service.features || []).map((feature: string) => (
               <PremiumGlowCard key={feature} className="!bg-surface-2/20">
                 <div className="w-10 h-10 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center mb-6 group-hover:bg-accent group-hover:border-accent transition-all duration-300">
-                    <CheckCircle2 className="w-5 h-5 text-accent group-hover:text-white" />
+                    <CheckCircle2 className="w-5 h-5 text-accent group-hover:text-text-primary" />
                 </div>
-                <h3 className="text-white font-bold text-lg mb-3">{feature}</h3>
+                <h3 className="text-text-primary font-bold text-lg mb-3">{feature}</h3>
                 <p className="text-text-secondary text-base leading-relaxed">
                     Meticulously engineered to ensure your digital presence is not only beautiful but also high-performing and scalable.
                 </p>
@@ -126,7 +126,7 @@ export default async function ServiceDetailPage({ params }: Props) {
             <div className="mb-12 flex justify-between items-end gap-6 flex-wrap">
                 <div>
                     <p className="text-accent text-[10px] md:text-xs font-bold uppercase tracking-widest mb-4">Our Work</p>
-                    <h2 className="font-syne font-black text-3xl md:text-[42px] text-white">Service in Action</h2>
+                    <h2 className="font-syne font-black text-3xl md:text-[42px] text-text-primary">Service in Action</h2>
                 </div>
                 <Link href="/#work" className="text-text-muted hover:text-accent font-bold text-sm flex items-center gap-2 group transition-colors">
                     View All Projects
@@ -143,8 +143,8 @@ export default async function ServiceDetailPage({ params }: Props) {
                             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex flex-col justify-end p-8">
-                            <h3 className="font-syne font-black text-2xl text-white mb-2">{project.title}</h3>
-                            <p className="text-white/60 text-sm">{project.category}</p>
+                            <h3 className="font-syne font-black text-2xl text-text-primary mb-2">{project.title}</h3>
+                            <p className="text-text-primary/60 text-sm">{project.category}</p>
                         </div>
                     </Link>
                 ))}
@@ -159,7 +159,7 @@ export default async function ServiceDetailPage({ params }: Props) {
           <div className="w-16 h-16 rounded-2xl bg-accent/10 border border-accent/20 flex items-center justify-center mx-auto mb-8">
             <Rocket className="w-8 h-8 text-accent animate-pulse" />
           </div>
-          <h2 className="font-syne font-black text-3xl md:text-[42px] text-white mb-8">Ready to Scale Your Business?</h2>
+          <h2 className="font-syne font-black text-3xl md:text-[42px] text-text-primary mb-8">Ready to Scale Your Business?</h2>
           <p className="text-text-secondary text-base md:text-lg mb-12 max-w-2xl mx-auto">
             Let's discuss how my expert {service.title} can transform your digital strategy and deliver measurable ROI.
           </p>

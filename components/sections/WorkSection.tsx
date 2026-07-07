@@ -62,7 +62,7 @@ const ProjectCard = ({ project, index, progress, range, targetScale }: CardProps
               </span>
             </div>
             
-            <h3 className="font-syne font-semibold text-2xl md:text-5xl text-white mb-4 leading-tight">
+            <h3 className="font-syne font-semibold text-2xl md:text-5xl text-text-primary mb-4 leading-tight">
               {project.title}
             </h3>
             
@@ -98,22 +98,22 @@ const ProjectCard = ({ project, index, progress, range, targetScale }: CardProps
             <div className={`absolute inset-0 bg-gradient-to-br ${gradients[index % gradients.length]} mix-blend-multiply opacity-60 z-10`} />
             
             {/* Massive Browser Frame */}
-            <div className="absolute inset-x-4 bottom-0 top-8 md:inset-x-12 md:bottom-[-20%] md:top-12 xl:inset-x-20 xl:bottom-[-25%] xl:top-16 z-20 rounded-t-2xl border border-white/10 bg-black/60 md:bg-black/40 md:backdrop-blur-sm overflow-hidden flex flex-col shadow-[0_-20px_50px_rgba(0,0,0,0.5)] transform hover:-translate-y-4 transition-transform duration-500">
-               <div className="w-full py-3 px-4 bg-[#1a1a1a] border-b border-white/5 flex items-center gap-2 shrink-0 shadow-lg z-30 relative">
+            <div className="absolute inset-x-4 bottom-0 top-8 md:inset-x-12 md:bottom-[-20%] md:top-12 xl:inset-x-20 xl:bottom-[-25%] xl:top-16 z-20 rounded-t-2xl border border-text-primary/10 bg-black/60 md:bg-black/40 md:backdrop-blur-sm overflow-hidden flex flex-col shadow-[0_-20px_50px_rgba(0,0,0,0.5)] transform hover:-translate-y-4 transition-transform duration-500">
+               <div className="w-full py-3 px-4 bg-surface-2 border-b border-text-primary/5 flex items-center gap-2 shrink-0 shadow-lg z-30 relative">
                  <div className="flex gap-1.5">
                    <div className="w-3 h-3 rounded-full bg-[#ff5f56]" />
                    <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
                    <div className="w-3 h-3 rounded-full bg-[#27c93f]" />
                  </div>
                  <div className="flex-1 flex justify-center mr-8">
-                   <div className="w-64 h-5 bg-white/5 rounded-md text-[10px] text-white/40 flex items-center justify-center font-mono tracking-wider opacity-0 sm:opacity-100">
+                   <div className="w-64 h-5 bg-text-primary/5 rounded-md text-[10px] text-text-primary/40 flex items-center justify-center font-mono tracking-wider opacity-0 sm:opacity-100">
                      {new URL(`https://${project.slug}.com`).hostname}
                    </div>
                  </div>
                </div>
                
                 {/* Actual Project Image */}
-                <div className="flex-1 w-full relative custom-scrollbar bg-[#0a0a0a]">
+                <div className="flex-1 w-full relative custom-scrollbar bg-background">
                   {project.image ? (
                     <div className="absolute inset-0">
                       <img
@@ -125,10 +125,10 @@ const ProjectCard = ({ project, index, progress, range, targetScale }: CardProps
                     </div>
                   ) : (
                     <div className="flex-1 w-full bg-surface-2 p-8 flex flex-col gap-6 h-full">
-                      <div className="h-8 w-3/4 bg-white/10 rounded" />
+                      <div className="h-8 w-3/4 bg-text-primary/10 rounded" />
                       <div className="grid grid-cols-2 gap-6 flex-1 mt-6">
-                        <div className="bg-white/5 rounded-2xl border border-white/5" />
-                        <div className="bg-white/5 rounded-2xl border border-white/5" />
+                        <div className="bg-text-primary/5 rounded-2xl border border-text-primary/5" />
+                        <div className="bg-text-primary/5 rounded-2xl border border-text-primary/5" />
                       </div>
                     </div>
                   )}
@@ -162,8 +162,8 @@ export default function WorkSection() {
     <section ref={container} id="work" className="relative bg-background">
       {/* Scroll Hint Sidebar */}
       <div className="absolute left-8 top-1/2 -translate-y-1/2 hidden lg:flex flex-col items-center gap-6 z-50 mix-blend-difference">
-        <span className="text-[10px] uppercase tracking-widest text-white/40 rotate-180 [writing-mode:vertical-lr]">Scroll Work</span>
-        <div className="w-px h-24 bg-gradient-to-b from-transparent via-white/20 to-transparent" />
+        <span className="text-[10px] uppercase tracking-widest text-text-primary/40 rotate-180 [writing-mode:vertical-lr]">Scroll Work</span>
+        <div className="w-px h-24 bg-gradient-to-b from-transparent via-text-primary/20 to-transparent" />
       </div>
 
       {/* Main Grid */}
@@ -173,7 +173,7 @@ export default function WorkSection() {
           <p className="text-text-secondary text-[10px] md:text-xs font-semibold uppercase tracking-widest mb-4">
             Selected Work
           </p>
-          <h2 className="font-syne font-semibold text-3xl md:text-4xl lg:text-5xl text-white leading-tight">
+          <h2 className="font-syne font-semibold text-3xl md:text-4xl lg:text-5xl text-text-primary leading-tight">
             Case Studies <span className="text-gradient">2020—2024</span>
           </h2>
         </div>
@@ -199,7 +199,7 @@ export default function WorkSection() {
       <div className="mt-16 mb-8 flex justify-center relative z-20">
         <Link
           href="/portfolio"
-          className="group flex items-center gap-3 px-8 py-4 bg-surface border border-border hover:border-accent/50 hover:bg-surface-2 text-white font-bold rounded-full transition-all duration-300"
+          className="group flex items-center gap-3 px-8 py-4 bg-surface border border-border hover:border-accent/50 hover:bg-surface-2 text-text-primary font-bold rounded-full transition-all duration-300"
         >
           View All Projects
           <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1 text-accent" />

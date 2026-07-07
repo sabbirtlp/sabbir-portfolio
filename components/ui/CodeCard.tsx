@@ -18,7 +18,7 @@ export const CodeCard = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: 0.5 }}
-      className="w-full max-w-2xl mx-auto bg-[#050505] border-[#1b1b1b] relative rounded-xl border shadow-2xl overflow-hidden group"
+      className="w-full max-w-2xl mx-auto bg-[#050505] border-border relative rounded-xl border shadow-2xl overflow-hidden group"
     >
       {/* Top gradient border */}
       <div className="flex flex-row">
@@ -52,7 +52,7 @@ export const CodeCard = () => {
           <code className="text-[13px] md:text-sm leading-relaxed w-full">
             <div>
               <span className="text-accent mr-2">const</span>
-              <span className="text-white mr-2">developer</span>
+              <span className="text-text-primary mr-2">developer</span>
               <span className="text-accent mr-2">=</span>
               <span className="text-zinc-500">{'{'}</span>
             </div>
@@ -114,7 +114,7 @@ export const CodeCard = () => {
       </div>
 
       {/* Window Footer */}
-      <div className="px-6 py-3 bg-[#0a0a0a] border-t border-[#1b1b1b] flex justify-between items-center text-[10px] text-zinc-600 font-mono">
+      <div className="px-6 py-3 bg-[#0a0a0a] border-t border-zinc-800 flex justify-between items-center text-[10px] text-zinc-600 font-mono">
         <div className="flex gap-4">
           <span>UTF-8</span>
           <span>JavaScript</span>

@@ -53,7 +53,7 @@ export default function PortfolioPage() {
             <p className="text-text-secondary text-[10px] md:text-xs font-semibold uppercase tracking-widest mb-4">
               Portfolio
             </p>
-            <h1 className="font-syne font-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white leading-[0.95] tracking-tight mb-6">
+            <h1 className="font-syne font-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-text-primary leading-[0.95] tracking-tight mb-6">
               My{" "}
               <span className="text-gradient">Creative</span>{" "}
               Work
@@ -88,8 +88,8 @@ export default function PortfolioPage() {
                   onClick={() => setActiveFilter(cat)}
                   className={`relative px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-400 cursor-pointer border ${
                     isActive
-                      ? "text-white border-accent/60 bg-accent/15 shadow-[0_0_20px_rgba(234,88,12,0.15)]"
-                      : "text-text-secondary border-border bg-surface hover:text-white hover:border-white/20 hover:bg-surface-2"
+                      ? "text-text-primary border-accent/60 bg-accent/15 shadow-[0_0_20px_rgba(234,88,12,0.15)]"
+                      : "text-text-secondary border-border bg-surface hover:text-text-primary hover:border-text-primary/20 hover:bg-surface-2"
                   }`}
                 >
                   {isActive && (
@@ -153,7 +153,7 @@ export default function PortfolioPage() {
             <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-surface border border-border flex items-center justify-center">
               <Filter className="w-8 h-8 text-text-muted" />
             </div>
-            <h3 className="font-syne font-bold text-xl text-white mb-2">
+            <h3 className="font-syne font-bold text-xl text-text-primary mb-2">
               No projects found
             </h3>
             <p className="text-text-secondary text-sm max-w-md mx-auto">
@@ -182,7 +182,7 @@ export default function PortfolioPage() {
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[400px] h-[200px] bg-accent/10 rounded-full blur-[100px] -translate-y-1/2 pointer-events-none" />
 
             <div className="relative z-10">
-              <h2 className="font-syne font-black text-2xl md:text-4xl text-white mb-4">
+              <h2 className="font-syne font-black text-2xl md:text-4xl text-text-primary mb-4">
                 Have a project in mind?
               </h2>
               <p className="text-text-secondary text-sm md:text-base max-w-lg mx-auto mb-8">
@@ -221,7 +221,7 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
         <div
           className={`absolute inset-0 bg-gradient-to-br ${
             gradients[index % gradients.length]
-          } mix-blend-multiply opacity-40 z-10 transition-opacity duration-500 group-hover:opacity-20`}
+          } mix-blend-overlay opacity-50 dark:opacity-40 z-10 transition-opacity duration-500 group-hover:opacity-20`}
         />
 
         {/* Bottom fade to card body */}
@@ -251,7 +251,7 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
 
         {/* Category badge */}
         <div className="absolute top-4 left-4 z-30">
-          <span className="px-3 py-1.5 rounded-full bg-black/50 backdrop-blur-md border border-white/10 text-white/90 text-[11px] font-semibold uppercase tracking-wider">
+          <span className="px-3 py-1.5 rounded-full bg-black/50 backdrop-blur-md border border-white/10 text-white text-[11px] font-semibold uppercase tracking-wider">
             {project.filterCategory || project.category}
           </span>
         </div>
@@ -271,7 +271,7 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
 
         {/* Year badge */}
         <div className="absolute top-4 right-4 z-20">
-          <span className="text-white/30 text-xs font-fira-code group-hover:opacity-0 transition-opacity duration-300">
+          <span className="text-text-primary/30 text-xs font-fira-code group-hover:opacity-0 transition-opacity duration-300">
             {project.year}
           </span>
         </div>
@@ -280,7 +280,7 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
       {/* Card Body */}
       <div className="p-6 md:p-8 relative z-10">
         <div className="flex items-start justify-between gap-4 mb-3">
-          <h3 className="font-syne font-bold text-xl md:text-2xl text-white group-hover:text-accent transition-colors duration-300 leading-tight">
+          <h3 className="font-syne font-bold text-xl md:text-2xl text-text-primary group-hover:text-accent transition-colors duration-300 leading-tight">
             {project.title}
           </h3>
         </div>

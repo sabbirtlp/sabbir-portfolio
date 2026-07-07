@@ -62,25 +62,25 @@ export default async function CaseStudyPage({ params }: Props) {
         <div className="max-w-5xl">
           <Link
             href="/#work"
-            className="group inline-flex items-center gap-2 text-text-muted hover:text-white transition-colors mb-12 sm:mb-20"
+            className="group inline-flex items-center gap-2 text-text-muted hover:text-text-primary transition-colors mb-12 sm:mb-20"
           >
-            <div className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center group-hover:border-accent group-hover:bg-accent/10 transition-all">
+            <div className="w-8 h-8 rounded-full border border-text-primary/10 flex items-center justify-center group-hover:border-accent group-hover:bg-accent/10 transition-all">
               <ArrowLeft className="w-4 h-4" />
             </div>
             <span className="text-xs uppercase tracking-widest font-bold">Back to Work</span>
           </Link>
 
           <div className="flex items-center gap-3 mb-5">
-            <span className="px-3 py-1 rounded-full bg-white/10 border border-white/20 text-white/70 text-xs font-medium">
+            <span className="px-3 py-1 rounded-full bg-text-primary/10 border border-text-primary/20 text-text-primary/70 text-xs font-medium">
               {project.category}
             </span>
-            <span className="text-white/40 text-xs">{project.year}</span>
+            <span className="text-text-primary/40 text-xs">{project.year}</span>
           </div>
 
-          <h1 className="font-syne font-black text-4xl sm:text-7xl md:text-8xl lg:text-[10rem] text-white leading-[0.9] tracking-tighter mb-10">
+          <h1 className="font-syne font-black text-4xl sm:text-7xl md:text-8xl lg:text-[10rem] text-text-primary leading-[0.9] tracking-tighter mb-10">
             {project.title}
           </h1>
-          <p className="text-white/70 text-lg md:text-2xl leading-relaxed max-w-3xl font-medium">
+          <p className="text-text-primary/70 text-lg md:text-2xl leading-relaxed max-w-3xl font-medium">
             {project.longDescription}
           </p>
         </div>
@@ -111,7 +111,7 @@ export default async function CaseStudyPage({ params }: Props) {
                 <div className="w-8 h-8 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center justify-center">
                   <span className="text-red-400 text-xs font-bold">!</span>
                 </div>
-                <h2 className="font-syne font-black text-2xl md:text-3xl text-white">The Problem</h2>
+                <h2 className="font-syne font-black text-2xl md:text-3xl text-text-primary">The Problem</h2>
               </div>
               <p className="text-text-secondary leading-relaxed text-base">{project.problem}</p>
             </section>
@@ -122,7 +122,7 @@ export default async function CaseStudyPage({ params }: Props) {
                 <div className="w-8 h-8 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center">
                   <span className="text-accent text-xs font-bold">✓</span>
                 </div>
-                <h2 className="font-syne font-black text-2xl md:text-3xl text-white">The Solution</h2>
+                <h2 className="font-syne font-black text-2xl md:text-3xl text-text-primary">The Solution</h2>
               </div>
               <p className="text-text-secondary leading-relaxed text-base">{project.solution}</p>
             </section>
@@ -133,8 +133,8 @@ export default async function CaseStudyPage({ params }: Props) {
                 <div className="w-3 h-3 rounded-full bg-red-500/60" />
                 <div className="w-3 h-3 rounded-full bg-yellow-500/60" />
                 <div className="w-3 h-3 rounded-full bg-green-500/60" />
-                <div className="flex-1 mx-4 bg-white/5 rounded-full h-5 px-3 flex items-center">
-                  <span className="text-white/30 text-[10px]">www.{project.slug}.com</span>
+                <div className="flex-1 mx-4 bg-text-primary/5 rounded-full h-5 px-3 flex items-center">
+                  <span className="text-text-primary/30 text-[10px]">www.{project.slug}.com</span>
                 </div>
               </div>
               {project.screenshot ? (
@@ -143,16 +143,16 @@ export default async function CaseStudyPage({ params }: Props) {
                 </div>
               ) : (
                 <div className={`h-60 rounded-xl bg-gradient-to-br ${gradient} p-6 flex flex-col gap-3`}>
-                  <div className="h-8 bg-white/20 rounded-lg w-3/4 animate-pulse" />
-                  <div className="h-4 bg-white/10 rounded w-full" />
-                  <div className="h-4 bg-white/10 rounded w-5/6" />
+                  <div className="h-8 bg-text-primary/20 rounded-lg w-3/4 animate-pulse" />
+                  <div className="h-4 bg-text-primary/10 rounded w-full" />
+                  <div className="h-4 bg-text-primary/10 rounded w-5/6" />
                   <div className="flex gap-3 mt-2">
                     <div className="h-9 bg-orange-500/70 rounded-lg w-32" />
-                    <div className="h-9 bg-white/10 rounded-lg w-24" />
+                    <div className="h-9 bg-text-primary/10 rounded-lg w-24" />
                   </div>
                   <div className="grid grid-cols-4 gap-2 mt-auto">
                     {[1,2,3,4].map(i => (
-                      <div key={i} className="h-14 bg-white/10 rounded-lg" />
+                      <div key={i} className="h-14 bg-text-primary/10 rounded-lg" />
                     ))}
                   </div>
                 </div>
@@ -165,7 +165,7 @@ export default async function CaseStudyPage({ params }: Props) {
                 <div className="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
                   <TrendingUp className="w-4 h-4 text-emerald-400" />
                 </div>
-                <h2 className="font-syne font-black text-2xl md:text-3xl text-white">The Results</h2>
+                <h2 className="font-syne font-black text-2xl md:text-3xl text-text-primary">The Results</h2>
               </div>
               <ul className="space-y-3">
                 {project.results.map((result: any) => (
@@ -182,7 +182,7 @@ export default async function CaseStudyPage({ params }: Props) {
           <div className="space-y-8">
             {/* Process */}
             <div className="p-6 rounded-2xl bg-surface border border-border sticky top-28">
-              <h3 className="font-syne font-bold text-white text-sm uppercase tracking-widest mb-5">
+              <h3 className="font-syne font-bold text-text-primary text-sm uppercase tracking-widest mb-5">
                 Process
               </h3>
               <ol className="space-y-4">
@@ -197,7 +197,7 @@ export default async function CaseStudyPage({ params }: Props) {
               </ol>
 
               <div className="mt-8 pt-6 border-t border-border">
-                <h3 className="font-syne font-bold text-white text-sm uppercase tracking-widest mb-4">
+                <h3 className="font-syne font-bold text-text-primary text-sm uppercase tracking-widest mb-4">
                   Technologies
                 </h3>
                 <div className="flex flex-wrap gap-2">
@@ -230,7 +230,7 @@ export default async function CaseStudyPage({ params }: Props) {
             className="group flex items-center justify-between"
           >
             <div>
-              <h3 className="font-syne font-black text-display-sm text-white group-hover:text-accent transition-colors duration-300">
+              <h3 className="font-syne font-black text-display-sm text-text-primary group-hover:text-accent transition-colors duration-300">
                 {nextProject.title}
               </h3>
               <p className="text-text-secondary text-sm mt-1">{nextProject.category}</p>

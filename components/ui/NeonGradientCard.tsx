@@ -58,7 +58,7 @@ export const NeonGradientCard = ({
           maskComposite: "exclude",
         }}
       />
-      <div className="relative z-10 h-full w-full rounded-[calc(var(--border-radius)-var(--border-width))] bg-[#111111] overflow-hidden">
+      <div className="relative z-10 h-full w-full rounded-[calc(var(--border-radius)-var(--border-width))] bg-surface overflow-hidden">
         {children}
       </div>
     </div>

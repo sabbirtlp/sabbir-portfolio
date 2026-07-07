@@ -73,7 +73,7 @@ export default function About() {
                 className="absolute -top-6 -right-6 bg-accent text-white rounded-2xl p-5 shadow-2xl"
               >
                 <div className="font-unbounded font-medium text-2xl leading-none">{experience}</div>
-                <div className="text-xs text-white/80 mt-1">Years Exp.</div>
+                <div className="text-xs text-text-primary/80 mt-1">Years Exp.</div>
               </motion.div>
 
               {/* Decorative corner accent */}
@@ -96,7 +96,7 @@ export default function About() {
 
             <motion.h2
               variants={itemVariants}
-              className="font-syne font-semibold text-3xl md:text-4xl lg:text-5xl text-white leading-tight mb-6"
+              className="font-syne font-semibold text-3xl md:text-4xl lg:text-5xl text-text-primary leading-tight mb-6"
             >
               I Build Websites
               <span className="text-gradient block">That Actually Work</span>

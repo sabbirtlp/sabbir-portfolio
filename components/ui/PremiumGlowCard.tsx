@@ -30,7 +30,7 @@ export default function PremiumGlowCard({ children, className = "" }: PremiumGlo
       onMouseLeave={() => setIsHovered(false)}
       whileHover={{ scale: 1.02 }}
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
-      className={`group relative h-full rounded-[24px] overflow-hidden border border-white/5 bg-surface-2/40 backdrop-blur-[12px] transition-all duration-700 hover:border-white/10 hover:shadow-[0_8px_30px_rgb(0,0,0,0.4)] ${className}`}
+      className={`group relative h-full rounded-[24px] overflow-hidden border border-text-primary/5 bg-surface-2/40 backdrop-blur-[12px] transition-all duration-700 hover:border-text-primary/10 shadow-[0_2px_15px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] dark:shadow-none dark:hover:shadow-[0_8px_30px_rgb(0,0,0,0.4)] ${className}`}
     >
       {/* Layer 1: Ambient Base Glow (Always there, highly subtle) */}
       <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-accent/[0.015] pointer-events-none" />
@@ -59,7 +59,7 @@ export default function PremiumGlowCard({ children, className = "" }: PremiumGlo
       />
       
       {/* Top Edge Highlight simulates a permanent overhead light source */}
-      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-30 group-hover:opacity-70 transition-opacity duration-700 pointer-events-none" />
+      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-text-primary/10 to-transparent opacity-30 group-hover:opacity-70 transition-opacity duration-700 pointer-events-none" />
 
       {/* Subtle Breathing Glow Overlay (only on hover) */}
       <motion.div 

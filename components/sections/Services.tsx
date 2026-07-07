@@ -56,7 +56,7 @@ export default function Services() {
           <p className="text-text-secondary text-xs font-semibold uppercase tracking-widest mb-4">
             What I Do
           </p>
-          <h2 className="font-syne font-semibold text-3xl md:text-4xl lg:text-5xl text-white leading-tight">
+          <h2 className="font-syne font-semibold text-3xl md:text-4xl lg:text-5xl text-text-primary leading-tight">
             Services That <span className="text-gradient">Drive Growth</span>
           </h2>
         </motion.div>
@@ -82,12 +82,12 @@ export default function Services() {
                   )}
 
                   {/* Icon */}
-                  <div className="w-10 h-10 rounded-lg bg-surface border border-white/5 flex items-center justify-center mb-6 group-hover:border-accent/50 transition-all duration-500 group-hover:shadow-[0_0_20px_rgba(234,88,12,0.2)]">
+                  <div className="w-10 h-10 rounded-lg bg-surface border border-text-primary/5 flex items-center justify-center mb-6 group-hover:border-accent/50 transition-all duration-500 group-hover:shadow-[0_0_20px_rgba(234,88,12,0.2)]">
                     <Icon className="w-4 h-4 text-text-secondary group-hover:text-accent transition-colors duration-300" />
                   </div>
 
                   <Link href={`/services/${service.slug}`} className="z-20 w-full outline-none">
-                    <h3 className="font-syne font-semibold text-white text-lg mb-3 group-hover:text-white transition-colors duration-300 drop-shadow-md">
+                    <h3 className="font-syne font-semibold text-text-primary text-lg mb-3 group-hover:text-text-primary transition-colors duration-300 drop-shadow-md">
                       {service.title}
                     </h3>
                   </Link>

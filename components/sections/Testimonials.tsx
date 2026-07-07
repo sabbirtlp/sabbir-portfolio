@@ -52,7 +52,7 @@ export default function Testimonials() {
           <p className="text-text-secondary text-xs font-semibold uppercase tracking-widest mb-4">
             Client Love
           </p>
-          <h2 className="font-syne font-black text-3xl md:text-4xl lg:text-5xl text-white leading-tight">
+          <h2 className="font-syne font-black text-3xl md:text-4xl lg:text-5xl text-text-primary leading-tight">
             Trusted by <span className="text-gradient">100+ Clients</span>
           </h2>
         </motion.div>
@@ -79,7 +79,7 @@ export default function Testimonials() {
               </div>
 
               {/* Content */}
-              <p className="text-white text-xl md:text-2xl font-light leading-relaxed mb-8 italic">
+              <p className="text-text-primary text-xl md:text-2xl font-light leading-relaxed mb-8 italic">
                 &ldquo;{testimonials[active].content}&rdquo;
               </p>
 
@@ -90,7 +90,7 @@ export default function Testimonials() {
                     {testimonials[active].avatar}
                   </div>
                   <div>
-                    <p className="font-syne font-bold text-white">{testimonials[active].name}</p>
+                    <p className="font-syne font-bold text-text-primary">{testimonials[active].name}</p>
                     <p className="text-text-secondary text-sm">{testimonials[active].role}</p>
                   </div>
                 </div>

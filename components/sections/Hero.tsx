@@ -59,7 +59,7 @@ export default function Hero() {
       originalAlpha: number;
     }[] = [];
 
-    const colors = ["#ea580c", "#fb923c", "#ffffff", "#f97316"];
+    const colors = ["#ea580c", "#fb923c", "#c2410c", "#f97316"];
 
     // Device-aware particle count: 100 for desktop, 50 for mobile
     const particleCount = typeof window !== "undefined" && window.innerWidth < 768 ? 50 : 100;
@@ -235,7 +235,7 @@ export default function Hero() {
   };
 
   return (
-    <section id="home" ref={containerRef} className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-[#030303]">
+    <section id="home" ref={containerRef} className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-background">
       {/* 0. Premium Parallax Background Image */}
       <motion.div 
         style={{ y: backgroundY, scale: backgroundScale }}
@@ -246,7 +246,7 @@ export default function Hero() {
           alt="Premium Brand Background"
           fill
           priority
-          className="object-cover object-center opacity-[0.12] mix-blend-screen"
+          className="object-cover object-center opacity-[0.08] dark:opacity-[0.12] mix-blend-multiply dark:mix-blend-screen invert dark:invert-0"
         />
         {/* Subtle Ambient "Breathing" Animation Overlay */}
         <motion.div 
@@ -271,10 +271,10 @@ export default function Hero() {
 
       {/* Grid pattern */}
       <div
-        className="absolute inset-0 z-1 opacity-[0.03]"
+        className="absolute inset-0 z-1 opacity-[0.05] dark:opacity-[0.03]"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
+            "linear-gradient(var(--text-primary) 1px, transparent 1px), linear-gradient(90deg, var(--text-primary) 1px, transparent 1px)",
           backgroundSize: "60px 60px",
         }}
       />
@@ -325,7 +325,7 @@ export default function Hero() {
               <div className="overflow-hidden">
                 <div className="flex flex-wrap justify-start gap-x-4 md:gap-x-6 gap-y-2">
                   <div className="overflow-hidden">
-                    <span className="word inline-block font-syne font-semibold text-2xl text-white">
+                    <span className="word inline-block font-syne font-semibold text-2xl text-text-primary">
                       Crafting
                     </span>
                   </div>
@@ -333,7 +333,7 @@ export default function Hero() {
                     <div key={i} className="overflow-hidden">
                       <span
                         className={`word inline-block font-syne font-semibold text-2xl ${
-                          word === "High-Converting" ? "text-gradient" : "text-white"
+                          word === "High-Converting" ? "text-gradient" : "text-text-primary"
                         }`}
                       >
                         {word}
@@ -352,7 +352,7 @@ export default function Hero() {
               {subheadline.split("Sabbir Hossain").map((part: string, i: number, arr: string[]) => (
                 <span key={i}>
                   {part}
-                  {i < arr.length - 1 && <span className="text-white font-semibold">Sabbir Hossain</span>}
+                  {i < arr.length - 1 && <span className="text-text-primary font-semibold">Sabbir Hossain</span>}
                 </span>
               ))}
             </p>
@@ -372,7 +372,7 @@ export default function Hero() {
               <MagneticButton strength={0.3} className="w-full sm:w-auto">
                 <button
                   onClick={handleScrollToContact}
-                  className="group w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 border border-border hover:border-accent text-white font-semibold rounded-full transition-all duration-300 text-sm md:text-base cursor-pointer"
+                  className="group w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 border border-border hover:border-accent text-text-primary font-semibold rounded-full transition-all duration-300 text-sm md:text-base cursor-pointer"
                 >
                   Start a Project
                   <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
@@ -387,7 +387,7 @@ export default function Hero() {
             >
               {stats.map((stat: any) => (
                 <div key={stat.label} className="group/stat">
-                  <div className="font-unbounded font-medium text-xl md:text-2xl text-white mb-2 transition-transform duration-300 group-hover/stat:text-accent leading-none">
+                  <div className="font-unbounded font-medium text-xl md:text-2xl text-text-primary mb-2 transition-transform duration-300 group-hover/stat:text-accent leading-none">
                     <CountUp end={stat.value} suffix={stat.suffix} duration={2000} />
                   </div>
                   <p className="text-text-secondary text-[8px] md:text-[9px] uppercase tracking-[0.2em] font-medium opacity-60">
@@ -410,7 +410,7 @@ export default function Hero() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 2.2, duration: 0.8, ease: "easeOut" }}
-        className="absolute bottom-0 left-0 w-full z-10 px-6 md:px-12 py-5 flex items-center justify-between border-t border-white/[0.04]"
+        className="absolute bottom-0 left-0 w-full z-10 px-6 md:px-12 py-5 flex items-center justify-between border-t border-text-primary/[0.04]"
       >
         {/* Left: Social Links */}
         <div className="flex items-center gap-4">
@@ -425,9 +425,9 @@ export default function Hero() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={label}
-              className="group flex items-center justify-center w-8 h-8 rounded-full border border-white/10 bg-white/[0.03] hover:border-accent/50 hover:bg-accent/10 transition-all duration-300"
+              className="group flex items-center justify-center w-8 h-8 rounded-full border border-text-primary/10 bg-text-primary/[0.03] hover:border-accent/50 hover:bg-accent/10 transition-all duration-300"
             >
-              <Icon className="w-3.5 h-3.5 text-white/40 group-hover:text-accent transition-colors duration-300" />
+              <Icon className="w-3.5 h-3.5 text-text-primary/40 group-hover:text-accent transition-colors duration-300" />
             </a>
           ))}
         </div>
@@ -438,13 +438,13 @@ export default function Hero() {
           className="group/scroll flex flex-col items-center gap-1.5 cursor-pointer outline-none"
           aria-label="Scroll to Services"
         >
-          <span className="text-[9px] font-fira-code tracking-[0.25em] uppercase text-white/25 group-hover/scroll:text-accent/60 transition-colors duration-300">
+          <span className="text-[9px] font-fira-code tracking-[0.25em] uppercase text-text-primary/25 group-hover/scroll:text-accent/60 transition-colors duration-300">
             Services
           </span>
           <motion.div
             animate={{ y: [0, 6, 0] }}
             transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
-            className="w-7 h-7 rounded-full border border-white/10 group-hover/scroll:border-accent/50 group-hover/scroll:bg-accent/10 group-hover/scroll:shadow-[0_0_18px_rgba(234,88,12,0.25)] flex items-center justify-center transition-all duration-300"
+            className="w-7 h-7 rounded-full border border-text-primary/10 group-hover/scroll:border-accent/50 group-hover/scroll:bg-accent/10 group-hover/scroll:shadow-[0_0_18px_rgba(234,88,12,0.25)] flex items-center justify-center transition-all duration-300"
           >
             <ArrowDown className="w-3 h-3 text-accent" />
           </motion.div>
