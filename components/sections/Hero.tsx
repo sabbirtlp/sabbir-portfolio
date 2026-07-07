@@ -246,7 +246,7 @@ export default function Hero() {
           alt="Premium Brand Background"
           fill
           priority
-          className="object-cover object-center opacity-[0.08] dark:opacity-[0.12] mix-blend-multiply dark:mix-blend-screen invert dark:invert-0"
+          className="object-cover object-center hidden dark:block opacity-[0.12] mix-blend-screen"
         />
         {/* Subtle Ambient "Breathing" Animation Overlay */}
         <motion.div 
@@ -262,11 +262,11 @@ export default function Hero() {
         className="absolute inset-0 z-1 pointer-events-none"
       />
 
-      {/* Gradient overlays - lightened for scroll performance */}
+      {/* Gradient overlays - enhanced for light mode */}
       <div className="absolute inset-0 z-1 pointer-events-none">
-        <div className="absolute top-0 left-0 w-[400px] h-[400px] rounded-full bg-accent/[0.02] blur-[80px] -translate-x-1/2 -translate-y-1/2" />
-        <div className="absolute bottom-0 right-0 w-[300px] h-[300px] rounded-full bg-accent/[0.03] blur-[60px] translate-x-1/4 translate-y-1/4" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-orange-500/[0.01] blur-[100px]" />
+        <div className="absolute top-0 left-0 w-[500px] h-[500px] rounded-full bg-accent/[0.04] dark:bg-accent/[0.02] blur-[80px] -translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full bg-accent/[0.06] dark:bg-accent/[0.03] blur-[80px] translate-x-1/4 translate-y-1/4" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-orange-400/[0.03] dark:bg-orange-500/[0.01] blur-[120px]" />
       </div>
 
       {/* Grid pattern */}
