@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { ArrowRight, MousePointer2, Loader2, Code2, Globe, Layout, Zap, Search, Terminal, Github, Linkedin, Instagram, ArrowDown } from "lucide-react";
@@ -30,164 +30,13 @@ export default function Hero() {
   const subRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const animFrameRef = useRef<number>(0);
-
+    const containerRef = useRef<HTMLDivElement>(null);
+  
   // Throttling: only run animation when in view
   const isInView = useInView(containerRef, { margin: "200px" });
 
-  // Particle canvas ... (unchanged logic)
-  useEffect(() => {
-    if (!isInView) {
-      if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
-      return;
-    }
-
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    let w = (canvas.width = window.innerWidth);
-    let h = (canvas.height = window.innerHeight);
-    const mouse = { x: -1000, y: -1000 };
-
-    const particles: {
-      x: number; y: number; vx: number; vy: number;
-      r: number; alpha: number; color: string;
-      originalAlpha: number;
-    }[] = [];
-
-    const colors = ["#ea580c", "#fb923c", "#c2410c", "#f97316"];
-
-    // Device-aware particle count: 100 for desktop, 50 for mobile
-    const particleCount = typeof window !== "undefined" && window.innerWidth < 768 ? 50 : 100;
-
-    for (let i = 0; i < particleCount; i++) {
-      const alpha = Math.random() * 0.4 + 0.1;
-      particles.push({
-        x: Math.random() * w,
-        y: Math.random() * h,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5,
-        r: Math.random() * 1.5 + 0.5,
-        alpha: alpha,
-        originalAlpha: alpha,
-        color: colors[Math.floor(Math.random() * colors.length)],
-      });
-    }
-
-    const handleMouseMove = (e: MouseEvent) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
-    };
-    window.addEventListener("mousemove", handleMouseMove);
-
-    const draw = () => {
-      ctx.clearRect(0, 0, w, h);
-
-      for (let i = 0; i < particles.length; i++) {
-        const p = particles[i];
-        
-        // Use Distance-Squared Logic (FAST - no square root)
-        const dx = mouse.x - p.x;
-        const dy = mouse.y - p.y;
-        const distSq = dx * dx + dy * dy;
-        
-        // Attraction zone (swarming) - 350px radius
-        if (distSq < 122500 && distSq > 10000) {
-          const force = (350 - Math.sqrt(distSq)) / 3500;
-          p.vx += dx * force * 0.5;
-          p.vy += dy * force * 0.5;
-          p.alpha = Math.min(p.originalAlpha + 0.4, 0.8);
-        } else if (distSq <= 10000) {
-          // Repulsion zone (the bubble) - 100px radius
-          const angle = Math.atan2(dy, dx);
-          const force = (100 - Math.sqrt(distSq)) / 100;
-          p.vx -= Math.cos(angle) * force * 1.5;
-          p.vy -= Math.sin(angle) * force * 1.5;
-        } else {
-          p.alpha = p.originalAlpha;
-        }
-
-        // Apply friction (slightly less aggressive to allow drifting)
-        p.vx *= 0.98;
-        p.vy *= 0.98;
-
-        // Base autonomous motion (Motor Force for random movement)
-        p.vx += (Math.random() - 0.5) * 0.05;
-        p.vy += (Math.random() - 0.5) * 0.05;
-
-        p.x += p.vx;
-        p.y += p.vy;
-
-        if (p.x < 0) p.x = w;
-        if (p.x > w) p.x = 0;
-        if (p.y < 0) p.y = h;
-        if (p.y > h) p.y = 0;
-
-        // High-performance Draw Particle
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = p.color;
-        ctx.globalAlpha = p.alpha;
-        ctx.fill();
-
-        // Fast Layered Glow (Only when near mouse)
-        if (distSq < 40000) {
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.r * 6, 0, Math.PI * 2);
-          ctx.fillStyle = p.color;
-          ctx.globalAlpha = p.alpha * 0.15;
-          ctx.fill();
-        }
-
-        // Optimized Connections (Neural Network)
-        const connectionLimitSq = 14400; // 120px squared
-        for (let j = i + 1; j < particles.length; j++) {
-          const q = particles[j];
-          const cdx = p.x - q.x;
-          const cdy = p.y - q.y;
-          const cDistSq = cdx * cdx + cdy * cdy;
-          
-          if (cDistSq < connectionLimitSq) {
-            ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(q.x, q.y);
-            ctx.strokeStyle = "#ea580c";
-            const linkAlpha = (1 - Math.sqrt(cDistSq) / 120) * 0.12;
-            ctx.globalAlpha = distSq < 40000 ? linkAlpha * 2 : linkAlpha;
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
-          }
-        }
-      }
-
-      ctx.globalAlpha = 1;
-      animFrameRef.current = requestAnimationFrame(draw);
-    };
-
-    draw();
-
-    const handleResize = () => {
-      w = canvas.width = window.innerWidth;
-      h = canvas.height = window.innerHeight;
-    };
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      cancelAnimationFrame(animFrameRef.current);
-      window.removeEventListener("resize", handleResize);
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, []);
-
-  // Parallax Logic
-  const { scrollY } = useScroll();
-  const backgroundY = useTransform(scrollY, [0, 1000], [0, 300]);
-  const backgroundScale = useTransform(scrollY, [0, 1000], [1, 1.1]);
-
+  
+  
   // GSAP text entrance
   useEffect(() => {
     const wordEls = headlineRef.current?.querySelectorAll(".word");
@@ -236,31 +85,6 @@ export default function Hero() {
 
   return (
     <section id="home" ref={containerRef} className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-background">
-      {/* 0. Premium Parallax Background Image */}
-      <motion.div 
-        style={{ y: backgroundY, scale: backgroundScale }}
-        className="absolute inset-0 z-0 pointer-events-none will-change-transform"
-      >
-        <Image
-          src="/hero-bg.png"
-          alt="Premium Brand Background"
-          fill
-          priority
-          className="object-cover object-center hidden dark:block opacity-[0.12] mix-blend-screen"
-        />
-        {/* Subtle Ambient "Breathing" Animation Overlay */}
-        <motion.div 
-          animate={{ opacity: [0.03, 0.06, 0.03] }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute inset-0 bg-accent/[0.01]"
-        />
-      </motion.div>
-
-      {/* Particle canvas */}
-      <canvas
-        ref={canvasRef}
-        className="absolute inset-0 z-1 pointer-events-none"
-      />
 
       {/* Gradient overlays - enhanced for light mode */}
       <div className="absolute inset-0 z-1 pointer-events-none">
