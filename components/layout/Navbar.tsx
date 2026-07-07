@@ -43,6 +43,16 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [menuOpen]);
+
   const handleNavClick = (href: string) => {
     setMenuOpen(false);
     
@@ -162,9 +172,9 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[9980] bg-background/95 backdrop-blur-2xl flex flex-col items-center justify-center md:hidden"
+            className="fixed inset-0 z-[9980] bg-background/95 backdrop-blur-2xl flex flex-col items-center justify-center md:hidden overflow-y-auto py-24 px-6"
           >
-            <ul className="flex flex-col items-center gap-6">
+            <ul className="flex flex-col items-center gap-4 sm:gap-6 w-full max-w-xs">
               {navLinks.map((link, i) => {
                 const isHashLink = link.href.startsWith("#");
                 const isActive = isHashLink
@@ -196,10 +206,11 @@ export default function Navbar() {
                   </motion.li>
                 );
               })}
+
               <motion.li
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: navLinks.length * 0.08 }}
+                transition={{ delay: (navLinks.length + 1) * 0.08 }}
               >
                 <button
                   onClick={() => handleNavClick("#contact")}

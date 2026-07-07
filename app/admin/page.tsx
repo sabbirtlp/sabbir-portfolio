@@ -1142,20 +1142,20 @@ export default function AdminDashboard() {
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div>
                     <p className="text-xs text-text-muted">Manage your client reviews and testimonials.</p>
-                    <p className="text-[10px] text-text-muted/60 mt-1">{content.reviews?.length || 0} review{(content.reviews?.length || 0) !== 1 ? 's' : ''} total</p>
+                    <p className="text-[10px] text-text-muted/60 mt-1">{content.testimonials?.length || 0} review{(content.testimonials?.length || 0) !== 1 ? 's' : ''} total</p>
                   </div>
                   <button 
                     onClick={() => {
                       const newReview = {
                         id: Date.now(),
                         name: "New Client",
-                        username: "@username",
+                        role: "Client / Company",
                         avatar: "",
                         rating: 5,
-                        text: "Great experience working with Sabbir."
+                        content: "Great experience working with Sabbir."
                       };
-                      const newReviews = [newReview, ...(content.reviews || [])];
-                      setContent({ ...content, reviews: newReviews });
+                      const newTestimonials = [newReview, ...(content.testimonials || [])];
+                      setContent({ ...content, testimonials: newTestimonials });
                       setEditingReview(0);
                     }}
                     className="flex items-center gap-2 px-5 py-2.5 bg-accent hover:bg-accent-light text-white rounded-xl text-xs font-bold transition-all shadow-lg shadow-accent/20"
@@ -1166,25 +1166,25 @@ export default function AdminDashboard() {
                 </div>
 
                 <div className="space-y-3">
-                  {(!content.reviews || content.reviews.length === 0) && (
+                  {(!content.testimonials || content.testimonials.length === 0) && (
                     <div className="flex flex-col items-center justify-center py-16 text-center">
                       <MessageSquare className="w-12 h-12 text-text-muted/30 mb-4" />
                       <p className="text-sm text-text-muted">No reviews yet</p>
                     </div>
                   )}
 
-                  {content.reviews?.map((review: any, i: number) => {
+                  {content.testimonials?.map((review: any, i: number) => {
                     const isEditing = editingReview === i;
                     return (
                       <div key={`review-${review.id || i}`} className="border border-border rounded-2xl overflow-hidden bg-surface-2 transition-all">
                         <div className="flex flex-col sm:flex-row sm:items-center gap-4 p-4 hover:bg-text-primary/[0.02] transition-colors">
                           <div className="flex flex-1 items-center gap-4 cursor-pointer min-w-0" onClick={() => setEditingReview(isEditing ? null : i)}>
                             <div className="w-10 h-10 rounded-full overflow-hidden border border-border bg-background shrink-0 flex items-center justify-center font-bold text-accent">
-                              {review.avatar ? <img src={review.avatar} alt={review.name} className="w-full h-full object-cover" /> : (review.name?.charAt(0) || "?")}
+                              {review.avatar && review.avatar.length > 1 ? <img src={review.avatar} alt={review.name} className="w-full h-full object-cover" /> : (review.avatar || review.name?.charAt(0) || "?")}
                             </div>
                             <div className="flex-1 min-w-0">
                               <h4 className="text-sm font-bold text-text-primary truncate">{review.name}</h4>
-                              <p className="text-[10px] text-text-muted truncate">{review.username} • {review.rating} Stars</p>
+                              <p className="text-[10px] text-text-muted truncate">{review.role} • {review.rating} Stars</p>
                             </div>
                           </div>
                           
@@ -1194,7 +1194,7 @@ export default function AdminDashboard() {
                             </button>
                             {deletingReviewIndex === i ? (
                               <div className="flex bg-red-500/10 rounded-xl overflow-hidden">
-                                <button type="button" onClick={(e) => { e.preventDefault(); e.stopPropagation(); const newReviews = [...content.reviews]; newReviews.splice(i, 1); setContent({ ...content, reviews: newReviews }); setEditingReview(null); setDeletingReviewIndex(null); }} className="px-3 h-10 text-xs font-bold text-red-500 hover:bg-red-500 hover:text-text-primary">Confirm</button>
+                                <button type="button" onClick={(e) => { e.preventDefault(); e.stopPropagation(); const newTestimonials = [...content.testimonials]; newTestimonials.splice(i, 1); setContent({ ...content, testimonials: newTestimonials }); setEditingReview(null); setDeletingReviewIndex(null); }} className="px-3 h-10 text-xs font-bold text-red-500 hover:bg-red-500 hover:text-text-primary">Confirm</button>
                                 <button type="button" onClick={(e) => { e.preventDefault(); e.stopPropagation(); setDeletingReviewIndex(null); }} className="px-3 h-10 text-xs font-bold text-text-muted hover:bg-text-primary/10 hover:text-text-primary border-l border-text-primary/5">Cancel</button>
                               </div>
                             ) : (
@@ -1211,26 +1211,26 @@ export default function AdminDashboard() {
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                               <div>
                                 <label className="block text-[10px] font-bold uppercase tracking-widest text-text-muted mb-1.5">Client Name</label>
-                                <input type="text" value={review.name} onChange={(e) => { const r = [...content.reviews]; r[i].name = e.target.value; setContent({ ...content, reviews: r }); }} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-2.5 text-sm text-text-primary outline-none focus:border-accent/40" />
+                                <input type="text" value={review.name || ""} onChange={(e) => { const r = [...content.testimonials]; r[i].name = e.target.value; setContent({ ...content, testimonials: r }); }} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-2.5 text-sm text-text-primary outline-none focus:border-accent/40" />
                               </div>
                               <div>
                                 <label className="block text-[10px] font-bold uppercase tracking-widest text-text-muted mb-1.5">Username / Role</label>
-                                <input type="text" value={review.username} onChange={(e) => { const r = [...content.reviews]; r[i].username = e.target.value; setContent({ ...content, reviews: r }); }} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-2.5 text-sm text-text-primary outline-none focus:border-accent/40" />
+                                <input type="text" value={review.role || ""} onChange={(e) => { const r = [...content.testimonials]; r[i].role = e.target.value; setContent({ ...content, testimonials: r }); }} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-2.5 text-sm text-text-primary outline-none focus:border-accent/40" />
                               </div>
                               <div>
                                 <label className="block text-[10px] font-bold uppercase tracking-widest text-text-muted mb-1.5">Rating (1-5)</label>
-                                <input type="number" min="1" max="5" value={review.rating} onChange={(e) => { const r = [...content.reviews]; r[i].rating = parseInt(e.target.value) || 5; setContent({ ...content, reviews: r }); }} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-2.5 text-sm text-text-primary outline-none focus:border-accent/40" />
+                                <input type="number" min="1" max="5" value={review.rating || 5} onChange={(e) => { const r = [...content.testimonials]; r[i].rating = parseInt(e.target.value) || 5; setContent({ ...content, testimonials: r }); }} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-2.5 text-sm text-text-primary outline-none focus:border-accent/40" />
                               </div>
                             </div>
                             
                             <div>
                               <label className="block text-[10px] font-bold uppercase tracking-widest text-text-muted mb-1.5">Avatar URL (Optional)</label>
-                              <input type="text" value={review.avatar || ""} onChange={(e) => { const r = [...content.reviews]; r[i].avatar = e.target.value; setContent({ ...content, reviews: r }); }} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-2.5 text-sm text-text-primary outline-none focus:border-accent/40" placeholder="/images/avatar.jpg" />
+                              <input type="text" value={review.avatar || ""} onChange={(e) => { const r = [...content.testimonials]; r[i].avatar = e.target.value; setContent({ ...content, testimonials: r }); }} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-2.5 text-sm text-text-primary outline-none focus:border-accent/40" placeholder="/images/avatar.jpg" />
                             </div>
 
                             <div>
                               <label className="block text-[10px] font-bold uppercase tracking-widest text-text-muted mb-1.5">Review Text</label>
-                              <textarea rows={4} value={review.text} onChange={(e) => { const r = [...content.reviews]; r[i].text = e.target.value; setContent({ ...content, reviews: r }); }} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-2.5 text-sm text-text-secondary outline-none focus:border-accent/40 resize-none" />
+                              <textarea rows={4} value={review.content || ""} onChange={(e) => { const r = [...content.testimonials]; r[i].content = e.target.value; setContent({ ...content, testimonials: r }); }} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-2.5 text-sm text-text-secondary outline-none focus:border-accent/40 resize-none" />
                             </div>
                           </div>
                         )}

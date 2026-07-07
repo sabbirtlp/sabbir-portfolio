@@ -13,14 +13,14 @@ export default function ReviewsPage() {
     fetch('/api/admin/content')
       .then(res => res.json())
       .then(data => {
-        if (data.reviews) {
-          setReviews(data.reviews);
+        if (data.testimonials) {
+          setReviews(data.testimonials);
         } else {
-          setReviews(contentData.reviews || []);
+          setReviews(contentData.testimonials || []);
         }
       })
       .catch(() => {
-        setReviews(contentData.reviews || []);
+        setReviews(contentData.testimonials || []);
       })
       .finally(() => setLoading(false));
   }, []);
@@ -102,25 +102,36 @@ export default function ReviewsPage() {
           </div>
         ) : (
           <>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {reviews.slice(0, visibleCount).map((review, i) => (
+            <div className="columns-1 sm:columns-2 lg:columns-3 gap-6">
+              {reviews.slice(0, visibleCount).map((review, i) => {
+                const colors = [
+                  "bg-blue-100 text-blue-600 dark:bg-blue-500/10 dark:text-blue-400",
+                  "bg-emerald-100 text-emerald-600 dark:bg-emerald-500/10 dark:text-emerald-400",
+                  "bg-rose-100 text-rose-600 dark:bg-rose-500/10 dark:text-rose-400",
+                  "bg-amber-100 text-amber-600 dark:bg-amber-500/10 dark:text-amber-400",
+                  "bg-purple-100 text-purple-600 dark:bg-purple-500/10 dark:text-purple-400",
+                  "bg-indigo-100 text-indigo-600 dark:bg-indigo-500/10 dark:text-indigo-400",
+                ];
+                const colorClass = colors[i % colors.length];
+
+                return (
                 <div 
                   key={review.id || i} 
-                  className="bg-white dark:bg-surface border border-black/5 dark:border-white/5 rounded-[2rem] p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] transition-all duration-500 hover:-translate-y-1 group relative overflow-hidden flex flex-col h-full"
+                  className="mb-6 break-inside-avoid bg-white dark:bg-surface border border-black/5 dark:border-white/5 rounded-[2rem] p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] transition-all duration-500 hover:-translate-y-1 group relative overflow-hidden flex flex-col"
                 >
                   <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-black/5 dark:from-white/5 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                   
                   <div className="flex items-center gap-4 mb-6 relative z-10">
-                    <div className="w-14 h-14 rounded-full bg-background dark:bg-accent/10 border border-border/50 text-text-primary dark:text-accent flex items-center justify-center font-black text-xl overflow-hidden shrink-0 shadow-inner">
-                      {review.avatar ? (
+                    <div className={`w-14 h-14 rounded-full border border-border/50 flex items-center justify-center font-black text-xl overflow-hidden shrink-0 shadow-inner uppercase ${colorClass}`}>
+                      {review.avatar && review.avatar.length > 2 ? (
                         <img src={review.avatar} alt={review.name} className="w-full h-full object-cover" />
                       ) : (
-                        review.name?.charAt(0) || "C"
+                        (review.name || "C").charAt(0)
                       )}
                     </div>
                     <div>
                       <h3 className="font-bold text-text-primary text-lg font-syne">{review.name}</h3>
-                      <p className="text-xs font-semibold text-accent/80 font-mono tracking-wide">{review.username}</p>
+                      <p className="text-xs font-semibold text-accent/80 font-mono tracking-wide">{review.role}</p>
                     </div>
                   </div>
                   
@@ -134,10 +145,11 @@ export default function ReviewsPage() {
                   </div>
 
                   <p className="text-text-secondary text-base leading-relaxed relative z-10 font-medium">
-                    "{review.text}"
+                    "{review.content}"
                   </p>
                 </div>
-              ))}
+                );
+              })}
             </div>
 
             {visibleCount < reviews.length && (

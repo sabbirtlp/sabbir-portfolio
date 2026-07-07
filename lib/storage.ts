@@ -8,6 +8,15 @@ const COLLECTION_NAME = "site_content";
 
 export async function getContent() {
   try {
+    // Load local JSON as the baseline (always available)
+    let localData: any = null;
+    try {
+      const raw = await fs.readFile(DATA_FILE, "utf-8");
+      localData = JSON.parse(raw);
+    } catch {
+      console.warn("Could not read local JSON fallback.");
+    }
+
     // 1. Try MongoDB if connected
     if (clientPromise) {
       try {
@@ -17,6 +26,17 @@ export async function getContent() {
         
         const doc = await collection.findOne({ type: "main_content" });
         if (doc && doc.data) {
+          // Merge: use DB data but backfill any keys that exist in local JSON but not in DB
+          // This ensures newly added fields (e.g. reviews) are available without manual DB migration
+          if (localData) {
+            for (const key of Object.keys(localData)) {
+              const dbVal = doc.data[key];
+              // Backfill if DB value is missing, null, or an empty array
+              if (dbVal === undefined || dbVal === null || (Array.isArray(dbVal) && dbVal.length === 0)) {
+                doc.data[key] = localData[key];
+              }
+            }
+          }
           return doc.data;
         }
       } catch (dbError) {
@@ -25,8 +45,7 @@ export async function getContent() {
     }
 
     // 2. Fallback to Local JSON (useful for first-time migration or local dev without DB)
-    const data = await fs.readFile(DATA_FILE, "utf-8");
-    return JSON.parse(data);
+    return localData;
   } catch (error) {
     console.error("Error reading content:", error);
     return null;
