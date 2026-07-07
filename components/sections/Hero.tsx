@@ -91,14 +91,14 @@ export default function Hero() {
       {/* 0. Premium Parallax Background Image (Dark Mode Only) */}
       <motion.div 
         style={{ y: backgroundY, scale: backgroundScale }}
-        className="absolute inset-0 z-0 pointer-events-none will-change-transform hidden dark:block"
+        className="absolute inset-0 z-0 pointer-events-none will-change-transform"
       >
         <Image
           src="/hero-bg.png"
           alt="Premium Brand Background"
           fill
           priority
-          className="object-cover object-center opacity-[0.12] mix-blend-screen"
+          className="object-cover object-center opacity-[0.12] mix-blend-screen hidden dark:block"
         />
         {/* Subtle Ambient "Breathing" Animation Overlay */}
         <motion.div 
