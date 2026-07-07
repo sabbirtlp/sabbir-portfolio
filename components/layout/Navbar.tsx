@@ -87,9 +87,10 @@ export default function Navbar() {
           {/* Desktop Nav */}
           <ul className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => {
-              const isActive = link.href.startsWith("/")
-                ? pathname === link.href
-                : activeSection === link.href.substring(1);
+              const isHashLink = link.href.startsWith("#");
+              const isActive = isHashLink
+                ? pathname === "/" && activeSection === link.href.substring(1)
+                : pathname === link.href;
               return (
                 <li key={link.href} className="relative">
                   <button
@@ -161,9 +162,10 @@ export default function Navbar() {
           >
             <ul className="flex flex-col items-center gap-8">
               {navLinks.map((link, i) => {
-                const isActive = link.href.startsWith("/")
-                  ? pathname === link.href
-                  : activeSection === link.href.substring(1);
+                const isHashLink = link.href.startsWith("#");
+                const isActive = isHashLink
+                  ? pathname === "/" && activeSection === link.href.substring(1)
+                  : pathname === link.href;
                 return (
                   <motion.li
                     key={link.href}
