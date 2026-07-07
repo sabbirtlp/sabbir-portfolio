@@ -247,7 +247,7 @@
       "year": "2026",
       "description": "A high-end website for a premier custom home builder in Tulsa, Oklahoma.",
       "longDescription": "Shaffer Homes specializes in luxury custom homes and renovations. The goal was to create a digital experience that reflects the same level of craftsmanship and attention to detail they bring to their physical builds, capturing leads for high-ticket projects.",
-      "image": "/uploads/Screenshot_348-1783428415996.jpg",
+      "image": "/uploads/Screenshot_348-1783448200089.jpg",
       "mockupColor": "from-stone-700 to-stone-900",
       "liveUrl": "https://shafferhomes918.com/",
       "stats": [
@@ -277,7 +277,7 @@
         "Increased premium leads",
         "Elevated digital brand presence"
       ],
-      "screenshot": "/projects/shafferhomes_homepage.png"
+      "screenshot": "/uploads/screencapture-shafferhomes918-2026-07-07-18_49_39-1783448122402.webp"
     },
     {
       "slug": "rpb-law-firm",
@@ -367,7 +367,7 @@
       "year": "2026",
       "description": "A comprehensive digital platform for a full-service construction group.",
       "longDescription": "Goga Construction Group handles everything from residential remodels to large commercial builds. Their website serves as a primary hub for prospective clients to explore their extensive range of services and view their impressive track record.",
-      "image": "/projects/goga_homepage.png",
+      "image": "/uploads/Screenshot_356-1783448284969.jpg",
       "mockupColor": "from-neutral-800 to-neutral-900",
       "liveUrl": "https://gogaconstructiongroup.com/",
       "stats": [
@@ -648,7 +648,7 @@
       "year": "2026",
       "description": "A professional legal website for a South African law firm specializing in commercial law.",
       "longDescription": "DNA Inc. (DN Law) is a South African law firm offering expertise in commercial law, litigation, estate planning, and more. Their website was designed to project legal authority while making it easy for clients to understand their diverse practice areas and reach out for consultations.",
-      "image": "/projects/dnlaw_homepage.png",
+      "image": "/uploads/Screenshot_358-1783449458939.jpg",
       "mockupColor": "from-slate-900 to-gray-950",
       "liveUrl": "https://dnlaw.co.za/",
       "stats": [
@@ -678,7 +678,7 @@
         "Authoritative digital presence in South African market",
         "Streamlined client inquiries across practice areas"
       ],
-      "screenshot": "/projects/dnlaw_homepage.png"
+      "screenshot": "/uploads/screencapture-dnlaw-co-za-2026-07-08-00_37_46-1783449507238.webp"
     },
     {
       "slug": "leafy-digital-media",

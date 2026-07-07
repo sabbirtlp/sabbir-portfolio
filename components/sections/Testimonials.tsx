@@ -86,9 +86,28 @@ export default function Testimonials() {
               {/* Author */}
               <div className="flex items-center justify-between flex-wrap gap-4">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-accent/20 border border-accent/40 flex items-center justify-center font-syne font-black text-accent text-sm">
-                    {testimonials[active].avatar}
-                  </div>
+                  {(() => {
+                    const t = testimonials[active];
+                    const colors = [
+                      "bg-blue-100 text-blue-600 dark:bg-blue-500/10 dark:text-blue-400",
+                      "bg-emerald-100 text-emerald-600 dark:bg-emerald-500/10 dark:text-emerald-400",
+                      "bg-rose-100 text-rose-600 dark:bg-rose-500/10 dark:text-rose-400",
+                      "bg-amber-100 text-amber-600 dark:bg-amber-500/10 dark:text-amber-400",
+                      "bg-purple-100 text-purple-600 dark:bg-purple-500/10 dark:text-purple-400",
+                      "bg-indigo-100 text-indigo-600 dark:bg-indigo-500/10 dark:text-indigo-400",
+                    ];
+                    const colorClass = colors[active % colors.length];
+                    
+                    return (
+                      <div className={`w-12 h-12 rounded-full border border-border/50 flex items-center justify-center font-syne font-black text-sm overflow-hidden shrink-0 uppercase ${colorClass}`}>
+                        {t.avatar && t.avatar.length > 2 ? (
+                          <img src={t.avatar} alt={t.name} className="w-full h-full object-cover" />
+                        ) : (
+                          (t.name || "C").charAt(0)
+                        )}
+                      </div>
+                    );
+                  })()}
                   <div>
                     <p className="font-syne font-bold text-text-primary">{testimonials[active].name}</p>
                     <p className="text-text-secondary text-sm">{testimonials[active].role}</p>

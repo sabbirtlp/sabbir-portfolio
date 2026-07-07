@@ -137,9 +137,9 @@ export default async function CaseStudyPage({ params }: Props) {
                   <span className="text-text-primary/30 text-[10px]">www.{project.slug}.com</span>
                 </div>
               </div>
-              {project.screenshot ? (
+              {(project.screenshot || project.image) ? (
                 <div className="rounded-xl overflow-hidden">
-                  <img src={project.screenshot} alt={`${project.title} screenshot`} className="w-full h-auto object-cover" />
+                  <img src={project.screenshot || project.image} alt={`${project.title} screenshot`} className="w-full h-auto object-cover" />
                 </div>
               ) : (
                 <div className={`h-60 rounded-xl bg-gradient-to-br ${gradient} p-6 flex flex-col gap-3`}>
