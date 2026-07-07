@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { ArrowRight, MousePointer2, Loader2, Code2, Globe, Layout, Zap, Search, Terminal, Github, Linkedin, Instagram, ArrowDown } from "lucide-react";
@@ -30,12 +30,15 @@ export default function Hero() {
   const subRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
-    const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   
   // Throttling: only run animation when in view
   const isInView = useInView(containerRef, { margin: "200px" });
 
-  
+  // Parallax Logic
+  const { scrollY } = useScroll();
+  const backgroundY = useTransform(scrollY, [0, 1000], [0, 300]);
+  const backgroundScale = useTransform(scrollY, [0, 1000], [1, 1.1]);
   
   // GSAP text entrance
   useEffect(() => {
@@ -85,6 +88,25 @@ export default function Hero() {
 
   return (
     <section id="home" ref={containerRef} className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-background">
+      {/* 0. Premium Parallax Background Image (Dark Mode Only) */}
+      <motion.div 
+        style={{ y: backgroundY, scale: backgroundScale }}
+        className="absolute inset-0 z-0 pointer-events-none will-change-transform hidden dark:block"
+      >
+        <Image
+          src="/hero-bg.png"
+          alt="Premium Brand Background"
+          fill
+          priority
+          className="object-cover object-center opacity-[0.12] mix-blend-screen"
+        />
+        {/* Subtle Ambient "Breathing" Animation Overlay */}
+        <motion.div 
+          animate={{ opacity: [0.03, 0.06, 0.03] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute inset-0 bg-accent/[0.01]"
+        />
+      </motion.div>
 
       {/* Gradient overlays - enhanced for light mode */}
       <div className="absolute inset-0 z-1 pointer-events-none">
