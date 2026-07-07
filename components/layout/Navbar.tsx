@@ -115,38 +115,42 @@ export default function Navbar() {
             })}
           </ul>
 
-          {/* CTA */}
-          <div className="hidden md:flex items-center gap-4">
+          {/* Right Actions (Desktop & Mobile) */}
+          <div className="flex items-center gap-4">
             <ThemeSwitcher />
-            <MagneticButton strength={0.3}>
-              <button
-                onClick={() => handleNavClick("#contact")}
-                className="px-5 py-2.5 bg-accent hover:bg-accent-light text-white text-sm font-semibold rounded-full transition-all duration-300 glow-accent-sm cursor-pointer"
-              >
-                Start a Project
-              </button>
-            </MagneticButton>
-          </div>
 
-          {/* Mobile hamburger */}
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden flex flex-col gap-1.5 w-8 cursor-pointer"
-            aria-label="Toggle menu"
-          >
-            <motion.span
-              animate={menuOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
-              className="block w-full h-0.5 bg-text-primary origin-left transition-all duration-300"
-            />
-            <motion.span
-              animate={menuOpen ? { opacity: 0, x: -10 } : { opacity: 1, x: 0 }}
-              className="block w-2/3 h-0.5 bg-text-primary"
-            />
-            <motion.span
-              animate={menuOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
-              className="block w-full h-0.5 bg-text-primary origin-left transition-all duration-300"
-            />
-          </button>
+            {/* Desktop CTA */}
+            <div className="hidden md:block">
+              <MagneticButton strength={0.3}>
+                <button
+                  onClick={() => handleNavClick("#contact")}
+                  className="px-5 py-2.5 bg-accent hover:bg-accent-light text-white text-sm font-semibold rounded-full transition-all duration-300 glow-accent-sm cursor-pointer"
+                >
+                  Start a Project
+                </button>
+              </MagneticButton>
+            </div>
+
+            {/* Mobile hamburger */}
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="md:hidden flex flex-col gap-1.5 w-8 cursor-pointer relative z-[9991]"
+              aria-label="Toggle menu"
+            >
+              <motion.span
+                animate={menuOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
+                className="block w-full h-0.5 bg-text-primary origin-left transition-all duration-300"
+              />
+              <motion.span
+                animate={menuOpen ? { opacity: 0, x: -10 } : { opacity: 1, x: 0 }}
+                className="block w-2/3 h-0.5 bg-text-primary"
+              />
+              <motion.span
+                animate={menuOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
+                className="block w-full h-0.5 bg-text-primary origin-left transition-all duration-300"
+              />
+            </button>
+          </div>
         </nav>
       </motion.header>
 
@@ -160,7 +164,7 @@ export default function Navbar() {
             transition={{ duration: 0.3 }}
             className="fixed inset-0 z-[9980] bg-background/95 backdrop-blur-2xl flex flex-col items-center justify-center md:hidden"
           >
-            <ul className="flex flex-col items-center gap-8">
+            <ul className="flex flex-col items-center gap-6">
               {navLinks.map((link, i) => {
                 const isHashLink = link.href.startsWith("#");
                 const isActive = isHashLink
@@ -177,13 +181,13 @@ export default function Navbar() {
                     {isActive && (
                       <motion.div
                         layoutId="mobile-active-indicator"
-                        className="absolute left-[-20px] w-2 h-2 rounded-full bg-accent glow-accent-sm"
+                        className="absolute left-[-16px] w-1.5 h-1.5 rounded-full bg-accent glow-accent-sm"
                         transition={{ type: "spring", stiffness: 350, damping: 30 }}
                       />
                     )}
                     <button
                       onClick={() => handleNavClick(link.href)}
-                      className={`font-syne text-4xl font-black transition-colors duration-300 cursor-pointer ${
+                      className={`font-syne text-2xl sm:text-3xl font-black transition-colors duration-300 cursor-pointer ${
                         isActive ? "text-accent" : "text-text-primary hover:text-accent/80"
                       }`}
                     >
@@ -199,18 +203,10 @@ export default function Navbar() {
               >
                 <button
                   onClick={() => handleNavClick("#contact")}
-                  className="mt-4 px-8 py-3 bg-accent text-white font-semibold rounded-full text-lg cursor-pointer"
+                  className="mt-2 px-6 py-2.5 bg-accent text-white font-semibold rounded-full text-base sm:text-lg cursor-pointer"
                 >
                   Start a Project
                 </button>
-              </motion.li>
-              <motion.li
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: (navLinks.length + 1) * 0.08 }}
-                className="mt-6"
-              >
-                <ThemeSwitcher />
               </motion.li>
             </ul>
           </motion.div>
