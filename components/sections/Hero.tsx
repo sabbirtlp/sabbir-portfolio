@@ -108,25 +108,33 @@ export default function Hero() {
         />
       </motion.div>
 
-      {/* Gradient overlays - enhanced for light mode */}
-      <div className="absolute inset-0 z-1 pointer-events-none">
-        <div className="absolute top-0 left-0 w-[500px] h-[500px] rounded-full bg-accent/[0.04] dark:bg-accent/[0.02] blur-[80px] -translate-x-1/2 -translate-y-1/2" />
-        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full bg-accent/[0.06] dark:bg-accent/[0.03] blur-[80px] translate-x-1/4 translate-y-1/4" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-orange-400/[0.03] dark:bg-orange-500/[0.01] blur-[120px]" />
+      {/* Light mode: Premium warm gradient background */}
+      <div className="absolute inset-0 z-0 pointer-events-none dark:hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-orange-50/80 via-white to-amber-50/50" />
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-orange-100/40 blur-[120px]" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full bg-amber-100/30 blur-[100px]" />
+        <div className="absolute top-1/3 left-1/3 w-[400px] h-[400px] rounded-full bg-orange-200/20 blur-[100px]" />
       </div>
 
-      {/* Grid pattern */}
+      {/* Dark mode: Keep existing gradient overlays */}
+      <div className="absolute inset-0 z-1 pointer-events-none hidden dark:block">
+        <div className="absolute top-0 left-0 w-[500px] h-[500px] rounded-full bg-accent/[0.02] blur-[80px] -translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full bg-accent/[0.03] blur-[80px] translate-x-1/4 translate-y-1/4" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-orange-500/[0.01] blur-[120px]" />
+      </div>
+
+      {/* Dot pattern — subtle, professional */}
       <div
-        className="absolute inset-0 z-1 opacity-[0.05] dark:opacity-[0.03]"
+        className="absolute inset-0 z-1 opacity-[0.15] dark:opacity-[0.03]"
         style={{
           backgroundImage:
-            "linear-gradient(var(--text-primary) 1px, transparent 1px), linear-gradient(90deg, var(--text-primary) 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
+            "radial-gradient(circle, var(--text-muted) 0.5px, transparent 0.5px)",
+          backgroundSize: "24px 24px",
         }}
       />
 
       {/* SeraUI Orbits Background */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-40">
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-20 dark:opacity-40">
         <OrbitContainer className="h-full">
           <Orbit radius={200} duration={30} delay={0} size={32}>
             <div className="p-2 rounded-full bg-accent/10 border border-accent/20 backdrop-blur-sm">
@@ -256,7 +264,7 @@ export default function Hero() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 2.2, duration: 0.8, ease: "easeOut" }}
-        className="absolute bottom-0 left-0 w-full z-10 px-6 md:px-12 py-5 flex items-center justify-between border-t border-text-primary/[0.04]"
+        className="absolute bottom-0 left-0 w-full z-10 px-6 md:px-12 py-5 flex items-center justify-between border-t border-zinc-200/60 dark:border-text-primary/[0.04]"
       >
         {/* Left: Social Links */}
         <div className="flex items-center gap-4">
