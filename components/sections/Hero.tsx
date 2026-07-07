@@ -88,19 +88,18 @@ export default function Hero() {
 
   return (
     <section id="home" ref={containerRef} className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-background">
-      {/* 0. Premium Parallax Background Image (Dark Mode Only) */}
+      {/* ── Dark Mode Only: Parallax Background Image ── */}
       <motion.div 
         style={{ y: backgroundY, scale: backgroundScale }}
-        className="absolute inset-0 z-0 pointer-events-none will-change-transform"
+        className="absolute inset-0 z-0 pointer-events-none will-change-transform hidden dark:block"
       >
         <Image
           src="/hero-bg.png"
           alt="Premium Brand Background"
           fill
           priority
-          className="object-cover object-center opacity-[0.12] mix-blend-screen hidden dark:block"
+          className="object-cover object-center opacity-[0.12] mix-blend-screen"
         />
-        {/* Subtle Ambient "Breathing" Animation Overlay */}
         <motion.div 
           animate={{ opacity: [0.03, 0.06, 0.03] }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
@@ -108,24 +107,16 @@ export default function Hero() {
         />
       </motion.div>
 
-      {/* Light mode: Premium warm gradient background */}
-      <div className="absolute inset-0 z-0 pointer-events-none dark:hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-orange-50/80 via-white to-amber-50/50" />
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-orange-100/40 blur-[120px]" />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full bg-amber-100/30 blur-[100px]" />
-        <div className="absolute top-1/3 left-1/3 w-[400px] h-[400px] rounded-full bg-orange-200/20 blur-[100px]" />
-      </div>
-
-      {/* Dark mode: Keep existing gradient overlays */}
+      {/* ── Dark Mode Only: Gradient overlays ── */}
       <div className="absolute inset-0 z-1 pointer-events-none hidden dark:block">
         <div className="absolute top-0 left-0 w-[500px] h-[500px] rounded-full bg-accent/[0.02] blur-[80px] -translate-x-1/2 -translate-y-1/2" />
         <div className="absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full bg-accent/[0.03] blur-[80px] translate-x-1/4 translate-y-1/4" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-orange-500/[0.01] blur-[120px]" />
       </div>
 
-      {/* Dot pattern — subtle, professional */}
+      {/* ── Dark Mode Only: Grid pattern ── */}
       <div
-        className="absolute inset-0 z-1 opacity-[0.15] dark:opacity-[0.03]"
+        className="absolute inset-0 z-1 hidden dark:block opacity-[0.03]"
         style={{
           backgroundImage:
             "radial-gradient(circle, var(--text-muted) 0.5px, transparent 0.5px)",
@@ -133,8 +124,25 @@ export default function Hero() {
         }}
       />
 
-      {/* SeraUI Orbits Background */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-20 dark:opacity-40">
+      {/* ── Light Mode Only: Clean minimal background ── */}
+      <div className="absolute inset-0 z-0 pointer-events-none dark:hidden">
+        {/* Extremely subtle dot pattern */}
+        <div
+          className="absolute inset-0 opacity-[0.07]"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle, #d4d4d8 0.5px, transparent 0.5px)",
+            backgroundSize: "32px 32px",
+          }}
+        />
+        {/* Soft top-right accent glow */}
+        <div className="absolute -top-20 -right-20 w-[500px] h-[500px] rounded-full bg-orange-500/[0.04] blur-[100px]" />
+        {/* Soft bottom-left cool glow */}
+        <div className="absolute -bottom-20 -left-20 w-[400px] h-[400px] rounded-full bg-zinc-300/20 blur-[100px]" />
+      </div>
+
+      {/* ── Dark Mode Only: Orbits ── */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none hidden dark:block opacity-40">
         <OrbitContainer className="h-full">
           <Orbit radius={200} duration={30} delay={0} size={32}>
             <div className="p-2 rounded-full bg-accent/10 border border-accent/20 backdrop-blur-sm">
