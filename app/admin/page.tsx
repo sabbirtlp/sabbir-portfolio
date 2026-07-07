@@ -1601,7 +1601,7 @@ export default function AdminDashboard() {
                         result: "Happy Client"
                       });
                       setContent({ ...content, testimonials: newTestimonials });
-                      setEditingTestimonial(0);
+                      setEditingReview(0);
                     }}
                     className="flex items-center gap-2 bg-text-primary/5 hover:bg-text-primary/10 text-text-primary px-4 py-2 rounded-xl text-sm font-semibold transition-all"
                   >
@@ -1618,13 +1618,13 @@ export default function AdminDashboard() {
                   )}
 
                   {content.testimonials?.map((t: any, i: number) => {
-                    const isEditing = editingTestimonial === i;
+                    const isEditing = editingReview === i;
                     return (
                       <div key={`test-${i}-${t.name}`} className="border border-border rounded-2xl overflow-hidden bg-surface-2 transition-all">
                         <div className="flex flex-col sm:flex-row sm:items-center gap-4 p-4 hover:bg-text-primary/[0.02] transition-colors">
                           <div 
                             className="flex flex-1 items-center gap-4 cursor-pointer min-w-0 w-full" 
-                            onClick={() => setEditingTestimonial(isEditing ? null : i)}
+                            onClick={() => setEditingReview(isEditing ? null : i)}
                           >
                             <div className="w-12 h-12 rounded-full overflow-hidden border border-border bg-background shrink-0 flex items-center justify-center font-bold text-accent text-lg">
                                {t.avatar}
@@ -1636,7 +1636,7 @@ export default function AdminDashboard() {
                           </div>
 
                           <div className="flex items-center justify-between sm:justify-end gap-2 pt-3 mt-1 sm:pt-0 sm:mt-0 border-t border-border/50 sm:border-0 shrink-0 w-full sm:w-auto">
-                            {deletingTestimonialIndex === i ? (
+                            {deletingReviewIndex === i ? (
                               <div className="flex bg-red-500/10 rounded-xl overflow-hidden animate-in fade-in zoom-in duration-200">
                                 <button
                                   type="button"
@@ -1646,8 +1646,8 @@ export default function AdminDashboard() {
                                     newTestis.splice(i, 1);
                                     const newContent = { ...content, testimonials: newTestis };
                                     setContent(newContent);
-                                    setEditingTestimonial(null);
-                                    setDeletingTestimonialIndex(null);
+                                    setEditingReview(null);
+                                    setDeletingReviewIndex(null);
                                     
                                     // Auto-save the deletion immediately
                                     setSaving(true);
@@ -1667,7 +1667,7 @@ export default function AdminDashboard() {
                                 </button>
                                 <button
                                   type="button"
-                                  onClick={(e) => { e.preventDefault(); e.stopPropagation(); setDeletingTestimonialIndex(null); }}
+                                  onClick={(e) => { e.preventDefault(); e.stopPropagation(); setDeletingReviewIndex(null); }}
                                   className="px-3 h-10 flex items-center justify-center text-xs font-bold text-text-muted hover:bg-text-primary/10 hover:text-text-primary transition-colors border-l border-text-primary/5"
                                 >
                                   Cancel
@@ -1678,7 +1678,7 @@ export default function AdminDashboard() {
                                 type="button"
                                 onClick={(e) => {
                                   e.preventDefault(); e.stopPropagation();
-                                  setDeletingTestimonialIndex(i);
+                                  setDeletingReviewIndex(i);
                                 }}
                                 className="w-10 h-10 flex items-center justify-center text-text-muted hover:text-red-400 hover:bg-red-400/10 rounded-xl transition-all"
                               >
