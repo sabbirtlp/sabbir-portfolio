@@ -36,47 +36,47 @@ export default function ReviewsPage() {
       <section className="relative px-4 pb-16 pt-8 md:pt-16">
         <div className="max-w-7xl mx-auto">
           {/* Deep professional container matching the image request */}
-          <div className="relative rounded-3xl overflow-hidden bg-[#0A0A0A] border border-border/10 shadow-2xl">
+          <div className="relative rounded-3xl overflow-hidden bg-gradient-to-b from-white to-zinc-100 dark:from-[#0A0A0A] dark:to-[#0A0A0A] border border-zinc-200 dark:border-white/10 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.05)] dark:shadow-2xl">
             {/* Soft inner glow / gradient */}
             <div className="absolute inset-0 bg-gradient-to-br from-accent/20 via-transparent to-transparent opacity-50 pointer-events-none" />
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/20 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3 pointer-events-none" />
             
-            <div className="relative z-10 px-6 py-16 md:px-16 md:py-24 flex flex-col lg:flex-row gap-12 lg:gap-24 items-center lg:items-start justify-between">
+            <div className="relative z-10 px-6 py-10 md:px-12 md:py-16 flex flex-col lg:flex-row gap-8 lg:gap-16 items-center lg:items-center justify-between">
               
               <div className="flex-1 text-center lg:text-left">
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 mb-8">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-zinc-200 shadow-sm dark:bg-white/5 backdrop-blur-sm dark:border-white/10 mb-8">
                   <Star className="w-4 h-4 text-amber-400 fill-amber-400" />
-                  <span className="text-xs font-bold uppercase tracking-widest text-white/90">Real Results</span>
+                  <span className="text-xs font-bold uppercase tracking-widest text-zinc-900 dark:text-white/90">Real Results</span>
                 </div>
                 
-                <h1 className="text-5xl md:text-6xl lg:text-7xl font-black font-syne text-white tracking-tight leading-[1.1] mb-6">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-black font-syne text-zinc-900 dark:text-white tracking-tight leading-[1.1] mb-4">
                   Real Impact, Measured<br />
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent-light">by Client Growth.</span>
                 </h1>
                 
-                <p className="text-white/70 text-lg md:text-xl max-w-xl mx-auto lg:mx-0">
+                <p className="text-zinc-600 dark:text-white/70 text-base md:text-lg max-w-xl mx-auto lg:mx-0">
                   Don't just take my word for it. Explore exactly how we've helped businesses scale their digital presence through strategic design.
                 </p>
               </div>
 
               {/* Stats Block */}
-              <div className="w-full lg:w-auto grid grid-cols-2 gap-4 md:gap-6 shrink-0">
-                <div className="p-6 md:p-8 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 flex flex-col justify-center items-center lg:items-start transition-transform hover:-translate-y-1">
-                  <h3 className="text-4xl md:text-5xl font-black text-white font-syne mb-2">300<span className="text-accent">+</span></h3>
-                  <p className="text-xs font-bold text-white/50 uppercase tracking-[0.2em]">Projects</p>
+              <div className="w-full lg:w-auto grid grid-cols-2 gap-4 shrink-0">
+                <div className="p-5 md:p-6 rounded-2xl bg-white border border-zinc-200 shadow-sm dark:shadow-none dark:bg-white/5 backdrop-blur-md dark:border-white/10 flex flex-col justify-center items-center lg:items-start transition-transform hover:-translate-y-1 hover:shadow-md dark:hover:shadow-none">
+                  <h3 className="text-3xl md:text-4xl font-black text-zinc-900 dark:text-white font-syne mb-1">300<span className="text-accent">+</span></h3>
+                  <p className="text-[10px] md:text-xs font-bold text-zinc-600 dark:text-white/50 uppercase tracking-[0.2em]">Projects</p>
                 </div>
-                <div className="p-6 md:p-8 rounded-2xl bg-accent/10 backdrop-blur-md border border-accent/20 flex flex-col justify-center items-center lg:items-start transition-transform hover:-translate-y-1 relative overflow-hidden">
+                <div className="p-5 md:p-6 rounded-2xl bg-orange-50/50 border border-orange-100 shadow-sm dark:shadow-none dark:bg-accent/10 backdrop-blur-md dark:border-accent/20 flex flex-col justify-center items-center lg:items-start transition-transform hover:-translate-y-1 hover:shadow-md dark:hover:shadow-none relative overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-transparent pointer-events-none" />
-                  <h3 className="text-4xl md:text-5xl font-black text-accent font-syne mb-2 relative z-10">4.9<span className="text-2xl text-accent/50">/5</span></h3>
-                  <p className="text-xs font-bold text-accent/80 uppercase tracking-[0.2em] relative z-10">Avg Rating</p>
+                  <h3 className="text-3xl md:text-4xl font-black text-accent font-syne mb-1 relative z-10">4.9<span className="text-xl text-accent/50">/5</span></h3>
+                  <p className="text-[10px] md:text-xs font-bold text-accent/80 uppercase tracking-[0.2em] relative z-10">Avg Rating</p>
                 </div>
-                <div className="p-6 md:p-8 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 flex flex-col justify-center items-center lg:items-start transition-transform hover:-translate-y-1">
-                  <h3 className="text-4xl md:text-5xl font-black text-white font-syne mb-2">99<span className="text-accent">%</span></h3>
-                  <p className="text-xs font-bold text-white/50 uppercase tracking-[0.2em]">Satisfaction</p>
+                <div className="p-5 md:p-6 rounded-2xl bg-white border border-zinc-200 shadow-sm dark:shadow-none dark:bg-white/5 backdrop-blur-md dark:border-white/10 flex flex-col justify-center items-center lg:items-start transition-transform hover:-translate-y-1 hover:shadow-md dark:hover:shadow-none">
+                  <h3 className="text-3xl md:text-4xl font-black text-zinc-900 dark:text-white font-syne mb-1">99<span className="text-accent">%</span></h3>
+                  <p className="text-[10px] md:text-xs font-bold text-zinc-600 dark:text-white/50 uppercase tracking-[0.2em]">Satisfaction</p>
                 </div>
-                <div className="p-6 md:p-8 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 flex flex-col justify-center items-center lg:items-start transition-transform hover:-translate-y-1">
-                  <h3 className="text-4xl md:text-5xl font-black text-white font-syne mb-2">200<span className="text-accent">%</span></h3>
-                  <p className="text-xs font-bold text-white/50 uppercase tracking-[0.2em]">Avg ROI</p>
+                <div className="p-5 md:p-6 rounded-2xl bg-white border border-zinc-200 shadow-sm dark:shadow-none dark:bg-white/5 backdrop-blur-md dark:border-white/10 flex flex-col justify-center items-center lg:items-start transition-transform hover:-translate-y-1 hover:shadow-md dark:hover:shadow-none">
+                  <h3 className="text-3xl md:text-4xl font-black text-zinc-900 dark:text-white font-syne mb-1">200<span className="text-accent">%</span></h3>
+                  <p className="text-[10px] md:text-xs font-bold text-zinc-600 dark:text-white/50 uppercase tracking-[0.2em]">Avg ROI</p>
                 </div>
               </div>
 
