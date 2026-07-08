@@ -453,46 +453,88 @@ export default function AdminDashboard() {
             {/* CODE EDITOR SECTION */}
             {activeTab === "codeCard" && content.codeCard && (
               <div className="space-y-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Location</label>
-                    <input 
-                      type="text" 
-                      value={content.codeCard.location}
-                      onChange={(e) => setContent({ ...content, codeCard: { ...content.codeCard, location: e.target.value } })}
-                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary"
-                    />
+                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Header Text</label>
+                    <input type="text" value={content.codeCard.headerText || "profile.js — editor"} onChange={(e) => setContent({ ...content, codeCard: { ...content.codeCard, headerText: e.target.value } })} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary" />
                   </div>
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Years of Experience</label>
-                    <input 
-                      type="number" 
-                      value={content.codeCard.experience}
-                      onChange={(e) => setContent({ ...content, codeCard: { ...content.codeCard, experience: Number(e.target.value) } })}
-                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary"
-                    />
+                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Const Name</label>
+                    <input type="text" value={content.codeCard.constName || "developer"} onChange={(e) => setContent({ ...content, codeCard: { ...content.codeCard, constName: e.target.value } })} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary" />
                   </div>
                 </div>
-                
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <label className="flex items-center gap-3 cursor-pointer">
-                    <input 
-                      type="checkbox"
-                      checked={content.codeCard.hardworking}
-                      onChange={(e) => setContent({ ...content, codeCard: { ...content.codeCard, hardworking: e.target.checked } })}
-                      className="w-5 h-5 rounded accent-accent"
-                    />
-                    <span className="text-sm font-bold text-text-primary">Hardworking</span>
-                  </label>
-                  <label className="flex items-center gap-3 cursor-pointer">
-                    <input 
-                      type="checkbox"
-                      checked={content.codeCard.problem_solver}
-                      onChange={(e) => setContent({ ...content, codeCard: { ...content.codeCard, problem_solver: e.target.checked } })}
-                      className="w-5 h-5 rounded accent-accent"
-                    />
-                    <span className="text-sm font-bold text-text-primary">Problem Solver</span>
-                  </label>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 border-t border-border pt-6">
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Name Label</label>
+                    <input type="text" value={content.codeCard.nameKey || "name:"} onChange={(e) => setContent({ ...content, codeCard: { ...content.codeCard, nameKey: e.target.value } })} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary mb-2" />
+                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Name Value</label>
+                    <input type="text" value={content.codeCard.nameValue || content.about.name} onChange={(e) => setContent({ ...content, codeCard: { ...content.codeCard, nameValue: e.target.value } })} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary" />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Role Label</label>
+                    <input type="text" value={content.codeCard.roleKey || "role:"} onChange={(e) => setContent({ ...content, codeCard: { ...content.codeCard, roleKey: e.target.value } })} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary mb-2" />
+                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Role Value</label>
+                    <input type="text" value={content.codeCard.roleValue || content.about.role} onChange={(e) => setContent({ ...content, codeCard: { ...content.codeCard, roleValue: e.target.value } })} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary" />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Location Label</label>
+                    <input type="text" value={content.codeCard.locationKey || "location:"} onChange={(e) => setContent({ ...content, codeCard: { ...content.codeCard, locationKey: e.target.value } })} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary mb-2" />
+                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Location Value</label>
+                    <input type="text" value={content.codeCard.locationValue || "Bangladesh"} onChange={(e) => setContent({ ...content, codeCard: { ...content.codeCard, locationValue: e.target.value } })} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary" />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Experience Label</label>
+                    <input type="text" value={content.codeCard.experienceKey || "experience:"} onChange={(e) => setContent({ ...content, codeCard: { ...content.codeCard, experienceKey: e.target.value } })} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary mb-2" />
+                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Experience Value (Number)</label>
+                    <input type="number" value={content.codeCard.experienceValue || 7} onChange={(e) => setContent({ ...content, codeCard: { ...content.codeCard, experienceValue: Number(e.target.value) } })} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary" />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Skills Label</label>
+                    <input type="text" value={content.codeCard.skillsKey || "skills:"} onChange={(e) => setContent({ ...content, codeCard: { ...content.codeCard, skillsKey: e.target.value } })} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary mb-2" />
+                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Skills Value (Comma Separated)</label>
+                    <input type="text" value={content.codeCard.skillsValue || content.about.techStack.slice(0, 8).join(', ')} onChange={(e) => setContent({ ...content, codeCard: { ...content.codeCard, skillsValue: e.target.value } })} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary" />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Hardworking Label</label>
+                    <input type="text" value={content.codeCard.hardworkingKey || "hardworking:"} onChange={(e) => setContent({ ...content, codeCard: { ...content.codeCard, hardworkingKey: e.target.value } })} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary mb-2" />
+                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Hardworking Value</label>
+                    <input type="text" value={content.codeCard.hardworkingValue || "true"} onChange={(e) => setContent({ ...content, codeCard: { ...content.codeCard, hardworkingValue: e.target.value } })} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary" />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Problem Solver Label</label>
+                    <input type="text" value={content.codeCard.problemSolverKey || "problem_solver:"} onChange={(e) => setContent({ ...content, codeCard: { ...content.codeCard, problemSolverKey: e.target.value } })} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary mb-2" />
+                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Problem Solver Value</label>
+                    <input type="text" value={content.codeCard.problemSolverValue || "true"} onChange={(e) => setContent({ ...content, codeCard: { ...content.codeCard, problemSolverValue: e.target.value } })} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary" />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 border-t border-border pt-6">
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Bottom Left 1</label>
+                    <input type="text" value={content.codeCard.bottomTextLeft1 || "UTF-8"} onChange={(e) => setContent({ ...content, codeCard: { ...content.codeCard, bottomTextLeft1: e.target.value } })} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary" />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Bottom Left 2</label>
+                    <input type="text" value={content.codeCard.bottomTextLeft2 || "JavaScript"} onChange={(e) => setContent({ ...content, codeCard: { ...content.codeCard, bottomTextLeft2: e.target.value } })} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary" />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Bottom Right 1</label>
+                    <input type="text" value={content.codeCard.bottomTextRight1 || "Ln 12, Col 2"} onChange={(e) => setContent({ ...content, codeCard: { ...content.codeCard, bottomTextRight1: e.target.value } })} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary" />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Bottom Right 2</label>
+                    <input type="text" value={content.codeCard.bottomTextRight2 || "Saved"} onChange={(e) => setContent({ ...content, codeCard: { ...content.codeCard, bottomTextRight2: e.target.value } })} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary" />
+                  </div>
                 </div>
               </div>
             )}
