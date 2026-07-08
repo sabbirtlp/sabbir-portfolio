@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { gsap } from "gsap";
 import { ArrowRight, MousePointer2, Loader2, Code2, Globe, Layout, Zap, Search, Terminal, Github, Linkedin, Instagram, ArrowDown } from "lucide-react";
 import MagneticButton from "@/components/ui/MagneticButton";
@@ -15,6 +16,7 @@ import { useContent } from "@/components/providers/ContentProvider";
 
 export default function Hero() {
   const { content } = useContent();
+  const router = useRouter();
 
   if (!content?.hero) {
     return (
