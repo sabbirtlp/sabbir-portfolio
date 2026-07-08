@@ -2459,7 +2459,7 @@
     "description": "Let's turn your vision into a high-performing website that attracts premium clients and grows your revenue. Currently booking for <span className=\"text-white font-semibold\">Next Month</span>.",
     "email": "sabbirtlp@gmail.com",
     "emailButtonText": "Sent a Message",
-    "calendlyUrl": "https://calendly.com/sabbir",
+    "calendlyUrl": "https://calendly.com/sabbirtlp/30min?month=2024-06",
     "calendlyButtonText": "Book Strategy Call",
     "stats": [
       {
@@ -2530,12 +2530,50 @@
       },
       {
         "question": "What technologies do you specialize in?",
-        "answer": "I specialize in WordPress, React, Next.js, and modern web technologies. I choose the best tech stack based on your project needs."
+        "answer": "I specialize in WordPress, Wix, Squarespace, Shopify, React, Next.js, and modern web technologies. I choose the best tech stack based on your project's needs."
       },
       {
         "question": "How do we get started?",
         "answer": "Simply fill out the contact form or send me an email. I'll schedule a free consultation call to discuss your project requirements."
       }
     ]
+  },
+  "header": {
+    "navLinks": [
+      {
+        "label": "Home",
+        "href": "#home"
+      },
+      {
+        "label": "Work",
+        "href": "#work"
+      },
+      {
+        "label": "Portfolio",
+        "href": "/portfolio"
+      },
+      {
+        "label": "Reviews",
+        "href": "/reviews"
+      },
+      {
+        "label": "About",
+        "href": "#about"
+      },
+      {
+        "label": "Services",
+        "href": "#services"
+      },
+      {
+        "label": "Process",
+        "href": "#process"
+      },
+      {
+        "label": "Contact",
+        "href": "/contact"
+      }
+    ],
+    "ctaText": "Start a Project",
+    "ctaLink": "/contact"
   }
 }

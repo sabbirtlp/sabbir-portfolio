@@ -263,6 +263,7 @@ export default function AdminDashboard() {
         <nav className="flex-1 px-4 space-y-1">
           {[
             { id: "general", label: "General Settings", icon: Settings },
+            { id: "header", label: "Header Settings", icon: LayoutDashboard },
             { id: "hero", label: "Hero Section", icon: LayoutDashboard },
             { id: "codeCard", label: "Code Editor", icon: Terminal },
             { id: "about", label: "About Me", icon: User },
@@ -345,6 +346,7 @@ export default function AdminDashboard() {
             >
               {[
                 { id: "general", label: "General" },
+                { id: "header", label: "Header" },
                 { id: "hero", label: "Hero" },
                 { id: "codeCard", label: "Code Editor" },
                 { id: "about", label: "About" },
@@ -1445,6 +1447,95 @@ export default function AdminDashboard() {
                             setContent({ ...content, general: { ...content.general, socialLinks: newSocials } });
                           }}
                           className="text-text-muted hover:text-red-400 opacity-0 group-hover/social:opacity-100 transition-opacity pt-4"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* HEADER SECTION */}
+            {activeTab === "header" && (
+              <div className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">CTA Button Text</label>
+                    <input 
+                      type="text" 
+                      value={content.header?.ctaText || ""}
+                      onChange={(e) => setContent({ ...content, header: { ...content.header, ctaText: e.target.value } })}
+                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary"
+                      placeholder="Start a Project"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">CTA Button Link</label>
+                    <input 
+                      type="text" 
+                      value={content.header?.ctaLink || ""}
+                      onChange={(e) => setContent({ ...content, header: { ...content.header, ctaLink: e.target.value } })}
+                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary"
+                      placeholder="/contact"
+                    />
+                  </div>
+                </div>
+                
+                <div className="space-y-4 pt-6 border-t border-border">
+                  <div className="flex items-center justify-between">
+                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted">Navigation Links</label>
+                    <button 
+                      onClick={() => {
+                        const newLinks = [...(content.header?.navLinks || [])];
+                        newLinks.push({ label: "New Link", href: "#" });
+                        setContent({ ...content, header: { ...content.header, navLinks: newLinks } });
+                      }}
+                      className="text-[10px] text-accent hover:text-accent-light font-bold flex items-center gap-1 transition-colors"
+                    >
+                      <Plus className="w-3 h-3" /> Add Link
+                    </button>
+                  </div>
+                  <div className="grid grid-cols-1 gap-4">
+                    {(content.header?.navLinks || []).map((link: any, i: number) => (
+                      <div key={i} className="flex gap-4 p-4 bg-surface-2 border border-border rounded-xl items-center group/navlink">
+                        <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          <div>
+                            <label className="block text-[8px] uppercase tracking-tighter text-text-muted mb-1">Label</label>
+                            <input 
+                              type="text" 
+                              value={link.label}
+                              onChange={(e) => {
+                                const newLinks = [...content.header.navLinks];
+                                newLinks[i].label = e.target.value;
+                                setContent({ ...content, header: { ...content.header, navLinks: newLinks } });
+                              }}
+                              className="bg-transparent text-sm font-bold text-text-primary outline-none w-full border-b border-transparent focus:border-accent"
+                              placeholder="e.g. Home"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-[8px] uppercase tracking-tighter text-text-muted mb-1">URL / Link</label>
+                            <input 
+                              type="text" 
+                              value={link.href}
+                              onChange={(e) => {
+                                const newLinks = [...content.header.navLinks];
+                                newLinks[i].href = e.target.value;
+                                setContent({ ...content, header: { ...content.header, navLinks: newLinks } });
+                              }}
+                              className="bg-transparent text-xs text-text-secondary outline-none w-full border-b border-transparent focus:border-accent"
+                              placeholder="e.g. #home or /contact"
+                            />
+                          </div>
+                        </div>
+                        <button 
+                          onClick={() => {
+                            const newLinks = content.header.navLinks.filter((_: any, idx: number) => idx !== i);
+                            setContent({ ...content, header: { ...content.header, navLinks: newLinks } });
+                          }}
+                          className="text-text-muted hover:text-red-400 opacity-0 group-hover/navlink:opacity-100 transition-opacity pt-4"
                         >
                           <Trash2 className="w-4 h-4" />
                         </button>
