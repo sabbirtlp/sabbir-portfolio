@@ -35,7 +35,10 @@ export default function ContactPage() {
     message: "",
   });
   const [sending, setSending] = useState(false);
-  const [status, setStatus] = useState<{ type: "success" | "error"; text: string } | null>(null);
+  const [status, setStatus] = useState<{
+    type: "success" | "error";
+    text: string;
+  } | null>(null);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   // Defaults
@@ -43,15 +46,21 @@ export default function ContactPage() {
   const badge = cp.badge || "Get In Touch";
   const headline = cp.headline || "Let's Build Something";
   const headlineHighlight = cp.headlineHighlight || "Extraordinary Together";
-  const description = cp.description || "Have a project in mind? I'd love to hear about it.";
+  const description =
+    cp.description || "Have a project in mind? I'd love to hear about it.";
   const formTitle = cp.formTitle || "Send a Message";
-  const formDescription = cp.formDescription || "Fill out the form below and I'll get back to you within 24 hours.";
+  const formDescription =
+    cp.formDescription ||
+    "Fill out the form below and I'll get back to you within 24 hours.";
   const infoTitle = cp.infoTitle || "Contact Information";
-  const infoDescription = cp.infoDescription || "Feel free to reach out through any of the following channels.";
-  const email = cp.email || content?.general?.email || "hello@sabbir.dev";
+  const infoDescription =
+    cp.infoDescription ||
+    "Feel free to reach out through any of the following channels.";
+  const email = cp.email || content?.general?.email || "hello@sabbir.website";
   const phone = cp.phone || content?.general?.phone || "+880 1879667166";
   const location = cp.location || "Dhaka, Bangladesh";
-  const locationDetail = cp.locationDetail || "Available for remote work worldwide";
+  const locationDetail =
+    cp.locationDetail || "Available for remote work worldwide";
   const availability = cp.availability || "Currently accepting new projects";
   const responseTime = cp.responseTime || "Typical response within 3 hours";
   const workingHours = cp.workingHours || "Sun - Thu, 9:00 AM - 6:00 PM (BST)";
@@ -78,14 +87,29 @@ export default function ContactPage() {
       });
 
       if (res.ok) {
-        setStatus({ type: "success", text: "Message sent successfully! I'll get back to you soon." });
-        setFormData({ name: "", email: "", subject: "", budget: "", message: "" });
+        setStatus({
+          type: "success",
+          text: "Message sent successfully! I'll get back to you soon.",
+        });
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          budget: "",
+          message: "",
+        });
       } else {
         const data = await res.json();
-        setStatus({ type: "error", text: data.error || "Failed to send message. Please try again." });
+        setStatus({
+          type: "error",
+          text: data.error || "Failed to send message. Please try again.",
+        });
       }
     } catch {
-      setStatus({ type: "error", text: "Network error. Please check your connection." });
+      setStatus({
+        type: "error",
+        text: "Network error. Please check your connection.",
+      });
     } finally {
       setSending(false);
     }
@@ -93,7 +117,12 @@ export default function ContactPage() {
 
   const infoItems = [
     { icon: Mail, label: "Email", value: email, href: `mailto:${email}` },
-    { icon: Phone, label: "Phone", value: phone, href: `tel:${phone.replace(/\s/g, "")}` },
+    {
+      icon: Phone,
+      label: "Phone",
+      value: phone,
+      href: `tel:${phone.replace(/\s/g, "")}`,
+    },
     { icon: MapPin, label: "Location", value: location, sub: locationDetail },
     { icon: Clock, label: "Working Hours", value: workingHours },
   ];
@@ -172,7 +201,10 @@ export default function ContactPage() {
       </section>
 
       {/* Main Content: Form + Info */}
-      <section ref={formRef} className="max-w-7xl mx-auto w-full px-4 py-8 md:py-16">
+      <section
+        ref={formRef}
+        className="max-w-7xl mx-auto w-full px-4 py-8 md:py-16"
+      >
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12">
           {/* Contact Form (3 cols) */}
           <motion.div
@@ -182,8 +214,12 @@ export default function ContactPage() {
             className="lg:col-span-3"
           >
             <div className="bg-white dark:bg-surface border border-zinc-200 dark:border-white/5 rounded-[2rem] p-8 md:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none">
-              <h2 className="text-2xl md:text-3xl font-black font-syne text-text-primary mb-2">{formTitle}</h2>
-              <p className="text-text-secondary text-sm mb-8">{formDescription}</p>
+              <h2 className="text-2xl md:text-3xl font-black font-syne text-text-primary mb-2">
+                {formTitle}
+              </h2>
+              <p className="text-text-secondary text-sm mb-8">
+                {formDescription}
+              </p>
 
               {status && (
                 <div
@@ -212,7 +248,9 @@ export default function ContactPage() {
                       type="text"
                       required
                       value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, name: e.target.value })
+                      }
                       placeholder="John Doe"
                       className="w-full bg-zinc-50 dark:bg-surface-2 border border-zinc-200 dark:border-border rounded-xl px-4 py-3.5 text-text-primary placeholder:text-text-muted/50 outline-none focus:border-accent/50 focus:ring-2 focus:ring-accent/10 transition-all text-sm"
                     />
@@ -225,7 +263,9 @@ export default function ContactPage() {
                       type="email"
                       required
                       value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, email: e.target.value })
+                      }
                       placeholder="john@example.com"
                       className="w-full bg-zinc-50 dark:bg-surface-2 border border-zinc-200 dark:border-border rounded-xl px-4 py-3.5 text-text-primary placeholder:text-text-muted/50 outline-none focus:border-accent/50 focus:ring-2 focus:ring-accent/10 transition-all text-sm"
                     />
@@ -241,7 +281,9 @@ export default function ContactPage() {
                       type="text"
                       required
                       value={formData.subject}
-                      onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, subject: e.target.value })
+                      }
                       placeholder="Website Development"
                       className="w-full bg-zinc-50 dark:bg-surface-2 border border-zinc-200 dark:border-border rounded-xl px-4 py-3.5 text-text-primary placeholder:text-text-muted/50 outline-none focus:border-accent/50 focus:ring-2 focus:ring-accent/10 transition-all text-sm"
                     />
@@ -252,7 +294,9 @@ export default function ContactPage() {
                     </label>
                     <select
                       value={formData.budget}
-                      onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, budget: e.target.value })
+                      }
                       className="w-full bg-zinc-50 dark:bg-surface-2 border border-zinc-200 dark:border-border rounded-xl px-4 py-3.5 text-text-primary outline-none focus:border-accent/50 focus:ring-2 focus:ring-accent/10 transition-all text-sm cursor-pointer appearance-none"
                     >
                       <option value="">Select budget...</option>
@@ -272,7 +316,9 @@ export default function ContactPage() {
                     required
                     rows={5}
                     value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, message: e.target.value })
+                    }
                     placeholder="Tell me about your project, goals, and timeline..."
                     className="w-full bg-zinc-50 dark:bg-surface-2 border border-zinc-200 dark:border-border rounded-xl px-4 py-3.5 text-text-primary placeholder:text-text-muted/50 outline-none focus:border-accent/50 focus:ring-2 focus:ring-accent/10 transition-all text-sm resize-none"
                   />
@@ -306,8 +352,12 @@ export default function ContactPage() {
           >
             {/* Contact Info Card */}
             <div className="bg-white dark:bg-surface border border-zinc-200 dark:border-white/5 rounded-[2rem] p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none">
-              <h3 className="text-xl font-black font-syne text-text-primary mb-2">{infoTitle}</h3>
-              <p className="text-text-secondary text-sm mb-6">{infoDescription}</p>
+              <h3 className="text-xl font-black font-syne text-text-primary mb-2">
+                {infoTitle}
+              </h3>
+              <p className="text-text-secondary text-sm mb-6">
+                {infoDescription}
+              </p>
 
               <div className="space-y-5">
                 {infoItems.map((item, i) => (
@@ -327,10 +377,14 @@ export default function ContactPage() {
                           {item.value}
                         </Link>
                       ) : (
-                        <p className="text-text-primary font-medium text-sm">{item.value}</p>
+                        <p className="text-text-primary font-medium text-sm">
+                          {item.value}
+                        </p>
                       )}
                       {item.sub && (
-                        <p className="text-text-muted text-xs mt-0.5">{item.sub}</p>
+                        <p className="text-text-muted text-xs mt-0.5">
+                          {item.sub}
+                        </p>
                       )}
                     </div>
                   </div>
@@ -349,7 +403,9 @@ export default function ContactPage() {
                   </span>
                 </div>
                 <p className="text-text-secondary text-sm leading-relaxed">
-                  I&apos;m currently available for freelance projects and long-term collaborations. Let&apos;s create something amazing together.
+                  I&apos;m currently available for freelance projects and
+                  long-term collaborations. Let&apos;s create something amazing
+                  together.
                 </p>
               </div>
             </div>

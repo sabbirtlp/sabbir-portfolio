@@ -199,6 +199,13 @@
       "highlight": null
     }
   ],
+  "servicesPage": {
+    "heading": "Services That Drive Growth",
+    "subheading": "High-performance web development services built to convert visitors into customers.",
+    "description": "From WordPress and WooCommerce to Shopify, Wix, Squarespace, and Kajabi — I build websites and digital experiences that are fast, secure, and SEO-ready.",
+    "introText": "Browse the services below to find the right platform and strategy for your business. Every service offering is designed for conversions, performance, and long-term growth.",
+    "ctaText": "Schedule a free consultation"
+  },
   "process": {
     "steps": [
       {

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-export const SITE_URL = "https://sabbir.dev";
+export const SITE_URL = "https://sabbir.website";
 export const SITE_NAME = "Sabbir Hossain";
 export const SITE_TITLE =
   "Sabbir Hossain — Web Developer & Conversion Specialist";
@@ -26,6 +26,10 @@ export const SEO_KEYWORDS = [
   "WordPress maintenance",
   "Wix developer",
   "Squarespace developer",
+  "Shopify developer",
+  "Kajabi developer",
+  "Shopify website developer",
+  "Kajabi website developer",
   "Elementor developer",
   "Webflow developer",
   "e-commerce website developer",
@@ -228,6 +232,27 @@ export function buildGlobalSchemaGraph() {
               itemOffered: {
                 "@type": "Service",
                 name: "Elementor & Webflow Design",
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "Wix & Squarespace Website Design",
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "Shopify Development",
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "Kajabi Website Development",
               },
             },
           ],

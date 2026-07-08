@@ -23,7 +23,7 @@ export async function getContent() {
         const client = await clientPromise;
         const db = client.db(DB_NAME);
         const collection = db.collection(COLLECTION_NAME);
-        
+
         const doc = await collection.findOne({ type: "main_content" });
         if (doc && doc.data) {
           // Merge: use DB data but backfill any keys that exist in local JSON but not in DB
@@ -32,7 +32,11 @@ export async function getContent() {
             for (const key of Object.keys(localData)) {
               const dbVal = doc.data[key];
               // Backfill if DB value is missing, null, or an empty array
-              if (dbVal === undefined || dbVal === null || (Array.isArray(dbVal) && dbVal.length === 0)) {
+              if (
+                dbVal === undefined ||
+                dbVal === null ||
+                (Array.isArray(dbVal) && dbVal.length === 0)
+              ) {
                 doc.data[key] = localData[key];
               }
             }
@@ -47,11 +51,16 @@ export async function getContent() {
               doc.data.general?.email ||
               localData?.general?.email;
           }
+          if (!doc.data.servicesPage) {
+            doc.data.servicesPage = localData?.servicesPage || {};
+          }
 
           return doc.data;
         }
       } catch (dbError) {
-        console.warn("MongoDB connection failed or timed out. Falling back to local JSON...");
+        console.warn(
+          "MongoDB connection failed or timed out. Falling back to local JSON...",
+        );
       }
     }
 
@@ -74,12 +83,14 @@ export async function updateContent(newContent: any) {
       await collection.updateOne(
         { type: "main_content" },
         { $set: { data: newContent, updatedAt: new Date() } },
-        { upsert: true }
+        { upsert: true },
       );
-      
+
       // Also write locally in dev mode just to keep files synced, errors ignored if read-only
       if (process.env.NODE_ENV === "development") {
-        await fs.writeFile(DATA_FILE, JSON.stringify(newContent, null, 2), "utf-8").catch(e => console.warn("Could not sync local JSON"));
+        await fs
+          .writeFile(DATA_FILE, JSON.stringify(newContent, null, 2), "utf-8")
+          .catch((e) => console.warn("Could not sync local JSON"));
       }
       return true;
     }

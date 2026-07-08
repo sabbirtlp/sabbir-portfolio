@@ -14,8 +14,9 @@ export default function CTA() {
     badge: "Direct Access to Specialist",
     headline: "Ready to Scale Your",
     headlineHighlight: "Digital Presence?",
-    description: "Let's turn your vision into a high-performing website that attracts premium clients and grows your revenue. Currently booking for <span className=\"text-text-primary font-semibold\">Next Month</span>.",
-    email: "hello@sabbir.dev",
+    description:
+      'Let\'s turn your vision into a high-performing website that attracts premium clients and grows your revenue. Currently booking for <span className="text-text-primary font-semibold">Next Month</span>.',
+    email: "hello@sabbir.website",
     emailButtonText: "Sent a Message",
     calendlyUrl: "https://calendly.com/sabbir",
     calendlyButtonText: "Book Strategy Call",
@@ -23,16 +24,20 @@ export default function CTA() {
       { value: "< 24hrs", label: "Response Time" },
       { value: "100%", label: "Satisfaction Rate" },
       { value: "2 Weeks", label: "Avg. Turnaround" },
-    ]
+    ],
   };
 
   return (
-    <section ref={ref} id="contact" className="py-32 md:py-48 bg-background relative overflow-hidden">
+    <section
+      ref={ref}
+      id="contact"
+      className="py-32 md:py-48 bg-background relative overflow-hidden"
+    >
       {/* Background elements */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
         <div className="absolute inset-0 bg-background" />
-        
+
         {/* Grid pattern matching Hero */}
         <div
           className="absolute inset-0 opacity-[0.05] dark:opacity-[0.03]"
@@ -56,7 +61,7 @@ export default function CTA() {
         >
           {/* Internal Glow */}
           <div className="absolute top-0 right-0 w-80 h-80 bg-accent/5 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2" />
-          
+
           <div className="relative z-10 text-center">
             {/* Badge */}
             <motion.div
@@ -128,7 +133,9 @@ export default function CTA() {
             >
               {contact.stats.map((item: any) => (
                 <div key={item.label} className="group">
-                  <div className="font-unbounded font-medium text-xl md:text-2xl text-text-primary mb-2 group-hover:text-accent transition-colors duration-300">{item.value}</div>
+                  <div className="font-unbounded font-medium text-xl md:text-2xl text-text-primary mb-2 group-hover:text-accent transition-colors duration-300">
+                    {item.value}
+                  </div>
                   <div className="text-text-secondary text-[10px] uppercase tracking-widest font-medium opacity-60">
                     {item.label}
                   </div>

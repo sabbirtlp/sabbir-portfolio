@@ -64,10 +64,10 @@ function fieldRow(label: string, value: string, href?: string) {
 
 export function buildContactNotificationEmail(
   data: ContactFormData,
-  options: ContactEmailOptions = {}
+  options: ContactEmailOptions = {},
 ) {
   const siteName = options.siteName || "Sabbir Hossain";
-  const siteUrl = options.siteUrl || "https://sabbir.dev";
+  const siteUrl = options.siteUrl || "https://sabbir.website";
   const safeName = escapeHtml(data.name);
   const safeEmail = escapeHtml(data.email);
   const safeSubject = escapeHtml(data.subject);

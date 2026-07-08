@@ -32,7 +32,7 @@ export async function POST(req: Request) {
     if (!name || !email || !subject || !message) {
       return NextResponse.json(
         { error: "Missing required fields" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -45,7 +45,7 @@ export async function POST(req: Request) {
           error:
             "Receiving email is not configured. Set it in Admin → General Settings or Contact Page, then click Save Changes.",
         },
-        { status: 500 }
+        { status: 500 },
       );
     }
 
@@ -53,14 +53,14 @@ export async function POST(req: Request) {
 
     if (!smtpUser || !smtpPass) {
       console.warn(
-        "SMTP credentials missing. Set SMTP_USER/SMTP_PASS (or EMAIL_USER/EMAIL_PASS) in environment variables."
+        "SMTP credentials missing. Set SMTP_USER/SMTP_PASS (or EMAIL_USER/EMAIL_PASS) in environment variables.",
       );
       return NextResponse.json(
         {
           error:
             "SMTP credentials are not configured on the server. Add SMTP_USER and SMTP_PASS to your environment variables.",
         },
-        { status: 500 }
+        { status: 500 },
       );
     }
 
@@ -78,8 +78,8 @@ export async function POST(req: Request) {
       { name, email, subject, budget, message },
       {
         siteName: content?.general?.siteName || "Sabbir Hossain",
-        siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://sabbir.dev",
-      }
+        siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://sabbir.website",
+      },
     );
 
     await transporter.sendMail({
@@ -110,7 +110,7 @@ export async function POST(req: Request) {
             ? `Failed to send email: ${smtpMessage}`
             : "Failed to send email. Please try again later.",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
