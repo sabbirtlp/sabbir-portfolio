@@ -2,6 +2,8 @@ import { notFound } from "next/navigation";
 import { getContent } from "@/lib/storage";
 import type { Metadata } from "next";
 import Link from "next/link";
+import JsonLd from "@/components/seo/JsonLd";
+import { buildCaseStudySchema, createPageMetadata } from "@/lib/seo";
 import { ArrowLeft, ArrowRight, CheckCircle2, TrendingUp } from "lucide-react";
 
 interface Props {
@@ -18,18 +20,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const content = await getContent();
   const project = content?.projects?.find((p: any) => p.slug === slug);
-  
+
   if (!project) return { title: "Project Not Found" };
-  
-  return {
-    title: `${project.title} — Case Study | Sabbir Hossain`,
+
+  return createPageMetadata({
+    title: `${project.title} — Web Development Case Study`,
     description: project.longDescription,
-    openGraph: {
-      title: `${project.title} — Case Study`,
-      description: project.longDescription,
-      type: "article",
-    },
-  };
+    path: `/work/${slug}`,
+    type: "article",
+    keywords: [
+      project.category,
+      `${project.category} website case study`,
+      `${project.category} web design`,
+      "conversion focused web design",
+      ...(project.tags ?? []),
+    ],
+  });
 }
 
 const gradientMap: Record<string, string> = {
@@ -53,192 +59,240 @@ export default async function CaseStudyPage({ params }: Props) {
   const gradient = gradientMap[slug] ?? "from-orange-900 to-red-900";
 
   return (
-    <article className="min-h-screen bg-background relative pt-32 md:pt-40">
-      {/* Immersive background — uses project gradient */}
-      <div className={`absolute top-0 left-0 w-full h-[70vh] bg-gradient-to-b ${gradient} opacity-20 blur-[120px] pointer-events-none`} />
+    <>
+      <JsonLd data={buildCaseStudySchema(project)} />
+      <article className="min-h-screen bg-background relative pt-32 md:pt-40">
+        {/* Immersive background — uses project gradient */}
+        <div
+          className={`absolute top-0 left-0 w-full h-[70vh] bg-gradient-to-b ${gradient} opacity-20 blur-[120px] pointer-events-none`}
+        />
 
-      {/* Hero Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 mb-16 sm:mb-24">
-        <div className="max-w-5xl">
-          <Link
-            href="/#work"
-            className="group inline-flex items-center gap-2 text-text-muted hover:text-text-primary transition-colors mb-12 sm:mb-20"
-          >
-            <div className="w-8 h-8 rounded-full border border-text-primary/10 flex items-center justify-center group-hover:border-accent group-hover:bg-accent/10 transition-all">
-              <ArrowLeft className="w-4 h-4" />
+        {/* Hero Content */}
+        <div className="relative z-10 max-w-7xl mx-auto px-6 mb-16 sm:mb-24">
+          <div className="max-w-5xl">
+            <Link
+              href="/#work"
+              className="group inline-flex items-center gap-2 text-text-muted hover:text-text-primary transition-colors mb-12 sm:mb-20"
+            >
+              <div className="w-8 h-8 rounded-full border border-text-primary/10 flex items-center justify-center group-hover:border-accent group-hover:bg-accent/10 transition-all">
+                <ArrowLeft className="w-4 h-4" />
+              </div>
+              <span className="text-xs uppercase tracking-widest font-bold">
+                Back to Work
+              </span>
+            </Link>
+
+            <div className="flex items-center gap-3 mb-5">
+              <span className="px-3 py-1 rounded-full bg-text-primary/10 border border-text-primary/20 text-text-primary/70 text-xs font-medium">
+                {project.category}
+              </span>
+              <span className="text-text-primary/40 text-xs">
+                {project.year}
+              </span>
             </div>
-            <span className="text-xs uppercase tracking-widest font-bold">Back to Work</span>
-          </Link>
 
-          <div className="flex items-center gap-3 mb-5">
-            <span className="px-3 py-1 rounded-full bg-text-primary/10 border border-text-primary/20 text-text-primary/70 text-xs font-medium">
-              {project.category}
-            </span>
-            <span className="text-text-primary/40 text-xs">{project.year}</span>
-          </div>
-
-          <h1 className="font-syne font-black text-4xl sm:text-7xl md:text-8xl lg:text-[10rem] text-text-primary leading-[0.9] tracking-tighter mb-10">
-            {project.title}
-          </h1>
-          <p className="text-text-primary/70 text-lg md:text-2xl leading-relaxed max-w-3xl font-medium">
-            {project.longDescription}
-          </p>
-        </div>
-      </div>
-
-      {/* Stats Bar */}
-      <div className="bg-surface border-y border-border">
-        <div className="max-w-5xl mx-auto px-6 py-10 md:py-12">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 sm:gap-8 sm:divide-x divide-border">
-            {project.stats.map((stat: any) => (
-              <div key={stat.label} className="text-center px-4 first:pl-0 sm:last:pr-0">
-                <div className="font-syne font-black text-4xl md:text-5xl text-accent mb-2">{stat.value}</div>
-                <div className="text-text-muted text-[10px] md:text-xs uppercase tracking-[0.2em] font-bold">{stat.label}</div>
-              </div>
-            ))}
+            <h1 className="font-syne font-black text-4xl sm:text-7xl md:text-8xl lg:text-[10rem] text-text-primary leading-[0.9] tracking-tighter mb-10">
+              {project.title}
+            </h1>
+            <p className="text-text-primary/70 text-lg md:text-2xl leading-relaxed max-w-3xl font-medium">
+              {project.longDescription}
+            </p>
           </div>
         </div>
-      </div>
 
-      {/* Content */}
-      <div className="max-w-5xl mx-auto px-6 py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
-          {/* Main narrative */}
-          <div className="lg:col-span-2 space-y-16">
-            {/* Problem */}
-            <section>
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-8 h-8 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center justify-center">
-                  <span className="text-red-400 text-xs font-bold">!</span>
-                </div>
-                <h2 className="font-syne font-black text-2xl md:text-3xl text-text-primary">The Problem</h2>
-              </div>
-              <p className="text-text-secondary leading-relaxed text-base">{project.problem}</p>
-            </section>
-
-            {/* Solution */}
-            <section>
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-8 h-8 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center">
-                  <span className="text-accent text-xs font-bold">✓</span>
-                </div>
-                <h2 className="font-syne font-black text-2xl md:text-3xl text-text-primary">The Solution</h2>
-              </div>
-              <p className="text-text-secondary leading-relaxed text-base">{project.solution}</p>
-            </section>
-
-            {/* Mockup preview */}
-            <div className="rounded-2xl overflow-hidden border border-border bg-surface-2 p-4">
-              <div className="flex items-center gap-2 mb-4">
-                <div className="w-3 h-3 rounded-full bg-red-500/60" />
-                <div className="w-3 h-3 rounded-full bg-yellow-500/60" />
-                <div className="w-3 h-3 rounded-full bg-green-500/60" />
-                <div className="flex-1 mx-4 bg-text-primary/5 rounded-full h-5 px-3 flex items-center">
-                  <span className="text-text-primary/30 text-[10px]">www.{project.slug}.com</span>
-                </div>
-              </div>
-              {(project.screenshot || project.image) ? (
-                <div className="rounded-xl overflow-hidden">
-                  <img src={project.screenshot || project.image} alt={`${project.title} screenshot`} className="w-full h-auto object-cover" />
-                </div>
-              ) : (
-                <div className={`h-60 rounded-xl bg-gradient-to-br ${gradient} p-6 flex flex-col gap-3`}>
-                  <div className="h-8 bg-text-primary/20 rounded-lg w-3/4 animate-pulse" />
-                  <div className="h-4 bg-text-primary/10 rounded w-full" />
-                  <div className="h-4 bg-text-primary/10 rounded w-5/6" />
-                  <div className="flex gap-3 mt-2">
-                    <div className="h-9 bg-orange-500/70 rounded-lg w-32" />
-                    <div className="h-9 bg-text-primary/10 rounded-lg w-24" />
+        {/* Stats Bar */}
+        <div className="bg-surface border-y border-border">
+          <div className="max-w-5xl mx-auto px-6 py-10 md:py-12">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 sm:gap-8 sm:divide-x divide-border">
+              {project.stats.map((stat: any) => (
+                <div
+                  key={stat.label}
+                  className="text-center px-4 first:pl-0 sm:last:pr-0"
+                >
+                  <div className="font-syne font-black text-4xl md:text-5xl text-accent mb-2">
+                    {stat.value}
                   </div>
-                  <div className="grid grid-cols-4 gap-2 mt-auto">
-                    {[1,2,3,4].map(i => (
-                      <div key={i} className="h-14 bg-text-primary/10 rounded-lg" />
+                  <div className="text-text-muted text-[10px] md:text-xs uppercase tracking-[0.2em] font-bold">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Content */}
+        <div className="max-w-5xl mx-auto px-6 py-20">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
+            {/* Main narrative */}
+            <div className="lg:col-span-2 space-y-16">
+              {/* Problem */}
+              <section>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-8 h-8 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center justify-center">
+                    <span className="text-red-400 text-xs font-bold">!</span>
+                  </div>
+                  <h2 className="font-syne font-black text-2xl md:text-3xl text-text-primary">
+                    The Problem
+                  </h2>
+                </div>
+                <p className="text-text-secondary leading-relaxed text-base">
+                  {project.problem}
+                </p>
+              </section>
+
+              {/* Solution */}
+              <section>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-8 h-8 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center">
+                    <span className="text-accent text-xs font-bold">✓</span>
+                  </div>
+                  <h2 className="font-syne font-black text-2xl md:text-3xl text-text-primary">
+                    The Solution
+                  </h2>
+                </div>
+                <p className="text-text-secondary leading-relaxed text-base">
+                  {project.solution}
+                </p>
+              </section>
+
+              {/* Mockup preview */}
+              <div className="rounded-2xl overflow-hidden border border-border bg-surface-2 p-4">
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="w-3 h-3 rounded-full bg-red-500/60" />
+                  <div className="w-3 h-3 rounded-full bg-yellow-500/60" />
+                  <div className="w-3 h-3 rounded-full bg-green-500/60" />
+                  <div className="flex-1 mx-4 bg-text-primary/5 rounded-full h-5 px-3 flex items-center">
+                    <span className="text-text-primary/30 text-[10px]">
+                      www.{project.slug}.com
+                    </span>
+                  </div>
+                </div>
+                {project.screenshot || project.image ? (
+                  <div className="rounded-xl overflow-hidden">
+                    <img
+                      src={project.screenshot || project.image}
+                      alt={`${project.title} screenshot`}
+                      className="w-full h-auto object-cover"
+                    />
+                  </div>
+                ) : (
+                  <div
+                    className={`h-60 rounded-xl bg-gradient-to-br ${gradient} p-6 flex flex-col gap-3`}
+                  >
+                    <div className="h-8 bg-text-primary/20 rounded-lg w-3/4 animate-pulse" />
+                    <div className="h-4 bg-text-primary/10 rounded w-full" />
+                    <div className="h-4 bg-text-primary/10 rounded w-5/6" />
+                    <div className="flex gap-3 mt-2">
+                      <div className="h-9 bg-orange-500/70 rounded-lg w-32" />
+                      <div className="h-9 bg-text-primary/10 rounded-lg w-24" />
+                    </div>
+                    <div className="grid grid-cols-4 gap-2 mt-auto">
+                      {[1, 2, 3, 4].map((i) => (
+                        <div
+                          key={i}
+                          className="h-14 bg-text-primary/10 rounded-lg"
+                        />
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Results */}
+              <section>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
+                    <TrendingUp className="w-4 h-4 text-emerald-400" />
+                  </div>
+                  <h2 className="font-syne font-black text-2xl md:text-3xl text-text-primary">
+                    The Results
+                  </h2>
+                </div>
+                <ul className="space-y-3">
+                  {project.results.map((result: any) => (
+                    <li key={result} className="flex items-start gap-3">
+                      <CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+                      <span className="text-text-secondary text-base">
+                        {result}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            </div>
+
+            {/* Sidebar */}
+            <div className="space-y-8">
+              {/* Process */}
+              <div className="p-6 rounded-2xl bg-surface border border-border sticky top-28">
+                <h3 className="font-syne font-bold text-text-primary text-sm uppercase tracking-widest mb-5">
+                  Process
+                </h3>
+                <ol className="space-y-4">
+                  {project.process.map((step: any, i: number) => (
+                    <li key={step} className="flex items-center gap-3">
+                      <span className="w-6 h-6 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs flex items-center justify-center font-bold flex-shrink-0">
+                        {i + 1}
+                      </span>
+                      <span className="text-text-secondary text-sm">
+                        {step}
+                      </span>
+                    </li>
+                  ))}
+                </ol>
+
+                <div className="mt-8 pt-6 border-t border-border">
+                  <h3 className="font-syne font-bold text-text-primary text-sm uppercase tracking-widest mb-4">
+                    Technologies
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.map((tag: any) => (
+                      <span
+                        key={tag}
+                        className="px-3 py-1 rounded-full bg-surface-2 border border-border text-text-secondary text-[11px] font-fira-code"
+                      >
+                        {tag}
+                      </span>
                     ))}
                   </div>
                 </div>
-              )}
-            </div>
 
-            {/* Results */}
-            <section>
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
-                  <TrendingUp className="w-4 h-4 text-emerald-400" />
-                </div>
-                <h2 className="font-syne font-black text-2xl md:text-3xl text-text-primary">The Results</h2>
+                <a
+                  href={project.liveUrl}
+                  className="mt-6 flex w-full items-center justify-center gap-2 px-5 py-3 bg-accent hover:bg-accent-light text-white font-semibold rounded-xl text-sm transition-all duration-300"
+                >
+                  View Live Site
+                  <ArrowRight className="w-4 h-4" />
+                </a>
               </div>
-              <ul className="space-y-3">
-                {project.results.map((result: any) => (
-                  <li key={result} className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
-                    <span className="text-text-secondary text-base">{result}</span>
-                  </li>
-                ))}
-              </ul>
-            </section>
+            </div>
           </div>
+        </div>
 
-          {/* Sidebar */}
-          <div className="space-y-8">
-            {/* Process */}
-            <div className="p-6 rounded-2xl bg-surface border border-border sticky top-28">
-              <h3 className="font-syne font-bold text-text-primary text-sm uppercase tracking-widest mb-5">
-                Process
-              </h3>
-              <ol className="space-y-4">
-                {project.process.map((step: any, i: number) => (
-                  <li key={step} className="flex items-center gap-3">
-                    <span className="w-6 h-6 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs flex items-center justify-center font-bold flex-shrink-0">
-                      {i + 1}
-                    </span>
-                    <span className="text-text-secondary text-sm">{step}</span>
-                  </li>
-                ))}
-              </ol>
-
-              <div className="mt-8 pt-6 border-t border-border">
-                <h3 className="font-syne font-bold text-text-primary text-sm uppercase tracking-widest mb-4">
-                  Technologies
+        {/* Next Project */}
+        <div className="border-t border-border bg-surface">
+          <div className="max-w-5xl mx-auto px-6 py-12">
+            <p className="text-text-muted text-xs uppercase tracking-widest mb-4">
+              Next Project
+            </p>
+            <Link
+              href={`/work/${nextProject.slug}`}
+              className="group flex items-center justify-between"
+            >
+              <div>
+                <h3 className="font-syne font-black text-display-sm text-text-primary group-hover:text-accent transition-colors duration-300">
+                  {nextProject.title}
                 </h3>
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag: any) => (
-                    <span key={tag} className="px-3 py-1 rounded-full bg-surface-2 border border-border text-text-secondary text-[11px] font-fira-code">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+                <p className="text-text-secondary text-sm mt-1">
+                  {nextProject.category}
+                </p>
               </div>
-
-              <a
-                href={project.liveUrl}
-                className="mt-6 flex w-full items-center justify-center gap-2 px-5 py-3 bg-accent hover:bg-accent-light text-white font-semibold rounded-xl text-sm transition-all duration-300"
-              >
-                View Live Site
-                <ArrowRight className="w-4 h-4" />
-              </a>
-            </div>
+              <ArrowRight className="w-8 h-8 text-accent transition-transform group-hover:translate-x-2 duration-300" />
+            </Link>
           </div>
         </div>
-      </div>
-
-      {/* Next Project */}
-      <div className="border-t border-border bg-surface">
-        <div className="max-w-5xl mx-auto px-6 py-12">
-          <p className="text-text-muted text-xs uppercase tracking-widest mb-4">Next Project</p>
-          <Link
-            href={`/work/${nextProject.slug}`}
-            className="group flex items-center justify-between"
-          >
-            <div>
-              <h3 className="font-syne font-black text-display-sm text-text-primary group-hover:text-accent transition-colors duration-300">
-                {nextProject.title}
-              </h3>
-              <p className="text-text-secondary text-sm mt-1">{nextProject.category}</p>
-            </div>
-            <ArrowRight className="w-8 h-8 text-accent transition-transform group-hover:translate-x-2 duration-300" />
-          </Link>
-        </div>
-      </div>
-    </article>
+      </article>
+    </>
   );
 }

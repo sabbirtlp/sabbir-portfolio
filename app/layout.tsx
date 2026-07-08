@@ -3,6 +3,19 @@ import { Syne, Inter, Unbounded, Fira_Code } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import SmoothScroll from "@/components/layout/SmoothScroll";
+import { ContentProvider } from "@/components/providers/ContentProvider";
+import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import JsonLd from "@/components/seo/JsonLd";
+import {
+  buildGlobalSchemaGraph,
+  DEFAULT_DESCRIPTION,
+  SEO_KEYWORDS,
+  SITE_NAME,
+  SITE_TITLE,
+  SITE_URL,
+  TWITTER_HANDLE,
+} from "@/lib/seo";
 
 const syne = Syne({
   subsets: ["latin"],
@@ -32,96 +45,75 @@ const firaCode = Fira_Code({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://sabbir.dev"),
-  title: "Sabbir Hossain — Web Developer & Conversion Specialist",
-  description:
-    "I craft high-converting websites that grow your business. 7+ years experience, 300+ websites built, 100+ satisfied clients. WordPress, Custom Websites, Landing Pages, E-Commerce.",
-  keywords: [
-    "web developer",
-    "WordPress developer",
-    "website design",
-    "landing page",
-    "e-commerce",
-    "conversion rate optimization",
-    "Sabbir Hossain",
-    "business website",
-  ],
-  authors: [{ name: "Sabbir Hossain", url: "https://sabbir.dev" }],
-  creator: "Sabbir Hossain",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: SITE_TITLE,
+    template: "%s | Sabbir Hossain",
+  },
+  description: DEFAULT_DESCRIPTION,
+  keywords: SEO_KEYWORDS,
+  authors: [{ name: SITE_NAME, url: SITE_URL }],
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
+  category: "technology",
+  alternates: {
+    canonical: SITE_URL,
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://sabbir.dev",
-    siteName: "Sabbir Hossain Portfolio",
-    title: "Sabbir Hossain — Web Developer & Conversion Specialist",
-    description:
-      "Crafting high-converting websites that grow your business. 7+ years, 300+ websites, 100+ happy clients.",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Sabbir Hossain — Web Developer",
-      },
-    ],
+    url: SITE_URL,
+    siteName: `${SITE_NAME} Portfolio`,
+    title: SITE_TITLE,
+    description: DEFAULT_DESCRIPTION,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sabbir Hossain — Web Developer & Conversion Specialist",
-    description: "Crafting high-converting websites that grow your business.",
-    images: ["/og-image.jpg"],
-    creator: "@sabbir_dev",
+    title: SITE_TITLE,
+    description: DEFAULT_DESCRIPTION,
+    creator: TWITTER_HANDLE,
+    site: TWITTER_HANDLE,
   },
   robots: {
     index: true,
     follow: true,
-    googleBot: { index: true, follow: true, "max-video-preview": -1, "max-image-preview": "large" },
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
+  verification: process.env.GOOGLE_SITE_VERIFICATION
+    ? { google: process.env.GOOGLE_SITE_VERIFICATION }
+    : undefined,
 };
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Sabbir Hossain",
-  url: "https://sabbir.dev",
-  jobTitle: "Web Developer & Conversion Specialist",
-  description:
-    "Professional web developer with 7+ years experience building high-converting websites.",
-  knowsAbout: ["WordPress", "Web Development", "UI/UX Design", "Conversion Rate Optimization", "E-Commerce"],
-  offers: {
-    "@type": "Offer",
-    description: "Web Development Services",
-  },
-};
-
-import SmoothScroll from "@/components/layout/SmoothScroll";
-import { ContentProvider } from "@/components/providers/ContentProvider";
-import { ThemeProvider } from "@/components/providers/ThemeProvider";
-
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html lang="en" className={`${syne.variable} ${inter.variable} ${unbounded.variable} ${firaCode.variable}`} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${syne.variable} ${inter.variable} ${unbounded.variable} ${firaCode.variable}`}
+      suppressHydrationWarning
+    >
       <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+        <JsonLd data={buildGlobalSchemaGraph()} />
       </head>
-      <body className="bg-background text-text-primary font-inter antialiased" suppressHydrationWarning>
+      <body
+        className="bg-background text-text-primary font-inter antialiased"
+        suppressHydrationWarning
+      >
         <ThemeProvider>
           <ContentProvider>
             <SmoothScroll>
-              {/* Noise grain overlay */}
               <div className="noise-overlay" aria-hidden="true" />
-
-
-              {/* Navigation */}
               <Navbar />
-
-              {/* Main content */}
               <main>{children}</main>
-
-              {/* Footer */}
               <Footer />
             </SmoothScroll>
           </ContentProvider>
