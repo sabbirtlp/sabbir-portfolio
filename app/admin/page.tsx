@@ -27,6 +27,7 @@ import {
   X,
   Zap,
   Type,
+  Terminal,
   Mail
 } from "lucide-react";
 import { useRouter } from "next/navigation";
