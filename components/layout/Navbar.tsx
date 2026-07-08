@@ -8,7 +8,7 @@ import MagneticButton from "@/components/ui/MagneticButton";
 import ThemeSwitcher from "@/components/ui/ThemeSwitcher";
 import { useActiveSection } from "@/hooks/useActiveSection";
 
-const navLinks = [
+const fallbackNavLinks = [
   { label: "Home", href: "#home" },
   { label: "Work", href: "#work" },
   { label: "Portfolio", href: "/portfolio" },
@@ -24,7 +24,8 @@ import { useContent } from "@/components/providers/ContentProvider";
 export default function Navbar() {
   const { content } = useContent();
   const pathname = usePathname();
-  const activeSection = useActiveSection(navLinks.map((link) => link.href.substring(1)), "home");
+  const navLinks = content?.header?.navLinks || fallbackNavLinks;
+  const activeSection = useActiveSection(navLinks.map((link: any) => link.href.substring(1)), "home");
   
   // Safe check to prevent dashboard crash on public access
   if (!content?.general || pathname?.startsWith("/admin") || pathname?.startsWith("/login")) return null;
@@ -96,7 +97,7 @@ export default function Navbar() {
 
           {/* Desktop Nav */}
           <ul className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => {
+            {navLinks.map((link: any) => {
               const isHashLink = link.href.startsWith("#");
               const isActive = isHashLink
                 ? pathname === "/" && activeSection === link.href.substring(1)
@@ -133,10 +134,10 @@ export default function Navbar() {
             <div className="hidden md:block">
               <MagneticButton strength={0.3}>
                 <button
-                  onClick={() => handleNavClick("/contact")}
+                  onClick={() => handleNavClick(content?.header?.ctaLink || "/contact")}
                   className="px-5 py-2.5 bg-accent hover:bg-accent-light text-white text-sm font-semibold rounded-full transition-all duration-300 glow-accent-sm cursor-pointer"
                 >
-                  Start a Project
+                  {content?.header?.ctaText || "Start a Project"}
                 </button>
               </MagneticButton>
             </div>
@@ -175,7 +176,7 @@ export default function Navbar() {
             className="fixed inset-0 z-[9980] bg-background/95 backdrop-blur-2xl flex flex-col items-center justify-center md:hidden overflow-y-auto py-24 px-6"
           >
             <ul className="flex flex-col items-center gap-4 sm:gap-6 w-full max-w-xs">
-              {navLinks.map((link, i) => {
+              {navLinks.map((link: any, i: number) => {
                 const isHashLink = link.href.startsWith("#");
                 const isActive = isHashLink
                   ? pathname === "/" && activeSection === link.href.substring(1)
@@ -210,13 +211,14 @@ export default function Navbar() {
               <motion.li
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
                 transition={{ delay: (navLinks.length + 1) * 0.08 }}
               >
                 <button
-                  onClick={() => handleNavClick("/contact")}
+                  onClick={() => handleNavClick(content?.header?.ctaLink || "/contact")}
                   className="mt-2 px-6 py-2.5 bg-accent text-white font-semibold rounded-full text-base sm:text-lg cursor-pointer"
                 >
-                  Start a Project
+                  {content?.header?.ctaText || "Start a Project"}
                 </button>
               </motion.li>
             </ul>

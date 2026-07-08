@@ -158,6 +158,14 @@ export default function AdminDashboard() {
           problem_solver: true
         };
       }
+
+      // Ensure contact page notification email defaults exist
+      if (!data.contactPage) {
+        data.contactPage = {};
+      }
+      if (!data.contactPage.receivingEmail && data.general?.email) {
+        data.contactPage.receivingEmail = data.general.email;
+      }
       
       setContent(data);
     } catch (error) {
@@ -180,6 +188,14 @@ export default function AdminDashboard() {
   async function handleSave() {
     setSaving(true);
     setMessage(null);
+
+    const notificationEmail = content?.contactPage?.receivingEmail?.trim();
+    if (notificationEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(notificationEmail)) {
+      setMessage({ type: "error", text: "Please enter a valid form notification email address." });
+      setSaving(false);
+      return;
+    }
+
     try {
       const res = await fetch("/api/admin/content", {
         method: "POST",
@@ -1350,9 +1366,46 @@ export default function AdminDashboard() {
             {/* GENERAL SECTION */}
             {activeTab === "general" && (
               <div className="space-y-6">
+                <div className="bg-accent/10 border border-accent/20 rounded-2xl p-6">
+                  <div className="flex items-start gap-3 mb-4">
+                    <Mail className="w-5 h-5 text-accent shrink-0 mt-1" />
+                    <div>
+                      <label className="block text-xs font-bold uppercase tracking-widest text-accent mb-1">
+                        Form Notification Email
+                      </label>
+                      <p className="text-xs text-text-secondary leading-relaxed">
+                        Choose where contact form submissions are delivered. This is separate from the email shown publicly on your contact page.
+                      </p>
+                    </div>
+                  </div>
+                  <input
+                    type="email"
+                    value={content.contactPage?.receivingEmail || ""}
+                    onChange={(e) =>
+                      setContent({
+                        ...content,
+                        contactPage: {
+                          ...(content.contactPage || {}),
+                          receivingEmail: e.target.value,
+                        },
+                      })
+                    }
+                    className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary outline-none focus:border-accent/40"
+                    placeholder="e.g. you@example.com"
+                  />
+                  <p className="text-[11px] text-text-muted mt-3">
+                    Currently sending notifications to{" "}
+                    <span className="text-accent font-semibold">
+                      {content.contactPage?.receivingEmail?.trim() || content.general?.email || "Not configured"}
+                    </span>
+                    . Click <strong>Save Changes</strong> after updating.
+                  </p>
+                </div>
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Email Address</label>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Public Email Address</label>
+                    <p className="text-[11px] text-text-muted mb-2">Shown on your website for visitors to see.</p>
                     <input 
                       type="email" 
                       value={content.general.email}
@@ -1692,6 +1745,40 @@ export default function AdminDashboard() {
             {/* CONTACT PAGE SECTION */}
             {activeTab === "contactPage" && (
               <div className="space-y-6">
+                <div className="bg-accent/10 border border-accent/20 rounded-2xl p-6">
+                  <div className="flex items-start gap-3 mb-4">
+                    <Mail className="w-5 h-5 text-accent shrink-0 mt-1" />
+                    <div>
+                      <label className="block text-xs font-bold uppercase tracking-widest text-accent mb-1">
+                        Form Notification Email
+                      </label>
+                      <p className="text-xs text-text-secondary leading-relaxed">
+                        Set the inbox that receives new contact form submissions. You can also change this in General Settings.
+                      </p>
+                    </div>
+                  </div>
+                  <input 
+                    type="email" 
+                    value={content.contactPage?.receivingEmail || ""}
+                    onChange={(e) =>
+                      setContent({
+                        ...content,
+                        contactPage: {
+                          ...(content.contactPage || {}),
+                          receivingEmail: e.target.value,
+                        },
+                      })
+                    }
+                    className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary outline-none focus:border-accent/40"
+                    placeholder="e.g. you@example.com"
+                  />
+                  <p className="text-[11px] text-text-muted mt-3">
+                    Active notification email:{" "}
+                    <span className="text-accent font-semibold">
+                      {content.contactPage?.receivingEmail?.trim() || content.general?.email || "Not configured"}
+                    </span>
+                  </p>
+                </div>
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Badge Text</label>
                   <input 
@@ -1792,7 +1879,8 @@ export default function AdminDashboard() {
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Email Address</label>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Display Email</label>
+                    <p className="text-[11px] text-text-muted mb-2">Shown on the contact page sidebar for visitors.</p>
                     <input 
                       type="email" 
                       value={content.contactPage?.email || ""}

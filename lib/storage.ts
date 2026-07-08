@@ -37,6 +37,17 @@ export async function getContent() {
               }
             }
           }
+
+          if (!doc.data.contactPage) {
+            doc.data.contactPage = localData?.contactPage || {};
+          }
+          if (!doc.data.contactPage.receivingEmail) {
+            doc.data.contactPage.receivingEmail =
+              localData?.contactPage?.receivingEmail ||
+              doc.data.general?.email ||
+              localData?.general?.email;
+          }
+
           return doc.data;
         }
       } catch (dbError) {

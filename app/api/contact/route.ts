@@ -1,4 +1,29 @@
 import { NextResponse } from "next/server";
+import nodemailer from "nodemailer";
+import { buildContactNotificationEmail } from "@/lib/email-templates/contact-notification";
+import { getContent } from "@/lib/storage";
+
+function getSmtpCredentials() {
+  const user = process.env.SMTP_USER || process.env.EMAIL_USER;
+  const pass = process.env.SMTP_PASS || process.env.EMAIL_PASS;
+  return { user, pass };
+}
+
+function getReceivingEmail(content: any) {
+  const configuredEmail = content?.contactPage?.receivingEmail?.trim();
+  if (configuredEmail) {
+    return configuredEmail;
+  }
+
+  return (
+    content?.contactPage?.email ||
+    content?.general?.email ||
+    process.env.CONTACT_RECEIVING_EMAIL ||
+    process.env.EMAIL_USER ||
+    process.env.SMTP_USER ||
+    null
+  );
+}
 
 export async function POST(req: Request) {
   try {
@@ -11,42 +36,80 @@ export async function POST(req: Request) {
       );
     }
 
-    // You can set up your email provider here, like Resend, Sendgrid, or SMTP
-    // For this example, I'll return a mock success response so the UI works
-    // To make this fully functional, configure the nodemailer transport:
-    
-    /*
+    const content = await getContent();
+    const receivingEmail = getReceivingEmail(content);
+
+    if (!receivingEmail) {
+      return NextResponse.json(
+        {
+          error:
+            "Receiving email is not configured. Set it in Admin → General Settings or Contact Page, then click Save Changes.",
+        },
+        { status: 500 }
+      );
+    }
+
+    const { user: smtpUser, pass: smtpPass } = getSmtpCredentials();
+
+    if (!smtpUser || !smtpPass) {
+      console.warn(
+        "SMTP credentials missing. Set SMTP_USER/SMTP_PASS (or EMAIL_USER/EMAIL_PASS) in environment variables."
+      );
+      return NextResponse.json(
+        {
+          error:
+            "SMTP credentials are not configured on the server. Add SMTP_USER and SMTP_PASS to your environment variables.",
+        },
+        { status: 500 }
+      );
+    }
+
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      host: process.env.SMTP_HOST || "smtp.gmail.com",
+      port: Number(process.env.SMTP_PORT) || 587,
+      secure: process.env.SMTP_SECURE === "true",
       auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
+        user: smtpUser,
+        pass: smtpPass,
       },
     });
 
+    const { html, text } = buildContactNotificationEmail(
+      { name, email, subject, budget, message },
+      {
+        siteName: content?.general?.siteName || "Sabbir Hossain",
+        siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://sabbir.dev",
+      }
+    );
+
     await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: "sabbirtlp@gmail.com",
-      subject: `New Contact Form Submission: ${subject}`,
-      html: `
-        <h3>New Contact Form Submission</h3>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Subject:</strong> ${subject}</p>
-        <p><strong>Budget:</strong> ${budget || "Not specified"}</p>
-        <p><strong>Message:</strong><br/>${message.replace(/\n/g, "<br/>")}</p>
-      `,
+      from: `"Portfolio Contact Form" <${smtpUser}>`,
+      replyTo: `"${name}" <${email}>`,
+      to: receivingEmail,
+      subject: `New Inquiry: ${subject} — ${name}`,
+      text,
+      html,
     });
-    */
 
-    // Simulate delay
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    return NextResponse.json({ success: true, message: "Email sent successfully" });
-  } catch (error) {
+    return NextResponse.json({
+      success: true,
+      message: "Email sent successfully",
+    });
+  } catch (error: any) {
     console.error("Error sending email:", error);
+
+    const smtpMessage =
+      error?.response ||
+      error?.message ||
+      "Failed to send email. Please try again later.";
+
     return NextResponse.json(
-      { error: "Failed to send email. Please try again later." },
+      {
+        error:
+          process.env.NODE_ENV === "development"
+            ? `Failed to send email: ${smtpMessage}`
+            : "Failed to send email. Please try again later.",
+      },
       { status: 500 }
     );
   }
