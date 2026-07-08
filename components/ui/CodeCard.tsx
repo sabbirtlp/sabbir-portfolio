@@ -10,8 +10,11 @@ export const CodeCard = () => {
   if (!content?.about) return null;
 
   const { name, role, techStack } = content.about;
-  const location = "Bangladesh"; // Hardcoded as per user's sample context or I could pull from content if available
-  const seniority = "Senior Web Developer"; // Based on 7+ years in content
+  const codeCard = content.codeCard || {};
+  const location = codeCard.location || "Bangladesh";
+  const experience = codeCard.experience || 7;
+  const hardworking = codeCard.hardworking ?? true;
+  const problem_solver = codeCard.problem_solver ?? true;
 
   return (
     <motion.div 
@@ -77,7 +80,7 @@ export const CodeCard = () => {
 
             <div className="pl-6">
               <span className="text-zinc-500 dark:text-zinc-400">experience:</span>{" "}
-              <span className="text-accent">7</span>
+              <span className="text-accent">{experience}</span>
               <span className="text-zinc-400 dark:text-zinc-500">, // Years</span>
             </div>
 
@@ -97,13 +100,13 @@ export const CodeCard = () => {
 
             <div className="pl-6">
               <span className="text-zinc-500 dark:text-zinc-400">hardworking:</span>{" "}
-              <span className="text-accent">true</span>
+              <span className="text-accent">{hardworking ? 'true' : 'false'}</span>
               <span className="text-zinc-400 dark:text-zinc-500">,</span>
             </div>
 
             <div className="pl-6">
               <span className="text-zinc-500 dark:text-zinc-400">problem_solver:</span>{" "}
-              <span className="text-accent">true</span>
+              <span className="text-accent">{problem_solver ? 'true' : 'false'}</span>
             </div>
 
             <div>

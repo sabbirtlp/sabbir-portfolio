@@ -2472,5 +2472,11 @@
         "label": "Avg. Turnaround"
       }
     ]
+  },
+  "codeCard": {
+    "location": "Bangladesh",
+    "experience": 7,
+    "hardworking": true,
+    "problem_solver": true
   }
 }

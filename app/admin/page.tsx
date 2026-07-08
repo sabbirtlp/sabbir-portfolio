@@ -148,6 +148,16 @@ export default function AdminDashboard() {
         };
       }
       
+      // Ensure codeCard defaults exist
+      if (!data.codeCard) {
+        data.codeCard = {
+          location: "Bangladesh",
+          experience: 7,
+          hardworking: true,
+          problem_solver: true
+        };
+      }
+      
       setContent(data);
     } catch (error) {
       setMessage({ type: "error", text: "Failed to load content" });
@@ -253,6 +263,7 @@ export default function AdminDashboard() {
           {[
             { id: "general", label: "General Settings", icon: Settings },
             { id: "hero", label: "Hero Section", icon: LayoutDashboard },
+            { id: "codeCard", label: "Code Editor", icon: Terminal },
             { id: "about", label: "About Me", icon: User },
             { id: "services", label: "Services", icon: Briefcase },
             { id: "tech-stack", label: "Tech Stack", icon: Zap },
@@ -333,6 +344,7 @@ export default function AdminDashboard() {
               {[
                 { id: "general", label: "General" },
                 { id: "hero", label: "Hero" },
+                { id: "codeCard", label: "Code Editor" },
                 { id: "about", label: "About" },
                 { id: "services", label: "Services" },
                 { id: "tech-stack", label: "Tech Stack" },
@@ -433,6 +445,53 @@ export default function AdminDashboard() {
                       </div>
                     ))}
                   </div>
+                </div>
+              </div>
+            )}
+
+            {/* CODE EDITOR SECTION */}
+            {activeTab === "codeCard" && content.codeCard && (
+              <div className="space-y-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Location</label>
+                    <input 
+                      type="text" 
+                      value={content.codeCard.location}
+                      onChange={(e) => setContent({ ...content, codeCard: { ...content.codeCard, location: e.target.value } })}
+                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Years of Experience</label>
+                    <input 
+                      type="number" 
+                      value={content.codeCard.experience}
+                      onChange={(e) => setContent({ ...content, codeCard: { ...content.codeCard, experience: Number(e.target.value) } })}
+                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary"
+                    />
+                  </div>
+                </div>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <label className="flex items-center gap-3 cursor-pointer">
+                    <input 
+                      type="checkbox"
+                      checked={content.codeCard.hardworking}
+                      onChange={(e) => setContent({ ...content, codeCard: { ...content.codeCard, hardworking: e.target.checked } })}
+                      className="w-5 h-5 rounded accent-accent"
+                    />
+                    <span className="text-sm font-bold text-text-primary">Hardworking</span>
+                  </label>
+                  <label className="flex items-center gap-3 cursor-pointer">
+                    <input 
+                      type="checkbox"
+                      checked={content.codeCard.problem_solver}
+                      onChange={(e) => setContent({ ...content, codeCard: { ...content.codeCard, problem_solver: e.target.checked } })}
+                      className="w-5 h-5 rounded accent-accent"
+                    />
+                    <span className="text-sm font-bold text-text-primary">Problem Solver</span>
+                  </label>
                 </div>
               </div>
             )}
