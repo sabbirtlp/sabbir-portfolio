@@ -3,6 +3,7 @@
 import { useState, useRef } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import Link from "next/link";
 
 import { useContent } from "@/components/providers/ContentProvider";
 
@@ -12,11 +13,14 @@ export default function Testimonials() {
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  if (!content?.testimonials) {
+  if (!content?.testimonials || content.testimonials.length === 0) {
     return null;
   }
 
-  const testimonials = content.testimonials;
+  // Filter out short reviews and only show 5-star, limit to 8
+  const testimonials = content.testimonials
+    .filter((t: any) => t.rating === 5 && t.content.length > 30)
+    .slice(0, 8);
 
   const prev = () => setActive((a) => (a - 1 + testimonials.length) % testimonials.length);
   const next = () => setActive((a) => (a + 1) % testimonials.length);
@@ -150,6 +154,17 @@ export default function Testimonials() {
             >
               <ChevronRight className="w-5 h-5" />
             </button>
+          </div>
+          
+          {/* See All Button */}
+          <div className="mt-12 text-center">
+            <Link 
+              href="/reviews"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-text-primary text-background dark:text-background dark:hover:text-white hover:bg-accent rounded-full font-syne font-bold transition-all duration-300 shadow-xl hover:-translate-y-1 hover:shadow-accent/25"
+            >
+              See All Client Reviews
+              <ChevronRight className="w-4 h-4" />
+            </Link>
           </div>
         </div>
       </div>
