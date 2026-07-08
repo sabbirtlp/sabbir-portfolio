@@ -16,7 +16,7 @@ const navLinks = [
   { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
   { label: "Process", href: "#process" },
-  { label: "Contact", href: "#contact" },
+  { label: "Contact", href: "/contact" },
 ];
 
 import { useContent } from "@/components/providers/ContentProvider";
@@ -133,7 +133,7 @@ export default function Navbar() {
             <div className="hidden md:block">
               <MagneticButton strength={0.3}>
                 <button
-                  onClick={() => handleNavClick("#contact")}
+                  onClick={() => handleNavClick("/contact")}
                   className="px-5 py-2.5 bg-accent hover:bg-accent-light text-white text-sm font-semibold rounded-full transition-all duration-300 glow-accent-sm cursor-pointer"
                 >
                   Start a Project
@@ -213,7 +213,7 @@ export default function Navbar() {
                 transition={{ delay: (navLinks.length + 1) * 0.08 }}
               >
                 <button
-                  onClick={() => handleNavClick("#contact")}
+                  onClick={() => handleNavClick("/contact")}
                   className="mt-2 px-6 py-2.5 bg-accent text-white font-semibold rounded-full text-base sm:text-lg cursor-pointer"
                 >
                   Start a Project

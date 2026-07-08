@@ -82,8 +82,8 @@ export default function Hero() {
     document.querySelector("#work")?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const handleScrollToContact = () => {
-    document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
+  const handleContactClick = () => {
+    router.push("/contact");
   };
 
   return (
@@ -233,7 +233,7 @@ export default function Hero() {
 
               <MagneticButton strength={0.3} className="w-full sm:w-auto">
                 <button
-                  onClick={handleScrollToContact}
+                  onClick={handleContactClick}
                   className="group w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 border border-border hover:border-accent text-text-primary font-semibold rounded-full transition-all duration-300 text-sm md:text-base cursor-pointer"
                 >
                   Start a Project

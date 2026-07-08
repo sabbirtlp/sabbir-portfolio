@@ -272,7 +272,8 @@ export default function AdminDashboard() {
             { id: "work", label: "Case Studies", icon: FolderOpen },
             { id: "reviews", label: "Reviews", icon: MessageSquare },
             { id: "process", label: "Process", icon: CheckCircle2 },
-            { id: "contact", label: "Contact Section", icon: Mail },
+            { id: "contact", label: "Contact CTA", icon: Mail },
+            { id: "contactPage", label: "Contact Page", icon: Mail },
             { id: "footer", label: "Footer Settings", icon: Globe },
           ].map((tab) => (
             <button
@@ -353,7 +354,8 @@ export default function AdminDashboard() {
                 { id: "work", label: "Case Studies" },
                 { id: "reviews", label: "Reviews" },
                 { id: "process", label: "Process" },
-                { id: "contact", label: "Contact" },
+                { id: "contact", label: "Contact CTA" },
+                { id: "contactPage", label: "Contact Page" },
                 { id: "footer", label: "Footer" },
               ].map((tab) => (
                 <button
@@ -1589,6 +1591,223 @@ export default function AdminDashboard() {
                           className="w-full bg-transparent text-center text-[10px] uppercase tracking-widest text-text-secondary outline-none"
                           placeholder="Label (e.g. Satisfaction)"
                         />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* CONTACT PAGE SECTION */}
+            {activeTab === "contactPage" && (
+              <div className="space-y-6">
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Badge Text</label>
+                  <input 
+                    type="text" 
+                    value={content.contactPage?.badge || ""}
+                    onChange={(e) => setContent({ ...content, contactPage: { ...content.contactPage, badge: e.target.value } })}
+                    className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary outline-none focus:border-accent/40"
+                  />
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Headline</label>
+                    <input 
+                      type="text" 
+                      value={content.contactPage?.headline || ""}
+                      onChange={(e) => setContent({ ...content, contactPage: { ...content.contactPage, headline: e.target.value } })}
+                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary outline-none focus:border-accent/40"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Headline Highlight</label>
+                    <input 
+                      type="text" 
+                      value={content.contactPage?.headlineHighlight || ""}
+                      onChange={(e) => setContent({ ...content, contactPage: { ...content.contactPage, headlineHighlight: e.target.value } })}
+                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary outline-none focus:border-accent/40"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Description</label>
+                  <textarea 
+                    rows={3}
+                    value={content.contactPage?.description || ""}
+                    onChange={(e) => setContent({ ...content, contactPage: { ...content.contactPage, description: e.target.value } })}
+                    className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary outline-none focus:border-accent/40 resize-none"
+                  />
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 border-t border-border pt-6">
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Form Title</label>
+                    <input 
+                      type="text" 
+                      value={content.contactPage?.formTitle || ""}
+                      onChange={(e) => setContent({ ...content, contactPage: { ...content.contactPage, formTitle: e.target.value } })}
+                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary outline-none focus:border-accent/40"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Form Description</label>
+                    <input 
+                      type="text" 
+                      value={content.contactPage?.formDescription || ""}
+                      onChange={(e) => setContent({ ...content, contactPage: { ...content.contactPage, formDescription: e.target.value } })}
+                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary outline-none focus:border-accent/40"
+                    />
+                  </div>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 border-t border-border pt-6">
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Info Title</label>
+                    <input 
+                      type="text" 
+                      value={content.contactPage?.infoTitle || ""}
+                      onChange={(e) => setContent({ ...content, contactPage: { ...content.contactPage, infoTitle: e.target.value } })}
+                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary outline-none focus:border-accent/40"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Info Description</label>
+                    <input 
+                      type="text" 
+                      value={content.contactPage?.infoDescription || ""}
+                      onChange={(e) => setContent({ ...content, contactPage: { ...content.contactPage, infoDescription: e.target.value } })}
+                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary outline-none focus:border-accent/40"
+                    />
+                  </div>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 border-t border-border pt-6">
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Location</label>
+                    <input 
+                      type="text" 
+                      value={content.contactPage?.location || ""}
+                      onChange={(e) => setContent({ ...content, contactPage: { ...content.contactPage, location: e.target.value } })}
+                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary outline-none focus:border-accent/40"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Location Detail</label>
+                    <input 
+                      type="text" 
+                      value={content.contactPage?.locationDetail || ""}
+                      onChange={(e) => setContent({ ...content, contactPage: { ...content.contactPage, locationDetail: e.target.value } })}
+                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary outline-none focus:border-accent/40"
+                    />
+                  </div>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Email Address</label>
+                    <input 
+                      type="email" 
+                      value={content.contactPage?.email || ""}
+                      onChange={(e) => setContent({ ...content, contactPage: { ...content.contactPage, email: e.target.value } })}
+                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary outline-none focus:border-accent/40"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Phone Number</label>
+                    <input 
+                      type="text" 
+                      value={content.contactPage?.phone || ""}
+                      onChange={(e) => setContent({ ...content, contactPage: { ...content.contactPage, phone: e.target.value } })}
+                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary outline-none focus:border-accent/40"
+                    />
+                  </div>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 border-t border-border pt-6">
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Availability</label>
+                    <input 
+                      type="text" 
+                      value={content.contactPage?.availability || ""}
+                      onChange={(e) => setContent({ ...content, contactPage: { ...content.contactPage, availability: e.target.value } })}
+                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary outline-none focus:border-accent/40"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Response Time</label>
+                    <input 
+                      type="text" 
+                      value={content.contactPage?.responseTime || ""}
+                      onChange={(e) => setContent({ ...content, contactPage: { ...content.contactPage, responseTime: e.target.value } })}
+                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary outline-none focus:border-accent/40"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Working Hours</label>
+                    <input 
+                      type="text" 
+                      value={content.contactPage?.workingHours || ""}
+                      onChange={(e) => setContent({ ...content, contactPage: { ...content.contactPage, workingHours: e.target.value } })}
+                      className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary outline-none focus:border-accent/40"
+                    />
+                  </div>
+                </div>
+                <div className="border-t border-border pt-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <div>
+                      <label className="block text-xs font-bold uppercase tracking-widest text-text-muted">FAQ Title</label>
+                      <input 
+                        type="text" 
+                        value={content.contactPage?.faqTitle || ""}
+                        onChange={(e) => setContent({ ...content, contactPage: { ...content.contactPage, faqTitle: e.target.value } })}
+                        className="w-full bg-surface-2 border border-border rounded-xl px-4 py-2 mt-2 text-text-primary outline-none focus:border-accent/40"
+                      />
+                    </div>
+                    <button 
+                      onClick={() => {
+                        const newFaqs = [...(content.contactPage?.faqs || [])];
+                        newFaqs.push({ question: "New Question", answer: "New Answer" });
+                        setContent({ ...content, contactPage: { ...content.contactPage, faqs: newFaqs } });
+                      }}
+                      className="text-[10px] text-accent hover:text-accent-light font-bold flex items-center gap-1 transition-colors mt-6"
+                    >
+                      <Plus className="w-3 h-3" /> Add FAQ
+                    </button>
+                  </div>
+                  <div className="space-y-4">
+                    {(content.contactPage?.faqs || []).map((faq: any, i: number) => (
+                      <div key={i} className="p-4 bg-surface-2 border border-border rounded-xl space-y-3 relative group/faq">
+                        <button 
+                          onClick={() => {
+                            const newFaqs = content.contactPage.faqs.filter((_: any, idx: number) => idx !== i);
+                            setContent({ ...content, contactPage: { ...content.contactPage, faqs: newFaqs } });
+                          }}
+                          className="absolute top-2 right-2 text-text-muted hover:text-red-400 opacity-0 group-hover/faq:opacity-100 transition-opacity"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
+                        <div>
+                          <label className="block text-[10px] font-bold uppercase tracking-widest text-text-muted mb-1">Question</label>
+                          <input 
+                            type="text" 
+                            value={faq.question}
+                            onChange={(e) => {
+                              const newFaqs = [...content.contactPage.faqs];
+                              newFaqs[i].question = e.target.value;
+                              setContent({ ...content, contactPage: { ...content.contactPage, faqs: newFaqs } });
+                            }}
+                            className="w-full bg-background border border-border rounded-lg px-3 py-2 text-sm text-text-primary outline-none focus:border-accent/40"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-[10px] font-bold uppercase tracking-widest text-text-muted mb-1">Answer</label>
+                          <textarea 
+                            rows={2}
+                            value={faq.answer}
+                            onChange={(e) => {
+                              const newFaqs = [...content.contactPage.faqs];
+                              newFaqs[i].answer = e.target.value;
+                              setContent({ ...content, contactPage: { ...content.contactPage, faqs: newFaqs } });
+                            }}
+                            className="w-full bg-background border border-border rounded-lg px-3 py-2 text-sm text-text-secondary outline-none focus:border-accent/40 resize-none"
+                          />
+                        </div>
                       </div>
                     ))}
                   </div>
