@@ -167,7 +167,7 @@ export default function Hero() {
         </OrbitContainer>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-20">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-28 md:pb-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left Column: Content */}
           <div className="flex flex-col items-start text-left order-2 lg:order-1">
@@ -245,14 +245,14 @@ export default function Hero() {
             {/* Compact Stats Grid */}
             <div 
               ref={statsRef}
-              className="grid grid-cols-3 gap-8 md:gap-12 opacity-0"
+              className="grid grid-cols-3 gap-3 sm:gap-6 md:gap-12 opacity-0 w-full"
             >
               {stats.map((stat: any) => (
-                <div key={stat.label} className="group/stat">
-                  <div className="font-unbounded font-medium text-xl md:text-2xl text-text-primary mb-2 transition-transform duration-300 group-hover/stat:text-accent leading-none">
+                <div key={stat.label} className="group/stat flex flex-col items-start sm:items-start">
+                  <div className="font-unbounded font-medium text-lg sm:text-xl md:text-2xl text-text-primary mb-1 md:mb-2 transition-transform duration-300 group-hover/stat:text-accent leading-none">
                     <CountUp end={stat.value} suffix={stat.suffix} duration={2000} />
                   </div>
-                  <p className="text-text-secondary text-[8px] md:text-[9px] uppercase tracking-[0.2em] font-medium opacity-60">
+                  <p className="text-text-secondary text-[7px] sm:text-[8px] md:text-[9px] uppercase tracking-wider sm:tracking-[0.2em] font-medium opacity-60 max-w-[80px] sm:max-w-full leading-tight">
                     {stat.label}
                   </p>
                 </div>
@@ -272,10 +272,10 @@ export default function Hero() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 2.2, duration: 0.8, ease: "easeOut" }}
-        className="absolute bottom-0 left-0 w-full z-10 px-6 md:px-12 py-5 flex items-center justify-between border-t border-zinc-200/60 dark:border-text-primary/[0.04]"
+        className="absolute bottom-0 left-0 w-full z-10 px-4 md:px-12 py-3 md:py-5 flex items-center justify-between border-t border-zinc-200/60 dark:border-text-primary/[0.04] bg-background/50 backdrop-blur-md"
       >
         {/* Left: Social Links */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 md:gap-4">
           {[
             { href: "https://github.com/sabbirtlp", icon: Github, label: "GitHub" },
             { href: "https://www.linkedin.com/in/dev-sabbir-hossain/", icon: Linkedin, label: "LinkedIn" },
@@ -287,9 +287,9 @@ export default function Hero() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={label}
-              className="group flex items-center justify-center w-8 h-8 rounded-full border border-text-primary/10 bg-text-primary/[0.03] hover:border-accent/50 hover:bg-accent/10 transition-all duration-300"
+              className="group flex items-center justify-center w-7 h-7 md:w-8 md:h-8 rounded-full border border-text-primary/10 bg-text-primary/[0.03] hover:border-accent/50 hover:bg-accent/10 transition-all duration-300"
             >
-              <Icon className="w-3.5 h-3.5 text-text-primary/40 group-hover:text-accent transition-colors duration-300" />
+              <Icon className="w-3 h-3 md:w-3.5 md:h-3.5 text-text-primary/40 group-hover:text-accent transition-colors duration-300" />
             </a>
           ))}
         </div>
@@ -297,29 +297,29 @@ export default function Hero() {
         {/* Center: Scroll → Services Button */}
         <button
           onClick={() => document.querySelector("#services")?.scrollIntoView({ behavior: "smooth" })}
-          className="group/scroll flex flex-col items-center gap-1.5 cursor-pointer outline-none"
+          className="group/scroll flex flex-col items-center gap-1 cursor-pointer outline-none absolute left-1/2 -translate-x-1/2"
           aria-label="Scroll to Services"
         >
-          <span className="text-[9px] font-fira-code tracking-[0.25em] uppercase text-text-primary/25 group-hover/scroll:text-accent/60 transition-colors duration-300">
+          <span className="text-[8px] md:text-[9px] font-fira-code tracking-[0.2em] md:tracking-[0.25em] uppercase text-text-primary/25 group-hover/scroll:text-accent/60 transition-colors duration-300">
             Services
           </span>
           <motion.div
-            animate={{ y: [0, 6, 0] }}
+            animate={{ y: [0, 4, 0] }}
             transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
-            className="w-7 h-7 rounded-full border border-text-primary/10 group-hover/scroll:border-accent/50 group-hover/scroll:bg-accent/10 group-hover/scroll:shadow-[0_0_18px_rgba(234,88,12,0.25)] flex items-center justify-center transition-all duration-300"
+            className="w-5 h-5 md:w-7 md:h-7 rounded-full border border-text-primary/10 group-hover/scroll:border-accent/50 group-hover/scroll:bg-accent/10 group-hover/scroll:shadow-[0_0_18px_rgba(234,88,12,0.25)] flex items-center justify-center transition-all duration-300"
           >
-            <ArrowDown className="w-3 h-3 text-accent" />
+            <ArrowDown className="w-2.5 h-2.5 md:w-3 md:h-3 text-accent" />
           </motion.div>
         </button>
 
         {/* Right: Availability Badge */}
-        <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-accent/20 bg-accent/5">
+        <div className="flex items-center gap-1.5 md:gap-2 px-2 md:px-3 py-1 md:py-1.5 rounded-full border border-accent/20 bg-accent/5 ml-auto z-10">
           <span className="relative flex h-1.5 w-1.5">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75" />
             <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-accent" />
           </span>
-          <span className="text-[9px] font-fira-code tracking-widest text-accent/80 uppercase hidden sm:block">Available for Work</span>
-          <span className="text-[9px] font-fira-code tracking-widest text-accent/80 uppercase sm:hidden">Open</span>
+          <span className="text-[8px] md:text-[9px] font-fira-code tracking-wider md:tracking-widest text-accent/80 uppercase hidden sm:block">Available for Work</span>
+          <span className="text-[8px] md:text-[9px] font-fira-code tracking-wider text-accent/80 uppercase sm:hidden">Open</span>
         </div>
       </motion.div>
     </section>
