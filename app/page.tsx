@@ -11,12 +11,12 @@ import MarqueeSeparator from "@/components/sections/MarqueeSeparator";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Hire a Conversion-Focused WordPress & WooCommerce Developer",
+  title: "WordPress & WooCommerce Developer | Sabbir Hossain",
   description:
-    "Hire Sabbir Hossain — a conversion-focused WordPress and WooCommerce developer building fast, SEO-optimized websites, landing pages, and AI-powered digital experiences for service businesses worldwide.",
+    "Sabbir Hossain builds fast, conversion-focused WordPress and WooCommerce websites for service businesses and e-commerce brands.",
   path: "/",
   keywords: [
-    "hire WordPress developer",
+    "WordPress developer",
     "WooCommerce developer",
     "conversion focused web design",
     "technical SEO expert",

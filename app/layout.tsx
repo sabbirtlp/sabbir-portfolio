@@ -8,6 +8,7 @@ import { ContentProvider } from "@/components/providers/ContentProvider";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import JsonLd from "@/components/seo/JsonLd";
 import {
+  absoluteUrl,
   buildGlobalSchemaGraph,
   DEFAULT_DESCRIPTION,
   SEO_KEYWORDS,
@@ -57,12 +58,12 @@ export const metadata: Metadata = {
   publisher: SITE_NAME,
   category: "technology",
   alternates: {
-    canonical: SITE_URL,
+    canonical: absoluteUrl("/"),
   },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: SITE_URL,
+    url: absoluteUrl("/"),
     siteName: `${SITE_NAME} Portfolio`,
     title: SITE_TITLE,
     description: DEFAULT_DESCRIPTION,

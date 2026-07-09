@@ -49,7 +49,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!service) return { title: "Service Not Found" };
 
   return createPageMetadata({
-    title: `${service.title} — Professional Web Development Services`,
+    title: `${service.title} | WordPress & WooCommerce Services`,
     description: service.longDescription || service.description,
     path: `/services/${slug}`,
     keywords: [

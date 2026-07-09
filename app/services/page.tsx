@@ -12,7 +12,7 @@ export async function generateMetadata(): Promise<Metadata> {
     "Explore professional web development services for WordPress, WooCommerce, Shopify, Wix, Squarespace, Kajabi, and AI-powered websites, all built to convert and rank.";
 
   return createPageMetadata({
-    title: "Services — Web Development Solutions",
+    title: "WordPress & WooCommerce Services | Sabbir Hossain",
     description: defaultDescription,
     path: "/services",
     keywords: [

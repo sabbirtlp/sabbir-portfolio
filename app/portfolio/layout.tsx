@@ -4,9 +4,9 @@ import { absoluteUrl, createPageMetadata } from "@/lib/seo";
 import JsonLd from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Portfolio — Conversion-Focused WordPress & WooCommerce Case Studies",
+  title: "Portfolio of High-Converting Websites | Sabbir Hossain",
   description:
-    "Explore 22+ high-performance website case studies for construction, law firms, e-commerce, healthcare, and consulting. Every project is built for conversions, speed, and SEO visibility.",
+    "Explore conversion-focused website case studies for law, construction, e-commerce, and service businesses built for speed, SEO, and growth.",
   path: "/portfolio",
   keywords: [
     "WordPress portfolio",
