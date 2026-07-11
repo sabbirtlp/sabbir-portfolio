@@ -254,7 +254,7 @@ export default function Hero() {
             </motion.div>
 
             {/* headline */}
-            <div ref={headlineRef} className="mb-6">
+            <h1 ref={headlineRef} className="mb-6 text-left m-0">
               <div className="overflow-hidden">
                 <div className="flex flex-wrap justify-start gap-x-4 md:gap-x-6 gap-y-2">
                   <div className="overflow-hidden">
@@ -277,7 +277,7 @@ export default function Hero() {
                   ))}
                 </div>
               </div>
-            </div>
+            </h1>
 
             {/* Subheadline */}
             <p
