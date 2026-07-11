@@ -95,6 +95,9 @@ export function createPageMetadata({
     title,
     description,
     keywords: allKeywords,
+    other: {
+      keywords: allKeywords.join(", "),
+    },
     alternates: { canonical: url },
     openGraph: {
       type,

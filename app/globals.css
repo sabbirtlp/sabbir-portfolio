@@ -28,10 +28,10 @@
 }
 
 @theme {
-  --font-syne: var(--font-syne);
-  --font-inter: var(--font-inter);
-  --font-unbounded: var(--font-unbounded);
-  --font-fira-code: var(--font-fira-code);
+  --font-syne: "Inter", "Segoe UI", sans-serif;
+  --font-inter: "Inter", "Segoe UI", sans-serif;
+  --font-unbounded: "Inter", "Segoe UI", sans-serif;
+  --font-fira-code: "Consolas", "SFMono-Regular", monospace;
   --color-background: var(--background);
   --color-surface: var(--surface);
   --color-surface-2: var(--surface-2);
@@ -44,11 +44,17 @@
 }
 
 /* ─── Base ─────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
 html {
-  scroll-behavior: auto; /* Lenis handles this */
-  scroll-padding-top: 100px; /* Offset for sticky navbar */
+  scroll-behavior: auto;
+  /* Lenis handles this */
+  scroll-padding-top: 100px;
+  /* Offset for sticky navbar */
   background: var(--background);
   font-size: var(--base-font-size, 16px);
 }
@@ -61,9 +67,18 @@ body {
 }
 
 /* ─── Scrollbar ─────────────────────────────── */
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: var(--background); }
-::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 2px;
+}
 
 
 
@@ -81,7 +96,10 @@ body {
 }
 
 /* ─── Selection ─────────────────────────────── */
-::selection { background: #ea580c; color: #ffffff; }
+::selection {
+  background: #ea580c;
+  color: #ffffff;
+}
 
 /* ─── Performance Noise Grain ───────────────── */
 /* Simplified Noise Filter for background elements */
@@ -91,13 +109,30 @@ body {
 }
 
 /* ─── Typography ────────────────────────────── */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-heading, var(--font-syne)), sans-serif;
 }
-.font-syne { font-family: var(--font-heading, var(--font-syne)), sans-serif; }
-.font-unbounded { font-family: var(--font-accent, var(--font-unbounded)), sans-serif; }
-.font-fira-code { font-family: var(--font-body, var(--font-fira-code)), monospace; }
-.font-inter { font-family: var(--font-body, var(--font-inter)), sans-serif; }
+
+.font-syne {
+  font-family: var(--font-heading, var(--font-syne)), sans-serif;
+}
+
+.font-unbounded {
+  font-family: var(--font-accent, var(--font-unbounded)), sans-serif;
+}
+
+.font-fira-code {
+  font-family: var(--font-body, var(--font-fira-code)), monospace;
+}
+
+.font-inter {
+  font-family: var(--font-body, var(--font-inter)), sans-serif;
+}
 
 .text-gradient {
   background: linear-gradient(135deg, #ea580c 0%, #fb923c 50%, #c2410c 100%);
@@ -145,26 +180,32 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ─── Horizontal Scroll ─────────────────────── */
-.pin-spacer { will-change: transform; }
+.pin-spacer {
+  will-change: transform;
+}
 
 /* ─── Card hover gradient border ───────────── */
 .card-gradient-border {
   position: relative;
 }
+
 .card-gradient-border::before {
   content: "";
   position: absolute;
   inset: 0;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(135deg, rgba(234,88,12,0.5), transparent, rgba(234,88,12,0.2));
+  background: linear-gradient(135deg, rgba(234, 88, 12, 0.5), transparent, rgba(234, 88, 12, 0.2));
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   opacity: 0;
   transition: opacity 0.3s ease;
 }
-.card-gradient-border:hover::before { opacity: 1; }
+
+.card-gradient-border:hover::before {
+  opacity: 1;
+}
 
 /* ─── Marquee ───────────────────────────────── */
 .marquee-track {
@@ -174,8 +215,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 /* ─── Page Transition ───────────────────────── */
@@ -188,12 +234,22 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ─── Utilities ─────────────────────────────── */
-.clip-text { overflow: hidden; }
-.will-change-transform { will-change: transform; }
+.clip-text {
+  overflow: hidden;
+}
+
+.will-change-transform {
+  will-change: transform;
+}
 
 @keyframes shimmer {
-  from { transform: translateX(-100%); }
-  to { transform: translateX(100%); }
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(100%);
+  }
 }
 
 /* ─── Responsive ─────────────────────────────── */
@@ -201,7 +257,7 @@ h1, h2, h3, h4, h5, h6 {
   .noise-overlay {
     display: none !important;
   }
-  
+
   section {
     will-change: transform;
   }

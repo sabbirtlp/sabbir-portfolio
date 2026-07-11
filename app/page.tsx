@@ -1,13 +1,6 @@
 import type { Metadata } from "next";
 import Hero from "@/components/sections/Hero";
-import WorkSection from "@/components/sections/WorkSection";
-import About from "@/components/sections/About";
-import TechStack from "@/components/sections/TechStack";
-import Services from "@/components/sections/Services";
-import Process from "@/components/sections/Process";
-import Testimonials from "@/components/sections/Testimonials";
-import CTA from "@/components/sections/CTA";
-import MarqueeSeparator from "@/components/sections/MarqueeSeparator";
+import HomeSections from "@/components/sections/HomeSections";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
@@ -29,14 +22,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <MarqueeSeparator />
-      <WorkSection />
-      <About />
-      <TechStack />
-      <Services />
-      <Process />
-      <Testimonials />
-      <CTA />
+      <HomeSections />
     </>
   );
 }

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Syne, Inter, Unbounded, Fira_Code } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -18,33 +17,6 @@ import {
   TWITTER_HANDLE,
 } from "@/lib/seo";
 
-const syne = Syne({
-  subsets: ["latin"],
-  variable: "--font-syne",
-  display: "swap",
-  weight: ["400", "500", "600", "700", "800"],
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-const unbounded = Unbounded({
-  subsets: ["latin"],
-  variable: "--font-unbounded",
-  display: "swap",
-  weight: ["400", "700", "900"],
-});
-
-const firaCode = Fira_Code({
-  subsets: ["latin"],
-  variable: "--font-fira-code",
-  display: "swap",
-  weight: ["400", "500", "600", "700"],
-});
-
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
@@ -53,6 +25,9 @@ export const metadata: Metadata = {
   },
   description: DEFAULT_DESCRIPTION,
   keywords: SEO_KEYWORDS,
+  other: {
+    keywords: SEO_KEYWORDS.join(", "),
+  },
   authors: [{ name: SITE_NAME, url: SITE_URL }],
   creator: SITE_NAME,
   publisher: SITE_NAME,
@@ -97,11 +72,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className={`${syne.variable} ${inter.variable} ${unbounded.variable} ${firaCode.variable}`}
-      suppressHydrationWarning
-    >
+    <html lang="en" suppressHydrationWarning>
       <head>
         <JsonLd data={buildGlobalSchemaGraph()} />
       </head>
