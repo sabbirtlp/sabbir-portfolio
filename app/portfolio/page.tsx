@@ -108,14 +108,6 @@ export default function PortfolioPage() {
               );
             })}
           </div>
-
-          {/* Active count */}
-          <div className="mt-4 flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-            <span className="text-text-muted text-xs font-fira-code">
-              {filteredProjects.length} project{filteredProjects.length !== 1 ? "s" : ""} found
-            </span>
-          </div>
         </motion.div>
 
         {/* Projects Grid */}
