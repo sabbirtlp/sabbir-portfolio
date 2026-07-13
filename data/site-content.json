@@ -1286,7 +1286,7 @@
       "year": "2026",
       "description": "A corporate website for a strategic consultancy serving Canadian clients.",
       "longDescription": "The Citizen Group provides strategic advisory and community-focused consulting. The site emphasizes credibility, services, and contact funnels for enterprise clients.",
-      "image": "/projects/the-citizen-group_homepage.png",
+      "image": "/projects/thecitizengroup-homepage.jpg",
       "mockupColor": "from-indigo-900 to-violet-950",
       "liveUrl": "https://thecitizengroup.ca/",
       "stats": [{"value":"WordPress","label":"Platform"},{"value":"Canada","label":"Location"}],
@@ -1295,7 +1295,7 @@
       "solution": "Delivered a corporate site with clear service pages, team bios, and streamlined contact forms.",
       "process": ["Branding","Design","Web Development"],
       "results": ["Improved lead quality","Professional brand presence"],
-      "screenshot": "/projects/the-citizen-group_screenshot.png"
+      "screenshot": "/projects/screencapture-thecitizengroup-2026-07-13.webp"
     },
     {
       "slug": "ev-general-construction-corp",
@@ -1305,7 +1305,7 @@
       "year": "2026",
       "description": "A contractor website for general construction and renovation projects.",
       "longDescription": "EV General Construction Corp required an online portfolio to showcase services and drive local quote requests.",
-      "image": "/projects/ev-general-construction_homepage.png",
+      "image": "/projects/evgeneralconstruction-homepage.jpg",
       "mockupColor": "from-stone-800 to-black",
       "liveUrl": "https://evgeneralconstructioncorp.com/",
       "stats": [{"value":"Local","label":"Focus"},{"value":"WordPress","label":"Platform"}],
@@ -1314,7 +1314,7 @@
       "solution": "Built service pages, project gallery, and optimized contact forms to increase estimates.",
       "process": ["Discovery","Design","Development"],
       "results": ["Higher local leads","Improved project inquiries"],
-      "screenshot": "/projects/ev-general-construction_screenshot.png"
+      "screenshot": "/projects/screencapture-evgeneralconstructioncorp-2026-07-13.webp"
     },
     {
       "slug": "genesis-capital-grp",
@@ -1324,7 +1324,7 @@
       "year": "2026",
       "description": "A professional website for capital management and financial advisory services.",
       "longDescription": "Genesis Capital Group needed a secure, authoritative site to present services and capture institutional enquiries.",
-      "image": "/projects/genesis-capital-grp_homepage.png",
+      "image": "/projects/genesiscapitalgrp-homepage.jpg",
       "mockupColor": "from-slate-800 to-slate-950",
       "liveUrl": "https://genesiscapitalgrp.com/",
       "stats": [{"value":"WordPress","label":"Platform"},{"value":"Finance","label":"Industry"}],
@@ -1333,7 +1333,7 @@
       "solution": "Delivered a conversion-focused website with detailed service pages and contact funnels.",
       "process": ["Branding","UX","Development"],
       "results": ["Improved professional trust","Higher quality enquiries"],
-      "screenshot": "/projects/genesis-capital-grp_screenshot.png"
+      "screenshot": "/projects/screencapture-genesiscapitalgrp-2026-07-13.webp"
     },
     {
       "slug": "bespoke-and-build",
@@ -1343,7 +1343,7 @@
       "year": "2026",
       "description": "A portfolio website for a bespoke design and build company.",
       "longDescription": "Bespoke & Build needed a portfolio-forward site to showcase custom projects and acquire high-value clients.",
-      "image": "/projects/bespoke-and-build_homepage.png",
+      "image": "/projects/bespokeandbuild-homepage.jpg",
       "mockupColor": "from-amber-800 to-stone-900",
       "liveUrl": "https://bespokeandbuild.com/",
       "stats": [{"value":"Portfolio","label":"Type"},{"value":"WordPress","label":"Platform"}],
@@ -1352,7 +1352,7 @@
       "solution": "Designed a visual portfolio, refined messaging, and simple inquiry flows.",
       "process": ["Design","Development","Portfolio Setup"],
       "results": ["Increased premium leads","Stronger brand positioning"],
-      "screenshot": "/projects/bespoke-and-build_screenshot.png"
+      "screenshot": "/projects/screencapture-bespokeandbuild-2026-07-13.webp"
     },
     {
       "slug": "fabian-landscaping",
@@ -1362,7 +1362,7 @@
       "year": "2026",
       "description": "A local services website for landscaping design and installation.",
       "longDescription": "Fabian Landscaping required service pages, gallery, and permit/maintenance info to convert local homeowner leads.",
-      "image": "/projects/fabian-landscaping_homepage.png",
+      "image": "/projects/fabianlandscaping-homepage.jpg",
       "mockupColor": "from-emerald-900 to-teal-900",
       "liveUrl": "https://fabianlandscaping.com/",
       "stats": [{"value":"Local","label":"Coverage"},{"value":"WordPress","label":"Platform"}],
@@ -1371,7 +1371,7 @@
       "solution": "Built localized landing pages, project gallery, and an easy contact flow.",
       "process": ["Local Research","Gallery","Development"],
       "results": ["Higher quote requests","Improved online visibility"],
-      "screenshot": "/projects/fabian-landscaping_screenshot.png"
+      "screenshot": "/projects/screencapture-fabianlandscaping-2026-07-13.webp"
     },
     {
       "slug": "courthouse-lawyers",
@@ -1381,7 +1381,7 @@
       "year": "2026",
       "description": "A professional legal website focused on litigation and personal injury services.",
       "longDescription": "Courthouse Lawyers required an authoritative site to present practice areas, attorney profiles, and drive consultation bookings.",
-      "image": "/projects/courthouse-lawyers_homepage.png",
+      "image": "/projects/courthouselawyers-homepage.jpg",
       "mockupColor": "from-slate-900 to-gray-950",
       "liveUrl": "https://courthouselawyers.com/",
       "stats": [{"value":"Legal","label":"Industry"},{"value":"WordPress","label":"Platform"}],
@@ -1390,7 +1390,7 @@
       "solution": "Built a practice-oriented site with clear CTAs, attorney bios and contact forms.",
       "process": ["Content Strategy","Design","Development"],
       "results": ["Increased consultations","Improved trust"],
-      "screenshot": "/projects/courthouse-lawyers_screenshot.png"
+      "screenshot": "/projects/screencapture-courthouselawyers-2026-07-13.webp"
     },
     {
       "slug": "allwin-homes",
@@ -1400,7 +1400,7 @@
       "year": "2026",
       "description": "A website for an Australian home builder showcasing developments and services.",
       "longDescription": "Allwin Homes needed a professional site to present developments, process, and capture regional leads.",
-      "image": "/projects/allwin-homes_homepage.png",
+      "image": "/projects/allwinhomes-homepage.jpg",
       "mockupColor": "from-stone-700 to-stone-900",
       "liveUrl": "https://allwinhomes.com.au/",
       "stats": [{"value":"Australia","label":"Location"},{"value":"WordPress","label":"Platform"}],
@@ -1409,7 +1409,7 @@
       "solution": "Implemented a project showcase, service pages, and contact funnels for buyers.",
       "process": ["Design","Development","SEO"],
       "results": ["Increased buyer enquiries","Clear project presentation"],
-      "screenshot": "/projects/allwin-homes_screenshot.png"
+      "screenshot": "/projects/screencapture-allwinhomes-2026-07-13.webp"
     }
   ],
   "testimonials": [
