@@ -30,9 +30,7 @@ export default function PortfolioPage() {
 
   const filteredProjects = useMemo(() => {
     if (activeFilter === "All") return projects;
-    return projects.filter(
-      (p: any) => p.filterCategory === activeFilter
-    );
+    return projects.filter((p: any) => p.filterCategory === activeFilter);
   }, [activeFilter, projects]);
 
   return (
@@ -54,13 +52,11 @@ export default function PortfolioPage() {
               Portfolio
             </p>
             <h1 className="font-syne font-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-text-primary leading-[0.95] tracking-tight mb-6">
-              My{" "}
-              <span className="text-gradient">Creative</span>{" "}
-              Work
+              My <span className="text-gradient">Creative</span> Work
             </h1>
             <p className="text-text-secondary text-base md:text-lg max-w-2xl leading-relaxed">
-              Explore my collection of projects across various industries. Filter
-              by category to find exactly what you&apos;re looking for.
+              Explore my collection of projects across various industries.
+              Filter by category to find exactly what you&apos;re looking for.
             </p>
           </motion.div>
         </div>
@@ -178,8 +174,8 @@ export default function PortfolioPage() {
                 Have a project in mind?
               </h2>
               <p className="text-text-secondary text-sm md:text-base max-w-lg mx-auto mb-8">
-                Let&apos;s discuss how I can help bring your vision to life with a
-                stunning, high-converting website.
+                Let&apos;s discuss how I can help bring your vision to life with
+                a stunning, high-converting website.
               </p>
               <Link
                 href="/#contact"

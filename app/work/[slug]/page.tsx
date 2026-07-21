@@ -156,8 +156,9 @@ export default async function CaseStudyPage({ params }: Props) {
                 </p>
               </section>
 
-              {/* Mockup preview */}
+              {/* Full Website Screenshot */}
               <div className="rounded-2xl overflow-hidden border border-border bg-surface-2 p-4">
+                {/* Browser chrome bar */}
                 <div className="flex items-center gap-2 mb-4">
                   <div className="w-3 h-3 rounded-full bg-red-500/60" />
                   <div className="w-3 h-3 rounded-full bg-yellow-500/60" />
@@ -172,8 +173,8 @@ export default async function CaseStudyPage({ params }: Props) {
                   <div className="rounded-xl overflow-hidden">
                     <img
                       src={project.screenshot || project.image}
-                      alt={`${project.title} screenshot`}
-                      className="w-full h-auto object-cover"
+                      alt={`${project.title} — full website screenshot`}
+                      className="w-full h-auto"
                     />
                   </div>
                 ) : (
