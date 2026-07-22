@@ -1,13 +1,13 @@
 {
   "general": {
     "siteName": "Sabbir Hossain",
-    "email": "sabbirtlp@gmail.com",
+    "email": "sabbir.wpdesignx@gmail.com",
     "phone": "+880 1879667166",
     "socialLinks": [
       {
-        "platform": "Github",
-        "href": "https://github.com/sabbirtlp",
-        "icon": "Github"
+        "platform": "Facebook",
+        "href": "https://www.facebook.com/people/Sabbir-Hossain/61591800721152/",
+        "icon": "Facebook"
       },
       {
         "platform": "LinkedIn",
@@ -16,7 +16,7 @@
       },
       {
         "platform": "Instagram",
-        "href": "https://www.instagram.com/abutalha8479/",
+        "href": "https://www.instagram.com/sabbir.website/",
         "icon": "Instagram"
       }
     ]
@@ -31,7 +31,7 @@
       "Your",
       "Business"
     ],
-    "subheadline": "I'm Sabbir Hossain — a web developer with 7+ years crafting conversion-focused digital experiences. I've helped 100+ businesses grow through stunning, strategic websites.",
+    "subheadline": "I'm Sabbir Hossain — a web developer with 7+ years crafting conversion-focused digital experiences. I've helped 230+ businesses grow through stunning, strategic websites.",
     "stats": [
       {
         "value": 7,
@@ -54,7 +54,7 @@
     "name": "Sabbir Hossain",
     "role": "Web Developer & CRO Specialist",
     "experience": "7+",
-    "description": "Hi, I'm Sabbir — a web developer specializing in building high-converting, business-focused websites. Over the past 7+ years, I've helped 100+ businesses across various industries transform their online presence into powerful revenue-generating machines.",
+    "description": "Hi, I'm Sabbir — a web developer specializing in building high-converting, business-focused websites. Over the past 7+ years, I've helped 230+ businesses across various industries transform their online presence into powerful revenue-generating machines.",
     "subDescription": "I don't just build pretty websites — I build strategic digital assets engineered to convert visitors into paying customers, leveraging data-driven UX, performance optimization, and proven conversion psychology.",
     "achievements": [
       "7+ years delivering premium web projects",
@@ -66,6 +66,10 @@
     ],
     "techStack": [
       "WordPress",
+      "Squarespace",
+      "Shopify",
+      "Webflow",
+      "Wix",
       "React",
       "Next.js",
       "PHP",
@@ -327,46 +331,6 @@
       "screenshot": "/uploads/screencapture-rpblawfirm-cyber-monday-2024-12-01-17_14_17-1783428518197.png"
     },
     {
-      "slug": "rifcon-building",
-      "title": "Rifcon Building",
-      "category": "Construction & Renovation",
-      "filterCategory": "Construction",
-      "year": "2026",
-      "description": "A modern contractor website focused on residential building and renovations.",
-      "longDescription": "Rifcon Building delivers quality residential construction projects. They needed a robust portfolio site to display their craftsmanship, detail their services, and generate leads from homeowners looking for reliable builders.",
-      "image": "/projects/rifcon-building-homepage.jpg",
-      "mockupColor": "from-zinc-800 to-black",
-      "liveUrl": "http://rifconbuilding.com.au/",
-      "stats": [
-        {
-          "value": "Local",
-          "label": "SEO"
-        },
-        {
-          "value": "Portfolio",
-          "label": "Focused"
-        }
-      ],
-      "tags": [
-        "Construction",
-        "Web Development",
-        "Local SEO"
-      ],
-      "problem": "Rifcon Building needed to stand out in a competitive local market by showcasing their past projects in a way that builds immediate trust with homeowners.",
-      "solution": "Developed a mobile-optimized, fast-loading website with a dedicated project gallery and clear calls to action to drive quote requests.",
-      "process": [
-        "Local Market Research",
-        "UI/UX Design",
-        "Web Development",
-        "SEO Setup"
-      ],
-      "results": [
-        "Enhanced local visibility",
-        "Higher volume of qualified quote requests"
-      ],
-      "screenshot": "/projects/rifcon_homepage.png"
-    },
-    {
       "slug": "goga-construction",
       "title": "Goga Construction Group",
       "category": "Commercial Construction",
@@ -414,7 +378,7 @@
       "year": "2026",
       "description": "Family law & immigration specialists — a trusted legal firm in Ontario, Canada.",
       "longDescription": "Modell Law Firm specializes in guiding clients through the intricacies of family law — including divorce, child custody, and spousal support — as well as immigration law. We designed a professional, trustworthy digital presence that clearly communicates their legal expertise and makes it effortless for potential clients to book consultations.",
-      "image": "/projects/modell-law-firm-homepage.jpg",
+      "image": "https://qfy8laye5c6wi3ro.public.blob.vercel-storage.com/modellawfirm%20Thumb-lPI0NC47HzkSNWOxwNGQLjjPTGjBZQ.jpg",
       "mockupColor": "from-amber-900 to-yellow-950",
       "liveUrl": "https://modelllawfirm.com/",
       "stats": [
@@ -445,7 +409,7 @@
         "Increased consultation bookings",
         "Clear separation of practice areas"
       ],
-      "screenshot": "/projects/modell_homepage.png"
+      "screenshot": "https://qfy8laye5c6wi3ro.public.blob.vercel-storage.com/screencapture-modelllawfirm-2026-07-13-23_21_54-s1LERHAml0LNfV4oUMpseWoxl7ZrRT.webp"
     },
     {
       "slug": "all-remodeling-and-tile",
@@ -455,7 +419,7 @@
       "year": "2026",
       "description": "A clean, conversion-focused website for a full-service remodeling contractor.",
       "longDescription": "All Remodeling & Tile is a full-service home renovation company specializing in kitchen and bathroom remodels, tile installations, and general contracting. We created a visually appealing Squarespace website that showcases their craftsmanship and drives local lead generation.",
-      "image": "/projects/all-remodeling-and-tile-homepage.jpg",
+      "image": "/projects/allremodeling_homepage.png",
       "mockupColor": "from-amber-800 to-stone-900",
       "liveUrl": "http://www.allremodelingandtile.com/",
       "stats": [
@@ -495,7 +459,7 @@
       "year": "2026",
       "description": "A professional website for a full-service general contracting company.",
       "longDescription": "Triple Square Contracting Inc. handles residential and commercial construction projects with a reputation for quality and reliability. We built a robust digital platform to showcase their capabilities, highlight past projects, and attract new clients through organic search.",
-      "image": "/projects/triple-square-contracting-homepage.jpg",
+      "image": "https://qfy8laye5c6wi3ro.public.blob.vercel-storage.com/Tripple%20H%20thumb-AnLoqwuX6HUblPEhUaPXJd40Fj4Xbc.jpg",
       "mockupColor": "from-blue-900 to-slate-900",
       "liveUrl": "https://triplesquarecontractinginc.net/",
       "stats": [
@@ -525,7 +489,7 @@
         "Enhanced credibility for commercial bids",
         "Increased inbound project inquiries"
       ],
-      "screenshot": "/projects/triplesquare_homepage.png"
+      "screenshot": "https://qfy8laye5c6wi3ro.public.blob.vercel-storage.com/screencapture-triplesquarecontractinginc-net-2026-07-13-23_27_48-2fPsKJ7crlhlR1xCT8IwcrLRHUakCX.webp"
     },
     {
       "slug": "zerja-ltd",
@@ -535,7 +499,7 @@
       "year": "2026",
       "description": "A sleek corporate website for a modern business consultancy and services firm.",
       "longDescription": "Zerja Ltd provides strategic business services across multiple sectors. Their website needed to project authority and professionalism while clearly communicating their diverse service portfolio to potential corporate clients.",
-      "image": "/projects/zerja-ltd-homepage.jpg",
+      "image": "https://qfy8laye5c6wi3ro.public.blob.vercel-storage.com/probuilds%20thumb-rEgn8DstilyY2ziVGcjfTuG84CmbqC.jpg",
       "mockupColor": "from-indigo-900 to-violet-950",
       "liveUrl": "https://zerjaltd.com/",
       "stats": [
@@ -565,7 +529,7 @@
         "Established authoritative online presence",
         "Clear communication of business services"
       ],
-      "screenshot": "/projects/zerjaltd_homepage.png"
+      "screenshot": "https://qfy8laye5c6wi3ro.public.blob.vercel-storage.com/screencapture-zerjaltd-2026-07-13-23_30_03-RrlkivDZ6L7fBQzQpea2A1emoN3ySx.webp"
     },
     {
       "slug": "acb-group",
@@ -575,7 +539,7 @@
       "year": "2026",
       "description": "A robust website for a diversified construction and project management group.",
       "longDescription": "ACB Group Inc is a construction and project management company handling residential and commercial developments. Their new website was designed to highlight their comprehensive capabilities, from pre-construction planning to final build delivery.",
-      "image": "/projects/acb-group-homepage.jpg",
+      "image": "https://qfy8laye5c6wi3ro.public.blob.vercel-storage.com/ACB%20Thumb-E8RGeSlUeLeivkHKT5fzYE6GqIaR7o.jpg",
       "mockupColor": "from-orange-900 to-red-950",
       "liveUrl": "https://acbgroupinc.com/",
       "stats": [
@@ -605,7 +569,7 @@
         "Unified digital brand identity",
         "Improved lead quality for large projects"
       ],
-      "screenshot": "/projects/acbgroup_homepage.png"
+      "screenshot": "https://qfy8laye5c6wi3ro.public.blob.vercel-storage.com/screencapture-acbgroupinc-2026-07-13-23_31_49-zyuLnhfBJr4twpdEeHkDXz7vcSHCMh.webp"
     },
     {
       "slug": "rental-recovery",
@@ -615,7 +579,7 @@
       "year": "2026",
       "description": "A lead-generation website for a rental property recovery and management service.",
       "longDescription": "Rental Recovery PS provides specialized services for property owners dealing with rental recovery challenges. Their platform was built to clearly communicate their unique value proposition and capture qualified leads from landlords and property managers.",
-      "image": "/projects/rental-recovery-homepage.jpg",
+      "image": "https://qfy8laye5c6wi3ro.public.blob.vercel-storage.com/Rental%20Thumb-NvJeceOUKcLlZ7WRCYUNGe6I45AzXP.jpg",
       "mockupColor": "from-teal-900 to-emerald-950",
       "liveUrl": "https://rentalrecoveryps.com/",
       "stats": [
@@ -645,7 +609,7 @@
         "Increased qualified lead volume",
         "Clear niche positioning established"
       ],
-      "screenshot": "/projects/rentalrecovery_homepage.png"
+      "screenshot": "https://qfy8laye5c6wi3ro.public.blob.vercel-storage.com/screencapture-rentalrecoveryps-2026-07-13-23_33_24-iFjGC4eXkbG6vOMlIKwLtbAHtvPamz.webp"
     },
     {
       "slug": "dn-law",
@@ -808,141 +772,285 @@
       "screenshot": "https://qfy8laye5c6wi3ro.public.blob.vercel-storage.com/screencapture-redsbuilderslimited-co-uk-2026-07-08-10_20_27-CrpXY5OvSbaiezbV7w889yG9T8nILR.webp"
     },
     {
-        "slug": "freedom-capital-consulting",
-        "title": "Freedom Capital Consulting",
-        "category": "Business Consulting",
-        "filterCategory": "Business & Consulting",
-        "year": "2026",
-        "description": "A professional consulting website for financial services and capital advisory.",
-        "longDescription": "Freedom Capital Consulting provides financial advisory and capital solutions. The project focused on clear service pages, trust-building design, and lead capture for high-value clients.",
-        "image": "/projects/freedom-capital-consulting-homepage.jpg",
-        "mockupColor": "from-slate-800 to-slate-950",
-        "liveUrl": "https://freedomcapitalconsulting.com/",
-        "stats": [
-          { "value": "Advisory", "label": "Service" },
-          { "value": "Finance", "label": "Industry" }
-        ],
-        "tags": ["Consulting","Finance","Lead Generation"],
-        "problem": "The client needed a credible digital presence to attract institutional and high-net-worth clients.",
-        "solution": "Delivered a professional, conversion-focused website with prominent trust signals, service detail pages, and streamlined contact funnels.",
-        "process": ["Branding","UX Design","Web Development","Lead Capture"],
-        "results": ["Improved inquiry quality","Stronger professional brand"],
-        "screenshot": "/projects/freedom-capital-consulting_screenshot.png"
-      },
-      {
-        "slug": "prestige-home-exteriors",
-        "title": "Prestige Home Exteriors",
-        "category": "Home Services",
-        "filterCategory": "Construction",
-        "year": "2026",
-        "description": "A lead-focused website for an exterior remodeling and siding contractor.",
-        "longDescription": "Prestige Home Exteriors specializes in exterior renovations. We built a high-converting site that showcases past projects, service areas, and streamlined quote requests.",
-        "image": "/projects/prestige-home-exteriors-homepage.jpg",
-        "mockupColor": "from-stone-800 to-stone-900",
-        "liveUrl": "https://prestigehomeexteriors.com/",
-        "stats": [{ "value": "Local", "label": "Service" }, { "value": "Exterior", "label": "Focus" }],
-        "tags": ["Home Services","Local SEO","Lead Generation"],
-        "problem": "They needed to convert local homeowner traffic into booked consultations.",
-        "solution": "Implemented localized landing pages, project galleries, and optimized contact forms to increase quote requests.",
-        "process": ["Local SEO","Design","Development","Conversion Optimization"],
-        "results": ["Higher local leads","Improved project inquiries"],
-        "screenshot": "/projects/prestige-home-exteriors_screenshot.png"
-      },
-      {
-        "slug": "porraspi-law-group",
-        "title": "Porraspi Law Group",
-        "category": "Law Firm Website",
-        "filterCategory": "Business & Consulting",
-        "year": "2026",
-        "description": "A clear, authoritative website for a litigation and personal injury law practice.",
-        "longDescription": "Porraspi Law Group needed to present its practice areas and attorney expertise clearly. We designed a trusted, conversion-optimized site to drive consultations and calls.",
-        "image": "/projects/porraspi-law-group-homepage.jpg",
-        "mockupColor": "from-slate-900 to-gray-950",
-        "liveUrl": "https://porraspitalawgroup.com/",
-        "stats": [{ "value": "Legal", "label": "Industry" }, { "value": "Trust", "label": "Focus" }],
-        "tags": ["Law Firm","Lead Generation","Professional Services"],
-        "problem": "The firm lacked a modern website that converted visitors into consultation bookings.",
-        "solution": "Built a structured practice-area site with clear CTAs, attorney bios, and conversion-focused contact flows.",
-        "process": ["Content Strategy","Design","Web Development","Conversion Setup"],
-        "results": ["Increased consultations","Improved online trust"],
-        "screenshot": "/projects/porraspi-law-group_screenshot.png"
-      },
-      {
-        "slug": "miami-aluminum-pergola",
-        "title": "Miami Aluminum Pergola",
-        "category": "Local Business Website",
-        "filterCategory": "Construction",
-        "year": "2026",
-        "description": "A local lead generation site for pergola and patio cover installations in Miami.",
-        "longDescription": "Focused on high-converting service pages for motorized pergolas and patio covers, with strong HOA compliance messaging for Miami homeowners.",
-        "image": "/projects/miami-aluminum-pergola-homepage.jpg",
-        "mockupColor": "from-stone-700 to-stone-900",
-        "liveUrl": "https://miamialuminumpergola.com/",
-        "stats": [{ "value": "Local", "label": "Expertise" }, { "value": "Permits", "label": "HOA" }],
-        "tags": ["Local SEO","Pergolas","Lead Generation"],
-        "problem": "The business needed to capture qualified local leads for high-ticket outdoor builds.",
-        "solution": "Developed localized landing pages, an optimized gallery, and clear permit/HOA guidance to reduce friction in the sales process.",
-        "process": ["Local Research","Design","Development","Gallery Setup"],
-        "results": ["Higher-quality leads","Faster sales cycles"],
-        "screenshot": "/projects/miami-aluminum-pergola_screenshot.png"
-      },
-      {
-        "slug": "marrinox",
-        "title": "Marrinox",
-        "category": "E-Commerce Platform",
-        "filterCategory": "E-Commerce",
-        "year": "2026",
-        "description": "An e-commerce platform for industrial product distribution and supplier catalog.",
-        "longDescription": "Marrinox required a robust e-commerce platform to display product lines, manage inventory, and enable seamless ordering for commercial buyers and distributors worldwide.",
-        "image": "/projects/marrinox-homepage.jpg",
-        "mockupColor": "from-zinc-800 to-black",
-        "liveUrl": "https://marrinox.com/",
-        "stats": [{ "value": "E-Commerce", "label": "Platform" }, { "value": "B2B", "label": "Type" }],
-        "tags": ["E-Commerce","B2B","Product Catalog"],
-        "problem": "The company needed a robust e-commerce platform to manage product catalogs and enable B2B ordering.",
-        "solution": "Built a feature-rich e-commerce site with inventory management, spec pages, pricing tiers, and streamlined checkout for distributors.",
-        "process": ["E-Commerce Setup","Catalog Management","Payment Integration","Performance Optimization"],
-        "results": ["Improved order conversion","Streamlined distributor ordering"],
-        "screenshot": "/projects/screencapture-marrinox-2026-07-13.webp"
-      },
-      {
-        "slug": "fort-lauderdale-kitchen-remodel",
-        "title": "Fort Lauderdale Kitchen Remodel",
-        "category": "Home Renovation",
-        "filterCategory": "Construction",
-        "year": "2026",
-        "description": "A conversion-focused site for a kitchen remodeling contractor in Fort Lauderdale.",
-        "longDescription": "Targeted landing pages and portfolio showcase to drive inquiries for kitchen remodel projects in South Florida.",
-        "image": "/projects/fort-lauderdale-kitchen-remodel-homepage.jpg",
-        "mockupColor": "from-amber-800 to-stone-900",
-        "liveUrl": "https://fortlauderdalekitchenremodel.com/",
-        "stats": [{ "value": "Local", "label": "Service" }, { "value": "Kitchens", "label": "Focus" }],
-        "tags": ["Home Renovation","Kitchens","Local SEO"],
-        "problem": "They needed to convert local queries into booked remodeling estimates.",
-        "solution": "Implemented service-specific landing pages, portfolio filters, and simplified contact forms to increase estimates booked.",
-        "process": ["Landing Pages","Portfolio","Development","Conversion Tracking"],
-        "results": ["More booked estimates","Stronger local visibility"],
-        "screenshot": "/projects/fort-lauderdale-kitchen-remodel_screenshot.png"
-      },
-      {
-        "slug": "broward-aluminum-pergola",
-        "title": "Broward Aluminum Pergola",
-        "category": "Local Business Website",
-        "filterCategory": "Construction",
-        "year": "2026",
-        "description": "A local lead generation site for aluminum pergola installations across Broward County.",
-        "longDescription": "Focused on service area pages, product options, and permit guidance to help homeowners choose and purchase pergola solutions.",
-        "image": "/projects/broward-aluminum-pergola-homepage.jpg",
-        "mockupColor": "from-stone-800 to-stone-900",
-        "liveUrl": "https://browardaluminumpergola.com/",
-        "stats": [{ "value": "Local", "label": "Coverage" }, { "value": "Permits", "label": "Guidance" }],
-        "tags": ["Pergolas","Local SEO","Lead Gen"],
-        "problem": "The business needed stronger local lead flow and clearer permit information for Broward homeowners.",
-        "solution": "Built optimized service area pages, gallery, and clear HOA/permit guidance to reduce buyer friction.",
-        "process": ["Local SEO","Design","Development","Gallery"],
-        "results": ["Improved local leads","Reduced sales friction"],
-        "screenshot": "/projects/broward-aluminum-pergola_screenshot.png"
-      },
+      "slug": "freedom-capital-consulting",
+      "title": "Freedom Capital Consulting",
+      "category": "Business Consulting",
+      "filterCategory": "Business & Consulting",
+      "year": "2026",
+      "description": "A professional consulting website for financial services and capital advisory.",
+      "longDescription": "Freedom Capital Consulting provides financial advisory and capital solutions. The project focused on clear service pages, trust-building design, and lead capture for high-value clients.",
+      "image": "https://qfy8laye5c6wi3ro.public.blob.vercel-storage.com/Freedom%20Thumb-zGYaTOXKyHtpwWKwhuevlM4eF9ZNNf.jpg",
+      "mockupColor": "from-slate-800 to-slate-950",
+      "liveUrl": "https://freedomcapitalconsulting.com/",
+      "stats": [
+        {
+          "value": "Advisory",
+          "label": "Service"
+        },
+        {
+          "value": "Finance",
+          "label": "Industry"
+        }
+      ],
+      "tags": [
+        "Consulting",
+        "Finance",
+        "Lead Generation"
+      ],
+      "problem": "The client needed a credible digital presence to attract institutional and high-net-worth clients.",
+      "solution": "Delivered a professional, conversion-focused website with prominent trust signals, service detail pages, and streamlined contact funnels.",
+      "process": [
+        "Branding",
+        "UX Design",
+        "Web Development",
+        "Lead Capture"
+      ],
+      "results": [
+        "Improved inquiry quality",
+        "Stronger professional brand"
+      ],
+      "screenshot": "https://qfy8laye5c6wi3ro.public.blob.vercel-storage.com/screencapture-freedomcapitalconsulting-2026-07-13-23_35_02-Ek4LLB22Zal0NMGIHraQqyHhNQp6Vj.webp"
+    },
+    {
+      "slug": "prestige-home-exteriors",
+      "title": "Prestige Home Exteriors",
+      "category": "Home Services",
+      "filterCategory": "Construction",
+      "year": "2026",
+      "description": "A lead-focused website for an exterior remodeling and siding contractor.",
+      "longDescription": "Prestige Home Exteriors specializes in exterior renovations. We built a high-converting site that showcases past projects, service areas, and streamlined quote requests.",
+      "image": "https://qfy8laye5c6wi3ro.public.blob.vercel-storage.com/Prestige%20Thumb-F12BLEMi3gZoO84qmWFD7gsC4gyU2W.jpg",
+      "mockupColor": "from-stone-800 to-stone-900",
+      "liveUrl": "https://prestigehomeexteriors.com/",
+      "stats": [
+        {
+          "value": "Local",
+          "label": "Service"
+        },
+        {
+          "value": "Exterior",
+          "label": "Focus"
+        }
+      ],
+      "tags": [
+        "Home Services",
+        "Local SEO",
+        "Lead Generation"
+      ],
+      "problem": "They needed to convert local homeowner traffic into booked consultations.",
+      "solution": "Implemented localized landing pages, project galleries, and optimized contact forms to increase quote requests.",
+      "process": [
+        "Local SEO",
+        "Design",
+        "Development",
+        "Conversion Optimization"
+      ],
+      "results": [
+        "Higher local leads",
+        "Improved project inquiries"
+      ],
+      "screenshot": "https://qfy8laye5c6wi3ro.public.blob.vercel-storage.com/screencapture-prestigehomeexteriors-2026-07-13-23_36_38-oHW5JDk6EJsSXIu0NSIAumW7DlzfY9.webp"
+    },
+    {
+      "slug": "porraspi-law-group",
+      "title": "Porraspi Law Group",
+      "category": "Law Firm Website",
+      "filterCategory": "Business & Consulting",
+      "year": "2026",
+      "description": "A clear, authoritative website for a litigation and personal injury law practice.",
+      "longDescription": "Porraspi Law Group needed to present its practice areas and attorney expertise clearly. We designed a trusted, conversion-optimized site to drive consultations and calls.",
+      "image": "https://qfy8laye5c6wi3ro.public.blob.vercel-storage.com/Porra%20Thumb-7XdVseqaiWRsrJ6MiNYrjpgPt4gQNc.jpg",
+      "mockupColor": "from-slate-900 to-gray-950",
+      "liveUrl": "https://porraspitalawgroup.com/",
+      "stats": [
+        {
+          "value": "Legal",
+          "label": "Industry"
+        },
+        {
+          "value": "Trust",
+          "label": "Focus"
+        }
+      ],
+      "tags": [
+        "Law Firm",
+        "Lead Generation",
+        "Professional Services"
+      ],
+      "problem": "The firm lacked a modern website that converted visitors into consultation bookings.",
+      "solution": "Built a structured practice-area site with clear CTAs, attorney bios, and conversion-focused contact flows.",
+      "process": [
+        "Content Strategy",
+        "Design",
+        "Web Development",
+        "Conversion Setup"
+      ],
+      "results": [
+        "Increased consultations",
+        "Improved online trust"
+      ],
+      "screenshot": "https://qfy8laye5c6wi3ro.public.blob.vercel-storage.com/screencapture-porraspitalawgroup-2026-07-13-23_38_24-1mUUwh7o5rsjmP5R1gEqhNpNJM8PIs.webp"
+    },
+    {
+      "slug": "miami-aluminum-pergola",
+      "title": "Miami Aluminum Pergola",
+      "category": "Local Business Website",
+      "filterCategory": "Construction",
+      "year": "2026",
+      "description": "A local lead generation site for pergola and patio cover installations in Miami.",
+      "longDescription": "Focused on high-converting service pages for motorized pergolas and patio covers, with strong HOA compliance messaging for Miami homeowners.",
+      "image": "https://qfy8laye5c6wi3ro.public.blob.vercel-storage.com/Miami%20Thumb-gWgZrnullq8yyIWGdkAZ0rBXNgP3XG.jpg",
+      "mockupColor": "from-stone-700 to-stone-900",
+      "liveUrl": "https://miamialuminumpergola.com/",
+      "stats": [
+        {
+          "value": "Local",
+          "label": "Expertise"
+        },
+        {
+          "value": "Permits",
+          "label": "HOA"
+        }
+      ],
+      "tags": [
+        "Local SEO",
+        "Pergolas",
+        "Lead Generation"
+      ],
+      "problem": "The business needed to capture qualified local leads for high-ticket outdoor builds.",
+      "solution": "Developed localized landing pages, an optimized gallery, and clear permit/HOA guidance to reduce friction in the sales process.",
+      "process": [
+        "Local Research",
+        "Design",
+        "Development",
+        "Gallery Setup"
+      ],
+      "results": [
+        "Higher-quality leads",
+        "Faster sales cycles"
+      ],
+      "screenshot": "https://qfy8laye5c6wi3ro.public.blob.vercel-storage.com/screencapture-miamialuminumpergola-2026-07-13-23_40_20-DBk9UDxQS9iyDIBhHCOweuTvMoAc6f.webp"
+    },
+    {
+      "slug": "marrinox",
+      "title": "Marrinox",
+      "category": "E-Commerce Platform",
+      "filterCategory": "E-Commerce",
+      "year": "2026",
+      "description": "An e-commerce platform for industrial product distribution and supplier catalog.",
+      "longDescription": "Marrinox required a robust e-commerce platform to display product lines, manage inventory, and enable seamless ordering for commercial buyers and distributors worldwide.",
+      "image": "https://qfy8laye5c6wi3ro.public.blob.vercel-storage.com/Marrinox%20thumb-a5vYgsdDxec0PmpcbTxCO3MYaDe8Z1.jpg",
+      "mockupColor": "from-zinc-800 to-black",
+      "liveUrl": "https://marrinox.com/",
+      "stats": [
+        {
+          "value": "E-Commerce",
+          "label": "Platform"
+        },
+        {
+          "value": "B2B",
+          "label": "Type"
+        }
+      ],
+      "tags": [
+        "E-Commerce",
+        "B2B",
+        "Product Catalog"
+      ],
+      "problem": "The company needed a robust e-commerce platform to manage product catalogs and enable B2B ordering.",
+      "solution": "Built a feature-rich e-commerce site with inventory management, spec pages, pricing tiers, and streamlined checkout for distributors.",
+      "process": [
+        "E-Commerce Setup",
+        "Catalog Management",
+        "Payment Integration",
+        "Performance Optimization"
+      ],
+      "results": [
+        "Improved order conversion",
+        "Streamlined distributor ordering"
+      ],
+      "screenshot": "https://qfy8laye5c6wi3ro.public.blob.vercel-storage.com/screencapture-marrinox-2026-07-13-23_41_59-UY1W56dpI4PKapHN5lStOuPEpAdEsj.webp"
+    },
+    {
+      "slug": "fort-lauderdale-kitchen-remodel",
+      "title": "Fort Lauderdale Kitchen Remodel",
+      "category": "Home Renovation",
+      "filterCategory": "Construction",
+      "year": "2026",
+      "description": "A conversion-focused site for a kitchen remodeling contractor in Fort Lauderdale.",
+      "longDescription": "Targeted landing pages and portfolio showcase to drive inquiries for kitchen remodel projects in South Florida.",
+      "image": "https://qfy8laye5c6wi3ro.public.blob.vercel-storage.com/Fort%20Thumb-lnEIq61VlnFb36o6wvY8bkykXIEQnO.jpg",
+      "mockupColor": "from-amber-800 to-stone-900",
+      "liveUrl": "https://fortlauderdalekitchenremodel.com/",
+      "stats": [
+        {
+          "value": "Local",
+          "label": "Service"
+        },
+        {
+          "value": "Kitchens",
+          "label": "Focus"
+        }
+      ],
+      "tags": [
+        "Home Renovation",
+        "Kitchens",
+        "Local SEO"
+      ],
+      "problem": "They needed to convert local queries into booked remodeling estimates.",
+      "solution": "Implemented service-specific landing pages, portfolio filters, and simplified contact forms to increase estimates booked.",
+      "process": [
+        "Landing Pages",
+        "Portfolio",
+        "Development",
+        "Conversion Tracking"
+      ],
+      "results": [
+        "More booked estimates",
+        "Stronger local visibility"
+      ],
+      "screenshot": "https://qfy8laye5c6wi3ro.public.blob.vercel-storage.com/screencapture-fortlauderdalekitchenremodel-2026-07-13-23_43_58-Z8ugL1SMQOS5oHIIzPu88Xr61yXpoG.webp"
+    },
+    {
+      "slug": "broward-aluminum-pergola",
+      "title": "Broward Aluminum Pergola",
+      "category": "Local Business Website",
+      "filterCategory": "Construction",
+      "year": "2026",
+      "description": "A local lead generation site for aluminum pergola installations across Broward County.",
+      "longDescription": "Focused on service area pages, product options, and permit guidance to help homeowners choose and purchase pergola solutions.",
+      "image": "https://qfy8laye5c6wi3ro.public.blob.vercel-storage.com/Broward%20Thumb-pE8dgw4l7sJdQ2ZoEIUcLKg61m7neH.jpg",
+      "mockupColor": "from-stone-800 to-stone-900",
+      "liveUrl": "https://browardaluminumpergola.com/",
+      "stats": [
+        {
+          "value": "Local",
+          "label": "Coverage"
+        },
+        {
+          "value": "Permits",
+          "label": "Guidance"
+        }
+      ],
+      "tags": [
+        "Pergolas",
+        "Local SEO",
+        "Lead Gen"
+      ],
+      "problem": "The business needed stronger local lead flow and clearer permit information for Broward homeowners.",
+      "solution": "Built optimized service area pages, gallery, and clear HOA/permit guidance to reduce buyer friction.",
+      "process": [
+        "Local SEO",
+        "Design",
+        "Development",
+        "Gallery"
+      ],
+      "results": [
+        "Improved local leads",
+        "Reduced sales friction"
+      ],
+      "screenshot": "https://qfy8laye5c6wi3ro.public.blob.vercel-storage.com/screencapture-browardaluminumpergola-2026-07-13-23_47_30-huSMCo7X5izrs1z7Ft9kkDxx6NivNG.webp"
+    },
     {
       "slug": "helmont",
       "title": "HELMONT",
@@ -1276,8 +1384,7 @@
         "Streamlined order processing and delivery logistics"
       ],
       "screenshot": "https://qfy8laye5c6wi3ro.public.blob.vercel-storage.com/screencapture-aureabd-2026-07-08-10_39_36-HYWnt9qaK9NzskqOB9aF8tt83uZIXj.webp"
-    }
-    ,
+    },
     {
       "slug": "the-citizen-group",
       "title": "The Citizen Group",
@@ -1286,16 +1393,36 @@
       "year": "2026",
       "description": "A corporate website for a strategic consultancy serving Canadian clients.",
       "longDescription": "The Citizen Group provides strategic advisory and community-focused consulting. The site emphasizes credibility, services, and contact funnels for enterprise clients.",
-      "image": "/projects/thecitizengroup-homepage.jpg",
+      "image": "https://qfy8laye5c6wi3ro.public.blob.vercel-storage.com/Citizen%20Thumb-GUJ9Oh0AH9WTXweqmc9O61BbQ8HePs.jpg",
       "mockupColor": "from-indigo-900 to-violet-950",
       "liveUrl": "https://thecitizengroup.ca/",
-      "stats": [{"value":"WordPress","label":"Platform"},{"value":"Canada","label":"Location"}],
-      "tags": ["WordPress","Consulting","Lead Generation"],
+      "stats": [
+        {
+          "value": "WordPress",
+          "label": "Platform"
+        },
+        {
+          "value": "Canada",
+          "label": "Location"
+        }
+      ],
+      "tags": [
+        "WordPress",
+        "Consulting",
+        "Lead Generation"
+      ],
       "problem": "The client needed a trusted digital presence to attract organizational engagements.",
       "solution": "Delivered a corporate site with clear service pages, team bios, and streamlined contact forms.",
-      "process": ["Branding","Design","Web Development"],
-      "results": ["Improved lead quality","Professional brand presence"],
-      "screenshot": "/projects/screencapture-thecitizengroup-2026-07-13.webp"
+      "process": [
+        "Branding",
+        "Design",
+        "Web Development"
+      ],
+      "results": [
+        "Improved lead quality",
+        "Professional brand presence"
+      ],
+      "screenshot": "https://qfy8laye5c6wi3ro.public.blob.vercel-storage.com/screencapture-thecitizengroup-ca-2026-07-13-23_50_07-WUeBtCWIadobbKhLvhHwrPtgbju1Th.webp"
     },
     {
       "slug": "ev-general-construction-corp",
@@ -1305,16 +1432,36 @@
       "year": "2026",
       "description": "A contractor website for general construction and renovation projects.",
       "longDescription": "EV General Construction Corp required an online portfolio to showcase services and drive local quote requests.",
-      "image": "/projects/evgeneralconstruction-homepage.jpg",
+      "image": "https://qfy8laye5c6wi3ro.public.blob.vercel-storage.com/EV%20Thumb-m6ZERi2gzq0X4vqO0MlM3IsoJpeVMe.jpg",
       "mockupColor": "from-stone-800 to-black",
       "liveUrl": "https://evgeneralconstructioncorp.com/",
-      "stats": [{"value":"Local","label":"Focus"},{"value":"WordPress","label":"Platform"}],
-      "tags": ["Construction","Local SEO","WordPress"],
+      "stats": [
+        {
+          "value": "Local",
+          "label": "Focus"
+        },
+        {
+          "value": "WordPress",
+          "label": "Platform"
+        }
+      ],
+      "tags": [
+        "Construction",
+        "Local SEO",
+        "WordPress"
+      ],
       "problem": "They needed to convert local traffic into booked consultations.",
       "solution": "Built service pages, project gallery, and optimized contact forms to increase estimates.",
-      "process": ["Discovery","Design","Development"],
-      "results": ["Higher local leads","Improved project inquiries"],
-      "screenshot": "/projects/screencapture-evgeneralconstructioncorp-2026-07-13.webp"
+      "process": [
+        "Discovery",
+        "Design",
+        "Development"
+      ],
+      "results": [
+        "Higher local leads",
+        "Improved project inquiries"
+      ],
+      "screenshot": "https://qfy8laye5c6wi3ro.public.blob.vercel-storage.com/screencapture-evgeneralconstructioncorp-2026-07-13-23_51_44-21d04R271gLP4qp8xkFhxRPYUhfglM.webp"
     },
     {
       "slug": "genesis-capital-grp",
@@ -1324,16 +1471,36 @@
       "year": "2026",
       "description": "A professional website for capital management and financial advisory services.",
       "longDescription": "Genesis Capital Group needed a secure, authoritative site to present services and capture institutional enquiries.",
-      "image": "/projects/genesiscapitalgrp-homepage.jpg",
+      "image": "https://qfy8laye5c6wi3ro.public.blob.vercel-storage.com/Genesis%20Thumb-pzgBwAatbZoFElhh9kyNzY6TvaOlrA.jpg",
       "mockupColor": "from-slate-800 to-slate-950",
       "liveUrl": "https://genesiscapitalgrp.com/",
-      "stats": [{"value":"WordPress","label":"Platform"},{"value":"Finance","label":"Industry"}],
-      "tags": ["Finance","Consulting","WordPress"],
+      "stats": [
+        {
+          "value": "WordPress",
+          "label": "Platform"
+        },
+        {
+          "value": "Finance",
+          "label": "Industry"
+        }
+      ],
+      "tags": [
+        "Finance",
+        "Consulting",
+        "WordPress"
+      ],
       "problem": "The company required a credible online presence to attract investors and partners.",
       "solution": "Delivered a conversion-focused website with detailed service pages and contact funnels.",
-      "process": ["Branding","UX","Development"],
-      "results": ["Improved professional trust","Higher quality enquiries"],
-      "screenshot": "/projects/screencapture-genesiscapitalgrp-2026-07-13.webp"
+      "process": [
+        "Branding",
+        "UX",
+        "Development"
+      ],
+      "results": [
+        "Improved professional trust",
+        "Higher quality enquiries"
+      ],
+      "screenshot": "https://qfy8laye5c6wi3ro.public.blob.vercel-storage.com/screencapture-genesiscapitalgrp-2026-07-13-23_53_35-LqtE6cSFlTAlVWB5UihkBpVYhTb627.webp"
     },
     {
       "slug": "bespoke-and-build",
@@ -1343,16 +1510,36 @@
       "year": "2026",
       "description": "A portfolio website for a bespoke design and build company.",
       "longDescription": "Bespoke & Build needed a portfolio-forward site to showcase custom projects and acquire high-value clients.",
-      "image": "/projects/bespokeandbuild-homepage.jpg",
+      "image": "https://qfy8laye5c6wi3ro.public.blob.vercel-storage.com/Bespoke%20Thumb-zp0t4V8qbFlOnq5xMKmd5we7ERMoxF.jpg",
       "mockupColor": "from-amber-800 to-stone-900",
       "liveUrl": "https://bespokeandbuild.com/",
-      "stats": [{"value":"Portfolio","label":"Type"},{"value":"WordPress","label":"Platform"}],
-      "tags": ["Custom Build","Portfolio","WordPress"],
+      "stats": [
+        {
+          "value": "Portfolio",
+          "label": "Type"
+        },
+        {
+          "value": "WordPress",
+          "label": "Platform"
+        }
+      ],
+      "tags": [
+        "Custom Build",
+        "Portfolio",
+        "WordPress"
+      ],
       "problem": "They needed to demonstrate craftsmanship and capture premium leads.",
       "solution": "Designed a visual portfolio, refined messaging, and simple inquiry flows.",
-      "process": ["Design","Development","Portfolio Setup"],
-      "results": ["Increased premium leads","Stronger brand positioning"],
-      "screenshot": "/projects/screencapture-bespokeandbuild-2026-07-13.webp"
+      "process": [
+        "Design",
+        "Development",
+        "Portfolio Setup"
+      ],
+      "results": [
+        "Increased premium leads",
+        "Stronger brand positioning"
+      ],
+      "screenshot": "https://qfy8laye5c6wi3ro.public.blob.vercel-storage.com/screencapture-bespokeandbuild-2026-07-13-23_54_58-KboslEh21oWARUxGHqLr7yrjXbORGH.webp"
     },
     {
       "slug": "fabian-landscaping",
@@ -1362,16 +1549,36 @@
       "year": "2026",
       "description": "A local services website for landscaping design and installation.",
       "longDescription": "Fabian Landscaping required service pages, gallery, and permit/maintenance info to convert local homeowner leads.",
-      "image": "/projects/fabianlandscaping-homepage.jpg",
+      "image": "https://qfy8laye5c6wi3ro.public.blob.vercel-storage.com/Fabian%20Thumb-9utzsUgsLzwcgB5DjQD0wZzVO83cY3.jpg",
       "mockupColor": "from-emerald-900 to-teal-900",
       "liveUrl": "https://fabianlandscaping.com/",
-      "stats": [{"value":"Local","label":"Coverage"},{"value":"WordPress","label":"Platform"}],
-      "tags": ["Landscaping","Local SEO","WordPress"],
+      "stats": [
+        {
+          "value": "Local",
+          "label": "Coverage"
+        },
+        {
+          "value": "WordPress",
+          "label": "Platform"
+        }
+      ],
+      "tags": [
+        "Landscaping",
+        "Local SEO",
+        "WordPress"
+      ],
       "problem": "They needed to attract local landscaping project requests.",
       "solution": "Built localized landing pages, project gallery, and an easy contact flow.",
-      "process": ["Local Research","Gallery","Development"],
-      "results": ["Higher quote requests","Improved online visibility"],
-      "screenshot": "/projects/screencapture-fabianlandscaping-2026-07-13.webp"
+      "process": [
+        "Local Research",
+        "Gallery",
+        "Development"
+      ],
+      "results": [
+        "Higher quote requests",
+        "Improved online visibility"
+      ],
+      "screenshot": "https://qfy8laye5c6wi3ro.public.blob.vercel-storage.com/screencapture-fabianlandscaping-2026-07-13-23_56_38-hZo8FZD5Xpai95XI9Jn2Tvr2xXMITx.webp"
     },
     {
       "slug": "courthouse-lawyers",
@@ -1381,16 +1588,36 @@
       "year": "2026",
       "description": "A professional legal website focused on litigation and personal injury services.",
       "longDescription": "Courthouse Lawyers required an authoritative site to present practice areas, attorney profiles, and drive consultation bookings.",
-      "image": "/projects/courthouselawyers-homepage.jpg",
+      "image": "https://qfy8laye5c6wi3ro.public.blob.vercel-storage.com/Courthouse%20Thumb-IveRGKMVjBeSrI1wUv3u1viMMuPim8.jpg",
       "mockupColor": "from-slate-900 to-gray-950",
       "liveUrl": "https://courthouselawyers.com/",
-      "stats": [{"value":"Legal","label":"Industry"},{"value":"WordPress","label":"Platform"}],
-      "tags": ["Law Firm","Lead Generation","WordPress"],
+      "stats": [
+        {
+          "value": "Legal",
+          "label": "Industry"
+        },
+        {
+          "value": "WordPress",
+          "label": "Platform"
+        }
+      ],
+      "tags": [
+        "Law Firm",
+        "Lead Generation",
+        "WordPress"
+      ],
       "problem": "The firm needed to convert visitors into booked consultations.",
       "solution": "Built a practice-oriented site with clear CTAs, attorney bios and contact forms.",
-      "process": ["Content Strategy","Design","Development"],
-      "results": ["Increased consultations","Improved trust"],
-      "screenshot": "/projects/screencapture-courthouselawyers-2026-07-13.webp"
+      "process": [
+        "Content Strategy",
+        "Design",
+        "Development"
+      ],
+      "results": [
+        "Increased consultations",
+        "Improved trust"
+      ],
+      "screenshot": "https://qfy8laye5c6wi3ro.public.blob.vercel-storage.com/screencapture-courthouselawyers-2026-07-13-23_58_31-CcE0BY5rBgnWh2IsDYeHUjNyV9cRJS.webp"
     },
     {
       "slug": "allwin-homes",
@@ -1400,16 +1627,36 @@
       "year": "2026",
       "description": "A website for an Australian home builder showcasing developments and services.",
       "longDescription": "Allwin Homes needed a professional site to present developments, process, and capture regional leads.",
-      "image": "/projects/allwinhomes-homepage.jpg",
+      "image": "https://qfy8laye5c6wi3ro.public.blob.vercel-storage.com/Alwin%20Thumb-9Y4iXnC9QNOYyEe5DHHGZcKbFf4C0G.jpg",
       "mockupColor": "from-stone-700 to-stone-900",
       "liveUrl": "https://allwinhomes.com.au/",
-      "stats": [{"value":"Australia","label":"Location"},{"value":"WordPress","label":"Platform"}],
-      "tags": ["Home Builder","Local SEO","WordPress"],
+      "stats": [
+        {
+          "value": "Australia",
+          "label": "Location"
+        },
+        {
+          "value": "WordPress",
+          "label": "Platform"
+        }
+      ],
+      "tags": [
+        "Home Builder",
+        "Local SEO",
+        "WordPress"
+      ],
       "problem": "They needed to showcase developments and capture buyer enquiries.",
       "solution": "Implemented a project showcase, service pages, and contact funnels for buyers.",
-      "process": ["Design","Development","SEO"],
-      "results": ["Increased buyer enquiries","Clear project presentation"],
-      "screenshot": "/projects/screencapture-allwinhomes-2026-07-13.webp"
+      "process": [
+        "Design",
+        "Development",
+        "SEO"
+      ],
+      "results": [
+        "Increased buyer enquiries",
+        "Clear project presentation"
+      ],
+      "screenshot": "https://qfy8laye5c6wi3ro.public.blob.vercel-storage.com/screencapture-allwinhomes-au-2026-07-14-00_00_00-12dbsoOAeQj2JBR9r7O83WoyATHF8x.webp"
     }
   ],
   "testimonials": [
@@ -2734,13 +2981,13 @@
     "headline": "Ready to Scale Your",
     "headlineHighlight": "Digital Presence?",
     "description": "Let's turn your vision into a high-performing website that attracts premium clients and grows your revenue. Currently booking for <span className=\"text-white font-semibold\">Next Month</span>.",
-    "email": "sabbirtlp@gmail.com",
+    "email": "sabbir.wpdesignx@gmail.com",
     "emailButtonText": "Sent a Message",
     "calendlyUrl": "https://calendly.com/sabbirtlp/30min?month=2024-06",
     "calendlyButtonText": "Book Strategy Call",
     "stats": [
       {
-        "value": "< 3hrs",
+        "value": "< 1hrs",
         "label": "Response Time"
       },
       {
@@ -2759,13 +3006,13 @@
     "nameKey": "name:",
     "nameValue": "Sabbir Hossain",
     "roleKey": "role:",
-    "roleValue": "Web Developer & CRO Specialist",
+    "roleValue": "Web Developer & Elementor Expert",
     "locationKey": "location:",
     "locationValue": "Bangladesh",
     "experienceKey": "experience:",
     "experienceValue": 7,
     "skillsKey": "skills:",
-    "skillsValue": "WordPress, React, Next.js, PHP, WooCommerce, Figma, Shopify, Wix, Tailwind CSS",
+    "skillsValue": "WordPress, Squarespace, Webflow, Shopify, Wix, React, Next.js, PHP, WooCommerce, Figma, Shopify, Wix, Tailwind CSS",
     "hardworkingKey": "hardworking:",
     "hardworkingValue": "true",
     "problemSolverKey": "problem_solver:",
@@ -2789,12 +3036,12 @@
     "infoTitle": "Contact Information",
     "infoDescription": "Feel free to reach out through any of the following channels.",
     "email": "sabbirtlp@gmail.com",
-    "receivingEmail": "sabbirtlp@gmail.com",
+    "receivingEmail": "sabbir.wpdesignx@gmail.com",
     "phone": "+880 1879667166",
     "location": "Dhaka, Bangladesh",
     "locationDetail": "Available for remote work worldwide",
     "availability": "Currently accepting new projects",
-    "responseTime": "Typical response within 3 hours",
+    "responseTime": "Typical response within 1 hours",
     "workingHours": "Sun - Thu, 9:00 AM - 6:00 PM (BST)",
     "faqTitle": "Frequently Asked Questions",
     "faqs": [

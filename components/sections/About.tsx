@@ -41,10 +41,9 @@ export default function About() {
             className="relative"
           >
             <div className="relative w-full max-w-md mx-auto lg:mx-0">
-              {/* Card / frame */}
               <div className="relative rounded-3xl overflow-hidden border border-border bg-surface-2 aspect-[3/4]">
                 <Image
-                  src="/sabbir.jpg"
+                  src={content.about.image || "/sabbir.jpg"}
                   alt={`${name} — Web Developer`}
                   fill
                   className="object-cover object-top grayscale hover:grayscale-0 transition-all duration-700"

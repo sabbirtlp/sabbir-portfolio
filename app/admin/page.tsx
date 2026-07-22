@@ -49,6 +49,7 @@ export default function AdminDashboard() {
   const [uploadingScreenshot, setUploadingScreenshot] = useState<number | null>(
     null,
   );
+  const [uploadingAboutImage, setUploadingAboutImage] = useState(false);
   const [deletingIndex, setDeletingIndex] = useState<number | null>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [deletingReviewIndex, setDeletingReviewIndex] = useState<number | null>(
@@ -137,6 +138,25 @@ export default function AdminDashboard() {
       });
     } finally {
       setUploadingIndex(null);
+    }
+  }
+
+  async function handleAboutImageUpload(file: File) {
+    setUploadingAboutImage(true);
+    try {
+      const { path } = await performUpload(file);
+      setContent((prev: any) => ({
+        ...prev,
+        about: { ...prev.about, image: path },
+      }));
+      setMessage({ type: "success", text: "About image uploaded!" });
+    } catch (error: any) {
+      setMessage({
+        type: "error",
+        text: error.message || "About image upload failed",
+      });
+    } finally {
+      setUploadingAboutImage(false);
     }
   }
 
@@ -1013,6 +1033,45 @@ export default function AdminDashboard() {
                       }
                       className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 text-text-primary"
                     />
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">
+                    About Image
+                  </label>
+                  <div className="flex items-center gap-4">
+                    {content.about.image && (
+                      <img
+                        src={content.about.image}
+                        alt="About"
+                        className="w-16 h-16 rounded-xl object-cover"
+                      />
+                    )}
+                    <div className="flex-1 relative">
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          if (file) handleAboutImageUpload(file);
+                        }}
+                        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                      />
+                      <div className="w-full bg-surface-2 border border-border rounded-xl px-4 py-3 flex items-center justify-center gap-2 hover:border-accent transition-colors">
+                        {uploadingAboutImage ? (
+                          <span className="text-sm text-text-muted">
+                            Uploading...
+                          </span>
+                        ) : (
+                          <>
+                            <Upload className="w-4 h-4 text-accent" />
+                            <span className="text-sm text-text-muted">
+                              Click to upload or drag & drop
+                            </span>
+                          </>
+                        )}
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div>
