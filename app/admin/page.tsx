@@ -1694,6 +1694,67 @@ export default function AdminDashboard() {
                   </button>
                 </div>
 
+                {/* Case Studies Titles */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 bg-surface-2 border border-border rounded-xl">
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">
+                      Subtitle
+                    </label>
+                    <input
+                      type="text"
+                      value={content.workSection?.subtitle || "Selected Work"}
+                      onChange={(e) =>
+                        setContent({
+                          ...content,
+                          workSection: {
+                            ...(content.workSection || {}),
+                            subtitle: e.target.value,
+                          },
+                        })
+                      }
+                      className="w-full bg-background border border-border rounded-xl px-4 py-3 text-text-primary outline-none focus:border-accent/50 transition-colors text-sm"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">
+                      Main Title
+                    </label>
+                    <input
+                      type="text"
+                      value={content.workSection?.title || "Case Studies"}
+                      onChange={(e) =>
+                        setContent({
+                          ...content,
+                          workSection: {
+                            ...(content.workSection || {}),
+                            title: e.target.value,
+                          },
+                        })
+                      }
+                      className="w-full bg-background border border-border rounded-xl px-4 py-3 text-text-primary outline-none focus:border-accent/50 transition-colors text-sm"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-text-muted mb-2">
+                      Title Highlight
+                    </label>
+                    <input
+                      type="text"
+                      value={content.workSection?.titleHighlight || "2020—2024"}
+                      onChange={(e) =>
+                        setContent({
+                          ...content,
+                          workSection: {
+                            ...(content.workSection || {}),
+                            titleHighlight: e.target.value,
+                          },
+                        })
+                      }
+                      className="w-full bg-background border border-border rounded-xl px-4 py-3 text-text-primary outline-none focus:border-accent/50 transition-colors text-sm"
+                    />
+                  </div>
+                </div>
+
                 {/* Project List */}
                 <div className="space-y-3">
                   {(!content.projects || content.projects.length === 0) && (

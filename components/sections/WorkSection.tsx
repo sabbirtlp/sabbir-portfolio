@@ -171,10 +171,13 @@ export default function WorkSection() {
         <div className="mb-12 flex flex-col items-center text-center md:items-start md:text-left">
           <div className="section-divider mx-auto md:mx-0" />
           <p className="text-text-secondary text-[10px] md:text-xs font-semibold uppercase tracking-widest mb-4">
-            Selected Work
+            {content?.workSection?.subtitle || "Selected Work"}
           </p>
           <h2 className="font-syne font-semibold text-3xl md:text-4xl lg:text-5xl text-text-primary leading-tight">
-            Case Studies <span className="text-gradient">2020—2024</span>
+            {content?.workSection?.title || "Case Studies"}{" "}
+            <span className="text-gradient">
+              {content?.workSection?.titleHighlight || "2020—2024"}
+            </span>
           </h2>
         </div>
       </div>
