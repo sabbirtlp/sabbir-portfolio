@@ -25,7 +25,22 @@ import { useContent } from "@/components/providers/ContentProvider";
 export default function Navbar() {
   const { content } = useContent();
   const pathname = usePathname();
-  const navLinks = content?.header?.navLinks || fallbackNavLinks;
+  const rawNavLinks = content?.header?.navLinks || fallbackNavLinks;
+  // Always ensure "Plugins" link is present when plugins data exists
+  const hasPluginsLink = rawNavLinks.some((l: any) => l.href === "/plugins");
+  const navLinks = hasPluginsLink
+    ? rawNavLinks
+    : (() => {
+        // Insert after "Portfolio" if it exists, otherwise append before last
+        const idx = rawNavLinks.findIndex((l: any) => l.href === "/portfolio");
+        const pluginsEntry = { label: "Plugins", href: "/plugins" };
+        if (idx !== -1) {
+          const copy = [...rawNavLinks];
+          copy.splice(idx + 1, 0, pluginsEntry);
+          return copy;
+        }
+        return [...rawNavLinks, pluginsEntry];
+      })();
   const activeSection = useActiveSection(navLinks.map((link: any) => link.href.substring(1)), "home");
   
   // Safe check to prevent dashboard crash on public access
