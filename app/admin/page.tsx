@@ -55,6 +55,9 @@ export default function AdminDashboard() {
   const [deletingReviewIndex, setDeletingReviewIndex] = useState<number | null>(
     null,
   );
+  const [editingPlugin, setEditingPlugin] = useState<number | null>(null);
+  const [deletingPluginIndex, setDeletingPluginIndex] = useState<number | null>(null);
+  const [uploadingPluginZip, setUploadingPluginZip] = useState<number | null>(null);
 
   async function performUpload(file: File) {
     const formData = new FormData();
@@ -138,6 +141,32 @@ export default function AdminDashboard() {
       });
     } finally {
       setUploadingIndex(null);
+    }
+  }
+
+  async function handlePluginFileUpload(file: File, pluginIndex: number, type: 'favicon' | 'zip') {
+    if (type === 'favicon') setUploadingIndex(pluginIndex);
+    else setUploadingPluginZip(pluginIndex);
+    try {
+      const { path } = await performUpload(file);
+      setContent((prev: any) => {
+        const newPlugins = [...(prev.plugins || [])];
+        if (type === 'favicon') {
+          newPlugins[pluginIndex] = { ...newPlugins[pluginIndex], favicon: path };
+        } else {
+          newPlugins[pluginIndex] = { ...newPlugins[pluginIndex], zipFile: path };
+        }
+        return { ...prev, plugins: newPlugins };
+      });
+      setMessage({ type: "success", text: `${type === 'favicon' ? 'Favicon' : 'ZIP file'} uploaded!` });
+    } catch (error: any) {
+      setMessage({
+        type: "error",
+        text: error.message || `${type === 'favicon' ? 'Favicon' : 'ZIP file'} upload failed`,
+      });
+    } finally {
+      if (type === 'favicon') setUploadingIndex(null);
+      else setUploadingPluginZip(null);
     }
   }
 
@@ -354,6 +383,7 @@ export default function AdminDashboard() {
             { id: "tech-stack", label: "Tech Stack", icon: Zap },
             { id: "typography", label: "Typography", icon: Type },
             { id: "work", label: "Case Studies", icon: FolderOpen },
+            { id: "plugins", label: "Plugins", icon: Briefcase },
             { id: "reviews", label: "Reviews", icon: MessageSquare },
             { id: "process", label: "Process", icon: CheckCircle2 },
             { id: "contact", label: "Contact CTA", icon: Mail },
@@ -462,6 +492,7 @@ export default function AdminDashboard() {
                 { id: "tech-stack", label: "Tech Stack" },
                 { id: "typography", label: "Typography" },
                 { id: "work", label: "Case Studies" },
+                { id: "plugins", label: "Plugins" },
                 { id: "reviews", label: "Reviews" },
                 { id: "process", label: "Process" },
                 { id: "contact", label: "Contact CTA" },
@@ -2520,6 +2551,154 @@ export default function AdminDashboard() {
                               >
                                 <ChevronDown className="w-3 h-3 rotate-180" />{" "}
                                 Collapse
+                              </button>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            
+            {/* PLUGINS SECTION */}
+            {activeTab === "plugins" && (
+              <div className="space-y-6">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div>
+                    <p className="text-xs text-text-muted">
+                      Manage your WordPress plugins showcase.
+                    </p>
+                    <p className="text-[10px] text-text-muted/60 mt-1">
+                      {content.plugins?.length || 0} plugin
+                      {(content.plugins?.length || 0) !== 1 ? "s" : ""} total
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => {
+                      const newPlugin = {
+                        name: "New Plugin",
+                        description: "Plugin description",
+                        favicon: "",
+                        zipFile: "",
+                        githubLink: ""
+                      };
+                      const newPlugins = [newPlugin, ...(content.plugins || [])];
+                      setContent({ ...content, plugins: newPlugins });
+                      setEditingPlugin(0);
+                    }}
+                    className="flex items-center gap-2 px-5 py-2.5 bg-accent hover:bg-accent-light text-white rounded-xl text-xs font-bold transition-all shadow-lg shadow-accent/20"
+                  >
+                    <Plus className="w-3.5 h-3.5" />
+                    Add New Plugin
+                  </button>
+                </div>
+
+                <div className="space-y-3">
+                  {(!content.plugins || content.plugins.length === 0) && (
+                    <div className="flex flex-col items-center justify-center py-16 text-center">
+                      <Briefcase className="w-12 h-12 text-text-muted/30 mb-4" />
+                      <p className="text-sm text-text-muted">No plugins yet</p>
+                      <p className="text-[10px] text-text-muted/60 mt-1">
+                        Click "Add New Plugin" to showcase your work.
+                      </p>
+                    </div>
+                  )}
+
+                  {content.plugins?.map((plugin: any, i: number) => {
+                    const isEditing = editingPlugin === i;
+                    return (
+                      <div key={"plugin-" + i} className="border border-border rounded-2xl overflow-hidden bg-surface-2 transition-all">
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-4 p-4 hover:bg-text-primary/[0.02] transition-colors">
+                          <div className="flex flex-1 items-center gap-4 cursor-pointer min-w-0" onClick={() => setEditingPlugin(isEditing ? null : i)}>
+                            <div className="w-14 h-14 rounded-xl overflow-hidden border border-border bg-background shrink-0 flex items-center justify-center">
+                              {plugin.favicon ? (
+                                <img src={plugin.favicon} alt={plugin.name} className="w-10 h-10 object-contain" />
+                              ) : (
+                                <ImageIcon className="w-5 h-5 text-text-muted/30" />
+                              )}
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <h4 className="text-sm font-bold text-text-primary truncate">{plugin.name || "Untitled Plugin"}</h4>
+                              <div className="flex items-center gap-2 mt-0.5">
+                                <span className="text-[10px] text-text-muted truncate">{plugin.description}</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="flex items-center justify-between sm:justify-end gap-2 pt-3 mt-1 sm:pt-0 sm:mt-0 border-t border-border/50 sm:border-0 shrink-0 w-full sm:w-auto">
+                            <button onClick={(e) => { e.stopPropagation(); setEditingPlugin(isEditing ? null : i); }} className={"p-2 rounded-lg transition-colors " + (isEditing ? "bg-accent/10 text-accent" : "text-text-muted hover:text-text-primary")}>
+                              <Edit3 className="w-3.5 h-3.5" />
+                            </button>
+                            {deletingPluginIndex === i ? (
+                              <div className="flex bg-red-500/10 rounded-xl overflow-hidden animate-in fade-in zoom-in duration-200">
+                                <button type="button" onClick={(e) => { e.preventDefault(); e.stopPropagation(); const p = [...content.plugins]; p.splice(i, 1); setContent({ ...content, plugins: p }); setEditingPlugin(null); setDeletingPluginIndex(null); }} className="px-3 py-1.5 text-[10px] font-bold text-red-500 hover:bg-red-500 hover:text-white transition-colors">
+                                  Confirm
+                                </button>
+                                <button type="button" onClick={(e) => { e.preventDefault(); e.stopPropagation(); setDeletingPluginIndex(null); }} className="px-3 py-1.5 text-[10px] font-bold text-text-muted hover:bg-black/20 transition-colors">
+                                  Cancel
+                                </button>
+                              </div>
+                            ) : (
+                              <button onClick={(e) => { e.stopPropagation(); setDeletingPluginIndex(i); }} className="p-2 text-text-muted hover:text-red-400 hover:bg-red-500/10 rounded-lg transition-colors">
+                                <Trash2 className="w-3.5 h-3.5" />
+                              </button>
+                            )}
+                          </div>
+                        </div>
+
+                        {isEditing && (
+                          <div className="p-4 sm:p-6 pt-0 sm:pt-2 border-t border-border/50 space-y-6 bg-surface/50">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                              <div>
+                                <label className="block text-[10px] font-bold uppercase tracking-widest text-text-muted mb-1.5">Plugin Name</label>
+                                <input type="text" value={plugin.name} onChange={(e) => { const p = [...content.plugins]; p[i].name = e.target.value; setContent({ ...content, plugins: p }); }} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-2.5 text-sm text-text-primary outline-none focus:border-accent/40" />
+                              </div>
+                              <div>
+                                <label className="block text-[10px] font-bold uppercase tracking-widest text-text-muted mb-1.5">GitHub Link</label>
+                                <input type="text" value={plugin.githubLink} onChange={(e) => { const p = [...content.plugins]; p[i].githubLink = e.target.value; setContent({ ...content, plugins: p }); }} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-2.5 text-sm text-text-primary outline-none focus:border-accent/40" placeholder="https://github.com/..." />
+                              </div>
+                            </div>
+
+                            <div>
+                              <label className="block text-[10px] font-bold uppercase tracking-widest text-text-muted mb-1.5">Description</label>
+                              <textarea rows={2} value={plugin.description} onChange={(e) => { const p = [...content.plugins]; p[i].description = e.target.value; setContent({ ...content, plugins: p }); }} className="w-full bg-surface-2 border border-border rounded-xl px-4 py-2.5 text-sm text-text-secondary outline-none focus:border-accent/40 resize-none" />
+                            </div>
+
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                              <div>
+                                <label className="block text-[10px] font-bold uppercase tracking-widest text-text-muted mb-1.5">Favicon (Image)</label>
+                                <div className="relative flex items-center gap-3 p-4 bg-surface-2 border-2 border-dashed border-border hover:border-accent/40 rounded-xl cursor-pointer transition-colors group h-[72px]" onClick={() => { const input = document.getElementById("plugin-favicon-" + i); input?.click(); }}>
+                                  <input id={"plugin-favicon-" + i} type="file" accept="image/*" className="hidden" onChange={(e) => { const file = e.target.files?.[0]; if (file) handlePluginFileUpload(file, i, "favicon"); e.target.value = ""; }} />
+                                  <div className="w-9 h-9 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center shrink-0 group-hover:bg-accent/20 transition-colors">
+                                    <Upload className="w-4 h-4 text-accent" />
+                                  </div>
+                                  <div>
+                                    <p className="text-xs font-medium text-text-primary">Upload Favicon</p>
+                                    <p className="text-[10px] text-text-muted text-ellipsis overflow-hidden whitespace-nowrap w-[150px]">{plugin.favicon || "No file selected"}</p>
+                                  </div>
+                                </div>
+                              </div>
+                              <div>
+                                <label className="block text-[10px] font-bold uppercase tracking-widest text-text-muted mb-1.5">Plugin File (ZIP)</label>
+                                <div className="relative flex items-center gap-3 p-4 bg-surface-2 border-2 border-dashed border-border hover:border-accent/40 rounded-xl cursor-pointer transition-colors group h-[72px]" onClick={() => { const input = document.getElementById("plugin-zip-" + i); input?.click(); }}>
+                                  <input id={"plugin-zip-" + i} type="file" accept=".zip,application/zip,application/x-zip-compressed" className="hidden" onChange={(e) => { const file = e.target.files?.[0]; if (file) handlePluginFileUpload(file, i, "zip"); e.target.value = ""; }} />
+                                  <div className="w-9 h-9 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center shrink-0 group-hover:bg-accent/20 transition-colors">
+                                    <Upload className="w-4 h-4 text-accent" />
+                                  </div>
+                                  <div>
+                                    <p className="text-xs font-medium text-text-primary">Upload ZIP File</p>
+                                    <p className="text-[10px] text-text-muted text-ellipsis overflow-hidden whitespace-nowrap w-[150px]">{plugin.zipFile || "No file selected"}</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="flex justify-end pt-2">
+                              <button onClick={() => setEditingPlugin(null)} className="text-xs text-text-muted hover:text-text-primary transition-colors flex items-center gap-1.5">
+                                <ChevronDown className="w-3 h-3 rotate-180" /> Collapse
                               </button>
                             </div>
                           </div>

@@ -12,11 +12,14 @@ export async function POST(request: NextRequest) {
     }
 
     // Validate file type
-    const allowedTypes = ["image/jpeg", "image/jpg", "image/png", "image/webp", "image/avif", "image/gif", "image/svg+xml"];
+    const allowedTypes = [
+      "image/jpeg", "image/jpg", "image/png", "image/webp", "image/avif", "image/gif", "image/svg+xml",
+      "application/zip", "application/x-zip-compressed"
+    ];
     if (!allowedTypes.includes(file.type)) {
       console.error(`Rejected file type: ${file.type}`);
       return NextResponse.json(
-        { error: "Invalid file type. Allowed: SVG, JPG, PNG, WebP, AVIF, GIF" },
+        { error: "Invalid file type. Allowed: SVG, JPG, PNG, WebP, AVIF, GIF, ZIP" },
         { status: 400 }
       );
     }

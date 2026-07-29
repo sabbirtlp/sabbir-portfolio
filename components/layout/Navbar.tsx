@@ -12,6 +12,7 @@ const fallbackNavLinks = [
   { label: "Home", href: "#home" },
   { label: "Work", href: "#work" },
   { label: "Portfolio", href: "/portfolio" },
+  { label: "Plugins", href: "/plugins" },
   { label: "Reviews", href: "/reviews" },
   { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
