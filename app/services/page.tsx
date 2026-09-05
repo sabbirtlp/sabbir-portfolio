@@ -91,7 +91,7 @@ export default async function ServicesPage() {
   };
 
   return (
-    <main className="min-h-screen bg-background pt-28 pb-32">
+    <div className="min-h-screen bg-background pt-28 pb-32">
       <div className="max-w-7xl mx-auto px-6">
         <section className="text-center mb-20">
           <p className="text-accent text-[10px] uppercase tracking-[0.28em] font-bold mb-4">
@@ -166,6 +166,6 @@ export default async function ServicesPage() {
           </Link>
         </div>
       </div>
-    </main>
+    </div>
   );
 }

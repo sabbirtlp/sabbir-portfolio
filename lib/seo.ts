@@ -202,60 +202,126 @@ export function buildGlobalSchemaGraph() {
               "@type": "Offer",
               itemOffered: {
                 "@type": "Service",
-                name: "WordPress Development",
+                name: "WordPress Website Design",
               },
             },
             {
               "@type": "Offer",
               itemOffered: {
                 "@type": "Service",
-                name: "WooCommerce Development",
+                name: "WordPress Website Redesign & Revamp",
               },
             },
             {
               "@type": "Offer",
               itemOffered: {
                 "@type": "Service",
-                name: "Conversion Rate Optimization",
-              },
-            },
-            {
-              "@type": "Offer",
-              itemOffered: { "@type": "Service", name: "Technical SEO" },
-            },
-            {
-              "@type": "Offer",
-              itemOffered: {
-                "@type": "Service",
-                name: "Website Speed Optimization",
+                name: "Elementor Pro Development",
               },
             },
             {
               "@type": "Offer",
               itemOffered: {
                 "@type": "Service",
-                name: "Elementor & Webflow Design",
+                name: "WordPress Speed Optimization",
               },
             },
             {
               "@type": "Offer",
               itemOffered: {
                 "@type": "Service",
-                name: "Wix & Squarespace Website Design",
+                name: "WordPress Security & Malware Removal",
               },
             },
             {
               "@type": "Offer",
               itemOffered: {
                 "@type": "Service",
-                name: "Shopify Development",
+                name: "WordPress SEO & Technical Ranking",
               },
             },
             {
               "@type": "Offer",
               itemOffered: {
                 "@type": "Service",
-                name: "Kajabi Website Development",
+                name: "WooCommerce Store Development",
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "High-Converting Landing Pages",
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "Law Firm & Legal Practice Websites",
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "Construction & Contractor Websites",
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "Consulting & Business Websites",
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "Portfolio & Personal Brand Websites",
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "Shopify Store Development",
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "Wix Website Design",
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "Squarespace Website Design",
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "Webflow Visual Development",
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "WordPress Maintenance & Care",
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "Custom ACF & PHP Development",
               },
             },
           ],
