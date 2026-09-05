@@ -28,7 +28,7 @@ import {
 } from "lucide-react";
 import MagneticButton from "@/components/ui/MagneticButton";
 import CountUp from "@/components/ui/CountUp";
-import { Orbit, OrbitContainer } from "@/components/ui/Orbit";
+
 import { Marquee } from "@/components/ui/Marquee";
 import { CodeCard } from "@/components/ui/CodeCard";
 import GeminiAnimatedBg from "@/components/ui/GeminiAnimatedBg";
@@ -142,63 +142,10 @@ export default function Hero() {
       ref={containerRef}
       className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-background"
     >
-      {/* ── Dark Mode: Animated Fluid Gemini App Mesh Gradient Background ── */}
-      <GeminiAnimatedBg className="hidden dark:block" intensity="medium" />
+      {/* ── Animated Gradient Background (both themes) ── */}
+      <GeminiAnimatedBg />
 
-      {/* ── Light Mode Only: Clean minimal background ── */}
-      <div className="absolute inset-0 z-0 pointer-events-none dark:hidden">
-        {/* Extremely subtle dot pattern */}
-        <div
-          className="absolute inset-0 opacity-[0.07]"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle, #d4d4d8 0.5px, transparent 0.5px)",
-            backgroundSize: "32px 32px",
-          }}
-        />
-        {/* Soft top-right accent glow */}
-        <div className="absolute -top-20 -right-20 w-[500px] h-[500px] rounded-full bg-orange-500/[0.04] blur-[100px]" />
-        {/* Soft bottom-left cool glow */}
-        <div className="absolute -bottom-20 -left-20 w-[400px] h-[400px] rounded-full bg-zinc-300/20 blur-[100px]" />
-      </div>
 
-      {/* ── Dark Mode Only: Orbits ── */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none hidden dark:block opacity-40">
-        <OrbitContainer className="h-full">
-          <Orbit radius={200} duration={30} delay={0} size={32}>
-            <div className="p-2 rounded-full bg-accent/10 border border-accent/20 backdrop-blur-sm">
-              <Globe className="w-4 h-4 text-accent" />
-            </div>
-          </Orbit>
-          <Orbit
-            radius={350}
-            duration={45}
-            delay={-5}
-            direction="counter-clockwise"
-            size={40}
-          >
-            <div className="p-2 rounded-full bg-accent/10 border border-accent/20 backdrop-blur-sm">
-              <Layout className="w-5 h-5 text-accent" />
-            </div>
-          </Orbit>
-          <Orbit radius={500} duration={60} delay={-10} size={48}>
-            <div className="p-3 rounded-full bg-accent/10 border border-accent/20 backdrop-blur-sm">
-              <Code2 className="w-6 h-6 text-accent" />
-            </div>
-          </Orbit>
-          <Orbit
-            radius={650}
-            duration={75}
-            delay={-15}
-            direction="counter-clockwise"
-            size={32}
-          >
-            <div className="p-2 rounded-full bg-accent/10 border border-accent/20 backdrop-blur-sm">
-              <Zap className="w-4 h-4 text-accent" />
-            </div>
-          </Orbit>
-        </OrbitContainer>
-      </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-28 md:pb-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">

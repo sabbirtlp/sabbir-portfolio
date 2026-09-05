@@ -36,7 +36,7 @@ export const CodeCard = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: 0.5 }}
-      className="w-full max-w-2xl mx-auto bg-white dark:bg-[#050505] border-zinc-200 dark:border-border relative rounded-xl border shadow-xl dark:shadow-2xl overflow-hidden group"
+      className="w-full max-w-2xl mx-auto bg-white/60 dark:bg-white/[0.04] backdrop-blur-xl border-zinc-200/50 dark:border-white/[0.08] relative rounded-2xl border shadow-2xl dark:shadow-[0_8px_60px_-12px_rgba(0,0,0,0.6)] overflow-hidden group"
     >
       {/* Top gradient border */}
       <div className="flex flex-row">
@@ -44,7 +44,7 @@ export const CodeCard = () => {
       </div>
 
       {/* Window Header */}
-      <div className="px-4 lg:px-6 py-4 flex justify-between items-center bg-zinc-100 dark:bg-[#0a0a0a]">
+      <div className="px-4 lg:px-6 py-4 flex justify-between items-center bg-zinc-100/50 dark:bg-white/[0.03] backdrop-blur-sm">
         <div className="flex flex-row space-x-2">
           <div className="h-2.5 w-2.5 rounded-full bg-[#ff5f56]"></div>
           <div className="h-2.5 w-2.5 rounded-full bg-[#ffbd2e]"></div>
@@ -132,7 +132,7 @@ export const CodeCard = () => {
       </div>
 
       {/* Window Footer */}
-      <div className="px-6 py-3 bg-zinc-50 border-t border-zinc-200 dark:bg-[#0a0a0a] dark:border-zinc-800 flex justify-between items-center text-[10px] text-zinc-500 dark:text-zinc-600 font-mono">
+      <div className="px-6 py-3 bg-zinc-50/50 border-t border-zinc-200/50 dark:bg-white/[0.02] dark:border-white/[0.06] backdrop-blur-sm flex justify-between items-center text-[10px] text-zinc-500 dark:text-zinc-500 font-mono">
         <div className="flex gap-4">
           <span>{bottomTextLeft1}</span>
           <span>{bottomTextLeft2}</span>
