@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
-import Image from "next/image";
+import { motion, useInView } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { gsap } from "gsap";
 import {
@@ -62,11 +61,6 @@ export default function Hero() {
 
   // Throttling: only run animation when in view
   const isInView = useInView(containerRef, { margin: "200px" });
-
-  // Parallax Logic
-  const { scrollY } = useScroll();
-  const backgroundY = useTransform(scrollY, [0, 1000], [0, 300]);
-  const backgroundScale = useTransform(scrollY, [0, 1000], [1, 1.1]);
 
   // GSAP text entrance
   useEffect(() => {
@@ -147,41 +141,41 @@ export default function Hero() {
       ref={containerRef}
       className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-background"
     >
-      {/* ── Dark Mode Only: Parallax Background Image ── */}
-      <motion.div
-        style={{ y: backgroundY, scale: backgroundScale }}
-        className="absolute inset-0 z-0 pointer-events-none will-change-transform hidden dark:block"
-      >
-        <Image
-          src="/hero-bg.png"
-          alt="Premium Brand Background"
-          fill
-          priority
-          className="object-cover object-center opacity-[0.12] mix-blend-screen"
-        />
+      {/* ── Dark Mode Only: Premium Ambient Mesh & Radial Gradient Background ── */}
+      <div className="absolute inset-0 z-0 pointer-events-none hidden dark:block overflow-hidden">
+        {/* Deep ambient top glowing flare */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/3 w-[1000px] h-[600px] bg-gradient-to-b from-orange-500/15 via-accent/5 to-transparent rounded-full blur-[140px]" />
+
+        {/* Top-right subtle warm atmospheric glow */}
+        <div className="absolute top-1/4 -right-20 w-[600px] h-[600px] bg-gradient-to-bl from-amber-500/10 via-orange-600/5 to-transparent rounded-full blur-[130px]" />
+
+        {/* Bottom-left deep ambient glow */}
+        <div className="absolute -bottom-20 -left-20 w-[600px] h-[600px] bg-gradient-to-tr from-accent/10 via-orange-500/3 to-transparent rounded-full blur-[140px]" />
+
+        {/* Center subtle breathing light */}
         <motion.div
-          animate={{ opacity: [0.03, 0.06, 0.03] }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute inset-0 bg-accent/[0.01]"
+          animate={{
+            opacity: [0.35, 0.65, 0.35],
+            scale: [0.98, 1.02, 0.98],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[500px] bg-accent/5 rounded-full blur-[160px]"
         />
-      </motion.div>
 
-      {/* ── Dark Mode Only: Gradient overlays ── */}
-      <div className="absolute inset-0 z-1 pointer-events-none hidden dark:block">
-        <div className="absolute top-0 left-0 w-[500px] h-[500px] rounded-full bg-accent/[0.02] blur-[80px] -translate-x-1/2 -translate-y-1/2" />
-        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full bg-accent/[0.03] blur-[80px] translate-x-1/4 translate-y-1/4" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-orange-500/[0.01] blur-[120px]" />
+        {/* Ultra-sleek, subtle dot grid overlay */}
+        <div
+          className="absolute inset-0 opacity-[0.035]"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle, var(--text-muted) 0.5px, transparent 0.5px)",
+            backgroundSize: "28px 28px",
+          }}
+        />
       </div>
-
-      {/* ── Dark Mode Only: Grid pattern ── */}
-      <div
-        className="absolute inset-0 z-1 hidden dark:block opacity-[0.03]"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle, var(--text-muted) 0.5px, transparent 0.5px)",
-          backgroundSize: "24px 24px",
-        }}
-      />
 
       {/* ── Light Mode Only: Clean minimal background ── */}
       <div className="absolute inset-0 z-0 pointer-events-none dark:hidden">
