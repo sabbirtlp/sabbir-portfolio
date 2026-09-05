@@ -16,6 +16,20 @@ import {
   Palette,
   RefreshCw,
   BarChart3,
+  Bot,
+  Code2,
+  Wand2,
+  Layers,
+  Store,
+  Gauge,
+  Server,
+  ShieldCheck,
+  Shield,
+  Briefcase,
+  UserCheck,
+  ShoppingBag,
+  HeartPulse,
+  Terminal,
   Rocket,
 } from "lucide-react";
 import PremiumGlowCard from "@/components/ui/PremiumGlowCard";
@@ -33,6 +47,20 @@ const ICON_MAP: Record<string, any> = {
   Palette,
   RefreshCw,
   BarChart3,
+  Bot,
+  Code2,
+  Wand2,
+  Layers,
+  Store,
+  Gauge,
+  Server,
+  ShieldCheck,
+  Shield,
+  Briefcase,
+  UserCheck,
+  ShoppingBag,
+  HeartPulse,
+  Terminal,
 };
 
 export async function generateStaticParams() {
@@ -49,7 +77,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!service) return { title: "Service Not Found" };
 
   return createPageMetadata({
-    title: `${service.title} | WordPress & WooCommerce Services`,
+    title: `${service.title} | Web Development Services`,
     description: service.longDescription || service.description,
     path: `/services/${slug}`,
     keywords: [
@@ -95,14 +123,14 @@ export default async function ServiceDetailPage({ params }: Props) {
         <div className="relative z-10 max-w-7xl mx-auto px-6 mb-20">
           <div className="max-w-4xl">
             <Link
-              href="/#services"
+              href="/services"
               className="group inline-flex items-center gap-2 text-text-muted hover:text-text-primary transition-colors mb-12"
             >
               <div className="w-8 h-8 rounded-full border border-text-primary/10 flex items-center justify-center group-hover:border-accent group-hover:bg-accent/10 transition-all">
                 <ArrowLeft className="w-4 h-4" />
               </div>
               <span className="text-xs uppercase tracking-widest font-bold">
-                Back to Services
+                Back to All Services
               </span>
             </Link>
 

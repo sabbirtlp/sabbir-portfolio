@@ -83,124 +83,274 @@
   },
   "services": [
     {
-      "slug": "wordpress-development",
-      "icon": "Globe",
-      "title": "WordPress Development",
-      "description": "Bespoke WordPress websites engineered for speed, security, and conversions — from custom themes to complex multi-site networks.",
-      "longDescription": "Leverage the world's most powerful CMS with a custom architecture built for real business performance. I craft bespoke WordPress themes and plugins from the ground up — no bloated page builders, no copy-paste templates. Every project is optimized for Core Web Vitals, hardened for security, and structured to scale. Whether you need a high-end corporate site, a subscription platform, or a complex multi-site network, my WordPress solutions are engineered to grow with your business and dominate in search results.",
+      "slug": "wordpress-website-design",
+      "icon": "Layout",
+      "title": "WordPress Website Design",
+      "description": "Bespoke, conversion-engineered WordPress websites crafted from scratch — clean code, zero bloat, and tailored to your brand.",
+      "longDescription": "Get a custom WordPress website designed and developed exclusively for your business goals. I don't use generic themes or clunky templates. Every layout is planned around user journey psychology, branded aesthetics, and high-performance standards to convert traffic into real inquiries and sales.",
       "features": [
-        "Fully Custom Theme Development (No Templates)",
-        "Advanced Custom Fields (ACF) & CPT Integration",
-        "Security-Hardened Architecture & Malware Prevention",
-        "Custom Plugin Development & API Integrations",
-        "Core Web Vitals Optimized (LCP, CLS, FID)"
+        "100% Custom Responsive Layouts & Design",
+        "Conversion-Focused UX & Information Architecture",
+        "Mobile-First & Cross-Browser Compatibility",
+        "Clean, Maintainable & Scalable Codebase",
+        "Seamless Brand Identity Integration"
       ],
-      "highlight": "Most Popular"
+      "highlight": "Primary Focus"
     },
     {
-      "slug": "woocommerce-development",
-      "icon": "Store",
-      "title": "WooCommerce Stores",
-      "description": "High-converting WooCommerce stores with optimized checkout flows, custom product systems, and seamless payment integrations.",
-      "longDescription": "Sell more with a WooCommerce store engineered around conversion psychology. I build robust e-commerce environments that handle everything from simple storefronts to complex B2B catalogs with custom pricing, user roles, and automation. Every checkout is optimized to reduce abandonment, every product page designed to maximize trust and purchase intent. Includes full payment gateway integration, inventory automation, and a streamlined admin experience.",
+      "slug": "wordpress-website-redesign",
+      "icon": "RefreshCw",
+      "title": "WordPress Website Redesign & Revamp",
+      "description": "Transform your outdated, slow, or low-converting website into a modern, high-speed, revenue-generating powerhouse.",
+      "longDescription": "If your current website feels dated, fails to convert, or runs sluggishly, a comprehensive redesign will revitalize your digital presence. I overhaul your site's visual appeal, user flow, Core Web Vitals, and conversion funnel while safely preserving your existing SEO equity and rankings.",
       "features": [
-        "Conversion-Optimized Checkout Flows",
-        "Custom Product Types & Variation Systems",
-        "Stripe, PayPal & Local Gateway Integrations",
-        "Automated Inventory & Shipping Rules",
-        "Subscription & Membership Plugins Setup"
+        "Modern UI/UX Visual Refresh",
+        "Zero Downtime & SEO Equity Preservation",
+        "Conversion Funnel Redesign & CTA Placement",
+        "Mobile Experience & Touchscreen Optimization",
+        "Performance & Speed Overhaul"
       ],
       "highlight": "High ROI"
     },
     {
-      "slug": "elementor-webflow-design",
+      "slug": "elementor-pro-development",
       "icon": "Wand2",
-      "title": "Elementor & Webflow Design",
-      "description": "Pixel-perfect, brand-aligned websites built with Elementor Pro or Webflow — with clean code and no compromises on speed.",
-      "longDescription": "Elementor Pro and Webflow are powerful tools in the right hands — and devastating when used poorly. I build with both, applying deep knowledge of their advanced capabilities while keeping code output clean and performance scores high. From custom-designed service pages to animated marketing sites, every deliverable is responsive, cross-browser tested, and fast-loading. No generic templates, no bloated widgets — just purposeful design that converts.",
+      "title": "Elementor Pro Development",
+      "description": "Pixel-perfect, high-performance Elementor Pro websites built with clean structure, custom widgets, and no bloat.",
+      "longDescription": "Harness the visual editing power of Elementor Pro without sacrificing site speed. I engineer custom Elementor templates, interactive widgets, and dynamic theme parts that give you full drag-and-drop editorial control while keeping code lean, clean, and blazingly fast.",
       "features": [
-        "Custom Elementor Pro Widget & Template Design",
-        "Webflow CMS Collections & Dynamic Content",
-        "Advanced CSS Animations & Scroll Interactions",
-        "Mobile-First Responsive Breakpoints",
-        "Cross-Browser & Device QA Testing"
+        "Pixel-Perfect Design from Figma / XD / Sketch",
+        "Custom Dynamic Loop Templates & Theme Builder",
+        "Lightweight CSS & Minimal Widget Usage for Fast Loading",
+        "Advanced Animations & Micro-Interactions",
+        "Easy Client Content Editing & Admin Handover"
       ],
-      "highlight": null
+      "highlight": "Pixel-Perfect"
     },
     {
-      "slug": "wix-squarespace-development",
-      "icon": "Layers",
-      "title": "Wix & Squarespace",
-      "description": "Professional business websites on Wix & Squarespace — designed to look premium, load fast, and generate real leads.",
-      "longDescription": "Not every business needs WordPress — and for many, Wix or Squarespace is the smartest choice. I build professional, high-end websites on both platforms that defy the 'template look' and stand out in any market. From local service businesses to professional portfolios and agency sites, I handle everything: custom design, content structure, SEO setup, contact forms, and ongoing training so you can manage it yourself with confidence.",
-      "features": [
-        "Wix Studio Advanced Design & Velo (JS) Scripting",
-        "Squarespace Custom CSS & Layout Overrides",
-        "Local SEO & Google Business Integration",
-        "Lead Capture Forms & CRM Connections",
-        "Client Handover Training & Documentation"
-      ],
-      "highlight": null
-    },
-    {
-      "slug": "ai-powered-web-development",
-      "icon": "Bot",
-      "title": "AI-Powered Websites",
-      "description": "Next-generation websites supercharged with AI — from AI chatbots and dynamic content to automated workflows and smart lead capture.",
-      "longDescription": "The websites that win in the next decade will be powered by AI. I integrate cutting-edge AI capabilities directly into your web presence — intelligent chatbots trained on your business data, AI-generated content workflows, smart lead qualification systems, and personalized user experiences. Whether you're embedding a custom GPT assistant, connecting to OpenAI APIs, or automating your entire content pipeline, I build the infrastructure that puts AI to work for your revenue goals.",
-      "features": [
-        "Custom AI Chatbot Integration (GPT / Dialogflow)",
-        "AI Content Generation & Automation Pipelines",
-        "Smart Lead Qualification & CRM Sync",
-        "Personalized User Experience Flows",
-        "OpenAI, Claude & Gemini API Integrations"
-      ],
-      "highlight": "Future-Ready"
-    },
-    {
-      "slug": "speed-optimization",
+      "slug": "wordpress-speed-optimization",
       "icon": "Gauge",
-      "title": "Speed Optimization",
-      "description": "Achieve 95+ PageSpeed scores on WordPress & any CMS. Faster sites rank higher, convert better, and retain more visitors.",
-      "longDescription": "Every 100ms of latency costs you conversions. I provide deep technical speed optimization that goes far beyond installing a caching plugin. From image pipeline engineering and critical CSS extraction to database query optimization and server-side tuning, I move the needle on your Core Web Vitals scores to elite levels. I specialize in WordPress and WooCommerce speed work, and apply the same rigor to Webflow, Wix, and custom stacks.",
+      "title": "WordPress Speed Optimization",
+      "description": "Achieve 95+ Google PageSpeed & GTmetrix scores. Reduce bounce rates, rank higher on Google, and boost conversion rates.",
+      "longDescription": "Slow loading kills conversions and drops search rankings. I provide in-depth technical speed optimization that goes far beyond basic caching plugins: database cleaning, asset minification, critical CSS generation, JS deferral, and server/CDN tuning to pass Core Web Vitals with flying colors.",
       "features": [
-        "Core Web Vitals (LCP, FID, CLS) Deep Tuning",
-        "WordPress Database & Query Optimization",
-        "Advanced Image Compression & WebP Delivery",
-        "Critical Path CSS & JS Deferral",
-        "CDN Configuration & Server-Side Caching"
+        "95+ Google PageSpeed & Core Web Vitals (LCP, FID, CLS)",
+        "Database Query Optimization & Asset Cleanup",
+        "Critical Path CSS Extraction & JS Deferral",
+        "Next-Gen WebP Image Compression & CDN Setup",
+        "Server Caching & TTFB (Time to First Byte) Reduction"
       ],
       "highlight": "95+ Score"
     },
     {
-      "slug": "wordpress-seo-development",
-      "icon": "Search",
-      "title": "Technical SEO & Content",
-      "description": "Technical SEO foundations baked into every build — structured data, semantic HTML, Yoast/RankMath setup, and content strategy.",
-      "longDescription": "A beautiful website Google can't find is worthless. I build every project with a 'Technical SEO First' mentality, implementing the full stack of on-page and structural SEO from day one. This includes JSON-LD schema markup, semantic HTML5 architecture, crawl-optimized site structure, and proper meta strategy. I also set up Yoast SEO or RankMath with advanced configurations, create XML sitemaps, and build a content strategy framework so your site keeps climbing the rankings.",
+      "slug": "wordpress-security-malware-removal",
+      "icon": "ShieldCheck",
+      "title": "WordPress Security & Malware Removal",
+      "description": "Enterprise-grade WordPress hardening, immediate malware cleanup, firewall installation, and blacklist removal.",
+      "longDescription": "Protect your website and client data from vulnerabilities, brute force attacks, and malware infections. Whether you need emergency hacked-site recovery and blacklist removal, or proactive security hardening, I lock down your WordPress installation with industry-standard protocols.",
       "features": [
-        "Yoast SEO & RankMath Advanced Configuration",
-        "JSON-LD Schema Markup (Local, FAQ, Product)",
-        "Semantic HTML5 & Aria Accessibility",
-        "XML Sitemap & Robots.txt Optimization",
-        "Content Pillar Strategy & Internal Linking Architecture"
+        "Complete Malware & Malicious Script Removal",
+        "Google Blacklist & Red Screen Security Removal",
+        "Web Application Firewall (WAF) & Brute Force Defense",
+        "Login Security, 2FA & File Integrity Monitoring",
+        "Automated Daily Backups & Database Hardening"
       ],
-      "highlight": null
+      "highlight": "Hardened"
     },
     {
-      "slug": "wordpress-maintenance",
-      "icon": "ShieldCheck",
-      "title": "WordPress Care & Support",
-      "description": "Ongoing WordPress maintenance, security monitoring, updates, backups, and priority support — so you never worry about your site.",
-      "longDescription": "Your website is a living asset that needs consistent care to stay secure, fast, and up-to-date. My WordPress Care Plans provide proactive maintenance so you can focus on your business, not your website. I handle all core, theme, and plugin updates with pre-update backups, run weekly security scans, monitor uptime 24/7, and provide priority support for any issues. You get a dedicated partner who knows your site inside-out and keeps it running at peak performance month after month.",
+      "slug": "wordpress-seo-optimization",
+      "icon": "Search",
+      "title": "WordPress SEO & Technical Ranking",
+      "description": "Built-in technical SEO foundations, schema markup, semantic hierarchy, and RankMath/Yoast setup to rank higher on Google.",
+      "longDescription": "A visually stunning website is useless if your target audience can't discover it on Google. I implement end-to-end on-page and technical SEO: structured JSON-LD schema, semantic HTML5 structure, sitemap optimizations, meta architecture, and search console indexing to drive organic leads.",
       "features": [
-        "Monthly Core, Theme & Plugin Updates",
-        "Daily Off-Site Backups & One-Click Restore",
-        "24/7 Uptime Monitoring & Security Scanning",
-        "Priority Bug Fixes & Change Requests",
-        "Monthly Performance & Analytics Reports"
+        "RankMath / Yoast SEO Deep Setup & Configuration",
+        "JSON-LD Schema Markup (Local Business, Organization, FAQ)",
+        "Semantic Headings (H1-H6) & Canonical URL Optimization",
+        "XML Sitemaps, Robots.txt & Google Search Console Setup",
+        "Internal Linking Strategy & Site Architecture"
       ],
-      "highlight": null
+      "highlight": "Top Ranking"
+    },
+    {
+      "slug": "woocommerce-store-development",
+      "icon": "Store",
+      "title": "WooCommerce Store Development",
+      "description": "High-converting online stores with streamlined checkout, custom product builders, and robust payment gateway setups.",
+      "longDescription": "Sell physical or digital products seamlessly with a high-performance WooCommerce storefront. I optimize the entire buyer journey from product page discovery to 1-click frictionless checkout, boosting average order value and minimizing cart abandonment.",
+      "features": [
+        "Conversion-Optimized Checkout & Cart Funnels",
+        "Stripe, PayPal, Apple Pay & Regional Gateway Setup",
+        "Custom Product Filters, Variations & Subscriptions",
+        "Automated Tax, Shipping & Inventory Management",
+        "Speed-Optimized E-Commerce Architecture"
+      ],
+      "highlight": "E-Commerce"
+    },
+    {
+      "slug": "high-converting-landing-pages",
+      "icon": "Zap",
+      "title": "High-Converting Landing Pages",
+      "description": "High-impact, direct-response landing pages designed to maximize paid ad conversions (Google Ads, Meta Ads, TikTok).",
+      "longDescription": "Maximize the return on your advertising spend with bespoke direct-response landing pages. Built with proven conversion rate optimization (CRO) principles, psychological triggers, and lightning-fast load speeds, these pages turn ad clicks into booked calls and paying customers.",
+      "features": [
+        "Direct-Response Copywriting Architecture & Wireframes",
+        "High-Trust Social Proof & Testimonial Layouts",
+        "A/B Testing Ready Structure & Lead Capture Forms",
+        "Meta Pixel, Google Analytics & Tag Manager Tracking Setup",
+        "Sub-1 Second Page Load Times on Mobile"
+      ],
+      "highlight": "CRO Focus"
+    },
+    {
+      "slug": "law-firm-lawyer-websites",
+      "icon": "Shield",
+      "title": "Law Firm & Legal Practice Websites",
+      "description": "Authoritative, confidential, and professional websites for attorneys, law firms, and legal consultants to win high-value clients.",
+      "longDescription": "Build immediate trust and authority for your legal practice. I craft dignified, high-end websites tailored specifically for law firms, featuring practice area hubs, attorney profiles, secure intake forms, client testimonials, and localized SEO to dominate regional legal search terms.",
+      "features": [
+        "Practice Area Hubs & Case Result Showcases",
+        "Attorney Profiles & Credential Highlighting",
+        "Secure, Confidential Client Intake Forms & Live Chat",
+        "Local SEO & Google Maps Visibility for Legal Searches",
+        "ADA Compliance & Accessibility Considerations"
+      ],
+      "highlight": "Corporate"
+    },
+    {
+      "slug": "construction-contractor-websites",
+      "icon": "Layers",
+      "title": "Construction & Contractor Websites",
+      "description": "Rugged, professional websites for builders, general contractors, remodelers, and tradesmen to generate steady commercial & residential bids.",
+      "longDescription": "Showcase your craftsmanship and win bigger contracts with a website designed for construction and trade businesses. Includes interactive project galleries, before-and-after sliders, instant quote estimate request forms, and localized service area pages.",
+      "features": [
+        "Interactive Project Portfolios & Before/After Showcases",
+        "Online Estimate Request & Instant Quote Forms",
+        "Service Area Pages for Multi-City Local SEO",
+        "Client Reviews & Verification Badges",
+        "Mobile-Friendly Layout for On-The-Go Homeowners"
+      ],
+      "highlight": "Industry Lead Gen"
+    },
+    {
+      "slug": "consulting-business-websites",
+      "icon": "Briefcase",
+      "title": "Consulting & Business Websites",
+      "description": "Strategic, executive-level websites for B2B consultants, agencies, and advisors designed to book discovery calls.",
+      "longDescription": "Position your consulting firm as the indisputable authority in your niche. I build sleek, corporate websites that articulate complex value propositions, feature thought leadership content, and integrate seamless automated meeting scheduling to fill your calendar.",
+      "features": [
+        "Executive B2B Positioning & Value Proposition Layouts",
+        "Seamless Calendly / HubSpot / Acuity Meeting Integration",
+        "Lead Magnet & Whitepaper Gated Content Systems",
+        "Case Study Showcases with ROI Proof Metrics",
+        "CRM & Email Marketing Automation Connections"
+      ],
+      "highlight": "B2B Authority"
+    },
+    {
+      "slug": "portfolio-brand-websites",
+      "icon": "UserCheck",
+      "title": "Portfolio & Personal Brand Websites",
+      "description": "Stunning personal branding and portfolio websites for executives, creators, architects, photographers, and freelancers.",
+      "longDescription": "Stand out with a distinctive personal brand website that reflects your unique style and accomplishments. Featuring interactive work showcases, custom typography, smooth micro-interactions, and media press kits to attract speaking gigs, clients, and career opportunities.",
+      "features": [
+        "Curated Visual Gallery & Case Study Displays",
+        "Interactive GSAP Animations & Smooth Scrolling",
+        "Media Kit, Speaking Engagement & Press Features",
+        "Newsletter & Social Media Audience Funnels",
+        "Dark / Light Mode Modern Aesthetics"
+      ],
+      "highlight": "Personal Brand"
+    },
+    {
+      "slug": "shopify-store-development",
+      "icon": "ShoppingBag",
+      "title": "Shopify Store Development",
+      "description": "Scalable, modern Shopify & Shopify Plus stores designed to maximize e-commerce sales and seamless customer checkout.",
+      "longDescription": "Launch or scale your e-commerce brand on Shopify. I build custom liquid sections, configure top-converting apps, streamline product browsing, and ensure ultra-fast mobile responsiveness to maximize your store's average order value and repeat purchases.",
+      "features": [
+        "Custom Shopify Theme Setup & Liquid Customization",
+        "App Stack Integration (Reviews, Upsells, Loyalty)",
+        "Mobile-First Product Pages & Sticky Add-To-Cart",
+        "Payment, Currency & Global Shipping Configuration",
+        "Shopify Speed Optimization & Asset Compression"
+      ],
+      "highlight": "Shopify"
+    },
+    {
+      "slug": "wix-website-design",
+      "icon": "Globe",
+      "title": "Wix Website Design",
+      "description": "Modern, custom Wix & Wix Studio websites engineered for small businesses, bookings, and straightforward client management.",
+      "longDescription": "Get the flexibility of Wix without the amateur template look. Using Wix Studio and custom Velo code when needed, I build bespoke, responsive business websites that allow you to easily manage your appointments, events, and content with zero coding required.",
+      "features": [
+        "Wix Studio Responsive Breakpoint Customization",
+        "Wix Bookings, Events & Membership Setup",
+        "Custom Forms, CRM & Automations Integration",
+        "Search Engine Optimization (Wix SEO Tools)",
+        "1-on-1 Video Handover & Editorial Training"
+      ],
+      "highlight": "Wix Studio"
+    },
+    {
+      "slug": "squarespace-website-design",
+      "icon": "Palette",
+      "title": "Squarespace Website Design",
+      "description": "Elegant, typography-rich Squarespace websites for boutique brands, restaurants, creators, and service providers.",
+      "longDescription": "Elevate your brand with clean, minimalist Squarespace websites enhanced with custom CSS styling and custom layout injection. Ideal for brands that prioritize aesthetic simplicity, effortless blogging, and easy everyday maintenance.",
+      "features": [
+        "Fluid Engine Custom Layouts & Custom CSS Styling",
+        "Commerce, Acuity Scheduling & Blog Setup",
+        "Mobile Display Customization & Asset Optimization",
+        "Newsletter & Lead Capture Integration",
+        "Complete Site Launch Checklist & Training"
+      ],
+      "highlight": "Squarespace"
+    },
+    {
+      "slug": "webflow-visual-development",
+      "icon": "Code2",
+      "title": "Webflow Visual Development",
+      "description": "Cutting-edge Webflow websites with dynamic CMS collections, interactions, and production-grade clean code.",
+      "longDescription": "Harness the design power of Webflow to create interactive, dynamic web experiences with unmatched creative freedom. Built with Client-First standards, scalable CMS databases, and bespoke micro-interactions for modern tech brands and ambitious businesses.",
+      "features": [
+        "Client-First Webflow Architecture (Relume/Finsweet standards)",
+        "Dynamic CMS Structures & Multi-Reference Fields",
+        "Custom Webflow Interactions & Lottie Animations",
+        "Clean, Semantic HTML & High-Performance Output",
+        "Seamless Editor Handover for Marketing Teams"
+      ],
+      "highlight": "Webflow"
+    },
+    {
+      "slug": "wordpress-maintenance-care",
+      "icon": "HeartPulse",
+      "title": "WordPress Maintenance & Care",
+      "description": "Proactive 24/7 monitoring, weekly plugin/core updates, daily cloud backups, and on-demand technical support.",
+      "longDescription": "Enjoy total peace of mind knowing your WordPress site is monitored, backed up, and maintained by a dedicated expert. I prevent downtime, squash bugs before they affect visitors, keep plugins safely updated, and provide rapid support whenever you need changes.",
+      "features": [
+        "Safe Core, Theme & Plugin Updates with Staging Tests",
+        "Daily Cloud Backups with Instant 1-Click Restore",
+        "24/7 Uptime & Security Vulnerability Monitoring",
+        "Priority Technical Support & Content Updates",
+        "Monthly Health & Performance Reports"
+      ],
+      "highlight": "Peace of Mind"
+    },
+    {
+      "slug": "custom-acf-php-development",
+      "icon": "Terminal",
+      "title": "Custom ACF & PHP Development",
+      "description": "Custom WordPress themes, Advanced Custom Fields (ACF Pro) blocks, Custom Post Types (CPT), and bespoke PHP functionality.",
+      "longDescription": "When off-the-shelf plugins don't cut it, custom PHP and ACF architecture delivers the exact functionality your business demands. I build custom ACF Gutenberg blocks, complex custom post types, custom API endpoints, and clean backend dashboards tailored to your workflows.",
+      "features": [
+        "Custom ACF Pro Flexible Content & Gutenberg Blocks",
+        "Custom Post Types (CPT) & Custom Taxonomies",
+        "REST API Endpoints & Third-Party Webhook Integrations",
+        "Tailored WordPress Admin Panel & Custom User Roles",
+        "Zero-Bloat, High-Performance Native PHP Code"
+      ],
+      "highlight": "Bespoke"
     }
   ],
   "servicesPage": {
