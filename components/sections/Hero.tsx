@@ -31,6 +31,7 @@ import CountUp from "@/components/ui/CountUp";
 import { Orbit, OrbitContainer } from "@/components/ui/Orbit";
 import { Marquee } from "@/components/ui/Marquee";
 import { CodeCard } from "@/components/ui/CodeCard";
+import GeminiAnimatedBg from "@/components/ui/GeminiAnimatedBg";
 
 import { useContent } from "@/components/providers/ContentProvider";
 import contentData from "@/data/site-content.json";
@@ -141,41 +142,8 @@ export default function Hero() {
       ref={containerRef}
       className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-background"
     >
-      {/* ── Dark Mode Only: Premium Ambient Mesh & Radial Gradient Background ── */}
-      <div className="absolute inset-0 z-0 pointer-events-none hidden dark:block overflow-hidden">
-        {/* Deep ambient top glowing flare */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/3 w-[1000px] h-[600px] bg-gradient-to-b from-orange-500/15 via-accent/5 to-transparent rounded-full blur-[140px]" />
-
-        {/* Top-right subtle warm atmospheric glow */}
-        <div className="absolute top-1/4 -right-20 w-[600px] h-[600px] bg-gradient-to-bl from-amber-500/10 via-orange-600/5 to-transparent rounded-full blur-[130px]" />
-
-        {/* Bottom-left deep ambient glow */}
-        <div className="absolute -bottom-20 -left-20 w-[600px] h-[600px] bg-gradient-to-tr from-accent/10 via-orange-500/3 to-transparent rounded-full blur-[140px]" />
-
-        {/* Center subtle breathing light */}
-        <motion.div
-          animate={{
-            opacity: [0.35, 0.65, 0.35],
-            scale: [0.98, 1.02, 0.98],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[500px] bg-accent/5 rounded-full blur-[160px]"
-        />
-
-        {/* Ultra-sleek, subtle dot grid overlay */}
-        <div
-          className="absolute inset-0 opacity-[0.035]"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle, var(--text-muted) 0.5px, transparent 0.5px)",
-            backgroundSize: "28px 28px",
-          }}
-        />
-      </div>
+      {/* ── Dark Mode: Animated Fluid Gemini App Mesh Gradient Background ── */}
+      <GeminiAnimatedBg className="hidden dark:block" intensity="medium" />
 
       {/* ── Light Mode Only: Clean minimal background ── */}
       <div className="absolute inset-0 z-0 pointer-events-none dark:hidden">
