@@ -75,6 +75,20 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <JsonLd data={buildGlobalSchemaGraph()} />
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-WR6X5FN6F6"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-WR6X5FN6F6');
+            `,
+          }}
+        />
       </head>
       <body
         className="bg-background text-text-primary font-inter antialiased"
