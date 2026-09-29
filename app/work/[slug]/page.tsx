@@ -56,7 +56,7 @@ export default async function CaseStudyPage({ params }: Props) {
 
   const currentIndex = projects.findIndex((p: any) => p.slug === slug);
   const nextProject = projects[(currentIndex + 1) % projects.length];
-  const gradient = gradientMap[slug] ?? "from-orange-900 to-red-900";
+  const gradient = gradientMap[slug] ?? project.mockupColor ?? "from-orange-900 to-red-900";
 
   return (
     <>
