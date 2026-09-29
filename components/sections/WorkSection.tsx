@@ -107,7 +107,14 @@ const ProjectCard = ({ project, index, progress, range, targetScale }: CardProps
                  </div>
                  <div className="flex-1 flex justify-center mr-8">
                    <div className="w-64 h-5 bg-text-primary/5 rounded-md text-[10px] text-text-primary/40 flex items-center justify-center font-mono tracking-wider opacity-0 sm:opacity-100">
-                     {new URL(`https://${project.slug}.com`).hostname}
+                     {(() => {
+                       try {
+                         if (project.liveUrl && project.liveUrl !== "#") {
+                           return new URL(project.liveUrl).hostname;
+                         }
+                       } catch {}
+                       return `${project.slug}.com`;
+                     })()}
                    </div>
                  </div>
                </div>

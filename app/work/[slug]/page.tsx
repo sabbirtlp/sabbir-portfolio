@@ -261,6 +261,8 @@ export default async function CaseStudyPage({ params }: Props) {
 
                 <a
                   href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="mt-6 flex w-full items-center justify-center gap-2 px-5 py-3 bg-accent hover:bg-accent-light text-white font-semibold rounded-xl text-sm transition-all duration-300"
                 >
                   View Live Site
