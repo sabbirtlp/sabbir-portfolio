@@ -145,27 +145,60 @@ export default function Hero() {
       {/* ── Animated Gradient Background (both themes) ── */}
       <GeminiAnimatedBg />
 
+      {/* ── Minimal Vertical Stats on Very Left of Viewport ── */}
+      <div
+        ref={statsRef}
+        className="hidden lg:flex flex-col items-center gap-6 absolute left-3 lg:left-5 xl:left-8 top-1/2 -translate-y-1/2 z-20 select-none opacity-0"
+      >
+        <div className="w-[1px] h-8 bg-gradient-to-b from-transparent to-accent/50" />
 
+        {stats.map((stat: any, index: number) => (
+          <div
+            key={stat.label}
+            className="group/stat flex flex-col items-center gap-2.5 py-1 cursor-default"
+          >
+            {/* Minimal Stat Value */}
+            <div className="font-unbounded font-bold text-xs lg:text-sm xl:text-base text-accent leading-none tracking-tight group-hover/stat:scale-110 transition-transform duration-300">
+              <CountUp
+                end={stat.value}
+                suffix={stat.suffix}
+                duration={2000}
+              />
+            </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-28 md:pb-20">
+            {/* Vertical Character/Text Orientation */}
+            <span className="[writing-mode:vertical-rl] rotate-180 text-[8px] lg:text-[9px] font-mono uppercase tracking-[0.25em] text-text-muted group-hover/stat:text-text-primary transition-colors duration-300 whitespace-nowrap">
+              {stat.label}
+            </span>
+
+            {index < stats.length - 1 && (
+              <div className="w-[1px] h-5 bg-border/60 dark:bg-white/10 mt-1" />
+            )}
+          </div>
+        ))}
+
+        <div className="w-[1px] h-8 bg-gradient-to-b from-accent/50 to-transparent" />
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-6 xl:px-12 pt-32 pb-28 md:pb-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left Column: Content */}
-          <div className="flex flex-col items-start text-left order-2 lg:order-1">
+          <div className="flex flex-col items-center text-center lg:items-start lg:text-left order-2 lg:order-1">
             {/* Badge */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1, duration: 0.6 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/30 bg-accent/5 text-accent text-[10px] font-fira-code tracking-widest uppercase mb-8"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/30 bg-accent/5 text-accent text-[10px] font-fira-code tracking-widest uppercase mb-8 self-center lg:self-start"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
               {badge}
             </motion.div>
 
             {/* headline */}
-            <h1 ref={headlineRef} className="mb-6 text-left m-0">
+            <h1 ref={headlineRef} className="mb-6 text-center lg:text-left m-0 w-full">
               <div className="overflow-hidden">
-                <div className="flex flex-wrap justify-start gap-x-3 sm:gap-x-4 md:gap-x-5 gap-y-1 sm:gap-y-2">
+                <div className="flex flex-wrap justify-center lg:justify-start gap-x-3 sm:gap-x-4 md:gap-x-5 gap-y-1 sm:gap-y-2">
                   <div className="overflow-hidden">
                     <span className="word inline-block font-syne font-bold text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl 2xl:text-7xl tracking-tight leading-[1.08] text-text-primary">
                       Crafting
@@ -191,7 +224,7 @@ export default function Hero() {
             {/* Subheadline */}
             <p
               ref={subRef}
-              className="text-text-secondary text-base md:text-lg max-w-xl leading-relaxed mb-10 opacity-0 text-left"
+              className="text-text-secondary text-base md:text-lg max-w-xl leading-relaxed mb-10 opacity-0 text-center lg:text-left mx-auto lg:mx-0"
             >
               {subheadline
                 .split("Sabbir Hossain")
@@ -210,7 +243,7 @@ export default function Hero() {
             {/* CTAs */}
             <div
               ref={ctaRef}
-              className="flex flex-col sm:flex-row justify-start gap-4 opacity-0 w-full"
+              className="flex flex-col sm:flex-row justify-center lg:justify-start items-center gap-4 opacity-0 w-full"
             >
               <MagneticButton strength={0.3} className="w-full sm:w-auto">
                 <a
@@ -232,40 +265,34 @@ export default function Hero() {
                 </a>
               </MagneticButton>
             </div>
+
+            {/* Mobile/Tablet Compact Centered Stats Card with Darkish Background */}
+            <div className="lg:hidden w-full max-w-md mx-auto mt-8 sm:mt-10">
+              <div className="grid grid-cols-3 divide-x divide-white/10 dark:divide-white/10 py-3.5 px-2 sm:px-4 rounded-2xl bg-zinc-950/85 dark:bg-zinc-950/80 border border-white/15 dark:border-white/10 shadow-2xl backdrop-blur-xl">
+                {stats.map((stat: any) => (
+                  <div
+                    key={stat.label}
+                    className="flex flex-col items-center text-center px-1 sm:px-2"
+                  >
+                    <div className="font-unbounded font-bold text-base sm:text-lg text-accent mb-1 leading-none">
+                      <CountUp
+                        end={stat.value}
+                        suffix={stat.suffix}
+                        duration={2000}
+                      />
+                    </div>
+                    <p className="text-zinc-300 text-[8px] sm:text-[9px] uppercase tracking-wider font-mono font-medium leading-tight">
+                      {stat.label}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
 
-          {/* Right Column: Code Card & Vertical Stats */}
-          <div className="order-1 lg:order-2 flex flex-col xl:flex-row items-center justify-center lg:justify-end gap-6 xl:gap-8 w-full">
-            <div className="w-full max-w-xl">
-              <CodeCard />
-            </div>
-
-            {/* Vertical Stats Pillar */}
-            <div
-              ref={statsRef}
-              className="flex flex-row xl:flex-col items-center xl:items-start justify-around xl:justify-center gap-6 xl:gap-7 px-6 py-5 xl:px-6 xl:py-8 rounded-2xl bg-white/60 dark:bg-white/[0.04] backdrop-blur-xl border border-zinc-200/50 dark:border-white/[0.08] shadow-2xl dark:shadow-[0_8px_40px_-12px_rgba(0,0,0,0.5)] w-full xl:w-auto shrink-0"
-            >
-              {stats.map((stat: any, index: number) => (
-                <div
-                  key={stat.label}
-                  className="group/stat flex flex-col items-center xl:items-start text-center xl:text-left"
-                >
-                  <div className="font-unbounded font-bold text-2xl sm:text-3xl xl:text-3xl text-accent mb-1 transition-transform duration-300 group-hover/stat:scale-105 leading-none">
-                    <CountUp
-                      end={stat.value}
-                      suffix={stat.suffix}
-                      duration={2000}
-                    />
-                  </div>
-                  <p className="text-text-secondary text-[8px] sm:text-[9px] xl:text-[10px] uppercase tracking-wider font-semibold opacity-75 max-w-[90px] xl:max-w-[100px] leading-tight">
-                    {stat.label}
-                  </p>
-                  {index < stats.length - 1 && (
-                    <div className="hidden xl:block w-8 h-px bg-zinc-200/80 dark:bg-white/10 my-3" />
-                  )}
-                </div>
-              ))}
-            </div>
+          {/* Right Column: Code Card */}
+          <div className="order-1 lg:order-2 flex justify-center lg:justify-end">
+            <CodeCard />
           </div>
         </div>
       </div>

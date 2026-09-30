@@ -19,7 +19,7 @@ export default function CountUp({
   className = "",
 }: CountUpProps) {
   const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { amount: 0.1 });
+  const isInView = useInView(ref, { amount: 0.05, once: true });
   const [isMounted, setIsMounted] = useState(false);
   const hasAnimated = useRef(false);
 
