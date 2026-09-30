@@ -184,9 +184,9 @@ export default function Hero() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1, duration: 0.6 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/30 bg-accent/5 text-accent text-[10px] font-fira-code tracking-widest uppercase mb-8 self-center lg:self-start"
+              className="inline-flex items-center gap-2.5 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full border border-accent/30 bg-accent/5 text-accent text-xs sm:text-sm font-fira-code font-semibold tracking-wider uppercase mb-8 self-center lg:self-start"
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+              <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
               {badge}
             </motion.div>
 
