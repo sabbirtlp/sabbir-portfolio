@@ -210,7 +210,7 @@ export default function Hero() {
             {/* CTAs */}
             <div
               ref={ctaRef}
-              className="flex flex-col sm:flex-row justify-start gap-4 mb-16 opacity-0 w-full"
+              className="flex flex-col sm:flex-row justify-start gap-4 opacity-0 w-full"
             >
               <MagneticButton strength={0.3} className="w-full sm:w-auto">
                 <a
@@ -232,35 +232,40 @@ export default function Hero() {
                 </a>
               </MagneticButton>
             </div>
+          </div>
 
-            {/* Compact Stats Grid */}
+          {/* Right Column: Code Card & Vertical Stats */}
+          <div className="order-1 lg:order-2 flex flex-col xl:flex-row items-center justify-center lg:justify-end gap-6 xl:gap-8 w-full">
+            <div className="w-full max-w-xl">
+              <CodeCard />
+            </div>
+
+            {/* Vertical Stats Pillar */}
             <div
               ref={statsRef}
-              className="grid grid-cols-3 gap-3 sm:gap-6 md:gap-12 opacity-0 w-full"
+              className="flex flex-row xl:flex-col items-center xl:items-start justify-around xl:justify-center gap-6 xl:gap-7 px-6 py-5 xl:px-6 xl:py-8 rounded-2xl bg-white/60 dark:bg-white/[0.04] backdrop-blur-xl border border-zinc-200/50 dark:border-white/[0.08] shadow-2xl dark:shadow-[0_8px_40px_-12px_rgba(0,0,0,0.5)] w-full xl:w-auto shrink-0"
             >
-              {stats.map((stat: any) => (
+              {stats.map((stat: any, index: number) => (
                 <div
                   key={stat.label}
-                  className="group/stat flex flex-col items-start sm:items-start"
+                  className="group/stat flex flex-col items-center xl:items-start text-center xl:text-left"
                 >
-                  <div className="font-unbounded font-medium text-lg sm:text-xl md:text-2xl text-text-primary mb-1 md:mb-2 transition-transform duration-300 group-hover/stat:text-accent leading-none">
+                  <div className="font-unbounded font-bold text-2xl sm:text-3xl xl:text-3xl text-accent mb-1 transition-transform duration-300 group-hover/stat:scale-105 leading-none">
                     <CountUp
                       end={stat.value}
                       suffix={stat.suffix}
                       duration={2000}
                     />
                   </div>
-                  <p className="text-text-secondary text-[7px] sm:text-[8px] md:text-[9px] uppercase tracking-wider sm:tracking-[0.2em] font-medium opacity-60 max-w-[80px] sm:max-w-full leading-tight">
+                  <p className="text-text-secondary text-[8px] sm:text-[9px] xl:text-[10px] uppercase tracking-wider font-semibold opacity-75 max-w-[90px] xl:max-w-[100px] leading-tight">
                     {stat.label}
                   </p>
+                  {index < stats.length - 1 && (
+                    <div className="hidden xl:block w-8 h-px bg-zinc-200/80 dark:bg-white/10 my-3" />
+                  )}
                 </div>
               ))}
             </div>
-          </div>
-
-          {/* Right Column: Code Card */}
-          <div className="order-1 lg:order-2 flex justify-center lg:justify-end">
-            <CodeCard />
           </div>
         </div>
       </div>
