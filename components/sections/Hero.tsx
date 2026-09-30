@@ -159,7 +159,7 @@ export default function Hero() {
             className="group/stat flex flex-col items-center gap-2 py-1 px-1.5 cursor-default bg-background/85 dark:bg-background/85 backdrop-blur-sm rounded-md"
           >
             {/* Minimal Stat Value */}
-            <div className="font-unbounded font-bold text-lg lg:text-xl xl:text-2xl text-accent leading-none tracking-tight group-hover/stat:scale-110 transition-transform duration-300">
+            <div className="font-unbounded font-bold text-xs lg:text-sm xl:text-sm text-accent leading-none tracking-tight group-hover/stat:scale-110 transition-transform duration-300">
               <CountUp
                 end={stat.value}
                 suffix={stat.suffix}
