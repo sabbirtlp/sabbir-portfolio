@@ -165,16 +165,16 @@ export default function Hero() {
             {/* headline */}
             <h1 ref={headlineRef} className="mb-6 text-left m-0">
               <div className="overflow-hidden">
-                <div className="flex flex-wrap justify-start gap-x-4 md:gap-x-6 gap-y-2">
+                <div className="flex flex-wrap justify-start gap-x-3 sm:gap-x-4 md:gap-x-5 gap-y-1 sm:gap-y-2">
                   <div className="overflow-hidden">
-                    <span className="word inline-block font-syne font-semibold text-2xl text-text-primary">
+                    <span className="word inline-block font-syne font-bold text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl 2xl:text-7xl tracking-tight leading-[1.08] text-text-primary">
                       Crafting
                     </span>
                   </div>
                   {headlineWords.map((word: string, i: number) => (
                     <div key={i} className="overflow-hidden">
                       <span
-                        className={`word inline-block font-syne font-semibold text-2xl ${
+                        className={`word inline-block font-syne font-bold text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl 2xl:text-7xl tracking-tight leading-[1.08] ${
                           word === "High-Converting"
                             ? "text-gradient"
                             : "text-text-primary"
