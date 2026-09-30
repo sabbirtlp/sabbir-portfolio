@@ -145,17 +145,18 @@ export default function Hero() {
       {/* ── Animated Gradient Background (both themes) ── */}
       <GeminiAnimatedBg />
 
+      {/* ── Single Thin Line from Top to Bottom ── */}
+      <div className="hidden lg:block absolute left-3 lg:left-5 xl:left-8 top-0 bottom-0 w-[1px] -translate-x-1/2 bg-gradient-to-b from-transparent via-zinc-300 dark:via-white/20 to-transparent pointer-events-none z-10" />
+
       {/* ── Minimal Vertical Stats on Very Left of Viewport ── */}
       <div
         ref={statsRef}
-        className="hidden lg:flex flex-col items-center gap-4 xl:gap-5 absolute left-3 lg:left-5 xl:left-8 top-[44%] -translate-y-1/2 z-20 select-none opacity-0"
+        className="hidden lg:flex flex-col items-center gap-5 xl:gap-6 absolute left-3 lg:left-5 xl:left-8 top-[44%] -translate-y-1/2 -translate-x-1/2 z-20 select-none opacity-0"
       >
-        <div className="w-[1px] h-6 bg-gradient-to-b from-transparent to-accent/50" />
-
-        {stats.map((stat: any, index: number) => (
+        {stats.map((stat: any) => (
           <div
             key={stat.label}
-            className="group/stat flex flex-col items-center gap-2 py-0.5 cursor-default"
+            className="group/stat flex flex-col items-center gap-2 py-1 px-1.5 cursor-default bg-background/85 dark:bg-background/85 backdrop-blur-sm rounded-md"
           >
             {/* Minimal Stat Value */}
             <div className="font-unbounded font-bold text-lg lg:text-xl xl:text-2xl text-accent leading-none tracking-tight group-hover/stat:scale-110 transition-transform duration-300">
@@ -170,14 +171,8 @@ export default function Hero() {
             <span className="[writing-mode:vertical-rl] rotate-180 text-[11px] lg:text-xs xl:text-[13px] font-mono uppercase tracking-[0.18em] font-medium text-text-muted group-hover/stat:text-text-primary transition-colors duration-300 whitespace-nowrap">
               {stat.label}
             </span>
-
-            {index < stats.length - 1 && (
-              <div className="w-[1px] h-3.5 bg-border/60 dark:bg-white/10 mt-1" />
-            )}
           </div>
         ))}
-
-        <div className="w-[1px] h-6 bg-gradient-to-b from-accent/50 to-transparent" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 xl:px-12 pt-32 pb-28 md:pb-20">
