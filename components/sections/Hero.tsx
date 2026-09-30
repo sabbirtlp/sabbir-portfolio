@@ -148,17 +148,17 @@ export default function Hero() {
       {/* ── Minimal Vertical Stats on Very Left of Viewport ── */}
       <div
         ref={statsRef}
-        className="hidden lg:flex flex-col items-center gap-6 absolute left-3 lg:left-5 xl:left-8 top-1/2 -translate-y-1/2 z-20 select-none opacity-0"
+        className="hidden lg:flex flex-col items-center gap-4 xl:gap-5 absolute left-3 lg:left-5 xl:left-8 top-[44%] -translate-y-1/2 z-20 select-none opacity-0"
       >
-        <div className="w-[1px] h-8 bg-gradient-to-b from-transparent to-accent/50" />
+        <div className="w-[1px] h-6 bg-gradient-to-b from-transparent to-accent/50" />
 
         {stats.map((stat: any, index: number) => (
           <div
             key={stat.label}
-            className="group/stat flex flex-col items-center gap-2.5 py-1 cursor-default"
+            className="group/stat flex flex-col items-center gap-2 py-0.5 cursor-default"
           >
             {/* Minimal Stat Value */}
-            <div className="font-unbounded font-bold text-xs lg:text-sm xl:text-base text-accent leading-none tracking-tight group-hover/stat:scale-110 transition-transform duration-300">
+            <div className="font-unbounded font-bold text-lg lg:text-xl xl:text-2xl text-accent leading-none tracking-tight group-hover/stat:scale-110 transition-transform duration-300">
               <CountUp
                 end={stat.value}
                 suffix={stat.suffix}
@@ -167,17 +167,17 @@ export default function Hero() {
             </div>
 
             {/* Vertical Character/Text Orientation */}
-            <span className="[writing-mode:vertical-rl] rotate-180 text-[8px] lg:text-[9px] font-mono uppercase tracking-[0.25em] text-text-muted group-hover/stat:text-text-primary transition-colors duration-300 whitespace-nowrap">
+            <span className="[writing-mode:vertical-rl] rotate-180 text-[11px] lg:text-xs xl:text-[13px] font-mono uppercase tracking-[0.18em] font-medium text-text-muted group-hover/stat:text-text-primary transition-colors duration-300 whitespace-nowrap">
               {stat.label}
             </span>
 
             {index < stats.length - 1 && (
-              <div className="w-[1px] h-5 bg-border/60 dark:bg-white/10 mt-1" />
+              <div className="w-[1px] h-3.5 bg-border/60 dark:bg-white/10 mt-1" />
             )}
           </div>
         ))}
 
-        <div className="w-[1px] h-8 bg-gradient-to-b from-accent/50 to-transparent" />
+        <div className="w-[1px] h-6 bg-gradient-to-b from-accent/50 to-transparent" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 xl:px-12 pt-32 pb-28 md:pb-20">
@@ -224,7 +224,7 @@ export default function Hero() {
             {/* Subheadline */}
             <p
               ref={subRef}
-              className="text-text-secondary text-base md:text-lg max-w-xl leading-relaxed mb-10 opacity-0 text-center lg:text-left mx-auto lg:mx-0"
+              className="text-text-secondary text-base md:text-lg lg:text-xl max-w-xl leading-relaxed mb-10 opacity-0 text-center lg:text-left mx-auto lg:mx-0"
             >
               {subheadline
                 .split("Sabbir Hossain")
@@ -268,20 +268,20 @@ export default function Hero() {
 
             {/* Mobile/Tablet Compact Centered Stats Card with Darkish Background */}
             <div className="lg:hidden w-full max-w-md mx-auto mt-8 sm:mt-10">
-              <div className="grid grid-cols-3 divide-x divide-white/10 dark:divide-white/10 py-3.5 px-2 sm:px-4 rounded-2xl bg-zinc-950/85 dark:bg-zinc-950/80 border border-white/15 dark:border-white/10 shadow-2xl backdrop-blur-xl">
+              <div className="grid grid-cols-3 divide-x divide-white/10 dark:divide-white/10 py-4 px-2.5 sm:px-5 rounded-2xl bg-zinc-950/85 dark:bg-zinc-950/80 border border-white/15 dark:border-white/10 shadow-2xl backdrop-blur-xl">
                 {stats.map((stat: any) => (
                   <div
                     key={stat.label}
                     className="flex flex-col items-center text-center px-1 sm:px-2"
                   >
-                    <div className="font-unbounded font-bold text-base sm:text-lg text-accent mb-1 leading-none">
+                    <div className="font-unbounded font-bold text-xl sm:text-2xl text-accent mb-1.5 leading-none">
                       <CountUp
                         end={stat.value}
                         suffix={stat.suffix}
                         duration={2000}
                       />
                     </div>
-                    <p className="text-zinc-300 text-[8px] sm:text-[9px] uppercase tracking-wider font-mono font-medium leading-tight">
+                    <p className="text-zinc-200 text-[11px] sm:text-xs uppercase tracking-wider font-mono font-medium leading-tight">
                       {stat.label}
                     </p>
                   </div>
